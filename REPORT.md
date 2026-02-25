@@ -434,7 +434,57 @@ This means 96.5% of confusables.txt entries are not high-risk from a visual
 perspective. The current approach of treating all 1,418 equally produces
 massive false positive rates.
 
-## 10. Limitations and future work
+## 10. Implications for the web
+
+The data shows that confusable risk is not a property of character pairs
+alone. It is a property of character pairs *in a specific font*. That has
+direct consequences for web applications.
+
+### 10.1 Browser font fallback determines the threat
+
+When a page specifies `font-family: Arial, Helvetica, sans-serif` and a
+string contains Cyrillic а, the browser checks Arial's glyph tables,
+finds Cyrillic coverage, and renders it using Arial's Cyrillic glyphs --
+which are pixel-identical to the Latin ones. The CSS font stack a site
+ships determines which column of the danger rate table applies to its
+users. Arial at 40.8% is a different risk profile from Didot at 19.2%.
+
+### 10.2 Users do not control the font
+
+A content moderator reviewing flagged usernames sees whatever font the
+moderation tool renders. If that tool uses a system sans-serif (Arial,
+Helvetica, San Francisco), Cyrillic homoglyphs are invisible. If it used
+Zapfino, every pair would look different. The font is an uncontrolled
+variable in every visual review process.
+
+### 10.3 Address bars are not immune
+
+Browser address bars typically render in the system UI font (San Francisco
+on macOS, Segoe UI on Windows). Both are standard sans-serif fonts in the
+high-danger-rate category. Chromium's IDN homograph protection catches
+many cases by displaying punycode for suspicious mixed-script domains, but
+it relies on script-mixing heuristics, not pixel comparison. A domain
+using only Cyrillic characters that happen to spell a Latin word (like
+"аpple" in all-Cyrillic) may still render in the address bar's font and
+look identical.
+
+### 10.4 Web fonts change the equation
+
+Sites that serve custom web fonts via `@font-face` may inadvertently
+reduce or increase confusable risk depending on the font's glyph design.
+A display font with distinctive Cyrillic letterforms would lower the
+danger rate. A geometric sans-serif that harmonises Latin and Cyrillic
+would raise it. Neither outcome is typically considered when choosing a
+web font.
+
+### 10.5 Implication
+
+Confusable detection systems should be aware of the rendering context. A
+warning that says "this string contains a confusable character" is less
+useful than one that says "this string contains a character that is
+pixel-identical to its Latin counterpart in the font your users will see."
+
+## 11. Limitations and future work
 
 1. **macOS only**. Windows and Linux ship different fonts with different
    glyph tables. Cross-platform scoring would require running on each OS
@@ -458,7 +508,7 @@ massive false positive rates.
    pairs only. Multi-character sequences (e.g., "rn" vs "m") are a
    future milestone.
 
-## 11. Reproducibility
+## 12. Reproducibility
 
 All outputs are deterministic given the same platform and fonts:
 
