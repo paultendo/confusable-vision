@@ -125,7 +125,7 @@ npx tsx scripts/extract-discoveries.ts
 - [x] **Milestone 1b** -- Expand to full confusables.txt (1,418 pairs), 230 fonts, technical report
 - [x] **Milestone 2** -- Discover novel confusable pairs not in TR39 (793 high-scoring pairs from 23,317 candidates)
 - [x] **Milestone 3** -- Glyph reuse detection, identifier property annotations, weighted edge computation, namespace-guard integration
-- [ ] **Milestone 2b** -- Cross-script validation for Cyrillic, Greek, Armenian, Georgian
+- [ ] **Milestone 2b** -- CJK/Hangul verification and cross-script validation (Cyrillic, Greek, Armenian, Georgian). M2 excluded logographic scripts on the assumption they're structurally different from Latin; M2b tests that assumption.
 
 ## Related
 
