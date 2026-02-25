@@ -14,8 +14,13 @@
  *   data/output/render-index/index.json  -- metadata, pHash, render status
  *   data/output/render-index/renders/    -- normalised 48x48 greyscale PNGs
  *
+ * With --candidates flag (Milestone 2):
+ *   data/output/candidate-index/index.json
+ *   data/output/candidate-index/renders/
+ *
  * Usage:
- *   npx tsx scripts/build-index.ts
+ *   npx tsx scripts/build-index.ts              # Milestone 1b index
+ *   npx tsx scripts/build-index.ts --candidates # Milestone 2 candidate index
  */
 
 import fs from 'node:fs';
@@ -32,13 +37,30 @@ import type {
 } from '../src/types.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-const INPUT_PATH = path.join(ROOT, 'data/input/confusable-pairs.json');
-const INDEX_DIR = path.join(ROOT, 'data/output/render-index');
+const CONFUSABLE_INPUT_PATH = path.join(ROOT, 'data/input/confusable-pairs.json');
+const CANDIDATES_INPUT_PATH = path.join(ROOT, 'data/output/candidates.json');
+
+const CANDIDATES_MODE = process.argv.includes('--candidates');
+
+// Output directories depend on mode
+const INDEX_DIR = path.join(ROOT, CANDIDATES_MODE
+  ? 'data/output/candidate-index'
+  : 'data/output/render-index');
 const RENDERS_DIR = path.join(INDEX_DIR, 'renders');
 const INDEX_JSON = path.join(INDEX_DIR, 'index.json');
 
+interface CandidateEntry {
+  codepoint: string;
+  char: string;
+  name: string;
+  generalCategory: string;
+  script: string;
+  fontCoverage: number;
+}
+
 async function main() {
-  console.log('=== confusable-vision: build-index ===\n');
+  const modeLabel = CANDIDATES_MODE ? 'build-index --candidates (Milestone 2)' : 'build-index';
+  console.log(`=== confusable-vision: ${modeLabel} ===\n`);
   const t0 = Date.now();
 
   // 1. Init fonts
@@ -49,23 +71,47 @@ async function main() {
 
   console.log(`  Standard: ${standardFonts.length}, Non-standard: ${availableFonts.length - standardFonts.length}\n`);
 
-  // 2. Load pairs to discover character set
+  // 2. Load character set (different sources for each mode)
   console.log('[2/5] Loading character set...');
-  if (!fs.existsSync(INPUT_PATH)) {
-    console.error(`ERROR: ${INPUT_PATH} not found. Run fetch-confusables.ts first.`);
-    process.exit(1);
-  }
-  const pairs: ConfusablePair[] = JSON.parse(fs.readFileSync(INPUT_PATH, 'utf-8'));
-  const uniqueSources = [...new Set(pairs.map(p => p.source))];
-  const uniqueTargets = [...new Set(pairs.map(p => p.target))];
 
-  // Build char -> codepoint hex map for filenames
+  let uniqueSources: string[];
+  let uniqueTargets: string[];
   const codepointMap = new Map<string, string>();
-  for (const p of pairs) {
-    codepointMap.set(p.source, p.sourceCodepoint.replace('U+', ''));
-  }
-  for (const t of uniqueTargets) {
-    codepointMap.set(t, t.codePointAt(0)!.toString(16).toUpperCase().padStart(4, '0'));
+
+  if (CANDIDATES_MODE) {
+    // Milestone 2: load candidates.json
+    if (!fs.existsSync(CANDIDATES_INPUT_PATH)) {
+      console.error(`ERROR: ${CANDIDATES_INPUT_PATH} not found. Run build-candidates.ts first.`);
+      process.exit(1);
+    }
+    const candidates: CandidateEntry[] = JSON.parse(fs.readFileSync(CANDIDATES_INPUT_PATH, 'utf-8'));
+    uniqueSources = candidates.map(c => c.char);
+    for (const c of candidates) {
+      codepointMap.set(c.char, c.codepoint.replace('U+', ''));
+    }
+
+    // Targets are Latin a-z and 0-9
+    uniqueTargets = [];
+    for (let cp = 0x61; cp <= 0x7A; cp++) uniqueTargets.push(String.fromCodePoint(cp));
+    for (let cp = 0x30; cp <= 0x39; cp++) uniqueTargets.push(String.fromCodePoint(cp));
+    for (const t of uniqueTargets) {
+      codepointMap.set(t, t.codePointAt(0)!.toString(16).toUpperCase().padStart(4, '0'));
+    }
+  } else {
+    // Milestone 1b: load confusable-pairs.json
+    if (!fs.existsSync(CONFUSABLE_INPUT_PATH)) {
+      console.error(`ERROR: ${CONFUSABLE_INPUT_PATH} not found. Run fetch-confusables.ts first.`);
+      process.exit(1);
+    }
+    const pairs: ConfusablePair[] = JSON.parse(fs.readFileSync(CONFUSABLE_INPUT_PATH, 'utf-8'));
+    uniqueSources = [...new Set(pairs.map(p => p.source))];
+    uniqueTargets = [...new Set(pairs.map(p => p.target))];
+    for (const p of pairs) {
+      codepointMap.set(p.source, p.sourceCodepoint.replace('U+', ''));
+    }
+    for (const t of uniqueTargets) {
+      codepointMap.set(t, t.codePointAt(0)!.toString(16).toUpperCase().padStart(4, '0'));
+    }
   }
 
   console.log(`  ${uniqueSources.length} source characters, ${uniqueTargets.length} target characters\n`);

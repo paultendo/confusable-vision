@@ -1,5 +1,7 @@
 node_modules/
 dist/
-data/output/
+data/output/*
+!data/output/confusable-discoveries.json
+!data/output/candidate-discoveries.json
 .DS_Store
 *.tsbuildinfo

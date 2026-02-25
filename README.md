@@ -4,7 +4,9 @@ Offline tool that renders Unicode [confusable](https://unicode.org/Public/securi
 
 ## Key findings
 
-confusable-vision scored 1,418 TR39 confusable pairs across 230 macOS system fonts (235,625 SSIM comparisons):
+### Milestone 1b -- TR39 confusable pairs
+
+Scored 1,418 TR39 confusable pairs across 230 macOS system fonts (235,625 SSIM comparisons):
 
 - **96.5% of confusables.txt is not high-risk.** Only 49 pairs (3.5%) score >= 0.7 mean SSIM. Median is 0.322.
 - **82 pairs are pixel-identical** (SSIM 1.000) in at least one font. These are undetectable by visual inspection.
@@ -12,15 +14,36 @@ confusable-vision scored 1,418 TR39 confusable pairs across 230 macOS system fon
 - **Same-font comparisons average 0.536 SSIM; cross-font average 0.339.** The font pairing matters as much as the character pairing.
 - **Font danger rates vary from 0% (Zapfino) to 67.5% (Phosphate).** Font choice is a meaningful variable in confusable risk.
 
+### Milestone 2 -- novel confusable discovery
+
+Scanned 23,317 identifier-safe Unicode characters (not in confusables.txt) against Latin a-z/0-9 across 230 fonts (2,904,376 SSIM comparisons):
+
+- **793 novel high-risk pairs discovered** (mean SSIM >= 0.7) that are NOT in TR39 confusables.txt.
+- **Top discovery: U+A7FE LATIN EPIGRAPHIC LETTER I LONGA** scores 0.998 SSIM against "l" in Geneva -- near pixel-identical.
+- Most high-scoring novel pairs are vertical stroke characters from obscure scripts (Pahawh Hmong, Nabataean, Duployan, Hatran, Mende Kikakui) that render as "l" or "i" lookalikes.
+- Notable non-obvious finds: Gothic U+10347 vs "x" (0.94), Coptic U+2CAD vs "x" (0.93), Javanese U+A9D0 vs "o" (0.96), Khmer U+17F4 vs "v" (0.93).
+
 Full analysis: [REPORT.md](REPORT.md) | Blog post: [paultendo.github.io/posts/confusable-vision-visual-similarity](https://paultendo.github.io/posts/confusable-vision-visual-similarity/)
 
 ## How it works
 
-Two-stage pipeline:
+Two pipelines:
+
+### Milestone 1b (TR39 validation)
 
 1. **build-index** -- renders all 1,418 source characters and 34 target characters as 48x48 greyscale PNGs, one per font that natively contains the character. Fontconfig is queried per-character to skip fonts that lack coverage (97% reduction: 8,881 targeted renders vs 326,140 brute-force).
 
 2. **score-all-pairs** -- loads the render index and computes SSIM for every valid source/target combination across two modes: same-font (both characters in one font) and cross-font (source in supplemental font, target in standard font).
+
+### Milestone 2 (novel discovery)
+
+1. **build-candidates** -- parses UnicodeData.txt for all Letter/Number codepoints, excludes CJK/Hangul/logographic scripts and existing TR39 sources, queries fontconfig for coverage. Produces 23,317 candidates.
+
+2. **build-index --candidates** -- renders all candidates in fonts that natively contain them (89,478 PNGs across 230 fonts).
+
+3. **score-candidates** -- compares each candidate against Latin a-z/0-9 targets. Same-font comparisons use a pHash prefilter; cross-font uses top-1-by-pHash to avoid the O(74) explosion per source render.
+
+4. **extract-discoveries** -- extracts high-scoring pairs from both pipelines into compact, licenced JSON files for distribution.
 
 ### Design choices
 
@@ -53,32 +76,44 @@ fc-list ':charset=61-7A' --format='%{file}|%{family[0]}\n'
 ```bash
 npm install
 
-# Build render index (~160s, 11,370 PNGs)
-npx tsx scripts/build-index.ts
+# Milestone 1b: TR39 confusable pairs
+npx tsx scripts/build-index.ts          # Build render index (~160s, 11,370 PNGs)
+npx tsx scripts/score-all-pairs.ts      # Score all pairs (~65s, 235,625 comparisons)
+npx tsx scripts/report-stats.ts         # Generate report statistics
 
-# Score all pairs (~65s, 235,625 comparisons)
-npx tsx scripts/score-all-pairs.ts
+# Milestone 2: novel confusable discovery
+npx tsx scripts/build-candidates.ts          # Build candidate set (~23K chars)
+npx tsx scripts/build-index.ts --candidates  # Render candidates (~40min, 89K PNGs)
+npx tsx scripts/score-candidates.ts          # Score against Latin targets (~15min, 2.9M comparisons)
 
-# Generate report statistics
-npx tsx scripts/report-stats.ts
+# Extract high-scoring discoveries from both pipelines
+npx tsx scripts/extract-discoveries.ts
 ```
 
 ## Output
 
+### Committed (CC-BY-4.0)
+
 | File | Description |
 |------|-------------|
-| `data/output/render-index/index.json` | Render metadata and pHash values |
-| `data/output/render-index/renders/` | 11,370 normalised 48x48 greyscale PNGs |
-| `data/output/confusable-scores.json` | Full scored results with per-font detail |
-| `data/output/report-stats.txt` | Detailed statistics for REPORT.md |
+| `data/output/confusable-discoveries.json` | 110 TR39 pairs: high SSIM (>= 0.7) or pixel-identical |
+| `data/output/candidate-discoveries.json` | 793 novel pairs not in TR39, mean SSIM >= 0.7 |
 
-All output files are gitignored. Run the pipeline to regenerate.
+### Generated (gitignored, run pipeline to regenerate)
+
+| File | Description |
+|------|-------------|
+| `data/output/render-index/` | 11,370 M1b render PNGs + index.json |
+| `data/output/candidate-index/` | 89,478 M2 render PNGs + index.json |
+| `data/output/confusable-scores.json` | Full M1b scored results (63 MB) |
+| `data/output/candidate-scores.json` | Full M2 scored results (573 MB) |
+| `data/output/report-stats.txt` | Detailed statistics for REPORT.md |
 
 ## Planned milestones
 
 - [x] **Milestone 1** -- Validate approach against 31 NFKC/TR39 divergence vectors
 - [x] **Milestone 1b** -- Expand to full confusables.txt (1,418 pairs), 230 fonts, technical report
-- [ ] **Milestone 2** -- Discover novel confusable pairs not in TR39 by rendering identifier-safe Unicode vs Latin targets
+- [x] **Milestone 2** -- Discover novel confusable pairs not in TR39 (793 high-scoring pairs from 23,317 candidates)
 - [ ] **Milestone 2b** -- Cross-script validation for Cyrillic, Greek, Armenian, Georgian
 - [ ] **Milestone 3** -- Distil all output into confusable-weights.json for [namespace-guard](https://github.com/paultendo/namespace-guard) integration
 
