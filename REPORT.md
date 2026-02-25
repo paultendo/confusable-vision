@@ -1,6 +1,6 @@
-# confusable-vision: Milestone 1b Technical Report
+# confusable-vision: Technical Report
 
-**Visual similarity scoring of Unicode confusables.txt across 74 macOS system fonts**
+**Visual similarity scoring of Unicode confusables across 230 macOS system fonts**
 
 Paul Wood FRSA (@paultendo) -- 25 February 2026
 
@@ -8,11 +8,17 @@ Paul Wood FRSA (@paultendo) -- 25 February 2026
 
 ## 1. Executive summary
 
-confusable-vision renders every source/target pair from Unicode confusables.txt
-(1,418 pairs) across all macOS system fonts, measures visual similarity using
-SSIM and pHash, and produces per-font scored JSON artifacts.
+confusable-vision renders Unicode character pairs across all macOS system fonts,
+measures visual similarity using SSIM and pHash, and produces per-font scored
+JSON artifacts. This report covers two analyses:
 
-**Headline findings:**
+- **Milestone 1b** -- validation of all 1,418 pairs in Unicode TR39
+  confusables.txt across 230 system fonts (235,625 SSIM comparisons).
+- **Milestone 2** -- novel confusable discovery by scanning 23,317
+  identifier-safe Unicode characters not in confusables.txt against Latin
+  a-z/0-9 across 230 fonts (2,904,376 SSIM comparisons).
+
+**Milestone 1b headline findings:**
 
 - **96.5% of confusables.txt entries are not high-risk from a visual
   perspective.** Only 49 of 1,418 pairs (3.5%) score >= 0.7 mean SSIM across
@@ -31,6 +37,21 @@ SSIM and pHash, and produces per-font scored JSON artifacts.
 - Same-font comparisons average 0.536 SSIM; cross-font comparisons average
   0.339. The font pairing matters as much as the character pairing.
 
+**Milestone 2 headline findings:**
+
+- **793 novel high-risk pairs discovered** (mean SSIM >= 0.7) that are NOT in
+  TR39 confusables.txt, from 23,317 identifier-safe Unicode candidates.
+- **47.5% of discoveries are vertical-stroke characters** ("l", "i", "j"
+  lookalikes) from obscure scripts -- Pahawh Hmong, Nabataean, Duployan,
+  Hatran, Mende Kikakui, and others.
+- **Top discovery: U+A7FE LATIN EPIGRAPHIC LETTER I LONGA** scores 0.998 SSIM
+  against "l" in Geneva -- near pixel-identical, and not in confusables.txt.
+- **Notable cross-script finds**: Gothic U+10347 vs "x" (0.94), Coptic U+2CAD
+  vs "x" (0.93), Javanese U+A9D0 vs "o" (0.96), Khmer U+17F4 vs "v" (0.93),
+  NKo U+07D5 vs "b" (0.92).
+- **96 distinct scripts/fonts** contribute novel confusables. The long tail of
+  obscure scripts is where the gaps in TR39 coverage lie.
+
 ## 2. Methodology
 
 ### 2.1 Rendering pipeline
@@ -39,8 +60,9 @@ Characters are rendered in a two-stage pipeline:
 
 1. **build-index.ts** -- renders all source and target characters as 48x48
    greyscale PNGs, one per font that natively contains the character.
-2. **score-all-pairs.ts** -- loads the pre-built render index and computes
-   SSIM scores for all valid source/target pairings.
+2. **score-all-pairs.ts** (M1b) / **score-candidates.ts** (M2) -- loads the
+   pre-built render index and computes SSIM scores for all valid source/target
+   pairings.
 
 The renderer uses node-canvas (Cairo backend) at 64x64, then normalises to
 48x48 greyscale via sharp. Black text on white background, no colour, no
@@ -508,28 +530,390 @@ pixel-identical to its Latin counterpart in the font your users will see."
    pairs only. Multi-character sequences (e.g., "rn" vs "m") are a
    future milestone.
 
-## 12. Reproducibility
+6. **8x8 pHash resolution**. The perceptual hash used for prefiltering
+   operates at 8x8 pixels. At this resolution, many structurally
+   different characters produce similar hashes, limiting the prefilter's
+   ability to reject pairs. A 16x16 pHash would improve discrimination
+   but would require re-rendering the index.
 
-All outputs are deterministic given the same platform and fonts:
+---
+
+# Milestone 2: Novel Confusable Discovery
+
+## 13. Motivation
+
+Milestone 1b validated the visual accuracy of confusables.txt. But
+confusables.txt is a curated list maintained by the Unicode Consortium -- it
+cannot cover every visually similar pair across the full Unicode character set.
+
+The question Milestone 2 asks: **how many dangerous confusable pairs exist in
+Unicode that are NOT in confusables.txt?**
+
+This matters because confusable detection systems (including namespace-guard's
+`skeleton()` and `areConfusable()`) rely on confusables.txt as their source of
+truth. Any pair missing from the list is an undetected attack vector.
+
+## 14. Methodology
+
+### 14.1 Candidate selection
+
+`build-candidates.ts` parses UnicodeData.txt and selects characters that are:
+
+1. **Identifier-safe** -- General Category is Letter (L*) or Number (N*)
+2. **Not already in confusables.txt** -- not a source character in TR39
+3. **Not CJK/Hangul/logographic** -- excluded because these scripts are
+   structurally different from Latin and would produce only false positives
+
+This produces **23,317 candidate characters** across hundreds of scripts and
+Unicode blocks.
+
+### 14.2 Font coverage
+
+Each candidate is queried against fontconfig to find which system fonts
+natively contain it. Of 23,317 candidates:
+
+- **12,555** (53.8%) have coverage in at least one of 230 system fonts
+- **10,762** (46.2%) have no font coverage (no macOS system font contains them)
+
+The covered candidates average 7.1 fonts each, producing **89,478 render jobs**
+(vs 2.9M brute-force). Noto Sans variants provide the majority of coverage for
+non-Latin scripts.
+
+### 14.3 Rendering
+
+`build-index.ts --candidates` renders all 12,555 covered candidates plus the
+36 Latin targets (a-z, 0-9) in standard fonts:
+
+- **86,815 source renders** (candidates in their native fonts)
+- **2,663 target renders** (Latin a-z/0-9 in 74 standard fonts)
+- Total: **89,478 PNGs**, same 48x48 greyscale pipeline as Milestone 1b
+
+### 14.4 Scoring
+
+`score-candidates.ts` compares each candidate against all 36 Latin targets.
+The scale challenge is significant: 12,555 sources x 36 targets x multiple
+fonts per source could produce hundreds of millions of SSIM comparisons.
+
+Two optimisations make this tractable:
+
+1. **Same-font pHash prefilter** -- for candidates in standard fonts (where
+   both source and target exist in the same font), a pHash similarity
+   threshold of 0.3 skips SSIM computation for pairs with extremely different
+   perceptual hashes.
+
+2. **Top-1-by-pHash cross-font** -- for candidates in non-standard fonts
+   (Noto Sans variants, CJK fonts, etc.), instead of comparing against all 74
+   target renders for each Latin letter, the scorer finds the single best
+   target render by pHash similarity and computes SSIM only for that pair.
+   This reduces cross-font comparisons from O(74) to O(1) per source render.
+
+The result: **2,904,376 SSIM comparisons** computed in 928 seconds (15.5
+minutes) -- approximately 3,130 SSIM/second.
+
+### 14.5 Output
+
+Scoring produces `candidate-scores.json` (572 MB, streaming JSON) containing
+all 426,509 scored pairs. `extract-discoveries.ts` stream-parses this file
+and extracts the 793 high-scoring pairs into `candidate-discoveries.json`
+(1.5 MB, committed to the repository under CC-BY-4.0).
+
+## 15. Distribution
+
+### 15.1 Overall
+
+| Band | Count | % | Description |
+|------|-------|---|-------------|
+| High (>= 0.7) | 793 | 0.2% | Novel confusables not in TR39 |
+| Medium (0.3-0.7) | 34,522 | 8.1% | Somewhat similar |
+| Low (< 0.3) | 391,194 | 91.7% | Not visually confusable |
+| **Total** | **426,509** | | |
+
+Only 0.2% of all scored candidate pairs are high-risk. This is a lower hit
+rate than Milestone 1b (3.5%) because confusables.txt is pre-curated for
+likely confusables, while Milestone 2 searches the full identifier-safe
+character space.
+
+### 15.2 Within discoveries
+
+| SSIM range | Count | % of discoveries |
+|------------|-------|-----------------|
+| >= 0.95 | 21 | 2.6% |
+| 0.90 - 0.95 | 55 | 6.9% |
+| 0.80 - 0.90 | 191 | 24.1% |
+| 0.70 - 0.80 | 526 | 66.3% |
+| **Total** | **793** | |
+
+The majority of discoveries (66%) fall in the 0.70-0.80 range -- visually
+confusable but not pixel-identical. The 21 pairs scoring above 0.95 are the
+most dangerous: near-indistinguishable from their Latin counterparts.
+
+### 15.3 By target character shape
+
+| Shape category | Targets | Count | % |
+|----------------|---------|-------|---|
+| Vertical stroke | l, i, j | 377 | 47.5% |
+| Round | o, c, e, d, b, n, p, q | 153 | 19.3% |
+| Other letters | t, s, f, r, h, m, u, y, a | 147 | 18.5% |
+| Numeral | 0-9 | 60 | 7.6% |
+| Angular | x, v, w, z, k | 56 | 7.1% |
+
+Nearly half of all novel confusables target "l", "i", or "j" -- the simplest
+Latin glyphs. A vertical stroke is the most common glyph shape across all
+writing systems: tally marks, vowel carriers, numeral ones, and vertical
+punctuation all reduce to a single line at 48x48 resolution.
+
+### 15.4 By target character
+
+| Target | Discoveries | Notes |
+|--------|-------------|-------|
+| l | 143 | Vertical stroke -- universal across scripts |
+| i | 125 | Vertical stroke (with or without dot) |
+| j | 109 | Vertical stroke with descender |
+| o | 65 | Circle -- common numeral/vowel shape |
+| t | 62 | Cross shape |
+| x | 22 | Diagonal cross |
+| c | 22 | Open curve |
+| n | 20 | Arch |
+| 8 | 17 | Double circle |
+| u | 17 | Open arch |
+| v | 16 | Angular open |
+| b | 14 | Vertical + circle |
+| m | 13 | Double arch |
+| Other | 148 | Remaining 21 targets |
+
+"l" alone has 143 novel confusables -- more than the total number of high-risk
+pairs in all of confusables.txt (49). This is the single largest gap in TR39
+coverage.
+
+## 16. Top 30 novel confusable pairs
+
+Ranked by mean SSIM. None of these are in confusables.txt.
+
+| # | Codepoint | Name | Target | Mean SSIM | Font(s) |
+|---|-----------|------|--------|-----------|---------|
+| 1 | U+A7FE | LATIN EPIGRAPHIC LETTER I LONGA | l | 0.998 | Geneva (same-font) |
+| 2 | U+16B50 | PAHAWH HMONG DIGIT ZERO | l | 0.986 | Noto Sans Pahawh Hmong vs Skia |
+| 3 | U+10889 | NABATAEAN LETTER KAPH | l | 0.986 | Noto Sans Nabataean vs Skia |
+| 4 | U+A781 | LATIN SMALL LETTER TURNED L | l | 0.986 | Geneva (same-font) |
+| 5 | U+A771 | LATIN SMALL LETTER DUM | d | 0.985 | Geneva (same-font) |
+| 6 | U+1BC07 | DUPLOYAN LETTER I | l | 0.981 | Noto Sans Duployan vs Skia |
+| 7 | U+10D31 | HANIFI ROHINGYA VOWEL A | l | 0.978 | Noto Sans Hanifi Rohingya vs Skia |
+| 8 | U+1E822 | MENDE KIKAKUI DIGIT ONE | l | 0.978 | Noto Sans Mende Kikakui vs Skia |
+| 9 | U+16A59 | MRO DIGIT NINE | l | 0.978 | Noto Sans Mro vs Skia |
+| 10 | U+109C0 | MEROITIC CURSIVE NUMBER ONE | l | 0.978 | Noto Sans Meroitic vs Skia |
+| 11 | U+108ED | HATRAN NUMBER ONE | l | 0.976 | Noto Sans Hatran vs Skia |
+| 12 | U+108FB | HATRAN LOW NUMERAL SIGN | l | 0.976 | Noto Sans Hatran vs Skia |
+| 13 | U+1E951 | ADLAM SMALL LETTER I | l | 0.973 | Noto Sans Adlam vs Skia |
+| 14 | U+10A9D | OLD NORTH ARABIAN NUMBER ONE | l | 0.972 | Noto Sans Old North Arabian vs Skia |
+| 15 | U+0C79 | TELUGU DIGIT THREE | l | 0.969 | Telugu MN/Kohinoor Telugu/Telugu Sangam MN vs Skia |
+| 16 | U+A621 | VAI DIGIT ONE | l | 0.963 | Noto Sans Vai vs Skia |
+| 17 | U+11AE5 | PAU CIN HAU LETTER PA | l | 0.960 | Noto Sans Pau Cin Hau vs Skia |
+| 18 | U+A76F | LATIN SMALL LETTER CON | 9 | 0.958 | Geneva (same-font) |
+| 19 | U+A9D0 | JAVANESE DIGIT ZERO | o | 0.958 | Noto Sans Javanese vs Avenir |
+| 20 | U+10CA5 | OLD HUNGARIAN SMALL LETTER ECS | l | 0.956 | Noto Sans Old Hungarian vs Skia |
+| 21 | U+1036D | OLD PERMIC LETTER OI | l | 0.952 | Noto Sans Old Permic vs Skia |
+| 22 | U+10347 | GOTHIC LETTER GIBA | x | 0.941 | Noto Sans Gothic vs Menlo |
+| 23 | U+09F7 | BENGALI CURRENCY NUMERATOR FOUR | l | 0.939 | Bangla MN/Kohinoor Bangla/Bangla Sangam MN/Noto Sans Tirhuta vs Skia; Arial Unicode MS (same-font) |
+| 24 | U+1036D | OLD PERMIC LETTER OI | j | 0.939 | Noto Sans Old Permic vs Futura |
+| 25 | U+1102D | BRAHMI VOWEL SIGN E | l | 0.937 | Noto Sans Brahmi/Tamil Sangam MN vs Skia |
+| 26 | U+10CA5 | OLD HUNGARIAN SMALL LETTER ECS | j | 0.937 | Noto Sans Old Hungarian vs Futura |
+| 27 | U+16A59 | MRO DIGIT NINE | i | 0.937 | Noto Sans Mro vs Skia |
+| 28 | U+108A7 | NABATAEAN LETTER LAMEDH | l | 0.937 | Noto Sans Nabataean vs Skia |
+| 29 | U+A7FE | LATIN EPIGRAPHIC LETTER I LONGA | i | 0.935 | Geneva (same-font) |
+| 30 | U+1E951 | ADLAM SMALL LETTER I | i | 0.934 | Noto Sans Adlam vs Skia |
+
+Pairs #1-4 and #6-17 are all vertical-stroke characters targeting "l". They
+come from 14 different scripts, all rendering as a simple vertical bar that is
+near-identical to Latin lowercase L. The recurrence of this shape across
+unrelated writing systems is the single strongest pattern in the data.
+
+Pair #5 (U+A771, Latin Small Letter Dum) is notable because it is a Latin
+Extended character that looks identical to "d" in Geneva -- a within-Latin
+confusable that TR39 missed.
+
+Pair #19 (Javanese digit zero vs "o") and #22 (Gothic letter giba vs "x") are
+structurally non-obvious: these are characters from completely unrelated
+scripts whose glyph shapes happen to converge with common Latin letters.
+
+## 17. Notable non-obvious discoveries
+
+The vertical-stroke "l" lookalikes dominate the top of the list, but the more
+interesting security findings are characters that mimic structurally complex
+Latin letters:
+
+| Codepoint | Name | Target | SSIM | Font | Why it matters |
+|-----------|------|--------|------|------|----------------|
+| U+A9D0 | JAVANESE DIGIT ZERO | o | 0.958 | Noto Sans Javanese vs Avenir | A digit that looks like a letter |
+| U+10347 | GOTHIC LETTER GIBA | x | 0.941 | Noto Sans Gothic vs Menlo | Historical script with Latin-like shape |
+| U+2CAD | COPTIC SMALL LETTER CRYPTOGRAMMIC NI | x | 0.925 | Noto Sans Coptic vs Menlo | Cross-script "x" lookalike |
+| U+17F4 | KHMER SYMBOL BUON KOET | v | 0.928 | Khmer MN vs Tahoma | Khmer symbol indistinguishable from "v" |
+| U+07D5 | NKO LETTER BA | b | 0.922 | Noto Sans NKo vs Futura | West African script "b" lookalike |
+| U+07CE | NKO LETTER YA | u | 0.916 | Noto Sans NKo vs Arial | NKo character indistinguishable from "u" |
+| U+2C91 | COPTIC SMALL LETTER EI | e | 0.897 | Noto Sans Coptic vs Arial | Coptic "e" lookalike |
+| U+10336 | GOTHIC LETTER KUSMA | z | 0.884 | Noto Sans Gothic vs Menlo | Gothic "z" lookalike |
+| U+10CC2 | OLD HUNGARIAN SMALL LETTER EC | x | 0.883 | Noto Sans Old Hungarian vs Arial | Historical "x" lookalike |
+| U+1D5C6 | MATHEMATICAL SANS-SERIF SMALL M | m | 0.878 | STIX Two Math vs Avenir | Math variant of "m" |
+
+These are the pairs most likely to be useful in targeted spoofing attacks.
+Unlike vertical strokes (which are easy to flag with a simple rule), these
+characters require visual comparison to detect because their shapes are
+distinctive enough that simple heuristics would miss them.
+
+## 18. Script analysis
+
+### 18.1 Top contributing scripts
+
+| Script/Font | Novel pairs | Avg SSIM | Notes |
+|-------------|-------------|----------|-------|
+| Shared Latin fonts (Arial, etc.) | 107 | 0.765 | Latin Extended, IPA, modifier letters |
+| Geneva | 44 | 0.800 | Latin Extended-D, Cherokee Supplement |
+| Old Hungarian | 20 | 0.831 | Historical Turkic script |
+| Duployan | 20 | 0.810 | 19th-century shorthand system |
+| Euphemia UCAS | 19 | 0.777 | Unified Canadian Aboriginal Syllabics |
+| Mende Kikakui | 18 | 0.823 | West African script |
+| Vai | 18 | 0.781 | West African syllabary |
+| Tifinagh | 17 | 0.793 | Berber script |
+| Mro | 15 | 0.782 | Chin Hills script (Myanmar/Bangladesh) |
+| Pau Cin Hau | 15 | 0.790 | Another Chin script |
+| Gothic | 14 | 0.793 | 4th-century Germanic script |
+| NKo | 14 | 0.792 | West African script for Manding languages |
+| Tamil Sangam MN | 14 | 0.792 | Tamil script |
+| Coptic | 13 | 0.791 | Egyptian Christian script |
+| Nabataean | 12 | 0.827 | Ancient Aramaic-derived script |
+| Hatran | 12 | 0.861 | Ancient Mesopotamian script |
+| Pahawh Hmong | 11 | 0.804 | Southeast Asian script |
+| Ugaritic | 11 | 0.772 | Ancient cuneiform alphabetic |
+| Adlam | 10 | 0.810 | Modern West African script |
+| Lydian | 10 | 0.808 | Ancient Anatolian script |
+
+96 distinct scripts/fonts contribute at least one novel confusable pair. The
+distribution has a long tail: the top 20 scripts account for 463 of 793 pairs
+(58%), while 76 scripts contribute 5 or fewer pairs each.
+
+### 18.2 Script families
+
+Grouping by geographic/linguistic family:
+
+| Family | Scripts | Total pairs | Notes |
+|--------|---------|-------------|-------|
+| Latin Extended/IPA | Latin fonts (Arial, Geneva, Menlo, etc.) | ~180 | Extended Latin, phonetic, modifier characters |
+| West African | Vai, Mende Kikakui, NKo, Adlam, Bamum | ~70 | Modern and historical West African writing |
+| Ancient Near East | Nabataean, Hatran, Ugaritic, Phoenician, Palmyrene, Lydian, Old Persian, Cypriot | ~70 | Historical scripts from the fertile crescent |
+| Historical European | Gothic, Old Hungarian, Old Permic, Glagolitic, Runic, Coptic, Old Italic | ~70 | Medieval and ancient European scripts |
+| Southeast Asian | Pahawh Hmong, Mro, Pau Cin Hau, Kayah Li, Tai Le, Cham, Javanese, Khmer | ~65 | Scripts from mainland/island Southeast Asia |
+| Canadian Aboriginal | Unified Canadian Aboriginal Syllabics | 19 | Cree, Inuktitut, and related syllabaries |
+| South Asian | Tamil, Bengali, Telugu, Oriya, Brahmi | ~40 | Indic scripts |
+| North/East African | Tifinagh, Ethiopic, Meroitic | ~30 | Berber, Ethiopian, and Nubian scripts |
+| Mathematical | STIX Two Math, Apple Symbols | ~20 | Mathematical notation variants |
+| Central Asian | Duployan, Old Turkic, Old Sogdian, Chorasmian | ~25 | Historical Central Asian scripts |
+
+The concentration in West African, Ancient Near Eastern, and historical
+European scripts is noteworthy. These are scripts with active Noto Sans font
+coverage on macOS but minimal representation in confusables.txt. The Unicode
+Consortium's curation has focused on the scripts most commonly encountered in
+modern computing (Cyrillic, Greek, Armenian) while leaving these smaller
+scripts unexamined for Latin visual similarity.
+
+### 18.3 Same-font vs cross-font
+
+| Mode | Comparisons |
+|------|-------------|
+| Same-font | 3,401 (68.8%) |
+| Cross-font | 1,546 (31.2%) |
+| **Total** | **4,947** |
+
+Note: these are individual font comparisons across the 793 pairs (most pairs
+have multiple font comparisons). 245 of 793 pairs appear in more than one font.
+The pair with the widest coverage is U+00ED (Latin Small Letter I with Acute)
+vs "i", which scores >= 0.7 in 101 fonts.
+
+## 19. Comparison with confusables.txt
+
+### 19.1 Scale
+
+| Metric | Confusables.txt (M1b) | Novel discoveries (M2) |
+|--------|----------------------|----------------------|
+| Input pairs/candidates | 1,418 | 23,317 |
+| Characters with font coverage | 1,341 (94.6%) | 12,555 (53.8%) |
+| SSIM comparisons | 235,625 | 2,904,376 |
+| High-risk pairs (>= 0.7) | 49 (3.5%) | 793 (0.2% of scored) |
+| Pixel-identical in >= 1 font | 82 | 533 (by pHash) |
+| Computation time | 65s | 928s |
+
+### 19.2 Coverage gaps
+
+The 793 novel discoveries represent a 16x increase over the 49 high-risk
+confusables.txt pairs. This does not mean confusables.txt is poorly curated --
+it means its scope is different. Confusables.txt focuses on characters that
+map to the same skeleton under NFKC normalisation, which is a character-
+property test, not a visual test. Many visually similar characters have
+different NFKC mappings and are therefore excluded.
+
+The gap is largest for:
+
+1. **Vertical stroke characters** -- confusables.txt covers the well-known
+   cases (Hebrew Vav, Cyrillic palochka) but misses hundreds of vertical
+   strokes from obscure scripts.
+2. **Numeral lookalikes** -- digits from non-Latin numeral systems that
+   visually match Latin digits (Javanese 0 vs "o", Pahawh Hmong 0 vs "l").
+3. **Historical scripts** -- Gothic, Old Hungarian, Nabataean, Hatran, and
+   similar scripts have characters with Latin-like shapes that are not in
+   confusables.txt.
+
+### 19.3 Implications for confusable detection
+
+A confusable detection system that relies solely on confusables.txt will miss
+793 visually dangerous pairs. The practical risk depends on whether the
+attacking characters are identifier-safe in the target context:
+
+- **JavaScript identifiers**: most of these characters are valid in
+  identifiers per UAX #31 (Unicode Identifier and Pattern Syntax).
+- **Domain names**: IDNA 2008 restricts most SMP characters, so the Ancient
+  Near Eastern and historical European discoveries are less relevant for
+  domain spoofing. But BMP characters (Latin Extended, Coptic, NKo, Tifinagh)
+  are potentially usable.
+- **Package names**: npm, PyPI, and other package registries have varying
+  Unicode policies. Many accept the full BMP range.
+
+## 20. Reproducibility
+
+All outputs are deterministic given the same platform and fonts.
+
+### 20.1 Milestone 1b
 
 ```bash
-# Build render index (renders all characters, ~160s)
-npx tsx scripts/build-index.ts
-
-# Score all pairs from index (~65s)
-npx tsx scripts/score-all-pairs.ts
-
-# Generate report statistics
-npx tsx scripts/report-stats.ts
+npx tsx scripts/build-index.ts          # Build render index (~160s, 11,370 PNGs)
+npx tsx scripts/score-all-pairs.ts      # Score all pairs (~65s, 235,625 comparisons)
+npx tsx scripts/report-stats.ts         # Generate report statistics
 ```
 
-**Output files:**
-- `data/output/render-index/index.json` -- render metadata and pHash values
-- `data/output/render-index/renders/` -- 11,370 normalised 48x48 greyscale PNGs
-- `data/output/confusable-scores.json` -- full scored results with per-font detail
+### 20.2 Milestone 2
+
+```bash
+npx tsx scripts/build-candidates.ts          # Build candidate set (~23K chars)
+npx tsx scripts/build-index.ts --candidates  # Render candidates (~40min, 89K PNGs)
+npx tsx scripts/score-candidates.ts          # Score against Latin targets (~15min, 2.9M comparisons)
+```
+
+### 20.3 Extract discoveries (both milestones)
+
+```bash
+npx tsx scripts/extract-discoveries.ts  # Extract high-scoring pairs from both pipelines
+```
+
+### 20.4 Output files
+
+**Committed (CC-BY-4.0):**
+- `data/output/confusable-discoveries.json` -- 110 TR39 pairs (high SSIM or pixel-identical)
+- `data/output/candidate-discoveries.json` -- 793 novel pairs not in TR39
+
+**Generated (gitignored, run pipeline to regenerate):**
+- `data/output/render-index/` -- 11,370 M1b render PNGs + index.json
+- `data/output/candidate-index/` -- 89,478 M2 render PNGs + index.json
+- `data/output/confusable-scores.json` -- full M1b scored results (63 MB)
+- `data/output/candidate-scores.json` -- full M2 scored results (572 MB)
+- `data/output/candidates.json` -- M2 candidate character set
 - `data/output/report-stats.txt` -- detailed statistics for this report
-- `data/output/build-index-stdout.txt` -- build pipeline log
-- `data/output/score-all-pairs-stdout.txt` -- scoring pipeline log
 
 **Licence:** CC-BY-4.0 (data), MIT (code)
 
