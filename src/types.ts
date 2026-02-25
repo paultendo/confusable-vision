@@ -10,7 +10,7 @@ export interface ComposabilityVector {
 export interface FontEntry {
   family: string;
   path: string;
-  category: 'standard' | 'math' | 'symbol' | 'noto';
+  category: 'standard' | 'math' | 'symbol' | 'noto' | 'script';
   available: boolean;
 }
 
@@ -103,7 +103,7 @@ export interface OutputData {
 /** One rendered character in one font, stored in the render index */
 export interface IndexRenderEntry {
   font: string;
-  category: 'standard' | 'math' | 'symbol' | 'noto';
+  category: 'standard' | 'math' | 'symbol' | 'noto' | 'script';
   pHash: string; // 16-char hex string encoding a 64-bit hash
   renderStatus: RenderStatus;
   fallbackFont: string | null;

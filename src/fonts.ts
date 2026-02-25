@@ -9,35 +9,133 @@ const FONT_DIRS = [
   '/System/Library/Fonts/Supplemental',
 ];
 
-/** Static font list -- 10 standard + 2 math/symbol fonts verified on macOS */
-const FONT_DEFINITIONS: Omit<FontEntry, 'available'>[] = [
-  // Standard fonts
-  { family: 'Arial', path: '/System/Library/Fonts/Supplemental/Arial.ttf', category: 'standard' },
-  { family: 'Verdana', path: '/System/Library/Fonts/Supplemental/Verdana.ttf', category: 'standard' },
-  { family: 'Trebuchet MS', path: '/System/Library/Fonts/Supplemental/Trebuchet MS.ttf', category: 'standard' },
-  { family: 'Tahoma', path: '/System/Library/Fonts/Supplemental/Tahoma.ttf', category: 'standard' },
-  { family: 'Geneva', path: '/System/Library/Fonts/Geneva.ttf', category: 'standard' },
-  { family: 'Georgia', path: '/System/Library/Fonts/Supplemental/Georgia.ttf', category: 'standard' },
-  { family: 'Times New Roman', path: '/System/Library/Fonts/Supplemental/Times New Roman.ttf', category: 'standard' },
-  { family: 'Courier New', path: '/System/Library/Fonts/Supplemental/Courier New.ttf', category: 'standard' },
-  { family: 'Monaco', path: '/System/Library/Fonts/Monaco.ttf', category: 'standard' },
-  { family: 'Impact', path: '/System/Library/Fonts/Supplemental/Impact.ttf', category: 'standard' },
-  // Math/symbol fonts (needed for SMP Mathematical Alphanumeric Symbols)
-  { family: 'STIX Two Math', path: '/System/Library/Fonts/Supplemental/STIXTwoMath.otf', category: 'math' },
-  { family: 'Apple Symbols', path: '/System/Library/Fonts/Apple Symbols.ttf', category: 'symbol' },
-];
+/** Category overrides for specific font families */
+const CATEGORY_OVERRIDES: Record<string, FontEntry['category']> = {
+  'STIX Two Math': 'math',
+  'STIX Two Text': 'math',
+  'STIXGeneral': 'math',
+  'Apple Symbols': 'symbol',
+};
+
+/** Fonts to exclude (render symbols/dingbats instead of actual Latin letters) */
+const EXCLUDED_FAMILIES = new Set([
+  'Webdings',
+  'Wingdings',
+  'Wingdings 2',
+  'Wingdings 3',
+  'Bodoni Ornaments',
+]);
+
+/**
+ * Classify a font family into a category based on its name.
+ * Returns null for fonts that should be skipped (internal, dingbats).
+ *
+ * Categories:
+ * - 'standard': Latin-primary fonts (web standard + macOS system + display)
+ * - 'script': CJK, Indic, Thai, and other script-primary fonts that also have Latin
+ * - 'noto': Noto Sans/Serif variants
+ * - 'math': STIX math fonts
+ * - 'symbol': Apple Symbols
+ */
+function classifyFont(family: string): FontEntry['category'] | null {
+  // Skip internal/system-private fonts (prefixed with ".")
+  if (family.startsWith('.')) return null;
+  if (EXCLUDED_FAMILIES.has(family)) return null;
+
+  // Explicit overrides
+  const override = CATEGORY_OVERRIDES[family];
+  if (override) return override;
+
+  // Noto fonts
+  if (family.startsWith('Noto')) return 'noto';
+
+  // Script-primary fonts (CJK, Indic, Thai, etc.) -- these have Latin glyphs
+  // but are primarily designed for other writing systems
+  const scriptPattern = /^(Bangla|Tamil|Kannada|Telugu|Malayalam|Oriya|Gurmukhi|Gujarati|Devanagari|Sinhala|Myanmar|Khmer|Lao|Kohinoor|Mukta|Shree|InaiMathi|Grantha|Hiragino|Heiti|STSong|Songti|Apple SD|AppleGothic|AppleMyungjo|Thonburi|Sathu|Krungthep|Silom|Sukhumvit|Ayuthaya|Kefa|Euphemia|Plantagenet)/;
+  if (scriptPattern.test(family)) return 'script';
+
+  return 'standard';
+}
+
+/**
+ * Discover all macOS system fonts with Latin a-z coverage using fontconfig.
+ * Groups results by family and picks the best file path (preferring Regular weight).
+ *
+ * For .ttc files with multiple families, only the primary family (shortest name)
+ * is registered since node-canvas registerFont always uses face index 0.
+ */
+function discoverSystemLatinFonts(): Omit<FontEntry, 'available'>[] {
+  try {
+    const output = execFileSync('fc-list', [
+      ':charset=61-7A', '--format=%{file}|%{family[0]}\n',
+    ], { encoding: 'utf-8', timeout: 10000 });
+
+    // Group paths by family
+    const familyPaths = new Map<string, string[]>();
+    for (const line of output.split('\n')) {
+      const trimmed = line.trim();
+      if (!trimmed) continue;
+      const sepIdx = trimmed.indexOf('|');
+      if (sepIdx < 0) continue;
+      const filePath = trimmed.slice(0, sepIdx).trim();
+      const family = trimmed.slice(sepIdx + 1).trim();
+      if (!filePath || !family) continue;
+
+      // System fonts only
+      if (!filePath.startsWith('/System/Library/Fonts/') &&
+          !filePath.startsWith('/Library/Fonts/')) continue;
+
+      if (!familyPaths.has(family)) familyPaths.set(family, []);
+      familyPaths.get(family)!.push(filePath);
+    }
+
+    const results: Omit<FontEntry, 'available'>[] = [];
+    const usedTtcPaths = new Set<string>();
+
+    // Process families sorted by name length (shorter = more primary) to ensure
+    // .ttc dedup picks the base family (e.g. "PT Sans" over "PT Sans Narrow")
+    const sortedFamilies = [...familyPaths.entries()]
+      .sort(([a], [b]) => a.length - b.length || a.localeCompare(b));
+
+    for (const [family, paths] of sortedFamilies) {
+      const category = classifyFont(family);
+      if (!category) continue;
+
+      // Pick best path: prefer non-Bold/Italic filename, prefer .ttf/.otf over .ttc
+      const bestPath = [...paths].sort((a, b) => {
+        const aWeight = /Bold|Italic/i.test(path.basename(a)) ? 1 : 0;
+        const bWeight = /Bold|Italic/i.test(path.basename(b)) ? 1 : 0;
+        if (aWeight !== bWeight) return aWeight - bWeight;
+        const aTtc = a.endsWith('.ttc') ? 1 : 0;
+        const bTtc = b.endsWith('.ttc') ? 1 : 0;
+        return aTtc - bTtc;
+      })[0]!;
+
+      // For .ttc files, skip if already registered under another family
+      // (registerFont only uses face 0 regardless of family name)
+      if (bestPath.endsWith('.ttc')) {
+        if (usedTtcPaths.has(bestPath)) continue;
+        usedTtcPaths.add(bestPath);
+      }
+
+      results.push({ family, path: bestPath, category });
+    }
+
+    return results;
+  } catch {
+    console.warn('  [font] fc-list discovery failed');
+    return [];
+  }
+}
 
 /**
  * Discover Noto Sans fonts across system font directories.
  * Scans both /System/Library/Fonts/ and /System/Library/Fonts/Supplemental/
  * for NotoSans* files in .ttf, .otf, and .ttc (TrueType Collection) formats.
  *
- * macOS ships ~100 Noto Sans fonts covering scripts like Tifinagh, Armenian,
- * NKo, Osage, Kannada, Myanmar, Oriya, Lisu, etc. Browsers use them via
- * system font fallback; we register them explicitly for node-canvas.
- *
- * For .ttc files (collections with multiple weights), we register only the
- * first face (index 0), which is typically the Regular weight.
+ * Many Noto fonts cover non-Latin scripts that fc-list ':charset=61-7A' would
+ * miss. This filesystem scan catches all of them so we can render confusable
+ * source characters from those scripts.
  */
 function discoverNotoFonts(): Omit<FontEntry, 'available'>[] {
   const results: Omit<FontEntry, 'available'>[] = [];
@@ -78,17 +176,42 @@ function notoFamilyFromFilename(filename: string): string {
 }
 
 /**
- * Check which fonts are available on this system and register them with node-canvas.
- * Returns the font list with availability status.
+ * Discover and register all system fonts.
  *
- * Discovers Noto Sans supplemental fonts automatically in addition to the
- * hardcoded standard/math/symbol fonts.
+ * 1. fc-list auto-discovers all system fonts with Latin a-z coverage.
+ *    This finds standard fonts (Arial, Helvetica, Futura...), display fonts
+ *    (Papyrus, Zapfino...), CJK/Indic/Thai fonts with Latin glyphs, and
+ *    any Noto fonts that have Latin.
+ * 2. Filesystem scan discovers Noto fonts for non-Latin scripts (Tifinagh,
+ *    Armenian, NKo, Osage...) that fc-list would miss.
+ * 3. Results are merged (deduplicated by family), registered with node-canvas,
+ *    and returned with availability status.
  */
 export function initFonts(): FontEntry[] {
-  const notoFonts = discoverNotoFonts();
-  const allDefs = [...FONT_DEFINITIONS, ...notoFonts];
+  // Step 1: Auto-discover system fonts with Latin a-z
+  const systemFonts = discoverSystemLatinFonts();
 
+  // Step 2: Discover Noto fonts (includes non-Latin scripts)
+  const notoFonts = discoverNotoFonts();
+
+  // Step 3: Merge, deduplicating by family name (system fonts take precedence)
+  const seenFamilies = new Set<string>();
+  const allDefs: Omit<FontEntry, 'available'>[] = [];
+
+  for (const f of systemFonts) {
+    seenFamilies.add(f.family);
+    allDefs.push(f);
+  }
+  for (const f of notoFonts) {
+    if (seenFamilies.has(f.family)) continue;
+    seenFamilies.add(f.family);
+    allDefs.push(f);
+  }
+
+  // Step 4: Register all fonts with node-canvas
   const fonts: FontEntry[] = [];
+  let registered = 0;
+  let failed = 0;
 
   for (const def of allDefs) {
     const available = fs.existsSync(def.path);
@@ -96,22 +219,32 @@ export function initFonts(): FontEntry[] {
     if (available) {
       try {
         registerFont(def.path, { family: def.family });
-        console.log(`  [font] registered: ${def.family} (${def.path})`);
-      } catch (err) {
-        console.warn(`  [font] FAILED to register ${def.family}: ${err}`);
+        registered++;
+      } catch {
         fonts.push({ ...def, available: false });
+        failed++;
         continue;
       }
-    } else {
-      console.log(`  [font] not found: ${def.family} (${def.path})`);
     }
 
     fonts.push({ ...def, available });
   }
 
-  const availableCount = fonts.filter(f => f.available).length;
-  const notoCount = fonts.filter(f => f.category === 'noto' && f.available).length;
-  console.log(`  [font] ${availableCount}/${fonts.length} fonts available (${notoCount} Noto script fonts)\n`);
+  // Print summary by category
+  const counts: Record<string, number> = {};
+  for (const f of fonts) {
+    if (!f.available) continue;
+    counts[f.category] = (counts[f.category] ?? 0) + 1;
+  }
+  const total = Object.values(counts).reduce((a, b) => a + b, 0);
+  const parts = Object.entries(counts)
+    .sort(([, a], [, b]) => b - a)
+    .map(([cat, n]) => `${cat}: ${n}`)
+    .join(', ');
+
+  console.log(`  [font] ${total} fonts registered (${parts})`);
+  if (failed > 0) console.log(`  [font] ${failed} fonts failed to register`);
+  console.log('');
 
   return fonts;
 }
@@ -122,7 +255,7 @@ export function initFonts(): FontEntry[] {
  * returned file paths against our font list.
  *
  * This replaces brute-force rendering + pixel deduplication. Instead of
- * rendering every character in all 111 fonts (where Pango silently falls back
+ * rendering every character in all fonts (where Pango silently falls back
  * for most), we ask fontconfig upfront which fonts actually have the glyph.
  */
 export function queryFontCoverage(
@@ -177,7 +310,6 @@ export function discoverFontForCodepoint(codepoint: number): FontEntry | null {
 
   // Derive a family name from the filename
   const basename = path.basename(fontPath).replace(/\.(ttf|otf|ttc)$/i, '');
-  // Use the basename as-is for non-Noto fonts (e.g. "Tamil Sangam MN", "Arial Unicode")
   const family = basename;
 
   try {
@@ -189,7 +321,7 @@ export function discoverFontForCodepoint(codepoint: number): FontEntry | null {
   const entry: FontEntry = {
     family,
     path: fontPath,
-    category: 'noto', // treat all dynamically discovered fonts as non-standard
+    category: 'script', // dynamically discovered fonts are non-standard
     available: true,
   };
   dynamicFonts.set(fontPath, entry);

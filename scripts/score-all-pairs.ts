@@ -308,28 +308,41 @@ function printSummary(output: ScoreAllPairsOutput) {
 
   console.log('Top 20 most visually confusable pairs:');
   for (const p of sorted.slice(0, 20)) {
-    const s = p.summary;
-    const scored = p.fonts.filter(f => f.ssim !== null);
-    const cross = scored.filter(f => f.sourceFont !== f.targetFont).length;
-    const same = scored.filter(f => f.sourceFont === f.targetFont).length;
-    const tag = cross > 0 ? `${same}same/${cross}cross` : `${same}same`;
-    console.log(
-      `  ${p.sourceCodepoint.padEnd(10)} ${JSON.stringify(p.source).padEnd(6)} -> "${p.target}"  SSIM=${s.meanSsim!.toFixed(4)}  pHash=${s.meanPHash?.toFixed(4) ?? 'N/A'}  (${s.nativeFontCount}n/${s.fallbackFontCount}fb) [${tag}]`,
-    );
+    printPairDetail(p);
   }
 
   console.log('');
   console.log('Bottom 20 least visually confusable pairs (potential false positives):');
   const bottom = sorted.reverse();
   for (const p of bottom.slice(0, 20)) {
-    const s = p.summary;
-    const scored = p.fonts.filter(f => f.ssim !== null);
-    const cross = scored.filter(f => f.sourceFont !== f.targetFont).length;
-    const same = scored.filter(f => f.sourceFont === f.targetFont).length;
-    const tag = cross > 0 ? `${same}same/${cross}cross` : `${same}same`;
-    console.log(
-      `  ${p.sourceCodepoint.padEnd(10)} ${JSON.stringify(p.source).padEnd(6)} -> "${p.target}"  SSIM=${s.meanSsim!.toFixed(4)}  pHash=${s.meanPHash?.toFixed(4) ?? 'N/A'}  (${s.nativeFontCount}n/${s.fallbackFontCount}fb) [${tag}]`,
-    );
+    printPairDetail(p);
+  }
+}
+
+function printPairDetail(p: ConfusablePairResult) {
+  const s = p.summary;
+  const scored = p.fonts.filter(f => f.ssim !== null);
+  const sameFont = scored.filter(f => f.sourceFont === f.targetFont);
+  const crossFont = scored.filter(f => f.sourceFont !== f.targetFont);
+  const tag = crossFont.length > 0
+    ? `${sameFont.length}same/${crossFont.length}cross`
+    : `${sameFont.length}same`;
+  console.log(
+    `  ${p.sourceCodepoint.padEnd(10)} ${JSON.stringify(p.source).padEnd(6)} -> "${p.target}"  SSIM=${s.meanSsim!.toFixed(4)}  pHash=${s.meanPHash?.toFixed(4) ?? 'N/A'}  (${s.nativeFontCount}n/${s.fallbackFontCount}fb) [${tag}]`,
+  );
+
+  // Show individual font pairings (sorted by SSIM descending)
+  if (sameFont.length > 0) {
+    const sorted = [...sameFont].sort((a, b) => (b.ssim ?? 0) - (a.ssim ?? 0));
+    const details = sorted.slice(0, 8).map(f => `${f.sourceFont}=${f.ssim!.toFixed(3)}`);
+    const suffix = sorted.length > 8 ? ` +${sorted.length - 8} more` : '';
+    console.log(`    same-font:  ${details.join('  ')}${suffix}`);
+  }
+  if (crossFont.length > 0) {
+    const sorted = [...crossFont].sort((a, b) => (b.ssim ?? 0) - (a.ssim ?? 0));
+    const details = sorted.slice(0, 6).map(f => `${f.sourceFont}/${f.targetFont}=${f.ssim!.toFixed(3)}`);
+    const suffix = sorted.length > 6 ? ` +${sorted.length - 6} more` : '';
+    console.log(`    cross-font: ${details.join('  ')}${suffix}`);
   }
 }
 
