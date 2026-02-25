@@ -83,7 +83,7 @@ export interface GlobalSummary {
   totalVectors: number;
 }
 
-/** Top-level output JSON structure */
+/** Top-level output JSON structure (milestone 1) */
 export interface OutputData {
   meta: {
     generatedAt: string;
@@ -96,4 +96,65 @@ export interface OutputData {
   };
   vectors: VectorResult[];
   globalSummary: GlobalSummary;
+}
+
+// --- Milestone 1b types ---
+
+/** A single confusable pair from confusable-pairs.json */
+export interface ConfusablePair {
+  source: string;
+  sourceCodepoint: string;
+  target: string;
+}
+
+/** Per-font score for one confusable pair */
+export interface PairFontResult {
+  font: string;
+  ssim: number | null;
+  pHash: number | null;
+  sourceRenderStatus: RenderStatus;
+  sourceFallbackFont: string | null;
+  /** True if SSIM was skipped because pHash prefilter scored too low */
+  ssimSkipped: boolean;
+}
+
+/** Summary for one confusable pair across all fonts */
+export interface PairSummary {
+  meanSsim: number | null;
+  meanPHash: number | null;
+  nativeFontCount: number;
+  fallbackFontCount: number;
+  notdefFontCount: number;
+  validFontCount: number;
+}
+
+/** Full result for one confusable pair */
+export interface ConfusablePairResult {
+  source: string;
+  sourceCodepoint: string;
+  target: string;
+  fonts: PairFontResult[];
+  summary: PairSummary;
+}
+
+/** Top-level output for milestone 1b */
+export interface ScoreAllPairsOutput {
+  meta: {
+    generatedAt: string;
+    fontsAvailable: number;
+    fontsTotal: number;
+    pairCount: number;
+    platform: string;
+    licence: string;
+    attribution: string;
+    pHashPrefilterThreshold: number;
+  };
+  pairs: ConfusablePairResult[];
+  distribution: {
+    high: number;   // SSIM >= 0.7
+    medium: number; // 0.3 <= SSIM < 0.7
+    low: number;    // SSIM < 0.3
+    noData: number; // no valid renders
+    total: number;
+  };
 }

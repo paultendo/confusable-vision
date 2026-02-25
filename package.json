@@ -8,7 +8,10 @@
   "author": "Paul Wood FRSA (@paultendo)",
   "scripts": {
     "render-pairs": "npx tsx scripts/render-pairs.ts",
-    "render-pairs:save": "npx tsx scripts/render-pairs.ts --save-renders"
+    "render-pairs:save": "npx tsx scripts/render-pairs.ts --save-renders",
+    "fetch-confusables": "npx tsx scripts/fetch-confusables.ts",
+    "score-all-pairs": "npx tsx scripts/score-all-pairs.ts",
+    "score-all-pairs:save": "npx tsx scripts/score-all-pairs.ts --save-renders"
   },
   "dependencies": {
     "canvas": "^3.1.0",
