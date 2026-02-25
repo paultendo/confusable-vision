@@ -889,10 +889,10 @@ vs "i", which scores >= 0.7 in 101 fonts.
 
 The 793 novel discoveries represent a 16x increase over the 49 high-risk
 confusables.txt pairs. This does not mean confusables.txt is poorly curated --
-it means its scope is different. Confusables.txt focuses on characters that
-map to the same skeleton under NFKC normalisation, which is a character-
-property test, not a visual test. Many visually similar characters have
-different NFKC mappings and are therefore excluded.
+it means its scope is different. Confusables.txt entries were collected
+using compatibility mappings and character properties as a source during
+data collection, not visual rendering. Many visually similar characters
+were not identified by that process and are therefore absent.
 
 The gap is largest for:
 
@@ -930,9 +930,11 @@ discoveries was annotated with four Unicode identifier properties using
 |----------|-------|----------|--------|
 | XID_Continue | 715 | 90.2% | UAX #31 DerivedCoreProperties.txt |
 | XID_Start | 637 | 80.3% | UAX #31 DerivedCoreProperties.txt |
-| IDNA PVALID | 657 | 82.8% | IDNA 2008 IdnaMappingTable.txt |
+| IDNA PVALID | 657 | 82.8% | UTS #46 IdnaMappingTable.txt (status=valid) |
 | TR39 Allowed | 60 | 7.6% | TR39 IdentifierStatus.txt |
 | XID_Continue AND IDNA PVALID | 591 | 74.5% | Cross-product |
+
+Note: "IDNA PVALID" here reports UTS #46 `valid` status from IdnaMappingTable.txt, which is what browsers and registrars implement. RFC 5892 derives PVALID from character properties and may differ for a small number of codepoints.
 
 **74.5% of novel discoveries are valid in both JavaScript identifiers and
 internationalized domain names.** These 591 pairs are the most dangerous
