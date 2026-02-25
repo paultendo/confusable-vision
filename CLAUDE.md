@@ -139,6 +139,9 @@ interface OutputData {
     fontsAvailable: number;    // e.g. 12
     fontsTotal: number;        // e.g. 12
     vectorCount: number;       // e.g. 31
+    platform: string;          // e.g. "darwin arm64 25.2.0"
+    licence: string;           // "CC-BY-4.0"
+    attribution: string;       // "Paul Wood FRSA (@paultendo), confusable-vision"
   };
   vectors: Array<{
     codePoint: string;         // "U+017F"
@@ -149,7 +152,8 @@ interface OutputData {
       font: string;            // "Arial"
       tr39: { ssim: number; pHash: number } | null;
       nfkc: { ssim: number; pHash: number } | null;
-      sourceNotdef: boolean;
+      sourceRenderStatus: 'native' | 'fallback' | 'notdef';
+      sourceFallbackFont: string | null;
     }>;
     summary: {
       tr39MeanSsim: number | null;

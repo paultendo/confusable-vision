@@ -91,4 +91,8 @@ With `--save-renders`, triptych PNGs are saved to `data/output/renders/` for vis
 
 ## Licence
 
-MIT
+- **Code** (src/, scripts/): MIT
+- **Generated data** (data/output/): [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) -- free to use, share, and adapt for any purpose including commercial, with attribution
+- **Attribution**: Paul Wood FRSA (@paultendo), confusable-vision
+
+Each output JSON includes `licence` and `attribution` fields in its metadata.

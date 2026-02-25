@@ -91,6 +91,8 @@ export interface OutputData {
     fontsTotal: number;
     vectorCount: number;
     platform: string;
+    licence: string;
+    attribution: string;
   };
   vectors: VectorResult[];
   globalSummary: GlobalSummary;

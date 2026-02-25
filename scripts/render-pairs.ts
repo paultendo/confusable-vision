@@ -190,6 +190,8 @@ async function main() {
       fontsTotal: fonts.length,
       vectorCount: vectors.length,
       platform: `${os.platform()} ${os.arch()} ${os.release()}`,
+      licence: 'CC-BY-4.0',
+      attribution: 'Paul Wood FRSA (@paultendo), confusable-vision',
     },
     vectors: vectorResults,
     globalSummary,
