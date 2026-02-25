@@ -127,6 +127,8 @@ npx tsx scripts/extract-discoveries.ts
 - [x] **Milestone 3** -- Glyph reuse detection, identifier property annotations, weighted edge computation, namespace-guard integration
 - [ ] **Milestone 2b** -- CJK/Hangul verification and cross-script validation (Cyrillic, Greek, Armenian, Georgian). M2 excluded logographic scripts on the assumption they're structurally different from Latin; M2b tests that assumption.
 - [ ] **Milestone 4** -- Multi-character confusables. Current scoring is single-character; M4 would detect sequences that visually compose into a different character (e.g. `rn` vs `m`, `cl` vs `d`).
+- [ ] **Milestone 5** -- Outline equivalence check. M3 found zero cmap glyph ID reuse across 85 pixel-identical pairs (Tier 1). M5 would compare actual bezier outlines via fontkit to distinguish Tier 2 (identical outlines in separate glyph slots -- copy-paste by font designer, fixable) from Tier 3 (different outlines that collapse at 48x48 rasterisation -- resolution-dependent, not fixable in the font). Multi-resolution validation at 96x96 and 200x200 to confirm.
+- [ ] **Milestone 6** -- Transitive depth vs SSIM correlation. confusables.txt uses transitive closure to build equivalence classes, which TR39 acknowledges "can produce oddities." M6 would parse prototype groups, compute pairwise transitive depth, and correlate with M1b SSIM scores. Hypothesis: depth-1 (direct) pairs have high SSIM; depth-3+ pairs are the primary source of over-inclusive edges.
 
 ## Related
 
