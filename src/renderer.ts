@@ -4,6 +4,11 @@ import type { RenderResult } from './types.js';
 const CANVAS_SIZE = 64;
 const FONT_FILL_RATIO = 0.75; // Fill ~75% of canvas height
 
+// Cache blank and FFFD reference renders per font to avoid recomputing
+// them on every renderCharacter call (~2/3 render time savings).
+const blankCache = new Map<string, Buffer>();
+const fffdCache = new Map<string, Buffer>();
+
 /**
  * Render a single character on a white background in the given font.
  * Returns PNG buffer + raw pixels, or null if the font lacks this glyph (.notdef).
@@ -30,13 +35,27 @@ export function renderCharacter(
 
   // .notdef detection: compare target render against blank + replacement char
   const targetPixels = renderToPixels(ctx, char);
-  const blankPixels = getBlankPixels(ctx);
-  const replacementPixels = renderToPixels(ctx, '\uFFFD');
+
+  // Use cached blank/FFFD for this font, or render and cache them
+  let blankPixels = blankCache.get(fontFamily);
+  if (!blankPixels) {
+    blankPixels = getBlankPixels(ctx);
+    blankCache.set(fontFamily, blankPixels);
+  }
+
+  let fffdPixels = fffdCache.get(fontFamily);
+  if (!fffdPixels) {
+    fffdPixels = renderToPixels(ctx, '\uFFFD');
+    fffdCache.set(fontFamily, fffdPixels);
+  }
 
   if (buffersEqual(targetPixels, blankPixels)) {
     return null;
   }
-  if (buffersEqual(targetPixels, replacementPixels)) {
+  if (buffersEqual(targetPixels, fffdPixels)) {
+    return null;
+  }
+  if (isLastResortRender(targetPixels, CANVAS_SIZE)) {
     return null;
   }
 
@@ -87,6 +106,65 @@ function getBlankPixels(
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
   return Buffer.from(ctx.getImageData(0, 0, CANVAS_SIZE, CANVAS_SIZE).data);
+}
+
+/**
+ * Detect macOS "Last Resort" font rendering. When no installed font contains
+ * a glyph, macOS renders the codepoint as hex digits inside a rectangular
+ * bordered box (e.g. "2D4F" in a box for U+2D4F). Real character glyphs
+ * virtually never have a solid rectangular border on all four edges.
+ *
+ * Algorithm: find the ink bounding box, then check whether all four edges
+ * of that bounding box are mostly-dark pixels (the border lines).
+ */
+function isLastResortRender(pixels: Buffer, canvasSize: number): boolean {
+  // R channel at (x, y). Lower value = darker pixel.
+  const r = (x: number, y: number) => pixels[(y * canvasSize + x) * 4]!;
+
+  // Find bounding box of ink (anything darker than near-white)
+  let top = canvasSize;
+  let bottom = 0;
+  let left = canvasSize;
+  let right = 0;
+  for (let y = 0; y < canvasSize; y++) {
+    for (let x = 0; x < canvasSize; x++) {
+      if (r(x, y) < 200) {
+        top = Math.min(top, y);
+        bottom = Math.max(bottom, y);
+        left = Math.min(left, x);
+        right = Math.max(right, x);
+      }
+    }
+  }
+
+  const bboxW = right - left + 1;
+  const bboxH = bottom - top + 1;
+
+  // Last Resort boxes are relatively large and roughly square
+  if (bboxW < 15 || bboxH < 15) return false;
+
+  // Check border continuity on all 4 edges of the bounding box
+  let topDark = 0;
+  let bottomDark = 0;
+  let leftDark = 0;
+  let rightDark = 0;
+
+  for (let x = left; x <= right; x++) {
+    if (r(x, top) < 200) topDark++;
+    if (r(x, bottom) < 200) bottomDark++;
+  }
+  for (let y = top; y <= bottom; y++) {
+    if (r(left, y) < 200) leftDark++;
+    if (r(right, y) < 200) rightDark++;
+  }
+
+  const threshold = 0.75;
+  return (
+    topDark / bboxW > threshold &&
+    bottomDark / bboxW > threshold &&
+    leftDark / bboxH > threshold &&
+    rightDark / bboxH > threshold
+  );
 }
 
 function buffersEqual(a: Buffer, b: Buffer): boolean {
