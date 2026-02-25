@@ -10,8 +10,8 @@
     "render-pairs": "npx tsx scripts/render-pairs.ts",
     "render-pairs:save": "npx tsx scripts/render-pairs.ts --save-renders",
     "fetch-confusables": "npx tsx scripts/fetch-confusables.ts",
-    "score-all-pairs": "npx tsx scripts/score-all-pairs.ts",
-    "score-all-pairs:save": "npx tsx scripts/score-all-pairs.ts --save-renders"
+    "build-index": "npx tsx scripts/build-index.ts",
+    "score-all-pairs": "npx tsx scripts/score-all-pairs.ts"
   },
   "dependencies": {
     "canvas": "^3.1.0",

@@ -50,10 +50,10 @@ async function main() {
   console.log('[1/4] Initialising fonts...');
   const fonts = initFonts();
   const availableFonts = fonts.filter(f => f.available);
-  const fallbackFonts = availableFonts.filter(f => f.category === 'math' || f.category === 'symbol');
+  const fallbackFonts = availableFonts.filter(f => f.category === 'math' || f.category === 'symbol' || f.category === 'noto');
   const standardFonts = availableFonts.filter(f => f.category === 'standard');
 
-  console.log(`  Fallback fonts (math/symbol): ${fallbackFonts.map(f => f.family).join(', ')}`);
+  console.log(`  Fallback fonts: ${fallbackFonts.length} (math/symbol/noto)`);
   console.log(`  Standard fonts: ${standardFonts.length}\n`);
 
   if (availableFonts.length < 2) {
