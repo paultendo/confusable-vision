@@ -10,7 +10,7 @@ export interface ComposabilityVector {
 export interface FontEntry {
   family: string;
   path: string;
-  category: 'standard' | 'math' | 'symbol';
+  category: 'standard' | 'math' | 'symbol' | 'noto';
   available: boolean;
 }
 
@@ -98,6 +98,37 @@ export interface OutputData {
   globalSummary: GlobalSummary;
 }
 
+// --- Render index types (build-index.ts output, score-all-pairs.ts input) ---
+
+/** One rendered character in one font, stored in the render index */
+export interface IndexRenderEntry {
+  font: string;
+  category: 'standard' | 'math' | 'symbol' | 'noto';
+  pHash: string; // 16-char hex string encoding a 64-bit hash
+  renderStatus: RenderStatus;
+  fallbackFont: string | null;
+  png: string; // filename relative to renders/ directory
+}
+
+/** Serialised render index written by build-index.ts */
+export interface RenderIndex {
+  meta: {
+    generatedAt: string;
+    platform: string;
+    renderSize: number;
+    fontsAvailable: number;
+    fontsTotal: number;
+    standardFonts: string[];
+    sourceCharCount: number;
+    targetCharCount: number;
+    totalRenders: number;
+  };
+  /** Source character renders, keyed by character */
+  sources: Record<string, IndexRenderEntry[]>;
+  /** Target character renders (standard fonts only), keyed by character */
+  targets: Record<string, IndexRenderEntry[]>;
+}
+
 // --- Milestone 1b types ---
 
 /** A single confusable pair from confusable-pairs.json */
@@ -107,9 +138,19 @@ export interface ConfusablePair {
   target: string;
 }
 
-/** Per-font score for one confusable pair */
+/**
+ * Per-comparison score for one confusable pair.
+ * Records the font used for each side of the comparison:
+ * - Same-font: sourceFont === targetFont (e.g. both in Arial for Cyrillic)
+ * - Cross-font: sourceFont !== targetFont (e.g. Noto Sans Tifinagh vs Arial)
+ *
+ * Cross-font comparisons capture the realistic browser scenario: the OS renders
+ * the exotic source character in a supplemental font while the target stays in
+ * the page's standard font. The attacker doesn't control this pairing.
+ */
 export interface PairFontResult {
-  font: string;
+  sourceFont: string;
+  targetFont: string;
   ssim: number | null;
   pHash: number | null;
   sourceRenderStatus: RenderStatus;
