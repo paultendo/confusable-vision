@@ -12,8 +12,11 @@ confusable-vision renders Unicode character pairs across all macOS system fonts,
 measures visual similarity using SSIM and pHash, and produces per-font scored
 JSON artifacts. This report covers two analyses:
 
-- **Milestone 1b** -- validation of all 1,418 pairs in Unicode TR39
+- **Milestone 1b** -- validation of 1,418 pairs from Unicode TR39
   confusables.txt across 230 system fonts (235,625 SSIM comparisons).
+  Scope: single-codepoint-to-single-codepoint mappings with targets
+  restricted to Latin a-z and digits 0-9 (SL mapping type only).
+  Multi-character and non-Latin-target mappings are excluded.
 - **Milestone 2** -- novel confusable discovery by scanning 23,317
   identifier-safe Unicode characters not in confusables.txt against Latin
   a-z/0-9 across 230 fonts (2,904,376 SSIM comparisons).
@@ -84,11 +87,12 @@ and across time. For a dataset intended to feed into security policy
 (namespace-guard's risk scoring), determinism and auditability matter more
 than marginal accuracy gains.
 
-GlyphNet's own results support this: their best CNN (VGG16 fine-tuned) achieved
-63-67% accuracy on domain-level binary classification. Our SSIM approach
-operates at a different granularity (per-character, per-font, continuous
-scores) but the low CNN accuracy suggests that learned features do not
-dramatically outperform structural similarity for glyph comparison.
+GlyphNet's attention-based CNN achieves ~0.93 AUC on character-level
+confusability (Gupta et al. 2023, Table 3). The 63-67% figure refers to
+transfer-learning with ImageNet-pretrained architectures (VGG16, ResNet),
+not GlyphNet's best model. Our SSIM choice is motivated by determinism
+and zero-infrastructure reproducibility, not by claiming higher accuracy
+than learned approaches.
 
 ### 2.3 Font discovery
 
@@ -283,6 +287,47 @@ separate codepoints for compatibility, but fonts use the same glyph:
 | Ꝯ (U+A76E) | 9 | Geneva (0.964) | Latin capital letter con |
 | ﬁ (U+FB01) | fi | -- | Ligature (separate scoring) |
 | Fullwidth Latin (U+FFxx) | Latin | Arial Unicode MS | Pixel-identical for ｘ (U+FF58) |
+
+### 4.5 Intentional vs accidental: glyph reuse taxonomy
+
+Pixel-identical pairs can arise in two ways:
+
+1. **Raster coincidence** -- the font contains separate glyph outlines for
+   each codepoint, but the outlines happen to produce identical pixels at
+   rendering size. Different glyph IDs in the font's cmap table, same visual
+   output.
+
+2. **Glyph reuse** -- the font's cmap maps both codepoints to the same
+   glyph ID, so the rendering engine draws literally the same outline. This
+   is an intentional font design choice (common for Roman numerals and
+   compatibility characters).
+
+To distinguish these, `detect-glyph-reuse.ts` uses fontkit to compare cmap
+glyph IDs for all same-font pairs with SSIM >= 0.999.
+
+**Results across 903 pairs:**
+
+| Category | TR39 pairs | Novel pairs | Total |
+|----------|-----------|-------------|-------|
+| Raster coincidence (different glyph IDs) | 78 | 7 | 85 |
+| Glyph reuse (same glyph ID) | 0 | 0 | 0 |
+| No pixel-identical comparison | 32 | 786 | 818 |
+
+The finding is striking: **zero glyph reuse detected** across all 85
+pixel-identical pairs in all tested fonts. Modern fonts (Arial, Helvetica,
+Geneva, Times New Roman, and others) consistently assign separate glyph IDs
+to Cyrillic, Greek, and Roman numeral codepoints even when the glyph
+outlines are visually identical to their Latin counterparts. The pixel
+identity is achieved through separate but outline-identical glyphs, not
+through cmap aliasing.
+
+This means all 85 pixel-identical pairs are raster coincidences from a font
+engineering perspective, even though the visual result is indistinguishable.
+For risk scoring, both categories carry cost = 0 (the attacker does not
+care *why* the pixels match), but the taxonomy informs font development:
+fonts could in principle assign distinct outlines to confusable characters
+without breaking their cmap structure, since the structure already separates
+them.
 
 ## 5. Top 30 most visually confusable pairs
 
@@ -875,6 +920,37 @@ attacking characters are identifier-safe in the target context:
 - **Package names**: npm, PyPI, and other package registries have varying
   Unicode policies. Many accept the full BMP range.
 
+### 19.4 Identifier property annotations
+
+To quantify the risk by deployment context, each of the 793 novel
+discoveries was annotated with four Unicode identifier properties using
+`annotate-properties.ts`:
+
+| Property | Count | % of 793 | Source |
+|----------|-------|----------|--------|
+| XID_Continue | 715 | 90.2% | UAX #31 DerivedCoreProperties.txt |
+| XID_Start | 637 | 80.3% | UAX #31 DerivedCoreProperties.txt |
+| IDNA PVALID | 657 | 82.8% | IDNA 2008 IdnaMappingTable.txt |
+| TR39 Allowed | 60 | 7.6% | TR39 IdentifierStatus.txt |
+| XID_Continue AND IDNA PVALID | 591 | 74.5% | Cross-product |
+
+**74.5% of novel discoveries are valid in both JavaScript identifiers and
+internationalized domain names.** These 591 pairs are the most dangerous
+subset: an attacker can use them in variable names, function names, package
+names, and domain labels. They are not blocked by IDNA 2008, not blocked by
+UAX #31, and not flagged by confusables.txt.
+
+Only 60 of 793 (7.6%) are TR39 Identifier_Status=Allowed, meaning 92.4%
+come from Restricted scripts. This is expected: most discoveries are from
+SMP historical scripts (Gothic, Old Hungarian, Nabataean) or minority
+scripts (Pahawh Hmong, Mende Kikakui, Mro) that Unicode classifies as
+Restricted. However, Restricted status alone does not prevent exploitation
+in all contexts. JavaScript engines, for example, accept any XID_Continue
+character in identifiers regardless of TR39 restriction status.
+
+For the 110 high-risk TR39 pairs: 102 (92.7%) are XID_Continue, 52 (47.3%)
+are IDNA PVALID, and 49 (44.5%) are TR39 Allowed.
+
 ## 20. Reproducibility
 
 All outputs are deterministic given the same platform and fonts.
@@ -945,9 +1021,11 @@ Trebuchet MS, Verdana, Zapfino
   only -- no code incorporated (GPL licence ambiguity in their repo).
 
 - **Unicode TR39** (Unicode Technical Report #39): Defines confusables.txt
-  and the skeleton() algorithm. Our data shows TR39's confusable set is
-  over-inclusive from a visual perspective (96.5% of entries are not
-  high-risk).
+  and the skeleton() algorithm. TR39's transitive closure and substring
+  decomposition (UTS #39 Section 4) create over-inclusive edges that are
+  necessary for skeleton() equivalence but visually low-risk. Our data
+  confirms this: 96.5% of entries are not high-risk when measured by
+  per-font SSIM.
 
 - **dnstwist**: Domain name permutation tool that includes homoglyph
   generation. Useful cross-reference for milestone 2 (novel confusable

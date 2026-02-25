@@ -178,6 +178,99 @@ export interface ConfusablePairResult {
   summary: PairSummary;
 }
 
+// --- Glyph reuse types (detect-glyph-reuse.ts) ---
+
+/** Result of glyph-ID check for one font comparison */
+export interface GlyphReuseCheck {
+  font: string;
+  fontPath: string;
+  sourceGlyphId: number | null;
+  targetGlyphId: number | null;
+  /** True when both codepoints map to the same non-.notdef glyph ID */
+  glyphReuse: boolean;
+}
+
+/** Summary of glyph-reuse analysis for one pair */
+export interface GlyphReuseSummary {
+  source: string;
+  sourceCodepoint: string;
+  target: string;
+  /** Number of same-font comparisons with SSIM >= 0.999 that were checked */
+  checkedCount: number;
+  /** Number of fonts where glyph IDs match (intentional reuse) */
+  glyphReuseCount: number;
+  /** Number of fonts where glyph IDs differ (raster coincidence) */
+  rasterCoincidenceCount: number;
+  /** True if any font shows glyph reuse */
+  glyphReuse: boolean;
+  fonts: GlyphReuseCheck[];
+}
+
+// --- Identifier property types (annotate-properties.ts) ---
+
+/** Unicode identifier properties for a single codepoint */
+export interface IdentifierProperties {
+  /** UAX #31 XID_Start (can begin an identifier) */
+  xidStart: boolean;
+  /** UAX #31 XID_Continue (can continue an identifier) */
+  xidContinue: boolean;
+  /** IDNA 2008 PVALID (valid in internationalized domain names) */
+  idnaPvalid: boolean;
+  /** TR39 Identifier_Status = Allowed */
+  tr39Allowed: boolean;
+}
+
+// --- Weighted edge types (generate-weights.ts) ---
+
+/** Computed weight for a single confusable pair edge */
+export interface ConfusableEdgeWeight {
+  source: string;
+  sourceCodepoint: string;
+  target: string;
+  sameMax: number;
+  sameP95: number;
+  sameMean: number;
+  sameN: number;
+  crossMax: number;
+  crossP95: number;
+  crossMean: number;
+  crossN: number;
+  /** max(sameMax, crossMax) - attacker perspective */
+  danger: number;
+  /** p95 across ALL comparisons - defender perspective */
+  stableDanger: number;
+  /** 1 - stableDanger, clamped [0, 1] */
+  cost: number;
+  /** True if font cmap reveals intentional glyph reuse */
+  glyphReuse: boolean;
+  /** Source is valid in UAX #31 identifiers (XID_Continue) */
+  xidContinue: boolean;
+  /** Source is valid at start of UAX #31 identifiers (XID_Start) */
+  xidStart: boolean;
+  /** Source is PVALID in IDNA 2008 */
+  idnaPvalid: boolean;
+  /** Source is TR39 Identifier_Status = Allowed */
+  tr39Allowed: boolean;
+  /** Whether pair exists in Unicode TR39 confusables.txt */
+  inTr39: boolean;
+  /** Font set used for scoring */
+  fontSetId: string;
+}
+
+/** Top-level output for confusable-weights.json */
+export interface ConfusableWeightsOutput {
+  meta: {
+    generatedAt: string;
+    pairCount: number;
+    tr39PairCount: number;
+    novelPairCount: number;
+    fontSetId: string;
+    licence: string;
+    attribution: string;
+  };
+  edges: ConfusableEdgeWeight[];
+}
+
 /** Top-level output for milestone 1b */
 export interface ScoreAllPairsOutput {
   meta: {

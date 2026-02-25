@@ -23,6 +23,15 @@ Scanned 23,317 identifier-safe Unicode characters (not in confusables.txt) again
 - Most high-scoring novel pairs are vertical stroke characters from obscure scripts (Pahawh Hmong, Nabataean, Duployan, Hatran, Mende Kikakui) that render as "l" or "i" lookalikes.
 - Notable non-obvious finds: Gothic U+10347 vs "x" (0.94), Coptic U+2CAD vs "x" (0.93), Javanese U+A9D0 vs "o" (0.96), Khmer U+17F4 vs "v" (0.93).
 
+### Milestone 3 -- weighted edges and namespace-guard integration
+
+Post-processing of M1b and M2 data:
+
+- **903 weighted edges** computed (`confusable-weights.json`) with per-pair same-font/cross-font statistics, danger (max SSIM), stableDanger (p95 SSIM), and cost (1 - stableDanger).
+- **Zero glyph reuse** across all 85 pixel-identical pairs. Modern fonts assign separate cmap glyph IDs even when outlines are identical.
+- **74.5% of novel discoveries** (591/793) are both XID_Continue and IDNA PVALID -- usable in both JavaScript identifiers and domain names.
+- **namespace-guard v0.16.0** integrates weights via optional `weights` parameter in `confusableDistance()`, with context-dependent filtering (`identifier`, `domain`, `all`).
+
 Full analysis: [REPORT.md](REPORT.md) | Blog post: [paultendo.github.io/posts/confusable-vision-visual-similarity](https://paultendo.github.io/posts/confusable-vision-visual-similarity/)
 
 ## How it works
@@ -98,6 +107,7 @@ npx tsx scripts/extract-discoveries.ts
 |------|-------------|
 | `data/output/confusable-discoveries.json` | 110 TR39 pairs: high SSIM (>= 0.7) or pixel-identical |
 | `data/output/candidate-discoveries.json` | 793 novel pairs not in TR39, mean SSIM >= 0.7 |
+| `data/output/confusable-weights.json` | 903 weighted edges for namespace-guard integration (M3) |
 
 ### Generated (gitignored, run pipeline to regenerate)
 
@@ -114,12 +124,12 @@ npx tsx scripts/extract-discoveries.ts
 - [x] **Milestone 1** -- Validate approach against 31 NFKC/TR39 divergence vectors
 - [x] **Milestone 1b** -- Expand to full confusables.txt (1,418 pairs), 230 fonts, technical report
 - [x] **Milestone 2** -- Discover novel confusable pairs not in TR39 (793 high-scoring pairs from 23,317 candidates)
+- [x] **Milestone 3** -- Glyph reuse detection, identifier property annotations, weighted edge computation, namespace-guard integration
 - [ ] **Milestone 2b** -- Cross-script validation for Cyrillic, Greek, Armenian, Georgian
-- [ ] **Milestone 3** -- Distil all output into confusable-weights.json for [namespace-guard](https://github.com/paultendo/namespace-guard) integration
 
 ## Related
 
-- [namespace-guard](https://github.com/paultendo/namespace-guard) -- the npm library that will consume these scores for risk-weighted confusable detection
+- [namespace-guard](https://github.com/paultendo/namespace-guard) (v0.16.0+) -- consumes `confusable-weights.json` for measured visual risk scoring via `confusableDistance({ weights })`
 - [REPORT.md](REPORT.md) -- full Milestone 1b technical report (12 sections, per-font analysis, appendices)
 - [Blog post](https://paultendo.github.io/posts/confusable-vision-visual-similarity/) -- write-up with rendered glyph comparison images
 

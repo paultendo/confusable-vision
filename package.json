@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "canvas": "^3.1.0",
+    "fontkit": "^2.0.4",
     "sharp": "^0.34.5",
     "ssim.js": "^3.5.0"
   },
