@@ -1,0 +1,570 @@
+{
+  "meta": {
+    "generatedAt": "2026-02-26T03:43:51.428Z",
+    "milestone": "2b",
+    "purpose": "Verify that CJK/Hangul/logographic characters excluded from M2 do not produce high visual similarity to Latin a-z/0-9",
+    "licence": "CC-BY-4.0",
+    "attribution": "Paul Wood FRSA (@paultendo), confusable-vision"
+  },
+  "summary": {
+    "totalCandidates": 122862,
+    "totalScoredPairs": 1694697,
+    "distribution": {
+      "high": 69,
+      "medium": 6564,
+      "low": 1688064,
+      "noData": 0,
+      "total": 1694697
+    },
+    "verificationPassed": false,
+    "note": "69 pairs scored >= 0.7 SSIM. The exclusion assumption may need revision. See m2b-discoveries.json."
+  },
+  "rangeBreakdown": [
+    {
+      "range": "CJK Extension B",
+      "candidateCount": 42720,
+      "scoredPairCount": 214812,
+      "highCount": 1,
+      "mediumCount": 177,
+      "lowCount": 214634
+    },
+    {
+      "range": "CJK Unified Ideographs",
+      "candidateCount": 20992,
+      "scoredPairCount": 713728,
+      "highCount": 10,
+      "mediumCount": 542,
+      "lowCount": 713176
+    },
+    {
+      "range": "Hangul Syllables",
+      "candidateCount": 11172,
+      "scoredPairCount": 379848,
+      "highCount": 0,
+      "mediumCount": 119,
+      "lowCount": 379729
+    },
+    {
+      "range": "CJK Extension F",
+      "candidateCount": 7473,
+      "scoredPairCount": 136,
+      "highCount": 0,
+      "mediumCount": 1,
+      "lowCount": 135
+    },
+    {
+      "range": "CJK Extension A",
+      "candidateCount": 6592,
+      "scoredPairCount": 224128,
+      "highCount": 0,
+      "mediumCount": 56,
+      "lowCount": 224072
+    },
+    {
+      "range": "CJK Extension E",
+      "candidateCount": 5762,
+      "scoredPairCount": 3672,
+      "highCount": 0,
+      "mediumCount": 4,
+      "lowCount": 3668
+    },
+    {
+      "range": "CJK Extension C",
+      "candidateCount": 4160,
+      "scoredPairCount": 1564,
+      "highCount": 0,
+      "mediumCount": 1,
+      "lowCount": 1563
+    },
+    {
+      "range": "Cuneiform + Numbers and Punctuation",
+      "candidateCount": 1229,
+      "scoredPairCount": 41786,
+      "highCount": 13,
+      "mediumCount": 556,
+      "lowCount": 41217
+    },
+    {
+      "range": "Yi Syllables + Radicals",
+      "candidateCount": 1165,
+      "scoredPairCount": 39610,
+      "highCount": 4,
+      "mediumCount": 2083,
+      "lowCount": 37523
+    },
+    {
+      "range": "Egyptian Hieroglyphs + Format Controls",
+      "candidateCount": 1078,
+      "scoredPairCount": 36176,
+      "highCount": 19,
+      "mediumCount": 1939,
+      "lowCount": 34218
+    },
+    {
+      "range": "CJK Compat Ideographs Supplement",
+      "candidateCount": 542,
+      "scoredPairCount": 2074,
+      "highCount": 0,
+      "mediumCount": 2,
+      "lowCount": 2072
+    },
+    {
+      "range": "CJK Compatibility Ideographs",
+      "candidateCount": 472,
+      "scoredPairCount": 12376,
+      "highCount": 0,
+      "mediumCount": 22,
+      "lowCount": 12354
+    },
+    {
+      "range": "Hangul Jamo",
+      "candidateCount": 256,
+      "scoredPairCount": 8025,
+      "highCount": 7,
+      "mediumCount": 220,
+      "lowCount": 7798
+    },
+    {
+      "range": "CJK Symbols, Hiragana, Katakana (base)",
+      "candidateCount": 247,
+      "scoredPairCount": 8262,
+      "highCount": 9,
+      "mediumCount": 254,
+      "lowCount": 7999
+    },
+    {
+      "range": "CJK Extension D",
+      "candidateCount": 222,
+      "scoredPairCount": 1122,
+      "highCount": 0,
+      "mediumCount": 0,
+      "lowCount": 1122
+    },
+    {
+      "range": "Halfwidth Katakana/Hangul",
+      "candidateCount": 110,
+      "scoredPairCount": 3678,
+      "highCount": 2,
+      "mediumCount": 451,
+      "lowCount": 3225
+    },
+    {
+      "range": "Hangul Compatibility Jamo",
+      "candidateCount": 94,
+      "scoredPairCount": 3156,
+      "highCount": 4,
+      "mediumCount": 105,
+      "lowCount": 3047
+    },
+    {
+      "range": "Katakana Phonetic Extensions",
+      "candidateCount": 16,
+      "scoredPairCount": 544,
+      "highCount": 0,
+      "mediumCount": 32,
+      "lowCount": 512
+    }
+  ],
+  "topPairsBySsim": [
+    {
+      "source": "〡",
+      "sourceCodepoint": "U+3021",
+      "target": "l",
+      "meanSsim": 0.9277356335768481,
+      "meanPHash": 1,
+      "validFontCount": 6
+    },
+    {
+      "source": "〡",
+      "sourceCodepoint": "U+3021",
+      "target": "i",
+      "meanSsim": 0.8827358275684626,
+      "meanPHash": 1,
+      "validFontCount": 6
+    },
+    {
+      "source": "丨",
+      "sourceCodepoint": "U+4E28",
+      "target": "l",
+      "meanSsim": 0.87924004434045,
+      "meanPHash": 1,
+      "validFontCount": 10
+    },
+    {
+      "source": "ᅵ",
+      "sourceCodepoint": "U+1175",
+      "target": "l",
+      "meanSsim": 0.8466749489062291,
+      "meanPHash": 1,
+      "validFontCount": 2
+    },
+    {
+      "source": "ㅣ",
+      "sourceCodepoint": "U+3163",
+      "target": "l",
+      "meanSsim": 0.8466749489062291,
+      "meanPHash": 1,
+      "validFontCount": 2
+    },
+    {
+      "source": "〡",
+      "sourceCodepoint": "U+3021",
+      "target": "j",
+      "meanSsim": 0.8417589808238418,
+      "meanPHash": 0.9921875,
+      "validFontCount": 6
+    },
+    {
+      "source": "丨",
+      "sourceCodepoint": "U+4E28",
+      "target": "i",
+      "meanSsim": 0.8396222854035459,
+      "meanPHash": 1,
+      "validFontCount": 10
+    },
+    {
+      "source": "ￜ",
+      "sourceCodepoint": "U+FFDC",
+      "target": "l",
+      "meanSsim": 0.8359997498361692,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𓏺",
+      "sourceCodepoint": "U+133FA",
+      "target": "j",
+      "meanSsim": 0.8307324275263503,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "丨",
+      "sourceCodepoint": "U+4E28",
+      "target": "j",
+      "meanSsim": 0.8305442000531418,
+      "meanPHash": 0.9953125,
+      "validFontCount": 10
+    },
+    {
+      "source": "ᆝ",
+      "sourceCodepoint": "U+119D",
+      "target": "l",
+      "meanSsim": 0.8248039552953621,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𒁹",
+      "sourceCodepoint": "U+12079",
+      "target": "l",
+      "meanSsim": 0.8214127969739892,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𓏺",
+      "sourceCodepoint": "U+133FA",
+      "target": "l",
+      "meanSsim": 0.8211213989241641,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "ᅵ",
+      "sourceCodepoint": "U+1175",
+      "target": "i",
+      "meanSsim": 0.8135881700714942,
+      "meanPHash": 1,
+      "validFontCount": 2
+    },
+    {
+      "source": "ㅣ",
+      "sourceCodepoint": "U+3163",
+      "target": "i",
+      "meanSsim": 0.8135881700714942,
+      "meanPHash": 1,
+      "validFontCount": 2
+    },
+    {
+      "source": "ￜ",
+      "sourceCodepoint": "U+FFDC",
+      "target": "i",
+      "meanSsim": 0.8038574400215903,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "丄",
+      "sourceCodepoint": "U+4E04",
+      "target": "l",
+      "meanSsim": 0.8000267672169851,
+      "meanPHash": 1,
+      "validFontCount": 9
+    },
+    {
+      "source": "𓌁",
+      "sourceCodepoint": "U+13301",
+      "target": "l",
+      "meanSsim": 0.7922140499163168,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𓃉",
+      "sourceCodepoint": "U+130C9",
+      "target": "o",
+      "meanSsim": 0.7901970053819102,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𒁹",
+      "sourceCodepoint": "U+12079",
+      "target": "j",
+      "meanSsim": 0.7901876979954998,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𒑖",
+      "sourceCodepoint": "U+12456",
+      "target": "l",
+      "meanSsim": 0.7864612242936577,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𓏺",
+      "sourceCodepoint": "U+133FA",
+      "target": "i",
+      "meanSsim": 0.7853286192880264,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "ᆝ",
+      "sourceCodepoint": "U+119D",
+      "target": "i",
+      "meanSsim": 0.7853177782579459,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𓌀",
+      "sourceCodepoint": "U+13300",
+      "target": "l",
+      "meanSsim": 0.7849682750412565,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𒁹",
+      "sourceCodepoint": "U+12079",
+      "target": "i",
+      "meanSsim": 0.7802949940473501,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𒑉",
+      "sourceCodepoint": "U+12449",
+      "target": "l",
+      "meanSsim": 0.7784423312028708,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𓌁",
+      "sourceCodepoint": "U+13301",
+      "target": "i",
+      "meanSsim": 0.7651909448031443,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "ㄒ",
+      "sourceCodepoint": "U+3112",
+      "target": "i",
+      "meanSsim": 0.7650659316517358,
+      "meanPHash": 0.728125,
+      "validFontCount": 5
+    },
+    {
+      "source": "𓌁",
+      "sourceCodepoint": "U+13301",
+      "target": "j",
+      "meanSsim": 0.7646454395407528,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𒐕",
+      "sourceCodepoint": "U+12415",
+      "target": "j",
+      "meanSsim": 0.7644612577852725,
+      "meanPHash": 0.953125,
+      "validFontCount": 1
+    },
+    {
+      "source": "丅",
+      "sourceCodepoint": "U+4E05",
+      "target": "j",
+      "meanSsim": 0.7620444342101855,
+      "meanPHash": 0.7135416666666666,
+      "validFontCount": 9
+    },
+    {
+      "source": "丄",
+      "sourceCodepoint": "U+4E04",
+      "target": "i",
+      "meanSsim": 0.761312777977218,
+      "meanPHash": 1,
+      "validFontCount": 9
+    },
+    {
+      "source": "ㄒ",
+      "sourceCodepoint": "U+3112",
+      "target": "j",
+      "meanSsim": 0.7581514404734574,
+      "meanPHash": 0.71875,
+      "validFontCount": 5
+    },
+    {
+      "source": "𒑉",
+      "sourceCodepoint": "U+12449",
+      "target": "i",
+      "meanSsim": 0.757938655887124,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "丄",
+      "sourceCodepoint": "U+4E04",
+      "target": "j",
+      "meanSsim": 0.7558445140974595,
+      "meanPHash": 0.9947916666666666,
+      "validFontCount": 9
+    },
+    {
+      "source": "𓌀",
+      "sourceCodepoint": "U+13300",
+      "target": "j",
+      "meanSsim": 0.7551834326870195,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𒐕",
+      "sourceCodepoint": "U+12415",
+      "target": "i",
+      "meanSsim": 0.7546051884033068,
+      "meanPHash": 0.953125,
+      "validFontCount": 1
+    },
+    {
+      "source": "𒋙",
+      "sourceCodepoint": "U+122D9",
+      "target": "l",
+      "meanSsim": 0.7544306007382829,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𓍡",
+      "sourceCodepoint": "U+13361",
+      "target": "l",
+      "meanSsim": 0.7539244540320317,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𓌀",
+      "sourceCodepoint": "U+13300",
+      "target": "i",
+      "meanSsim": 0.7531660184815239,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𓏺",
+      "sourceCodepoint": "U+133FA",
+      "target": "f",
+      "meanSsim": 0.7490584597610284,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "ᅵ",
+      "sourceCodepoint": "U+1175",
+      "target": "j",
+      "meanSsim": 0.7489454904565814,
+      "meanPHash": 0.9765625,
+      "validFontCount": 2
+    },
+    {
+      "source": "ㅣ",
+      "sourceCodepoint": "U+3163",
+      "target": "j",
+      "meanSsim": 0.7489454904565814,
+      "meanPHash": 0.9765625,
+      "validFontCount": 2
+    },
+    {
+      "source": "ꀤ",
+      "sourceCodepoint": "U+A024",
+      "target": "j",
+      "meanSsim": 0.7479894710962454,
+      "meanPHash": 0.90625,
+      "validFontCount": 4
+    },
+    {
+      "source": "〡",
+      "sourceCodepoint": "U+3021",
+      "target": "t",
+      "meanSsim": 0.7476311296606765,
+      "meanPHash": 0.9973958333333334,
+      "validFontCount": 6
+    },
+    {
+      "source": "𒑉",
+      "sourceCodepoint": "U+12449",
+      "target": "j",
+      "meanSsim": 0.7475891654800777,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𓍡",
+      "sourceCodepoint": "U+13361",
+      "target": "j",
+      "meanSsim": 0.7459187973208383,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "𓏪",
+      "sourceCodepoint": "U+133EA",
+      "target": "j",
+      "meanSsim": 0.7431022386576802,
+      "meanPHash": 1,
+      "validFontCount": 1
+    },
+    {
+      "source": "ㅇ",
+      "sourceCodepoint": "U+3147",
+      "target": "o",
+      "meanSsim": 0.7380887039634829,
+      "meanPHash": 0.9296875,
+      "validFontCount": 2
+    },
+    {
+      "source": "ᄋ",
+      "sourceCodepoint": "U+110B",
+      "target": "o",
+      "meanSsim": 0.737463898164676,
+      "meanPHash": 0.9296875,
+      "validFontCount": 2
+    }
+  ]
+}
