@@ -52,7 +52,6 @@ const PROGRESS_JSONL = path.join(OUTPUT_DIR, 'multichar-scores-progress.jsonl');
 const PHASH_PREFILTER_THRESHOLD = 0.5;
 const WIDTH_RATIO_MAX = 2.0;
 const INK_COVERAGE_MIN = 0.03;
-const CONCURRENCY = 12;
 const FORCE_FRESH = process.argv.includes('--fresh');
 
 interface DecodedRender {
@@ -301,47 +300,37 @@ async function main() {
       }
     }
 
-    // Process in concurrent batches
+    // Process all work items synchronously (normalisePairCached is pure JS now)
     const fontResultsByTarget = new Map<string, PairFontResult[]>();
 
-    for (let b = 0; b < work.length; b += CONCURRENCY) {
-      const batch = work.slice(b, b + CONCURRENCY);
-      const results = await Promise.all(batch.map(async (item) => {
-        const [srcNorm, tgtNorm] = await normalisePairCached(
-          item.cachedA,
-          item.cachedB,
-        );
+    for (const item of work) {
+      const [srcNorm, tgtNorm] = normalisePairCached(
+        item.cachedA,
+        item.cachedB,
+      );
 
-        // Ink-coverage floor: skip if either normalized image has < 3% ink
-        const srcInk = inkCoverage(srcNorm.rawPixels);
-        const tgtInk = inkCoverage(tgtNorm.rawPixels);
-        if (srcInk < INK_COVERAGE_MIN || tgtInk < INK_COVERAGE_MIN) {
-          return { ...item, ssimScore: null as number | null, inkFiltered: true };
-        }
-
-        const ssimScore: number | null = computeSsim(srcNorm, tgtNorm);
-        return { ...item, ssimScore, inkFiltered: false };
-      }));
-
-      for (const r of results) {
-        if (r.inkFiltered) {
-          seqInkCoverageSkipped++;
-          continue;
-        }
-        if (!fontResultsByTarget.has(r.tgtChar)) {
-          fontResultsByTarget.set(r.tgtChar, []);
-        }
-        fontResultsByTarget.get(r.tgtChar)!.push({
-          sourceFont: r.src.entry.font,
-          targetFont: r.tgt.entry.font,
-          ssim: r.ssimScore,
-          pHash: r.pHashScore,
-          sourceRenderStatus: 'native' as RenderStatus,
-          sourceFallbackFont: null,
-          ssimSkipped: false,
-        });
-        seqSsimComputed++;
+      // Ink-coverage floor: skip if either normalized image has < 3% ink
+      const srcInk = inkCoverage(srcNorm.rawPixels);
+      const tgtInk = inkCoverage(tgtNorm.rawPixels);
+      if (srcInk < INK_COVERAGE_MIN || tgtInk < INK_COVERAGE_MIN) {
+        seqInkCoverageSkipped++;
+        continue;
       }
+
+      const ssimScore: number | null = computeSsim(srcNorm, tgtNorm);
+      if (!fontResultsByTarget.has(item.tgtChar)) {
+        fontResultsByTarget.set(item.tgtChar, []);
+      }
+      fontResultsByTarget.get(item.tgtChar)!.push({
+        sourceFont: item.src.entry.font,
+        targetFont: item.tgt.entry.font,
+        ssim: ssimScore,
+        pHash: item.pHashScore,
+        sourceRenderStatus: 'native' as RenderStatus,
+        sourceFallbackFont: null,
+        ssimSkipped: false,
+      });
+      seqSsimComputed++;
     }
 
     // Build pair results per target

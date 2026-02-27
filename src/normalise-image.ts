@@ -3,6 +3,93 @@ import type { NormalisedResult } from './types.js';
 
 const TARGET_SIZE = 48;
 
+// ---------------------------------------------------------------------------
+// Pure JS Catmull-Rom (bicubic) resize for single-channel greyscale.
+// Matches sharp/libvips upscale kernel exactly (a = -0.5).
+// ---------------------------------------------------------------------------
+
+/** Catmull-Rom basis function (a = -0.5). */
+function catmullRom(t: number): number {
+  const abs = Math.abs(t);
+  if (abs <= 1) return 1.5 * abs * abs * abs - 2.5 * abs * abs + 1;
+  if (abs <= 2) return -0.5 * abs * abs * abs + 2.5 * abs * abs - 4 * abs + 2;
+  return 0;
+}
+
+/**
+ * Resize a single-channel greyscale buffer using Catmull-Rom interpolation.
+ * Uses centre-pixel mapping: `(i + 0.5) * srcDim / dstDim - 0.5`.
+ * 4x4 neighbourhood sampling, output clamped to [0, 255].
+ */
+function bicubicResize(
+  src: Buffer,
+  srcW: number,
+  srcH: number,
+  dstW: number,
+  dstH: number,
+): Buffer {
+  // Two-pass separable: horizontal then vertical.
+  // Pass 1: resize horizontally (srcH rows, dstW columns)
+  const tmp = Buffer.allocUnsafe(dstW * srcH);
+  for (let y = 0; y < srcH; y++) {
+    for (let x = 0; x < dstW; x++) {
+      const srcX = (x + 0.5) * srcW / dstW - 0.5;
+      const ix = Math.floor(srcX);
+      const fx = srcX - ix;
+      let sum = 0;
+      let wSum = 0;
+      for (let k = -1; k <= 2; k++) {
+        const sx = Math.min(Math.max(ix + k, 0), srcW - 1);
+        const w = catmullRom(fx - k);
+        sum += src[y * srcW + sx]! * w;
+        wSum += w;
+      }
+      tmp[y * dstW + x] = Math.min(255, Math.max(0, Math.round(sum / wSum)));
+    }
+  }
+
+  // Pass 2: resize vertically (dstH rows, dstW columns)
+  const dst = Buffer.allocUnsafe(dstW * dstH);
+  for (let x = 0; x < dstW; x++) {
+    for (let y = 0; y < dstH; y++) {
+      const srcY = (y + 0.5) * srcH / dstH - 0.5;
+      const iy = Math.floor(srcY);
+      const fy = srcY - iy;
+      let sum = 0;
+      let wSum = 0;
+      for (let k = -1; k <= 2; k++) {
+        const sy = Math.min(Math.max(iy + k, 0), srcH - 1);
+        const w = catmullRom(fy - k);
+        sum += tmp[sy * dstW + x]! * w;
+        wSum += w;
+      }
+      dst[y * dstW + x] = Math.min(255, Math.max(0, Math.round(sum / wSum)));
+    }
+  }
+
+  return dst;
+}
+
+/**
+ * Centre `src` in a `targetSize x targetSize` canvas filled with `bgValue`.
+ * Row-level Buffer.copy for speed.
+ */
+function padToTarget(
+  src: Buffer,
+  srcW: number,
+  srcH: number,
+  targetSize: number,
+  bgValue: number,
+): Buffer {
+  const out = Buffer.alloc(targetSize * targetSize, bgValue);
+  const offX = Math.floor((targetSize - srcW) / 2);
+  const offY = Math.floor((targetSize - srcH) / 2);
+  for (let y = 0; y < srcH; y++) {
+    src.copy(out, (offY + y) * targetSize + offX, y * srcW, y * srcW + srcW);
+  }
+  return out;
+}
+
 /** Ink bounding box in canvas pixel coordinates */
 export interface InkBounds {
   top: number;
@@ -256,33 +343,60 @@ export async function decodeAndFindBounds(pngBuffer: Buffer): Promise<DecodedGre
   return { pixels: decoded.pixels, width: decoded.width, height: decoded.height, bounds };
 }
 
+/** Synchronous blank result: 48x48 white buffer. No sharp needed. */
+function blankResultSync(): NormalisedResult {
+  return {
+    pngBuffer: Buffer.alloc(0),
+    rawPixels: Buffer.alloc(TARGET_SIZE * TARGET_SIZE, 255),
+    width: TARGET_SIZE,
+    height: TARGET_SIZE,
+  };
+}
+
+/** Synchronous normalise for a single cached image (blank-partner edge case). */
+function normaliseFromCachedSync(cached: DecodedGreyWithBounds): NormalisedResult {
+  if (!cached.bounds) return blankResultSync();
+  const { top, bottom, left, right } = cached.bounds;
+  const cropW = right - left + 1;
+  const cropH = bottom - top + 1;
+  const cropped = cropGreyPixels(cached.pixels, cached.width, left, top, cropW, cropH);
+
+  const scale = Math.min(TARGET_SIZE / cropW, TARGET_SIZE / cropH);
+  const scaledW = Math.max(1, Math.round(cropW * scale));
+  const scaledH = Math.max(1, Math.round(cropH * scale));
+
+  const resized = bicubicResize(cropped, cropW, cropH, scaledW, scaledH);
+  return {
+    pngBuffer: Buffer.alloc(0),
+    rawPixels: padToTarget(resized, scaledW, scaledH, TARGET_SIZE, 255),
+    width: TARGET_SIZE,
+    height: TARGET_SIZE,
+  };
+}
+
 /**
  * Like normalisePair, but accepts pre-decoded data for BOTH source (A)
- * and target (B), eliminating all redundant sharp decodes from the hot loop.
+ * and target (B), eliminating all sharp calls from the hot loop.
  *
- * Crops are done in pure JS from raw pixel buffers (no sharp extract).
- * Only resize + extend uses sharp (2 pipelines per pair instead of 7).
+ * Pure JS: crops from raw pixel buffers, bicubic resize via Catmull-Rom,
+ * pad into 48x48. Fully synchronous (no native calls, no thread pool).
  * Returns raw pixels only (pngBuffer is empty since computeSsim ignores it).
  */
-export async function normalisePairCached(
+export function normalisePairCached(
   cachedA: DecodedGreyWithBounds,
   cachedB: DecodedGreyWithBounds,
-): Promise<[NormalisedResult, NormalisedResult]> {
+): [NormalisedResult, NormalisedResult] {
   const boundsA = cachedA.bounds;
   const boundsB = cachedB.bounds;
 
   if (!boundsA && !boundsB) {
-    return [await blankResult(), await blankResult()];
+    return [blankResultSync(), blankResultSync()];
   }
   if (!boundsA) {
-    const blank = await blankResult();
-    // normaliseImage for B only -- rare edge case, use simple path
-    const bResult = await normaliseFromCached(cachedB);
-    return [blank, bResult];
+    return [blankResultSync(), normaliseFromCachedSync(cachedB)];
   }
   if (!boundsB) {
-    const aResult = await normaliseFromCached(cachedA);
-    return [aResult, await blankResult()];
+    return [normaliseFromCachedSync(cachedA), blankResultSync()];
   }
 
   const midA = cachedA.height / 2;
@@ -313,35 +427,19 @@ export async function normalisePairCached(
   const maxW = Math.max(cropWA, cropWB);
   const scale = Math.min(TARGET_SIZE / maxW, TARGET_SIZE / cropH);
 
-  async function applyScale(
-    croppedPixels: Buffer,
-    cropW: number,
-  ): Promise<NormalisedResult> {
+  function applyScale(croppedPixels: Buffer, cropW: number): NormalisedResult {
     const scaledW = Math.max(1, Math.round(cropW * scale));
     const scaledH = Math.max(1, Math.round(cropH * scale));
-
-    // Single sharp pipeline: raw input -> resize -> extend -> raw output
-    const rawPixels = await sharp(croppedPixels, {
-      raw: { width: cropW, height: cropH, channels: 1 },
-    })
-      .resize(scaledW, scaledH, { fit: 'fill' })
-      .extend({
-        top: Math.floor((TARGET_SIZE - scaledH) / 2),
-        bottom: Math.ceil((TARGET_SIZE - scaledH) / 2),
-        left: Math.floor((TARGET_SIZE - scaledW) / 2),
-        right: Math.ceil((TARGET_SIZE - scaledW) / 2),
-        background: { r: 255, g: 255, b: 255 },
-      })
-      .raw()
-      .toBuffer();
-
-    return { pngBuffer: Buffer.alloc(0), rawPixels, width: TARGET_SIZE, height: TARGET_SIZE };
+    const resized = bicubicResize(croppedPixels, cropW, cropH, scaledW, scaledH);
+    return {
+      pngBuffer: Buffer.alloc(0),
+      rawPixels: padToTarget(resized, scaledW, scaledH, TARGET_SIZE, 255),
+      width: TARGET_SIZE,
+      height: TARGET_SIZE,
+    };
   }
 
-  return [
-    await applyScale(croppedA, cropWA),
-    await applyScale(croppedB, cropWB),
-  ];
+  return [applyScale(croppedA, cropWA), applyScale(croppedB, cropWB)];
 }
 
 /** Crop a rectangle from a single-channel greyscale pixel buffer. */
@@ -393,31 +491,3 @@ export function getInkHeight(cached: DecodedGreyWithBounds): number | null {
   return cached.bounds.bottom - cached.bounds.top + 1;
 }
 
-/** Normalise a single cached image (for blank-partner edge cases). */
-async function normaliseFromCached(cached: DecodedGreyWithBounds): Promise<NormalisedResult> {
-  if (!cached.bounds) return blankResult();
-  const { top, bottom, left, right } = cached.bounds;
-  const cropW = right - left + 1;
-  const cropH = bottom - top + 1;
-  const cropped = cropGreyPixels(cached.pixels, cached.width, left, top, cropW, cropH);
-
-  const scale = Math.min(TARGET_SIZE / cropW, TARGET_SIZE / cropH);
-  const scaledW = Math.max(1, Math.round(cropW * scale));
-  const scaledH = Math.max(1, Math.round(cropH * scale));
-
-  const rawPixels = await sharp(cropped, {
-    raw: { width: cropW, height: cropH, channels: 1 },
-  })
-    .resize(scaledW, scaledH, { fit: 'fill' })
-    .extend({
-      top: Math.floor((TARGET_SIZE - scaledH) / 2),
-      bottom: Math.ceil((TARGET_SIZE - scaledH) / 2),
-      left: Math.floor((TARGET_SIZE - scaledW) / 2),
-      right: Math.ceil((TARGET_SIZE - scaledW) / 2),
-      background: { r: 255, g: 255, b: 255 },
-    })
-    .raw()
-    .toBuffer();
-
-  return { pngBuffer: Buffer.alloc(0), rawPixels, width: TARGET_SIZE, height: TARGET_SIZE };
-}
