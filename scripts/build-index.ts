@@ -28,7 +28,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { initFonts, queryFontCoverage, discoverFontForCodepoint } from '../src/fonts.js';
 import { renderCharacter } from '../src/renderer.js';
-import { normaliseImage } from '../src/normalise-image.js';
+import { normaliseImage, decodeAndFindBounds, getInkWidth } from '../src/normalise-image.js';
 import { computePHash } from '../src/compare.js';
 import type {
   ConfusablePair,
@@ -170,6 +170,13 @@ async function main() {
       const result = renderCharacter(char, font.family);
       if (!result) continue;
 
+      // Get raw ink bounds before normalisation (for size-ratio analysis)
+      const rawDecoded = await decodeAndFindBounds(result.pngBuffer);
+      const inkWidth = getInkWidth(rawDecoded);
+      const inkHeight = rawDecoded.bounds
+        ? rawDecoded.bounds.bottom - rawDecoded.bounds.top + 1
+        : null;
+
       const norm = await normaliseImage(result.pngBuffer);
       const hash = await computePHash(norm.rawPixels, norm.width, norm.height);
       const safeName = font.family.replace(/\s+/g, '-');
@@ -183,6 +190,8 @@ async function main() {
         renderStatus: 'native',
         fallbackFont: null,
         png: filename,
+        inkWidth,
+        inkHeight,
       });
       totalRenders++;
     }
@@ -232,6 +241,13 @@ async function main() {
         continue;
       }
 
+      // Get raw ink bounds before normalisation (for size-ratio analysis)
+      const rawDecoded = await decodeAndFindBounds(result.pngBuffer);
+      const inkWidth = getInkWidth(rawDecoded);
+      const inkHeight = rawDecoded.bounds
+        ? rawDecoded.bounds.bottom - rawDecoded.bounds.top + 1
+        : null;
+
       const norm = await normaliseImage(result.pngBuffer);
       const hash = await computePHash(norm.rawPixels, norm.width, norm.height);
       const safeName = font.family.replace(/\s+/g, '-');
@@ -245,6 +261,8 @@ async function main() {
         renderStatus: 'native',
         fallbackFont: null,
         png: filename,
+        inkWidth,
+        inkHeight,
       });
       sourceRenders++;
     }

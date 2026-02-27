@@ -4,10 +4,19 @@ import type { RenderResult } from './types.js';
 const CANVAS_SIZE = 64;
 const FONT_FILL_RATIO = 0.75; // Fill ~75% of canvas height
 
+// Wider canvas for multi-character sequences (e.g. "rn", "WW").
+// 128px fits the widest 2-char combo at 48px with room to spare.
+// normaliseImage trims whitespace anyway, so extra width is harmless.
+const SEQ_CANVAS_WIDTH = 128;
+const SEQ_CANVAS_HEIGHT = 64;
+
 // Cache blank and FFFD reference renders per font to avoid recomputing
 // them on every renderCharacter call (~2/3 render time savings).
 const blankCache = new Map<string, Buffer>();
 const fffdCache = new Map<string, Buffer>();
+
+// Separate blank cache for the wider sequence canvas (128x64 vs 64x64).
+const blankSeqCache = new Map<string, Buffer>();
 
 /**
  * Render a single character on a white background in the given font.
@@ -87,6 +96,59 @@ export function detectFallback(
     }
   }
   return null;
+}
+
+/**
+ * Render a multi-character string (e.g. "rn") on a white background.
+ * Uses a 128x64 canvas with the same fixed 48px font as renderCharacter()
+ * so source and target renders are at identical scale.
+ * Returns PNG buffer + raw pixels, or null if nothing rendered.
+ *
+ * .notdef detection is simplified: just check for a blank canvas.
+ */
+export function renderSequence(
+  sequence: string,
+  fontFamily: string,
+): RenderResult | null {
+  const canvas = createCanvas(SEQ_CANVAS_WIDTH, SEQ_CANVAS_HEIGHT);
+  const ctx = canvas.getContext('2d');
+
+  // Fixed font size -- same as renderCharacter() uses
+  const fontSize = Math.round(CANVAS_SIZE * FONT_FILL_RATIO);
+  ctx.font = `${fontSize}px "${fontFamily}"`;
+  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'center';
+
+  // Render
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, SEQ_CANVAS_WIDTH, SEQ_CANVAS_HEIGHT);
+  ctx.fillStyle = '#000000';
+  ctx.fillText(sequence, SEQ_CANVAS_WIDTH / 2, SEQ_CANVAS_HEIGHT / 2);
+
+  const pixels = Buffer.from(
+    ctx.getImageData(0, 0, SEQ_CANVAS_WIDTH, SEQ_CANVAS_HEIGHT).data,
+  );
+  // Capture PNG now, before blank-cache generation can overwrite the canvas
+  const pngBuffer = canvas.toBuffer('image/png');
+
+  // Blank detection using the sequence-sized blank cache
+  let blankPixels = blankSeqCache.get(fontFamily);
+  if (!blankPixels) {
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, SEQ_CANVAS_WIDTH, SEQ_CANVAS_HEIGHT);
+    blankPixels = Buffer.from(
+      ctx.getImageData(0, 0, SEQ_CANVAS_WIDTH, SEQ_CANVAS_HEIGHT).data,
+    );
+    blankSeqCache.set(fontFamily, blankPixels);
+  }
+  if (buffersEqual(pixels, blankPixels)) {
+    return null;
+  }
+
+  return {
+    pngBuffer,
+    rawPixels: pixels,
+  };
 }
 
 function renderToPixels(

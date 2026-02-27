@@ -108,6 +108,10 @@ export interface IndexRenderEntry {
   renderStatus: RenderStatus;
   fallbackFont: string | null;
   png: string; // filename relative to renders/ directory
+  /** Raw ink width in the 64x64 canvas (before normalisation). Null if blank. */
+  inkWidth?: number | null;
+  /** Raw ink height in the 64x64 canvas (before normalisation). Null if blank. */
+  inkHeight?: number | null;
 }
 
 /** Serialised render index written by build-index.ts */
@@ -269,6 +273,24 @@ export interface ConfusableWeightsOutput {
     attribution: string;
   };
   edges: ConfusableEdgeWeight[];
+}
+
+// --- Milestone 4 types (multi-character confusables) ---
+
+/** A multi-character sequence candidate (e.g. "rn") */
+export interface MulticharCandidate {
+  sequence: string;
+  chars: string[];
+  length: number;
+}
+
+/** Full result for one multi-character pair (e.g. "rn" vs "m") */
+export interface MulticharPairResult {
+  source: string;
+  sourceChars: string[];
+  target: string;
+  fonts: PairFontResult[];
+  summary: PairSummary;
 }
 
 /** Top-level output for milestone 1b */
