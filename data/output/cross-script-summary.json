@@ -1,0 +1,1732 @@
+{
+  "meta": {
+    "generatedAt": "2026-02-27T15:41:37.842Z",
+    "scriptPairsProcessed": 66,
+    "totalPairsScored": 23629492,
+    "totalDiscoveries": 563,
+    "ssimThreshold": 0.7
+  },
+  "scriptPairs": [
+    {
+      "scriptA": "Arabic",
+      "scriptB": "Devanagari",
+      "totalPairsScored": 8055,
+      "high": 0,
+      "medium": 160,
+      "low": 7895,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Arabic",
+      "scriptB": "Han",
+      "totalPairsScored": 2231068,
+      "high": 1,
+      "medium": 768,
+      "low": 2230299,
+      "noData": 0,
+      "discoveryCount": 1,
+      "topPairs": [
+        {
+          "charA": "ٳ",
+          "codepointA": "U+0673",
+          "charB": "亅",
+          "codepointB": "U+4E85",
+          "meanSsim": 0.7657497380448728
+        }
+      ]
+    },
+    {
+      "scriptA": "Arabic",
+      "scriptB": "Hangul",
+      "totalPairsScored": 33651,
+      "high": 11,
+      "medium": 932,
+      "low": 32708,
+      "noData": 0,
+      "discoveryCount": 11,
+      "topPairs": [
+        {
+          "charA": "ا",
+          "codepointA": "U+0627",
+          "charB": "ᅵ",
+          "codepointB": "U+1175",
+          "meanSsim": 0.8869059795330054
+        },
+        {
+          "charA": "إ",
+          "codepointA": "U+0625",
+          "charB": "ᆝ",
+          "codepointB": "U+119D",
+          "meanSsim": 0.8855652264266544
+        },
+        {
+          "charA": "ا",
+          "codepointA": "U+0627",
+          "charB": "ᆝ",
+          "codepointB": "U+119D",
+          "meanSsim": 0.8836076854202752
+        },
+        {
+          "charA": "أ",
+          "codepointA": "U+0623",
+          "charB": "ᆝ",
+          "codepointB": "U+119D",
+          "meanSsim": 0.8581907178131124
+        },
+        {
+          "charA": "ٱ",
+          "codepointA": "U+0671",
+          "charB": "ᆝ",
+          "codepointB": "U+119D",
+          "meanSsim": 0.7651360925035006
+        }
+      ]
+    },
+    {
+      "scriptA": "Arabic",
+      "scriptB": "Hiragana",
+      "totalPairsScored": 9479,
+      "high": 0,
+      "medium": 113,
+      "low": 9366,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Arabic",
+      "scriptB": "Katakana",
+      "totalPairsScored": 10162,
+      "high": 0,
+      "medium": 204,
+      "low": 9958,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Arabic",
+      "scriptB": "Thai",
+      "totalPairsScored": 10234,
+      "high": 9,
+      "medium": 165,
+      "low": 10060,
+      "noData": 0,
+      "discoveryCount": 9,
+      "topPairs": [
+        {
+          "charA": "ا",
+          "codepointA": "U+0627",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.8736895235166202
+        },
+        {
+          "charA": "آ",
+          "codepointA": "U+0622",
+          "charB": "โ",
+          "codepointB": "U+0E42",
+          "meanSsim": 0.8097229002158414
+        },
+        {
+          "charA": "أ",
+          "codepointA": "U+0623",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.7900648615000496
+        },
+        {
+          "charA": "ݴ",
+          "codepointA": "U+0774",
+          "charB": "ใ",
+          "codepointB": "U+0E43",
+          "meanSsim": 0.7900631624091589
+        },
+        {
+          "charA": "إ",
+          "codepointA": "U+0625",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.7737424993529025
+        }
+      ]
+    },
+    {
+      "scriptA": "Armenian",
+      "scriptB": "Arabic",
+      "totalPairsScored": 7604,
+      "high": 1,
+      "medium": 465,
+      "low": 7138,
+      "noData": 0,
+      "discoveryCount": 1,
+      "topPairs": [
+        {
+          "charA": "ձ",
+          "codepointA": "U+0571",
+          "charB": "ۂ",
+          "codepointB": "U+06C2",
+          "meanSsim": 0.7020435260489131
+        }
+      ]
+    },
+    {
+      "scriptA": "Armenian",
+      "scriptB": "Devanagari",
+      "totalPairsScored": 3116,
+      "high": 0,
+      "medium": 116,
+      "low": 3000,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Armenian",
+      "scriptB": "Georgian",
+      "totalPairsScored": 4431,
+      "high": 0,
+      "medium": 466,
+      "low": 3965,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Armenian",
+      "scriptB": "Han",
+      "totalPairsScored": 713519,
+      "high": 4,
+      "medium": 1710,
+      "low": 711805,
+      "noData": 0,
+      "discoveryCount": 4,
+      "topPairs": [
+        {
+          "charA": "կ",
+          "codepointA": "U+056F",
+          "charB": "刂",
+          "codepointB": "U+5202",
+          "meanSsim": 0.7495531965771887
+        },
+        {
+          "charA": "յ",
+          "codepointA": "U+0575",
+          "charB": "丿",
+          "codepointB": "U+4E3F",
+          "meanSsim": 0.7487518836414409
+        },
+        {
+          "charA": "վ",
+          "codepointA": "U+057E",
+          "charB": "刂",
+          "codepointB": "U+5202",
+          "meanSsim": 0.7378526335277323
+        },
+        {
+          "charA": "յ",
+          "codepointA": "U+0575",
+          "charB": "亅",
+          "codepointB": "U+4E85",
+          "meanSsim": 0.7180424207891999
+        }
+      ]
+    },
+    {
+      "scriptA": "Armenian",
+      "scriptB": "Hangul",
+      "totalPairsScored": 11291,
+      "high": 11,
+      "medium": 318,
+      "low": 10962,
+      "noData": 0,
+      "discoveryCount": 11,
+      "topPairs": [
+        {
+          "charA": "վ",
+          "codepointA": "U+057E",
+          "charB": "ᆟ",
+          "codepointB": "U+119F",
+          "meanSsim": 0.7681297563290767
+        },
+        {
+          "charA": "վ",
+          "codepointA": "U+057E",
+          "charB": "ㆎ",
+          "codepointB": "U+318E",
+          "meanSsim": 0.7648543369891273
+        },
+        {
+          "charA": "է",
+          "codepointA": "U+0567",
+          "charB": "ᅡ",
+          "codepointB": "U+1161",
+          "meanSsim": 0.764836703563062
+        },
+        {
+          "charA": "վ",
+          "codepointA": "U+057E",
+          "charB": "ㅓ",
+          "codepointB": "U+3153",
+          "meanSsim": 0.753373296496018
+        },
+        {
+          "charA": "է",
+          "codepointA": "U+0567",
+          "charB": "ㅏ",
+          "codepointB": "U+314F",
+          "meanSsim": 0.7504095394617523
+        }
+      ]
+    },
+    {
+      "scriptA": "Armenian",
+      "scriptB": "Hiragana",
+      "totalPairsScored": 3319,
+      "high": 0,
+      "medium": 36,
+      "low": 3283,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Armenian",
+      "scriptB": "Katakana",
+      "totalPairsScored": 3644,
+      "high": 0,
+      "medium": 74,
+      "low": 3570,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Armenian",
+      "scriptB": "Thai",
+      "totalPairsScored": 3311,
+      "high": 1,
+      "medium": 274,
+      "low": 3036,
+      "noData": 0,
+      "discoveryCount": 1,
+      "topPairs": [
+        {
+          "charA": "Լ",
+          "codepointA": "U+053C",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.7260197233240842
+        }
+      ]
+    },
+    {
+      "scriptA": "Cyrillic",
+      "scriptB": "Arabic",
+      "totalPairsScored": 45231,
+      "high": 33,
+      "medium": 698,
+      "low": 44500,
+      "noData": 0,
+      "discoveryCount": 33,
+      "topPairs": [
+        {
+          "charA": "І",
+          "codepointA": "U+0406",
+          "charB": "ا",
+          "codepointB": "U+0627",
+          "meanSsim": 0.8820018948148443
+        },
+        {
+          "charA": "Ӏ",
+          "codepointA": "U+04C0",
+          "charB": "ا",
+          "codepointB": "U+0627",
+          "meanSsim": 0.8820018948148443
+        },
+        {
+          "charA": "ӏ",
+          "codepointA": "U+04CF",
+          "charB": "ا",
+          "codepointB": "U+0627",
+          "meanSsim": 0.8695314433356465
+        },
+        {
+          "charA": "Ј",
+          "codepointA": "U+0408",
+          "charB": "ٳ",
+          "codepointB": "U+0673",
+          "meanSsim": 0.8687334551523452
+        },
+        {
+          "charA": "і",
+          "codepointA": "U+0456",
+          "charB": "ا",
+          "codepointB": "U+0627",
+          "meanSsim": 0.8130954125608003
+        }
+      ]
+    },
+    {
+      "scriptA": "Cyrillic",
+      "scriptB": "Armenian",
+      "totalPairsScored": 12400,
+      "high": 2,
+      "medium": 1208,
+      "low": 11190,
+      "noData": 0,
+      "discoveryCount": 2,
+      "topPairs": [
+        {
+          "charA": "Ѓ",
+          "codepointA": "U+0403",
+          "charB": "Ր",
+          "codepointB": "U+0550",
+          "meanSsim": 0.7175498674903202
+        },
+        {
+          "charA": "ћ",
+          "codepointA": "U+045B",
+          "charB": "Ի",
+          "codepointB": "U+053B",
+          "meanSsim": 0.7055964939362622
+        }
+      ]
+    },
+    {
+      "scriptA": "Cyrillic",
+      "scriptB": "Devanagari",
+      "totalPairsScored": 13145,
+      "high": 0,
+      "medium": 463,
+      "low": 12682,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Cyrillic",
+      "scriptB": "Georgian",
+      "totalPairsScored": 17759,
+      "high": 13,
+      "medium": 1696,
+      "low": 16050,
+      "noData": 0,
+      "discoveryCount": 13,
+      "topPairs": [
+        {
+          "charA": "Ѕ",
+          "codepointA": "U+0405",
+          "charB": "Ⴝ",
+          "codepointB": "U+10BD",
+          "meanSsim": 0.8711502927760011
+        },
+        {
+          "charA": "Ь",
+          "codepointA": "U+042C",
+          "charB": "Ⴙ",
+          "codepointB": "U+10B9",
+          "meanSsim": 0.827294381492119
+        },
+        {
+          "charA": "Ч",
+          "codepointA": "U+0427",
+          "charB": "Ⴗ",
+          "codepointB": "U+10B7",
+          "meanSsim": 0.8175628172362688
+        },
+        {
+          "charA": "Б",
+          "codepointA": "U+0411",
+          "charB": "Ⴌ",
+          "codepointB": "U+10AC",
+          "meanSsim": 0.8012609407565009
+        },
+        {
+          "charA": "о",
+          "codepointA": "U+043E",
+          "charB": "ჿ",
+          "codepointB": "U+10FF",
+          "meanSsim": 0.7738264239316649
+        }
+      ]
+    },
+    {
+      "scriptA": "Cyrillic",
+      "scriptB": "Greek",
+      "totalPairsScored": 33230,
+      "high": 126,
+      "medium": 1581,
+      "low": 31523,
+      "noData": 0,
+      "discoveryCount": 126,
+      "topPairs": [
+        {
+          "charA": "І",
+          "codepointA": "U+0406",
+          "charB": "Ι",
+          "codepointB": "U+0399",
+          "meanSsim": 0.983188156212729
+        },
+        {
+          "charA": "Ө",
+          "codepointA": "U+04E8",
+          "charB": "ϴ",
+          "codepointB": "U+03F4",
+          "meanSsim": 0.9779105936979328
+        },
+        {
+          "charA": "О",
+          "codepointA": "U+041E",
+          "charB": "Ο",
+          "codepointB": "U+039F",
+          "meanSsim": 0.9631916138066883
+        },
+        {
+          "charA": "А",
+          "codepointA": "U+0410",
+          "charB": "Α",
+          "codepointB": "U+0391",
+          "meanSsim": 0.9557624328218555
+        },
+        {
+          "charA": "Ї",
+          "codepointA": "U+0407",
+          "charB": "Ϊ",
+          "codepointB": "U+03AA",
+          "meanSsim": 0.9552089112412
+        }
+      ]
+    },
+    {
+      "scriptA": "Cyrillic",
+      "scriptB": "Han",
+      "totalPairsScored": 3800757,
+      "high": 8,
+      "medium": 3402,
+      "low": 3797347,
+      "noData": 0,
+      "discoveryCount": 8,
+      "topPairs": [
+        {
+          "charA": "І",
+          "codepointA": "U+0406",
+          "charB": "丨",
+          "codepointB": "U+4E28",
+          "meanSsim": 0.928617916852915
+        },
+        {
+          "charA": "Ӏ",
+          "codepointA": "U+04C0",
+          "charB": "丨",
+          "codepointB": "U+4E28",
+          "meanSsim": 0.928617916852915
+        },
+        {
+          "charA": "і",
+          "codepointA": "U+0456",
+          "charB": "丨",
+          "codepointB": "U+4E28",
+          "meanSsim": 0.8841725713856771
+        },
+        {
+          "charA": "ј",
+          "codepointA": "U+0458",
+          "charB": "丨",
+          "codepointB": "U+4E28",
+          "meanSsim": 0.8383403484843468
+        },
+        {
+          "charA": "Т",
+          "codepointA": "U+0422",
+          "charB": "丅",
+          "codepointB": "U+4E05",
+          "meanSsim": 0.8299541309012854
+        }
+      ]
+    },
+    {
+      "scriptA": "Cyrillic",
+      "scriptB": "Hangul",
+      "totalPairsScored": 53332,
+      "high": 10,
+      "medium": 1089,
+      "low": 52233,
+      "noData": 0,
+      "discoveryCount": 10,
+      "topPairs": [
+        {
+          "charA": "ј",
+          "codepointA": "U+0458",
+          "charB": "ᅵ",
+          "codepointB": "U+1175",
+          "meanSsim": 0.9229294617522181
+        },
+        {
+          "charA": "Ӏ",
+          "codepointA": "U+04C0",
+          "charB": "ᅵ",
+          "codepointB": "U+1175",
+          "meanSsim": 0.895661301822129
+        },
+        {
+          "charA": "ӏ",
+          "codepointA": "U+04CF",
+          "charB": "ᅵ",
+          "codepointB": "U+1175",
+          "meanSsim": 0.8624214503426563
+        },
+        {
+          "charA": "І",
+          "codepointA": "U+0406",
+          "charB": "ᆝ",
+          "codepointB": "U+119D",
+          "meanSsim": 0.845219677683713
+        },
+        {
+          "charA": "Ӏ",
+          "codepointA": "U+04C0",
+          "charB": "ᆝ",
+          "codepointB": "U+119D",
+          "meanSsim": 0.845219677683713
+        }
+      ]
+    },
+    {
+      "scriptA": "Cyrillic",
+      "scriptB": "Hiragana",
+      "totalPairsScored": 16773,
+      "high": 0,
+      "medium": 170,
+      "low": 16603,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Cyrillic",
+      "scriptB": "Katakana",
+      "totalPairsScored": 17758,
+      "high": 0,
+      "medium": 335,
+      "low": 17423,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Cyrillic",
+      "scriptB": "Thai",
+      "totalPairsScored": 16037,
+      "high": 5,
+      "medium": 630,
+      "low": 15402,
+      "noData": 0,
+      "discoveryCount": 5,
+      "topPairs": [
+        {
+          "charA": "ӏ",
+          "codepointA": "U+04CF",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.9143445230773407
+        },
+        {
+          "charA": "І",
+          "codepointA": "U+0406",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.8422896978583203
+        },
+        {
+          "charA": "Ӏ",
+          "codepointA": "U+04C0",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.8399429172912619
+        },
+        {
+          "charA": "і",
+          "codepointA": "U+0456",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.8296289966778964
+        },
+        {
+          "charA": "ѻ",
+          "codepointA": "U+047B",
+          "charB": "๐",
+          "codepointB": "U+0E50",
+          "meanSsim": 0.7272539509242864
+        }
+      ]
+    },
+    {
+      "scriptA": "Devanagari",
+      "scriptB": "Han",
+      "totalPairsScored": 1243270,
+      "high": 0,
+      "medium": 2971,
+      "low": 1240299,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Devanagari",
+      "scriptB": "Hangul",
+      "totalPairsScored": 16841,
+      "high": 0,
+      "medium": 168,
+      "low": 16673,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Devanagari",
+      "scriptB": "Hiragana",
+      "totalPairsScored": 5373,
+      "high": 0,
+      "medium": 35,
+      "low": 5338,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Devanagari",
+      "scriptB": "Katakana",
+      "totalPairsScored": 5717,
+      "high": 0,
+      "medium": 70,
+      "low": 5647,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Devanagari",
+      "scriptB": "Thai",
+      "totalPairsScored": 3827,
+      "high": 1,
+      "medium": 66,
+      "low": 3760,
+      "noData": 0,
+      "discoveryCount": 1,
+      "topPairs": [
+        {
+          "charA": "०",
+          "codepointA": "U+0966",
+          "charB": "๐",
+          "codepointB": "U+0E50",
+          "meanSsim": 0.713871739632885
+        }
+      ]
+    },
+    {
+      "scriptA": "Georgian",
+      "scriptB": "Arabic",
+      "totalPairsScored": 8766,
+      "high": 0,
+      "medium": 469,
+      "low": 8297,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Georgian",
+      "scriptB": "Devanagari",
+      "totalPairsScored": 4319,
+      "high": 1,
+      "medium": 120,
+      "low": 4198,
+      "noData": 0,
+      "discoveryCount": 1,
+      "topPairs": [
+        {
+          "charA": "ი",
+          "codepointA": "U+10D8",
+          "charB": "०",
+          "codepointB": "U+0966",
+          "meanSsim": 0.7006478290391284
+        }
+      ]
+    },
+    {
+      "scriptA": "Georgian",
+      "scriptB": "Han",
+      "totalPairsScored": 1171587,
+      "high": 0,
+      "medium": 1531,
+      "low": 1170056,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Georgian",
+      "scriptB": "Hangul",
+      "totalPairsScored": 17233,
+      "high": 0,
+      "medium": 245,
+      "low": 16988,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Georgian",
+      "scriptB": "Hiragana",
+      "totalPairsScored": 5073,
+      "high": 0,
+      "medium": 101,
+      "low": 4972,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Georgian",
+      "scriptB": "Katakana",
+      "totalPairsScored": 5415,
+      "high": 0,
+      "medium": 104,
+      "low": 5311,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Georgian",
+      "scriptB": "Thai",
+      "totalPairsScored": 4135,
+      "high": 1,
+      "medium": 248,
+      "low": 3886,
+      "noData": 0,
+      "discoveryCount": 1,
+      "topPairs": [
+        {
+          "charA": "Ⴈ",
+          "codepointA": "U+10A8",
+          "charB": "า",
+          "codepointB": "U+0E32",
+          "meanSsim": 0.765986377309104
+        }
+      ]
+    },
+    {
+      "scriptA": "Greek",
+      "scriptB": "Arabic",
+      "totalPairsScored": 17738,
+      "high": 20,
+      "medium": 555,
+      "low": 17163,
+      "noData": 0,
+      "discoveryCount": 20,
+      "topPairs": [
+        {
+          "charA": "Ι",
+          "codepointA": "U+0399",
+          "charB": "ا",
+          "codepointB": "U+0627",
+          "meanSsim": 0.8820018948148443
+        },
+        {
+          "charA": "ί",
+          "codepointA": "U+03AF",
+          "charB": "ا",
+          "codepointB": "U+0627",
+          "meanSsim": 0.8303552108579432
+        },
+        {
+          "charA": "Ι",
+          "codepointA": "U+0399",
+          "charB": "أ",
+          "codepointB": "U+0623",
+          "meanSsim": 0.8088220738361945
+        },
+        {
+          "charA": "Ι",
+          "codepointA": "U+0399",
+          "charB": "إ",
+          "codepointB": "U+0625",
+          "meanSsim": 0.7992052759301322
+        },
+        {
+          "charA": "Ι",
+          "codepointA": "U+0399",
+          "charB": "ٲ",
+          "codepointB": "U+0672",
+          "meanSsim": 0.7893771603292487
+        }
+      ]
+    },
+    {
+      "scriptA": "Greek",
+      "scriptB": "Armenian",
+      "totalPairsScored": 4703,
+      "high": 2,
+      "medium": 622,
+      "low": 4079,
+      "noData": 0,
+      "discoveryCount": 2,
+      "topPairs": [
+        {
+          "charA": "Ί",
+          "codepointA": "U+038A",
+          "charB": "յ",
+          "codepointB": "U+0575",
+          "meanSsim": 0.7650030966904227
+        },
+        {
+          "charA": "Ζ",
+          "codepointA": "U+0396",
+          "charB": "չ",
+          "codepointB": "U+0579",
+          "meanSsim": 0.708677026676879
+        }
+      ]
+    },
+    {
+      "scriptA": "Greek",
+      "scriptB": "Devanagari",
+      "totalPairsScored": 4675,
+      "high": 0,
+      "medium": 194,
+      "low": 4481,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Greek",
+      "scriptB": "Georgian",
+      "totalPairsScored": 7229,
+      "high": 4,
+      "medium": 856,
+      "low": 6369,
+      "noData": 0,
+      "discoveryCount": 4,
+      "topPairs": [
+        {
+          "charA": "ο",
+          "codepointA": "U+03BF",
+          "charB": "ჿ",
+          "codepointB": "U+10FF",
+          "meanSsim": 0.7557542634544299
+        },
+        {
+          "charA": "ο",
+          "codepointA": "U+03BF",
+          "charB": "ი",
+          "codepointB": "U+10D8",
+          "meanSsim": 0.7472818579568492
+        },
+        {
+          "charA": "Ͻ",
+          "codepointA": "U+03FD",
+          "charB": "ჿ",
+          "codepointB": "U+10FF",
+          "meanSsim": 0.727202473640654
+        },
+        {
+          "charA": "Ε",
+          "codepointA": "U+0395",
+          "charB": "Ⴌ",
+          "codepointB": "U+10AC",
+          "meanSsim": 0.7102340807577636
+        }
+      ]
+    },
+    {
+      "scriptA": "Greek",
+      "scriptB": "Han",
+      "totalPairsScored": 1510371,
+      "high": 9,
+      "medium": 651,
+      "low": 1509711,
+      "noData": 0,
+      "discoveryCount": 9,
+      "topPairs": [
+        {
+          "charA": "Ι",
+          "codepointA": "U+0399",
+          "charB": "丨",
+          "codepointB": "U+4E28",
+          "meanSsim": 0.8747984131019173
+        },
+        {
+          "charA": "ι",
+          "codepointA": "U+03B9",
+          "charB": "丨",
+          "codepointB": "U+4E28",
+          "meanSsim": 0.8475949238613768
+        },
+        {
+          "charA": "ί",
+          "codepointA": "U+03AF",
+          "charB": "丨",
+          "codepointB": "U+4E28",
+          "meanSsim": 0.8418403142388989
+        },
+        {
+          "charA": "Τ",
+          "codepointA": "U+03A4",
+          "charB": "丅",
+          "codepointB": "U+4E05",
+          "meanSsim": 0.8343969854340744
+        },
+        {
+          "charA": "Ϳ",
+          "codepointA": "U+037F",
+          "charB": "丿",
+          "codepointB": "U+4E3F",
+          "meanSsim": 0.727811593541185
+        }
+      ]
+    },
+    {
+      "scriptA": "Greek",
+      "scriptB": "Hangul",
+      "totalPairsScored": 18066,
+      "high": 7,
+      "medium": 526,
+      "low": 17533,
+      "noData": 0,
+      "discoveryCount": 7,
+      "topPairs": [
+        {
+          "charA": "Ι",
+          "codepointA": "U+0399",
+          "charB": "ᅵ",
+          "codepointB": "U+1175",
+          "meanSsim": 0.9104367899638716
+        },
+        {
+          "charA": "ί",
+          "codepointA": "U+03AF",
+          "charB": "ᅵ",
+          "codepointB": "U+1175",
+          "meanSsim": 0.865675486046309
+        },
+        {
+          "charA": "Ι",
+          "codepointA": "U+0399",
+          "charB": "ᆝ",
+          "codepointB": "U+119D",
+          "meanSsim": 0.845219677683713
+        },
+        {
+          "charA": "Ͱ",
+          "codepointA": "U+0370",
+          "charB": "ᅡ",
+          "codepointB": "U+1161",
+          "meanSsim": 0.7858190114523884
+        },
+        {
+          "charA": "ί",
+          "codepointA": "U+03AF",
+          "charB": "ᆝ",
+          "codepointB": "U+119D",
+          "meanSsim": 0.7838494685255494
+        }
+      ]
+    },
+    {
+      "scriptA": "Greek",
+      "scriptB": "Hiragana",
+      "totalPairsScored": 6847,
+      "high": 0,
+      "medium": 94,
+      "low": 6753,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Greek",
+      "scriptB": "Katakana",
+      "totalPairsScored": 7176,
+      "high": 0,
+      "medium": 121,
+      "low": 7055,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Greek",
+      "scriptB": "Thai",
+      "totalPairsScored": 5917,
+      "high": 4,
+      "medium": 293,
+      "low": 5620,
+      "noData": 0,
+      "discoveryCount": 4,
+      "topPairs": [
+        {
+          "charA": "Ι",
+          "codepointA": "U+0399",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.8621608611333711
+        },
+        {
+          "charA": "ι",
+          "codepointA": "U+03B9",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.7393971687875068
+        },
+        {
+          "charA": "ί",
+          "codepointA": "U+03AF",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.7122494930960337
+        },
+        {
+          "charA": "Ί",
+          "codepointA": "U+038A",
+          "charB": "ไ",
+          "codepointB": "U+0E44",
+          "meanSsim": 0.7044012895407854
+        }
+      ]
+    },
+    {
+      "scriptA": "Hangul",
+      "scriptB": "Han",
+      "totalPairsScored": 6186227,
+      "high": 20,
+      "medium": 6447,
+      "low": 6179760,
+      "noData": 0,
+      "discoveryCount": 20,
+      "topPairs": [
+        {
+          "charA": "ᅵ",
+          "codepointA": "U+1175",
+          "charB": "丨",
+          "codepointB": "U+4E28",
+          "meanSsim": 0.9988605860663177
+        },
+        {
+          "charA": "ㅣ",
+          "codepointA": "U+3163",
+          "charB": "丨",
+          "codepointB": "U+4E28",
+          "meanSsim": 0.9988605860663177
+        },
+        {
+          "charA": "ㅡ",
+          "codepointA": "U+3161",
+          "charB": "一",
+          "codepointB": "U+4E00",
+          "meanSsim": 0.9334561899078108
+        },
+        {
+          "charA": "ᅳ",
+          "codepointA": "U+1173",
+          "charB": "一",
+          "codepointB": "U+4E00",
+          "meanSsim": 0.9334561899078107
+        },
+        {
+          "charA": "ᄆ",
+          "codepointA": "U+1106",
+          "charB": "口",
+          "codepointB": "U+53E3",
+          "meanSsim": 0.7926603123846351
+        }
+      ]
+    },
+    {
+      "scriptA": "Hiragana",
+      "scriptB": "Han",
+      "totalPairsScored": 1855975,
+      "high": 0,
+      "medium": 200,
+      "low": 1855775,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Hiragana",
+      "scriptB": "Hangul",
+      "totalPairsScored": 26049,
+      "high": 0,
+      "medium": 231,
+      "low": 25818,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Hiragana",
+      "scriptB": "Katakana",
+      "totalPairsScored": 8276,
+      "high": 4,
+      "medium": 68,
+      "low": 8204,
+      "noData": 0,
+      "discoveryCount": 4,
+      "topPairs": [
+        {
+          "charA": "へ",
+          "codepointA": "U+3078",
+          "charB": "ヘ",
+          "codepointB": "U+30D8",
+          "meanSsim": 0.746791049363632
+        },
+        {
+          "charA": "ぺ",
+          "codepointA": "U+307A",
+          "charB": "ペ",
+          "codepointB": "U+30DA",
+          "meanSsim": 0.7185823992257362
+        },
+        {
+          "charA": "べ",
+          "codepointA": "U+3079",
+          "charB": "ペ",
+          "codepointB": "U+30DA",
+          "meanSsim": 0.7125251230742091
+        },
+        {
+          "charA": "べ",
+          "codepointA": "U+3079",
+          "charB": "ベ",
+          "codepointB": "U+30D9",
+          "meanSsim": 0.7033041422689167
+        }
+      ]
+    },
+    {
+      "scriptA": "Katakana",
+      "scriptB": "Han",
+      "totalPairsScored": 1939443,
+      "high": 2,
+      "medium": 513,
+      "low": 1938928,
+      "noData": 0,
+      "discoveryCount": 2,
+      "topPairs": [
+        {
+          "charA": "ヽ",
+          "codepointA": "U+30FD",
+          "charB": "丶",
+          "codepointB": "U+4E36",
+          "meanSsim": 0.7623437419705751
+        },
+        {
+          "charA": "ロ",
+          "codepointA": "U+30ED",
+          "charB": "口",
+          "codepointB": "U+53E3",
+          "meanSsim": 0.7125307984908824
+        }
+      ]
+    },
+    {
+      "scriptA": "Katakana",
+      "scriptB": "Hangul",
+      "totalPairsScored": 26442,
+      "high": 4,
+      "medium": 392,
+      "low": 26046,
+      "noData": 0,
+      "discoveryCount": 4,
+      "topPairs": [
+        {
+          "charA": "ロ",
+          "codepointA": "U+30ED",
+          "charB": "ᆷ",
+          "codepointB": "U+11B7",
+          "meanSsim": 0.7667554382739935
+        },
+        {
+          "charA": "ロ",
+          "codepointA": "U+30ED",
+          "charB": "ㅁ",
+          "codepointB": "U+3141",
+          "meanSsim": 0.7667554382739935
+        },
+        {
+          "charA": "ト",
+          "codepointA": "U+30C8",
+          "charB": "ᅡ",
+          "codepointB": "U+1161",
+          "meanSsim": 0.7486199078327351
+        },
+        {
+          "charA": "ロ",
+          "codepointA": "U+30ED",
+          "charB": "ᄆ",
+          "codepointB": "U+1106",
+          "meanSsim": 0.7070401652129364
+        }
+      ]
+    },
+    {
+      "scriptA": "Latin",
+      "scriptB": "Arabic",
+      "totalPairsScored": 10903,
+      "high": 24,
+      "medium": 416,
+      "low": 10463,
+      "noData": 0,
+      "discoveryCount": 24,
+      "topPairs": [
+        {
+          "charA": "I",
+          "codepointA": "U+0049",
+          "charB": "ا",
+          "codepointB": "U+0627",
+          "meanSsim": 0.8820018948148443
+        },
+        {
+          "charA": "l",
+          "codepointA": "U+006C",
+          "charB": "ا",
+          "codepointB": "U+0627",
+          "meanSsim": 0.8800283233611713
+        },
+        {
+          "charA": "J",
+          "codepointA": "U+004A",
+          "charB": "ٳ",
+          "codepointB": "U+0673",
+          "meanSsim": 0.8797978910861404
+        },
+        {
+          "charA": "i",
+          "codepointA": "U+0069",
+          "charB": "ا",
+          "codepointB": "U+0627",
+          "meanSsim": 0.8130954125608003
+        },
+        {
+          "charA": "I",
+          "codepointA": "U+0049",
+          "charB": "أ",
+          "codepointB": "U+0623",
+          "meanSsim": 0.8088220738361945
+        }
+      ]
+    },
+    {
+      "scriptA": "Latin",
+      "scriptB": "Armenian",
+      "totalPairsScored": 3427,
+      "high": 3,
+      "medium": 486,
+      "low": 2938,
+      "noData": 0,
+      "discoveryCount": 3,
+      "topPairs": [
+        {
+          "charA": "z",
+          "codepointA": "U+007A",
+          "charB": "չ",
+          "codepointB": "U+0579",
+          "meanSsim": 0.7377259671162321
+        },
+        {
+          "charA": "r",
+          "codepointA": "U+0072",
+          "charB": "Ր",
+          "codepointB": "U+0550",
+          "meanSsim": 0.7251122155295289
+        },
+        {
+          "charA": "Z",
+          "codepointA": "U+005A",
+          "charB": "չ",
+          "codepointB": "U+0579",
+          "meanSsim": 0.708677026676879
+        }
+      ]
+    },
+    {
+      "scriptA": "Latin",
+      "scriptB": "Cyrillic",
+      "totalPairsScored": 18111,
+      "high": 103,
+      "medium": 1078,
+      "low": 16930,
+      "noData": 0,
+      "discoveryCount": 103,
+      "topPairs": [
+        {
+          "charA": "I",
+          "codepointA": "U+0049",
+          "charB": "Ӏ",
+          "codepointB": "U+04C0",
+          "meanSsim": 0.9748131360470746
+        },
+        {
+          "charA": "i",
+          "codepointA": "U+0069",
+          "charB": "і",
+          "codepointB": "U+0456",
+          "meanSsim": 0.9638114944369858
+        },
+        {
+          "charA": "C",
+          "codepointA": "U+0043",
+          "charB": "С",
+          "codepointB": "U+0421",
+          "meanSsim": 0.9495698357652782
+        },
+        {
+          "charA": "s",
+          "codepointA": "U+0073",
+          "charB": "ѕ",
+          "codepointB": "U+0455",
+          "meanSsim": 0.9481294145135178
+        },
+        {
+          "charA": "j",
+          "codepointA": "U+006A",
+          "charB": "ј",
+          "codepointB": "U+0458",
+          "meanSsim": 0.9295976892906869
+        }
+      ]
+    },
+    {
+      "scriptA": "Latin",
+      "scriptB": "Devanagari",
+      "totalPairsScored": 4469,
+      "high": 0,
+      "medium": 134,
+      "low": 4335,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Latin",
+      "scriptB": "Georgian",
+      "totalPairsScored": 4742,
+      "high": 8,
+      "medium": 722,
+      "low": 4012,
+      "noData": 0,
+      "discoveryCount": 8,
+      "topPairs": [
+        {
+          "charA": "S",
+          "codepointA": "U+0053",
+          "charB": "Ⴝ",
+          "codepointB": "U+10BD",
+          "meanSsim": 0.8711502927760011
+        },
+        {
+          "charA": "o",
+          "codepointA": "U+006F",
+          "charB": "ჿ",
+          "codepointB": "U+10FF",
+          "meanSsim": 0.7747715896800389
+        },
+        {
+          "charA": "o",
+          "codepointA": "U+006F",
+          "charB": "ი",
+          "codepointB": "U+10D8",
+          "meanSsim": 0.7409742859427545
+        },
+        {
+          "charA": "6",
+          "codepointA": "U+0036",
+          "charB": "ნ",
+          "codepointB": "U+10DC",
+          "meanSsim": 0.7308975221542863
+        },
+        {
+          "charA": "s",
+          "codepointA": "U+0073",
+          "charB": "Ⴝ",
+          "codepointB": "U+10BD",
+          "meanSsim": 0.7286238859911827
+        }
+      ]
+    },
+    {
+      "scriptA": "Latin",
+      "scriptB": "Greek",
+      "totalPairsScored": 7047,
+      "high": 86,
+      "medium": 596,
+      "low": 6365,
+      "noData": 0,
+      "discoveryCount": 86,
+      "topPairs": [
+        {
+          "charA": "I",
+          "codepointA": "U+0049",
+          "charB": "Ι",
+          "codepointB": "U+0399",
+          "meanSsim": 0.9673876644410916
+        },
+        {
+          "charA": "A",
+          "codepointA": "U+0041",
+          "charB": "Α",
+          "codepointB": "U+0391",
+          "meanSsim": 0.9334324924133373
+        },
+        {
+          "charA": "O",
+          "codepointA": "U+004F",
+          "charB": "Ο",
+          "codepointB": "U+039F",
+          "meanSsim": 0.9314769069474041
+        },
+        {
+          "charA": "C",
+          "codepointA": "U+0043",
+          "charB": "Ϲ",
+          "codepointB": "U+03F9",
+          "meanSsim": 0.9169723462380089
+        },
+        {
+          "charA": "c",
+          "codepointA": "U+0063",
+          "charB": "ϲ",
+          "codepointB": "U+03F2",
+          "meanSsim": 0.904717094444283
+        }
+      ]
+    },
+    {
+      "scriptA": "Latin",
+      "scriptB": "Han",
+      "totalPairsScored": 1160949,
+      "high": 10,
+      "medium": 501,
+      "low": 1160438,
+      "noData": 0,
+      "discoveryCount": 10,
+      "topPairs": [
+        {
+          "charA": "l",
+          "codepointA": "U+006C",
+          "charB": "丨",
+          "codepointB": "U+4E28",
+          "meanSsim": 0.9004281726686811
+        },
+        {
+          "charA": "I",
+          "codepointA": "U+0049",
+          "charB": "丨",
+          "codepointB": "U+4E28",
+          "meanSsim": 0.8646341075985946
+        },
+        {
+          "charA": "i",
+          "codepointA": "U+0069",
+          "charB": "丨",
+          "codepointB": "U+4E28",
+          "meanSsim": 0.8384559286466006
+        },
+        {
+          "charA": "T",
+          "codepointA": "U+0054",
+          "charB": "丅",
+          "codepointB": "U+4E05",
+          "meanSsim": 0.8074807232706522
+        },
+        {
+          "charA": "j",
+          "codepointA": "U+006A",
+          "charB": "亅",
+          "codepointB": "U+4E85",
+          "meanSsim": 0.8033814327958182
+        }
+      ]
+    },
+    {
+      "scriptA": "Latin",
+      "scriptB": "Hangul",
+      "totalPairsScored": 13965,
+      "high": 8,
+      "medium": 392,
+      "low": 13565,
+      "noData": 0,
+      "discoveryCount": 8,
+      "topPairs": [
+        {
+          "charA": "l",
+          "codepointA": "U+006C",
+          "charB": "ᅵ",
+          "codepointB": "U+1175",
+          "meanSsim": 0.8785486284794677
+        },
+        {
+          "charA": "j",
+          "codepointA": "U+006A",
+          "charB": "ᅵ",
+          "codepointB": "U+1175",
+          "meanSsim": 0.8761521422719536
+        },
+        {
+          "charA": "I",
+          "codepointA": "U+0049",
+          "charB": "ᅵ",
+          "codepointB": "U+1175",
+          "meanSsim": 0.8753986773788133
+        },
+        {
+          "charA": "I",
+          "codepointA": "U+0049",
+          "charB": "ᆝ",
+          "codepointB": "U+119D",
+          "meanSsim": 0.845219677683713
+        },
+        {
+          "charA": "i",
+          "codepointA": "U+0069",
+          "charB": "ᅵ",
+          "codepointB": "U+1175",
+          "meanSsim": 0.8371410881541778
+        }
+      ]
+    },
+    {
+      "scriptA": "Latin",
+      "scriptB": "Hiragana",
+      "totalPairsScored": 5051,
+      "high": 0,
+      "medium": 59,
+      "low": 4992,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Latin",
+      "scriptB": "Katakana",
+      "totalPairsScored": 5276,
+      "high": 0,
+      "medium": 81,
+      "low": 5195,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Latin",
+      "scriptB": "Thai",
+      "totalPairsScored": 3916,
+      "high": 4,
+      "medium": 200,
+      "low": 3712,
+      "noData": 0,
+      "discoveryCount": 4,
+      "topPairs": [
+        {
+          "charA": "I",
+          "codepointA": "U+0049",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.8834148956385988
+        },
+        {
+          "charA": "l",
+          "codepointA": "U+006C",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.8547453563391754
+        },
+        {
+          "charA": "i",
+          "codepointA": "U+0069",
+          "charB": "เ",
+          "codepointB": "U+0E40",
+          "meanSsim": 0.8303428969816328
+        },
+        {
+          "charA": "l",
+          "codepointA": "U+006C",
+          "charB": "โ",
+          "codepointB": "U+0E42",
+          "meanSsim": 0.7134176494790152
+        }
+      ]
+    },
+    {
+      "scriptA": "Thai",
+      "scriptB": "Han",
+      "totalPairsScored": 1168618,
+      "high": 0,
+      "medium": 855,
+      "low": 1167763,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Thai",
+      "scriptB": "Hangul",
+      "totalPairsScored": 17094,
+      "high": 3,
+      "medium": 165,
+      "low": 16926,
+      "noData": 0,
+      "discoveryCount": 3,
+      "topPairs": [
+        {
+          "charA": "๐",
+          "codepointA": "U+0E50",
+          "charB": "ㆁ",
+          "codepointB": "U+3181",
+          "meanSsim": 0.7781039175449643
+        },
+        {
+          "charA": "๐",
+          "codepointA": "U+0E50",
+          "charB": "ᇰ",
+          "codepointB": "U+11F0",
+          "meanSsim": 0.7777739851379598
+        },
+        {
+          "charA": "๐",
+          "codepointA": "U+0E50",
+          "charB": "ᄋ",
+          "codepointB": "U+110B",
+          "meanSsim": 0.7371317380819604
+        }
+      ]
+    },
+    {
+      "scriptA": "Thai",
+      "scriptB": "Hiragana",
+      "totalPairsScored": 4850,
+      "high": 0,
+      "medium": 47,
+      "low": 4803,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    },
+    {
+      "scriptA": "Thai",
+      "scriptB": "Katakana",
+      "totalPairsScored": 5078,
+      "high": 0,
+      "medium": 67,
+      "low": 5011,
+      "noData": 0,
+      "discoveryCount": 0,
+      "topPairs": []
+    }
+  ]
+}

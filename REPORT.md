@@ -2,7 +2,7 @@
 
 **Visual similarity scoring of Unicode confusables across 230 macOS system fonts**
 
-Paul Wood FRSA (@paultendo) -- 26 February 2026
+Paul Wood FRSA (@paultendo) -- 27 February 2026
 
 ---
 
@@ -10,7 +10,7 @@ Paul Wood FRSA (@paultendo) -- 26 February 2026
 
 confusable-vision renders Unicode character pairs across all macOS system fonts,
 measures visual similarity using SSIM and pHash, and produces per-font scored
-JSON artifacts. This report covers three analyses:
+JSON artifacts. This report covers four analyses:
 
 - **Milestone 1b** -- validation of 1,418 pairs from Unicode TR39
   confusables.txt across 230 system fonts (235,625 SSIM comparisons).
@@ -22,6 +22,10 @@ JSON artifacts. This report covers three analyses:
   a-z/0-9 across 230 fonts (2,904,376 SSIM comparisons).
 - **Milestone 2b** -- cross-script scan of 122,862 CJK/Hangul/logographic
   codepoints against Latin a-z/0-9 (8,036,479 SSIM comparisons).
+- **Milestone 5** -- cross-script confusable scanning across all 66 pairs
+  from 12 ICANN-relevant scripts (22,581 characters, 23.6M SSIM
+  comparisons). The first systematic empirical measurement of visual
+  confusability between non-Latin scripts.
 
 **Milestone 1b headline findings:**
 
@@ -74,6 +78,28 @@ JSON artifacts. This report covers three analyses:
 - **99.6% of scored pairs score below 0.3 SSIM.** The overwhelming majority
   of these 122,862 codepoints look nothing like Latin, confirming the M2
   exclusion was a reasonable engineering trade-off.
+
+**Milestone 5 headline findings:**
+
+- **248 confusable pairs discovered between non-Latin scripts**, with no
+  coverage in any existing standard. These span 33 script pair combinations
+  including Arabic-Hangul, Thai-Devanagari, Georgian-Cyrillic, and
+  Armenian-Han. No confusable map, detection tool, or variant bundling
+  policy covers these pairs today.
+- **315 additional discoveries in the Latin/Cyrillic/Greek triangle**
+  confirm what TR39 already models transitively. 278 of these are
+  pixel-identical in at least one font. These are not new to the security
+  community, but M5 provides direct empirical SSIM evidence for each
+  cross-script edge.
+- **563 total cross-script discoveries** (mean SSIM >= 0.7) across 36 of
+  66 script pairs, from 22,581 characters in 12 ICANN-relevant scripts
+  (23.6M character pairs scored).
+- **Top discovery: Hangul jamo U+1175 vs CJK U+4E28** (vertical stroke) at
+  SSIM 0.999. The vertical stroke is the universal confusable primitive,
+  appearing across 8 of 12 scripts.
+- **30 of 66 script pairs produced zero discoveries**, providing empirical
+  evidence for which script combinations can be safely allowed without
+  cross-script confusable checks.
 
 ## 2. Methodology
 
@@ -1304,6 +1330,674 @@ Use `--fresh` to force a clean start.
 - `data/output/m2b-candidates.json` -- 122,862 candidate characters
 - `data/output/m2b-index/` -- 236,840 render PNGs + index.json
 - `data/output/m2b-scores.json` -- full scored results (1,710 MB)
+
+---
+
+## 26. Motivation
+
+Milestones 1b, 2, and 2b all measure confusability *against Latin targets*.
+This protects English-language users from homograph attacks but leaves
+non-Latin script communities without equivalent coverage. A Russian user
+spoofed by a Greek lookalike, a Korean user attacked with CJK stroke
+characters, or an Arabic user deceived by Hangul vertical jamo all fall
+outside the Latin-centric model.
+
+Unicode TR39 confusables.txt follows the same Latin-centric pattern: it maps
+6,247 source characters to Latin prototypes. The skeleton() algorithm reduces
+all comparisons to Latin equivalence classes. This design reflects the
+historical reality that most spoofing research has focused on IDN (domain
+name) homograph attacks targeting English-speaking users, but it leaves a
+systematic gap: no empirical data exists for visual similarity *between*
+non-Latin scripts.
+
+M5 closes this gap. By scanning all 66 cross-script pairs from 12
+ICANN-relevant scripts, it produces the first comprehensive empirical
+cross-script confusable dataset. The confusable-vision infrastructure is
+script-agnostic: render both characters, normalise, compare with SSIM. The
+pipeline optimisations from M4 (pure JS Catmull-Rom, WASM SSIM workers,
+fast-png decode, 32-bit integer pHash) make cross-script scanning at scale
+practical.
+
+### 26.1 Script selection
+
+The 12 scripts were chosen from ICANN's list of scripts relevant to
+internationalised domain names (IDN). These are the scripts most likely to
+appear in domain names, usernames, package names, and other shared namespaces
+where confusable attacks have practical consequences:
+
+| # | Script | Unicode ranges | Characters |
+|---|--------|---------------|------------|
+| 1 | Latin | U+0041-005A, U+0061-007A, U+0030-0039 | 62 |
+| 2 | Cyrillic | U+0400-052F (base + supplement) | 296 |
+| 3 | Greek | U+0370-03FF | 114 |
+| 4 | Arabic | U+0600-06FF, U+0750-077F | 220 |
+| 5 | Han | U+4E00-9FFF (base block, no extensions) | 20,992 |
+| 6 | Hangul | U+1100-11FF, U+3131-318E (jamo, not 11K syllables) | 350 |
+| 7 | Katakana | U+30A0-30FF | 93 |
+| 8 | Hiragana | U+3040-309F | 89 |
+| 9 | Devanagari | U+0900-097F | 91 |
+| 10 | Thai | U+0E00-0E7F | 67 |
+| 11 | Georgian | U+10A0-10FF, U+2D00-2D2F | 127 |
+| 12 | Armenian | U+0530-058F | 80 |
+| | **Total** | | **22,581** |
+
+Script assignment uses Unicode's `Scripts.txt` (the authoritative source for
+the Script property), not the heuristic range-based `deriveScript()` from
+earlier milestones. Only codepoints with General Category L* (Letter) or
+N* (Number) are included. Characters with zero fontconfig coverage are
+excluded.
+
+The 12 scripts produce C(12,2) = 66 cross-script pairs. Each pair is scored
+independently.
+
+## 27. Methodology
+
+### 27.1 Character set construction
+
+`define-cross-script-sets.ts` constructs the 12 character sets:
+
+1. Parse `Scripts.txt` from unicode.org to map every codepoint to its
+   Unicode Script property
+2. Parse `UnicodeData.txt` for General Category filtering (L* and N* only)
+3. For each script, intersect the Script property with the range restrictions
+   in the table above
+4. Query fontconfig for per-character coverage across 230 system fonts
+5. Exclude zero-coverage codepoints
+
+Output: 22,581 characters across 12 scripts, written to
+`data/output/cross-script-sets.json`.
+
+Han dominates the character count (20,992 of 22,581 = 93%), which has
+significant implications for pipeline design (section 27.4).
+
+### 27.2 Rendering
+
+`build-index-cross-script.ts` renders every character from all 12 scripts
+in every covering font:
+
+- Same 48x48 greyscale pipeline as all previous milestones
+- Per-script output directories: `cross-script-index/{Script}/`
+- pHash computed per render for prefiltering
+- Resume capability per script via `progress.jsonl`
+- Scripts processed sequentially; Han is the bottleneck
+
+The rendering pipeline produced one index per script. Font coverage varies
+widely: Latin characters appear in 74+ standard fonts while Han characters
+average 7-8 CJK fonts each.
+
+### 27.3 Scoring strategy
+
+`score-cross-script.ts` scores all 66 cross-script pairs using the same
+two-mode comparison as M1b/M2:
+
+**Same-font comparison**: both characters rendered in the same font. A pHash
+prefilter at 0.3 similarity skips pairs that are structurally dissimilar.
+A width-ratio gate at 1.5x skips pairs where one character is much wider
+than the other (catches CJK full-width vs Latin half-width mismatches).
+
+**Cross-font comparison**: characters in different fonts, using top-1-by-pHash
+to select the most promising font pairing. This avoids the O(F^2) explosion
+of checking every font combination.
+
+SSIM computation uses the WASM worker pool (13 threads) from the M4
+pipeline, with fast-png decoding and pure JS Catmull-Rom normalisation on
+the main thread.
+
+### 27.4 Han optimisation
+
+Han's 20,992 characters create asymmetric pairs: Latin-Han has 62 x 20,992
+= 1.3M character pairs, while Latin-Greek has 62 x 114 = 7,047. Eleven of
+66 pairs involve Han, and these dominate the computation.
+
+Two optimisations were critical:
+
+1. **Lightweight prefilter loading**: for Han pairs, the scorer first loads
+   only metadata and pHash values (no pixel data) for the larger script.
+   It runs the pHash prefilter to identify candidate characters, then loads
+   pixel data only for candidates that pass. This keeps memory under control
+   for scripts with 160K+ font-render entries.
+
+2. **Fast integer pHash comparison**: the original `pHashSimilarity()` used
+   BigInt arithmetic with a bit-by-bit Hamming distance loop (up to 64
+   iterations per call). With billions of pHash comparisons for Han pairs,
+   this was the bottleneck. Replacing it with 32-bit integer `popcount()`
+   using parallel prefix bit manipulation reduced prefilter time from 20+
+   minutes to seconds per Han pair.
+
+### 27.5 Scale
+
+| Metric | Value |
+|--------|-------|
+| Characters scanned | 22,581 |
+| Cross-script pairs | 66 |
+| Total character pairs scored | 23,629,492 |
+| High-scoring pairs (>= 0.7) | 563 |
+| Medium pairs (0.3-0.7) | 40,763 |
+| Low pairs (< 0.3) | 23,588,166 |
+| Total scoring time | 33.6 minutes |
+| Platform | macOS 15.4, Apple M4 Max, 230 system fonts |
+
+## 28. Results
+
+### 28.1 Overall distribution
+
+| Band | Count | % | Description |
+|------|-------|---|-------------|
+| High (>= 0.7) | 563 | 0.002% | Genuinely confusable |
+| Medium (0.3-0.7) | 40,763 | 0.17% | Somewhat similar |
+| Low (< 0.3) | 23,588,166 | 99.83% | Not visually confusable |
+| **Total** | **23,629,492** | | |
+
+The high-scoring rate (0.002%) is lower than any previous milestone (M1b:
+3.5%, M2: 0.03%, M2b: 0.004%), which is expected: most cross-script pairs
+involve scripts with no historical relationship and completely different
+visual traditions.
+
+Of the 563 discoveries:
+
+| meanSsim range | Count | Description |
+|----------------|-------|-------------|
+| >= 0.9 | 46 | Near-identical; exploitable in most fonts |
+| 0.8 to 0.9 | 99 | Highly similar; exploitable in best-matching fonts |
+| 0.7 to 0.8 | 241 | Moderately similar; threshold confusables |
+| < 0.7 (pixel-identical only) | 177 | Low mean but pixel-identical in specific fonts |
+
+The 177 pairs with meanSsim below 0.7 are included because they are
+pixel-identical (SSIM = 1.000) in at least one font. These are the same
+pattern seen in M1b: a pair may average 0.05 SSIM across 60 fonts but score
+1.000 in Phosphate, because Phosphate uses a blocky geometric style that
+collapses many letterforms to the same outline.
+
+### 28.2 Per-script-pair breakdown
+
+The 36 script pairs with discoveries, sorted by yield:
+
+| Script pair | Discoveries | Pairs scored | Top pair (meanSsim) |
+|-------------|------------|-------------|---------------------|
+| Cyrillic-Greek | 126 | 33,230 | І-Ι (0.983) |
+| Latin-Cyrillic | 103 | 18,111 | I-Ӏ (0.975) |
+| Latin-Greek | 86 | 7,047 | I-Ι (0.967) |
+| Cyrillic-Arabic | 33 | 45,231 | Ӏ-ا (0.882) |
+| Latin-Arabic | 24 | 10,903 | I-ا (0.882) |
+| Greek-Arabic | 20 | 17,738 | Ι-ا (0.882) |
+| Hangul-Han | 20 | 6,186,227 | ᅵ-丨 (0.999) |
+| Cyrillic-Georgian | 13 | 17,759 | Ѕ-Ⴝ (0.871) |
+| Arabic-Hangul | 11 | 33,651 | ا-ᅵ (0.887) |
+| Armenian-Hangul | 11 | 11,291 | վ-ᆟ (0.768) |
+| Cyrillic-Hangul | 10 | 53,332 | ј-ᅵ (0.923) |
+| Latin-Han | 10 | 1,160,949 | l-丨 (0.900) |
+| Greek-Han | 9 | 1,510,371 | Ι-丨 (0.875) |
+| Arabic-Thai | 9 | 10,234 | ا-เ (0.874) |
+| Cyrillic-Han | 8 | 3,800,757 | І-丨 (0.929) |
+| Latin-Georgian | 8 | 4,742 | S-Ⴝ (0.871) |
+| Latin-Hangul | 8 | 13,965 | l-ᅵ (0.870) |
+| Greek-Hangul | 7 | 18,066 | Ι-ᅵ (0.870) |
+| Cyrillic-Thai | 5 | 16,037 | ӏ-เ (0.914) |
+| Armenian-Han | 4 | 713,519 | կ-刂 (0.750) |
+| Greek-Georgian | 4 | 7,229 | ο-ჿ (0.756) |
+| Greek-Thai | 4 | 5,917 | Ι-เ (0.862) |
+| Hiragana-Katakana | 4 | 8,276 | へ-ヘ (0.747) |
+| Katakana-Hangul | 4 | 26,442 | ロ-ᆷ (0.767) |
+| Latin-Thai | 4 | 3,916 | I-เ (0.883) |
+| Thai-Hangul | 3 | 17,094 | ๐-ㆁ (0.778) |
+| Latin-Armenian | 3 | 3,427 | z-չ (0.738) |
+| Cyrillic-Armenian | 2 | 12,400 | Ѓ-Ր (0.718) |
+| Greek-Armenian | 2 | 4,703 | Ί-յ (0.765) |
+| Katakana-Han | 2 | 1,939,443 | ヽ-丶 (0.762) |
+| Arabic-Han | 1 | 2,231,068 | ٳ-亅 (0.766) |
+| Armenian-Arabic | 1 | 7,604 | ձ-ۂ (0.702) |
+| Armenian-Thai | 1 | 3,311 | Լ-เ (0.726) |
+| Devanagari-Thai | 1 | 3,827 | ०-๐ (0.714) |
+| Georgian-Devanagari | 1 | 4,319 | ი-० (0.701) |
+| Georgian-Thai | 1 | 4,135 | Ⴈ-า (0.766) |
+
+**30 script pairs produced zero discoveries:**
+
+All Devanagari pairs (except Thai and Georgian), all Hiragana pairs (except
+Katakana), all Katakana pairs (except Han and Hangul), and most Georgian
+pairs produced no high-scoring matches. The zero-discovery pairs are:
+Arabic-Devanagari, Arabic-Hiragana, Arabic-Katakana, Armenian-Devanagari,
+Armenian-Georgian, Armenian-Hiragana, Armenian-Katakana, Cyrillic-Devanagari,
+Cyrillic-Hiragana, Cyrillic-Katakana, Devanagari-Han, Devanagari-Hangul,
+Devanagari-Hiragana, Devanagari-Katakana, Georgian-Arabic, Georgian-Han,
+Georgian-Hangul, Georgian-Hiragana, Georgian-Katakana, Greek-Devanagari,
+Greek-Hiragana, Greek-Katakana, Hiragana-Han, Hiragana-Hangul,
+Latin-Devanagari, Latin-Hiragana, Latin-Katakana, Thai-Han, Thai-Hiragana,
+Thai-Katakana.
+
+These 30 null results are empirical evidence that registrars and platforms
+can use to make informed policy decisions: these script combinations do not
+require cross-script confusable checks, and can be safely allowed without
+variant bundling at the 0.7 SSIM threshold.
+
+### 28.3 Pixel-identical pairs
+
+278 of 563 discoveries (49.4%) are pixel-identical (SSIM = 1.000) in at
+least one font. All 278 fall within the Latin/Cyrillic/Greek triangle:
+
+| Script pair | Pixel-identical pairs |
+|-------------|---------------------|
+| Cyrillic-Greek | 110 |
+| Latin-Cyrillic | 90 |
+| Latin-Greek | 78 |
+
+No pixel-identical pair was found outside these three script pairs. This is
+consistent with the historical relationship: Latin, Cyrillic, and Greek
+derive from a common ancestor and share many letterforms that modern fonts
+render with identical outlines.
+
+**Pixel-identical pairs by font (top 10):**
+
+| Font | Pixel-identical matches |
+|------|----------------------|
+| Phosphate | 135 |
+| Arial | 21 |
+| Copperplate | 14 |
+| Savoye LET | 13 |
+| Trattatello | 13 |
+| Snell Roundhand | 9 |
+| Luminari | 7 |
+| Seravek | 7 |
+| Tahoma | 6 |
+| Menlo | 5 |
+
+Phosphate accounts for 48.6% of all pixel-identical matches, consistent with
+M1b findings where Phosphate had the highest danger rate (67.5%). Its blocky
+geometric style collapses many visually distinct letterforms to identical
+outlines. The remaining fonts show more selective identity: Arial produces
+pixel-identical matches only for the most structurally similar pairs (I/І/Ι,
+O/О/Ο, etc.), while decorative fonts like Savoye LET and Snell Roundhand
+achieve identity through their stylised strokes.
+
+**Negative meanSsim pairs**: 4 discoveries have negative mean SSIM (the
+characters look *less* alike than random noise on average) but are
+pixel-identical in Phosphate. These are:
+
+| Pair | meanSsim | bestFont SSIM |
+|------|----------|---------------|
+| m (Latin) vs μ (Greek) | -0.081 | 1.000 |
+| y (Latin) vs ύ (Greek) | -0.033 | 1.000 |
+| y (Latin) vs υ (Greek) | -0.010 | 1.000 |
+| ү (Cyrillic) vs ύ (Greek) | -0.002 | 1.000 |
+
+These illustrate the same pattern as M1b: mean SSIM dramatically
+understates the threat when one extreme font produces identity.
+
+### 28.4 Most frequent confusable codepoints
+
+The 563 discoveries involve 314 unique codepoints. The most frequent
+characters reveal which forms are the universal confusable primitives:
+
+| Count | Codepoint | Character | Script | Pattern |
+|-------|-----------|-----------|--------|---------|
+| 18 | U+0399 | Ι | Greek | Vertical stroke (uppercase) |
+| 18 | U+0049 | I | Latin | Vertical stroke (uppercase) |
+| 18 | U+04C0 | Ӏ | Cyrillic | Vertical stroke (Palochka) |
+| 17 | U+0406 | І | Cyrillic | Vertical stroke (Ukrainian I) |
+| 17 | U+006C | l | Latin | Vertical stroke (lowercase L) |
+| 16 | U+0069 | i | Latin | Vertical stroke + dot |
+| 16 | U+0627 | ا | Arabic | Vertical stroke (Alef) |
+| 15 | U+0456 | і | Cyrillic | Vertical stroke + dot |
+| 15 | U+0625 | إ | Arabic | Vertical stroke + dot below |
+| 14 | U+04CF | ӏ | Cyrillic | Vertical stroke (lowercase Palochka) |
+| 14 | U+0E40 | เ | Thai | Vertical stroke (Sara E) |
+| 14 | U+03AF | ί | Greek | Vertical stroke + accent |
+| 14 | U+0671 | ٱ | Arabic | Vertical stroke (Alef Wasla) |
+| 13 | U+1175 | ᅵ | Hangul | Vertical stroke (jungseong I) |
+| 13 | U+4E28 | 丨 | Han | Vertical stroke (CJK radical) |
+| 13 | U+006F | o | Latin | Circle/oval |
+| 13 | U+119D | ᆝ | Hangul | Vertical stroke (jongseong I) |
+| 13 | U+0673 | ٳ | Arabic | Vertical stroke (Alef variant) |
+
+The vertical stroke dominates: the top 18 codepoints by frequency are all
+vertical stroke variants from 7 different scripts (Latin, Greek, Cyrillic,
+Arabic, Thai, Hangul, Han). This is the universal confusable primitive: a
+single vertical line is the minimal glyph form that every writing system
+converges on independently.
+
+## 29. Notable findings
+
+### 29.1 The Latin/Cyrillic/Greek triangle
+
+315 of 563 discoveries (56%) come from the three pairings between Latin,
+Cyrillic, and Greek. These scripts share a direct historical lineage: Greek
+begat Latin and (via Glagolitic) Cyrillic. Many uppercase letters were
+borrowed directly with identical forms.
+
+The triangle shows systematic confusability, not isolated cases:
+
+**Uppercase identities** (all pixel-identical in multiple fonts):
+- А/A/Α, В/B/Β (Greek has no equivalent), С/C/Ϲ, Е/E/Ε, Н/H/Η, І/I/Ι,
+  К/K/Κ, М/M/Μ, О/O/Ο, Р/P/Ρ, Т/T/Τ, Х/X/Χ, У/Y/Υ
+
+**Lowercase identities**:
+- а/a/α (not identical in most fonts due to Cyrillic a-form), с/c/ϲ,
+  е/e/ε (partial), і/i/ι (partial), о/o/ο, р/p/ρ, ѕ/s (no Greek s-form),
+  ј/j/ϳ, х/x/χ (partial)
+
+This triangle is the foundation of IDN homograph attacks. A domain like
+"аpple.com" (Cyrillic а) is visually indistinguishable from "apple.com" in
+most fonts. Our data confirms this is not just a handful of characters: it
+is a systematic property of these three scripts, with 315 exploitable pairs
+and 278 pixel-identical instances.
+
+### 29.2 The vertical stroke family
+
+162 of 563 discoveries (28.8%) involve characters that render as a vertical
+stroke. This family spans 8 of 12 scripts:
+
+- **Latin**: I, l, i, j, 1
+- **Cyrillic**: Ӏ (Palochka), І (Ukrainian I), ӏ, і
+- **Greek**: Ι (Iota), ι, ί
+- **Arabic**: ا (Alef), إ, أ, ٱ, ٲ, ٳ
+- **Thai**: เ (Sara E)
+- **Hangul**: ᅵ (jungseong I), ᆝ (jongseong I), ㅣ
+- **Han**: 丨 (CJK vertical stroke), 亅 (CJK hook)
+- **Armenian**: Լ (partial, with hook)
+
+The top-scoring cross-script pair in the entire dataset is a vertical stroke
+pair: Hangul ᅵ (U+1175) vs CJK 丨 (U+4E28) at SSIM 0.999 in Arial
+Unicode MS. The Thai character เ (Sara E) is a vertical stroke that appears
+as a confusable across 7 other scripts.
+
+The vertical stroke is the universal confusable primitive because it is
+the simplest possible glyph: a single vertical line. Writing systems
+independently converge on this form for basic phonemes (vowels, consonants)
+and basic numerals.
+
+### 29.3 Arabic crossover
+
+Arabic produces 99 discoveries across 10 script pairs. Arabic's visual
+system differs from Latin-based scripts: it is right-to-left, cursive, and
+context-dependent (initial/medial/final forms). Yet isolated Arabic letters
+produce confusables because the isolated forms of Arabic vertical-stroke
+characters (Alef ا and its variants) look like vertical strokes in any
+script.
+
+The top Arabic confusables are all Alef variants:
+- ا (U+0627, Alef) appears in 16 discoveries across 7 scripts
+- إ (U+0625, Alef with Hamza Below) appears in 15 discoveries
+- ٱ (U+0671, Alef Wasla) appears in 14 discoveries
+- ٳ (U+0673, Alef variant) appears in 13 discoveries
+- أ (U+0623, Alef with Hamza Above) appears in 12 discoveries
+
+The practical risk depends on context. In running Arabic text, these
+characters are contextually shaped and clearly Arabic. But in isolated
+contexts (usernames, package names, URLs), the isolated Alef form is a
+vertical stroke that is confusable with Latin l, Greek Ι, Cyrillic І,
+Hangul ᅵ, Thai เ, and Han 丨.
+
+Arabic also shows cross-script connections with Thai: آ (Alef with Madda)
+vs Thai โ (Sara Oo) at 0.810, and Arabic digits ١/۱ vs Thai โ at 0.726.
+
+### 29.4 CJK and Hangul crossover
+
+The East Asian scripts produce 100 discoveries, concentrated in simple
+stroke characters rather than complex ideographs:
+
+**Hangul-Han (20 discoveries)**: the highest-yield East Asian pair.
+Hangul jamo (the component parts of Korean syllables) include several
+simple geometric forms that match CJK stroke radicals:
+
+| Hangul | Han | Shape | meanSsim |
+|--------|-----|-------|----------|
+| ᅵ (U+1175) | 丨 (U+4E28) | Vertical stroke | 0.999 |
+| ㅡ (U+3161) | 一 (U+4E00) | Horizontal stroke | 0.934 |
+| ᄆ (U+1106) | 口 (U+53E3) | Rectangle | 0.793 |
+| ᆂ (U+1182) | 士 (U+58EB) | Cross/plus | 0.787 |
+| ᆠ (U+11A0) | 十 (U+5341) | Cross/plus | 0.775 |
+| ᄂ (U+1102) | 匚 (U+531A) | Right angle | 0.754 |
+
+These pairs confirm the classic CJK/Korean confusable relationship
+empirically. The vertical stroke ᅵ/丨 pair at 0.999 is the single
+highest-scoring discovery in the entire M5 dataset.
+
+**Katakana-Han (2 discoveries)**: ヽ (Katakana iteration mark) vs 丶 (CJK
+dot) at 0.762, and ロ (Katakana Ro) vs 口 (CJK mouth radical) at 0.713.
+The ロ/口 pair is a classic confusable well known to CJK typography.
+
+**Hiragana-Katakana (4 discoveries)**: へ (Hiragana He) vs ヘ (Katakana He)
+at best-font SSIM 0.996. These are the same character borrowed between the
+two Japanese kana systems, and they render nearly identically.
+
+**Han discoveries across all pairs**: Han characters appear in 54 total
+discoveries, but only 18 distinct Han codepoints are involved: 丨 (vertical
+stroke), 一 (horizontal stroke), 丅 (below), 丁 (ding), 口 (mouth), 亅
+(hook), 丶 (dot), 刂 (knife radical), 丫 (fork), 丿 (slash), 丩 (hook),
+士 (scholar), 十 (ten), 土 (earth), 干 (dry), 匚 (box), 凵 (open box),
+乚 (second). All 18 are simple stroke radicals from the first few hundred
+entries of the CJK Unified Ideographs block. Of the 20,992 Han characters
+scanned, 99.9% produced no high-scoring match against any other script,
+confirming that complex ideographs are structurally incompatible with the
+character forms of all other scripts.
+
+### 29.5 Caucasian scripts: Georgian and Armenian
+
+Georgian and Armenian are historically proximate scripts from the Caucasus
+region. Despite this, the Armenian-Georgian pair produced zero discoveries,
+suggesting that despite geographic proximity, these scripts have diverged
+sufficiently that no character pair crosses the 0.7 SSIM threshold.
+
+**Georgian (27 discoveries across 6 script pairs)**:
+
+Georgian's rounded Mkhedruli letterforms produce several cross-script
+confusables:
+- Ⴝ (U+10BD) vs Latin S and Cyrillic Ѕ: SSIM 0.871. The Georgian capital
+  Ⴝ has an S-like curve.
+- Ⴙ (U+10B9) vs Cyrillic Ь: SSIM 0.827. The Georgian letter resembles the
+  Cyrillic soft sign.
+- ჿ (U+10FF) vs Latin o, Cyrillic о, Greek ο: SSIM 0.775/0.774/0.756.
+  A circular Georgian character.
+- ი (U+10D8) vs Cyrillic о, Greek ο, Latin o: SSIM 0.750/0.747/0.741.
+  Georgian's lowercase i is a circular form.
+- ი (U+10D8) vs Devanagari ० (zero): SSIM 0.701. A cross-family connection
+  through the circular form, linking Caucasian and Indic scripts.
+
+**Armenian (24 discoveries across 8 script pairs)**:
+
+Armenian's discoveries are more varied:
+- չ (U+0579) vs Latin z, Greek Ζ: SSIM 0.738/0.709. The Armenian che
+  resembles a rotated z.
+- Ր (U+0550) vs Latin r, Cyrillic Ѓ: SSIM 0.725/0.718. The Armenian
+  letter resembles a tall r.
+- վ (U+057E) appears in 8 discoveries, mostly against Hangul jamo. Its
+  open angular form resembles several Hangul vowel components.
+- կ (U+056F) and վ (U+057E) vs Han 刂 (knife radical): SSIM 0.750/0.738.
+  These angular Armenian letters resemble the two-stroke CJK radical.
+
+### 29.6 Thai connections
+
+Thai produces 28 discoveries across 8 script pairs, dominated by one
+character: เ (U+0E40, Sara E), which appears in 14 discoveries. Sara E is
+a vertical stroke in Thai's vowel system, and it connects to vertical stroke
+characters across 7 other scripts.
+
+Other Thai connections:
+- โ (U+0E42, Sara Oo) vs Arabic آ and ٱ: SSIM 0.810/0.768. The Thai vowel
+  marker resembles Arabic Alef variants.
+- ๐ (U+0E50, Thai zero) vs Hangul ㆁ, ᇰ, ᄋ: SSIM 0.778/0.778/0.737.
+  The Thai zero digit is a circle that matches Korean ieung-derived forms.
+- ๐ (U+0E50) vs Cyrillic ѻ: SSIM 0.727. Cross-family circle match.
+- ๐ (U+0E50, Thai zero) vs Devanagari ० (zero): SSIM 0.714. Zero digits
+  from different numeral systems that converge on the circle form.
+
+The Thai-Devanagari zero pair (๐ vs ०) is notable: two independent numeral
+systems both using a circle for zero, producing visual confusability between
+scripts that share no historical relationship.
+
+### 29.7 Indic: Devanagari
+
+Devanagari produced only 2 discoveries across all 66 pairs:
+- ० (U+0966, Devanagari zero) vs Thai ๐ (U+0E50): SSIM 0.714
+- ० vs Georgian ი (U+10D8): SSIM 0.701
+
+Both are circle-form matches. Devanagari's distinctive headline bar
+(shirorekha) and complex conjunct ligatures make its letterforms
+structurally distinct from all other scripts. Only the numeral zero, which
+is a universal geometric primitive, produces cross-script confusability.
+
+## 30. Comparison with previous milestones
+
+### 30.1 Discovery rates
+
+| Milestone | Characters | Pairs scored | Discoveries | Rate |
+|-----------|-----------|-------------|-------------|------|
+| M1b (TR39 validation) | 1,452 | 235,625 | 49 (high mean) | 3.5% |
+| M2 (novel, excl CJK) | 23,317 | 2,904,376 | 793 | 0.03% |
+| M2b (CJK verification) | 122,862 | 8,036,479 | 69 | 0.004% |
+| **M5 (cross-script)** | **22,581** | **23,629,492** | **563** | **0.002%** |
+
+M5 scored the most pairs (23.6M) but found the lowest discovery rate
+(0.002%). This is expected: Latin-vs-X comparisons (M1b, M2, M2b) benefit
+from the fact that Latin's simple geometric forms (l, i, o, c) have
+equivalents in many scripts, while most cross-script pairs involve scripts
+with no shared forms.
+
+### 30.2 Overlap with previous discoveries
+
+M5 operates on a different axis than M1b/M2/M2b. Previous milestones
+compared everything against Latin a-z/0-9 targets. M5 compares scripts
+against each other, including Latin-vs-X comparisons but also 55 non-Latin
+pairs.
+
+The 315 Latin-triangle discoveries (Latin-Cyrillic, Latin-Greek,
+Cyrillic-Greek) overlap substantially with M1b's TR39 validation data.
+Characters like Cyrillic С (U+0421) and Greek Ο (U+039F) appeared as
+confusables of Latin C and O in M1b. M5 adds the third edge of each
+triangle: Cyrillic С vs Greek Ϲ (U+03F9), which M1b and M2 never tested
+because neither script was a target.
+
+The remaining 248 discoveries (44%) are entirely new: they involve pairs
+between non-Latin scripts (Arabic-Hangul, Georgian-Cyrillic, Thai-Arabic,
+etc.) that no previous milestone could have found.
+
+### 30.3 The vertical stroke across milestones
+
+Every milestone has been dominated by vertical stroke characters:
+- M1b: "l" and "I" lookalikes are the highest-scoring TR39 pairs
+- M2: 47.5% of discoveries are vertical stroke characters
+- M2b: 18 of 28 source characters are vertical strokes
+- M5: 162 of 563 discoveries (28.8%) are vertical stroke pairs, spanning
+  8 of 12 scripts
+
+The vertical stroke is the universal confusable primitive. It is the
+simplest possible glyph form, and every writing system converges on it
+independently for basic phonemes and numerals.
+
+## 31. Assessment
+
+### 31.1 Practical risk
+
+The 563 discoveries fall into three risk tiers:
+
+**Tier 1: High risk (Latin/Cyrillic/Greek, 315 pairs)**. These are the
+well-known IDN homograph vectors. Most are already in TR39 confusables.txt
+(as Latin-target mappings) but M5 provides the missing Cyrillic-Greek edges.
+278 are pixel-identical in at least one font. These pairs are exploitable
+today in any context that displays Unicode text: domain names, usernames,
+package names, source code identifiers.
+
+**Tier 2: Moderate risk (Arabic/Thai/Hangul crossover, ~150 pairs)**.
+Arabic Alef variants confusable with vertical stroke characters from
+multiple scripts. Thai Sara E confusable across 7 scripts. Hangul jamo
+confusable with CJK stroke radicals. These are exploitable in specific
+contexts: Arabic/Thai/Korean user interfaces, mixed-script usernames,
+internationalised domain names targeting non-Latin audiences.
+
+**Tier 3: Low risk (single-font, low-coverage pairs, ~100 pairs)**.
+Georgian, Armenian, and Devanagari pairs that are confusable only in
+specific fonts with limited coverage. The practical risk is bounded by
+font availability.
+
+### 31.2 Implications for TR39
+
+TR39 confusables.txt maps everything to Latin prototypes. M5 reveals two
+gaps:
+
+1. **Missing non-Latin edges**: Cyrillic С (U+0421) is mapped to Latin C,
+   and Greek Ϲ (U+03F9) is mapped to Latin C, but TR39 does not explicitly
+   model the Cyrillic-Greek edge. The skeleton() algorithm handles this
+   transitively (both reduce to "c"), but M5 provides direct empirical
+   evidence for each cross-script edge.
+
+2. **Non-Latin-target confusables**: Arabic ا vs Hangul ᅵ (0.887), Thai
+   เ vs Cyrillic ӏ (0.914), Georgian Ⴝ vs Cyrillic Ѕ (0.871). These
+   pairs have no Latin character involved and are invisible to TR39's
+   Latin-centric model. A system protecting only against Latin spoofing
+   will miss these vectors entirely.
+
+### 31.3 Implications for namespace-guard
+
+namespace-guard v0.16.0+ consumes `confusable-weights.json` for measured
+visual risk scoring. M5's cross-script discoveries can extend this:
+
+- The 248 non-Latin-triangle discoveries are entirely new edges not present
+  in the M1b/M2 weight file
+- Cross-script weights enable mixed-script username collision detection
+  (e.g., blocking a Korean username that visually matches a Chinese one)
+- The domain context filter can be extended to flag cross-script pairs
+  from ICANN-relevant scripts
+
+### 31.4 Limitations specific to M5
+
+Several factors affect the interpretation of M5 results:
+
+- **Arabic contextual shaping.** Arabic characters were scored in isolated
+  form. In running text, Arabic letters take initial, medial, and final
+  forms through contextual shaping. Many of the Arabic Alef family
+  discoveries (which dominate Arabic's 99 cross-script matches) would be
+  less confusable in their contextually shaped forms within connected text.
+  The isolated-form scores represent the worst case (usernames, package
+  names, isolated identifiers).
+- **Thai combining vowels.** Thai vowel characters like เ (Sara E) were
+  scored as isolated codepoints, missing the visual context of their base
+  consonant. In Thai text, these vowels attach to consonants and are not
+  seen in isolation. The scores apply to contexts where Thai characters
+  appear individually (e.g., transliteration, identifier components).
+- **macOS-only font coverage.** All milestones use macOS system fonts, but
+  non-Latin script font availability varies more by platform than Latin
+  font availability. A discovery found in one macOS font may not be
+  reproducible on Windows or Linux if the font is not available, and
+  conversely, platform-specific fonts may produce additional discoveries
+  not captured here.
+- **48x48 resolution.** The fixed 48x48 greyscale canvas may miss fine
+  details that distinguish characters at larger rendering sizes. Some
+  pairs that score above 0.7 at 48x48 may be more easily distinguished
+  at higher resolutions.
+- **Same-font constraint.** Cross-script SSIM requires both characters to
+  share a font. Many script pairs have very low font overlap (e.g.,
+  Georgian-Katakana shares only 3 fonts out of 230). Low font overlap
+  limits the statistical power of the scores and may miss confusable
+  pairs that would emerge in fonts not present on macOS.
+
+## 32. Reproducibility
+
+### 32.1 Milestone 5
+
+```bash
+npx tsx scripts/define-cross-script-sets.ts      # Define 12 script character sets (~2 min)
+npx tsx scripts/build-index-cross-script.ts       # Render all characters (~75 min, dominated by Han)
+npx tsx scripts/score-cross-script.ts             # Score all 66 pairs (~34 min, 23.6M comparisons)
+npx tsx scripts/extract-cross-script.ts           # Extract discoveries + summary
+```
+
+All four scripts support crash recovery via `progress.jsonl` and auto-resume.
+
+Single-pair mode is available for targeted re-runs:
+```bash
+npx tsx scripts/score-cross-script.ts --pair Latin-Han
+```
+
+### 32.2 Output files
+
+**Committed (CC-BY-4.0):**
+- `data/output/cross-script-discoveries.json` -- 563 cross-script confusable pairs
+- `data/output/cross-script-summary.json` -- per-pair distribution counts and top pairs
+
+**Generated (gitignored, run pipeline to regenerate):**
+- `data/output/cross-script-sets.json` -- 22,581 characters across 12 scripts
+- `data/output/cross-script-index/` -- per-script render PNGs + index.json
+- `data/output/cross-script-scores/` -- per-pair gzipped score files (66 files)
 
 ---
 

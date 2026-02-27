@@ -34,6 +34,18 @@ Post-processing of M1b and M2 data:
 
 Full analysis: [REPORT.md](REPORT.md) | Blog post: [paultendo.github.io/posts/confusable-vision-visual-similarity](https://paultendo.github.io/posts/confusable-vision-visual-similarity/)
 
+### Milestone 5 -- cross-script confusable scanning
+
+Scanned all 66 cross-script pairs from 12 ICANN-relevant scripts (Latin, Cyrillic, Greek, Arabic, Han, Hangul, Katakana, Hiragana, Devanagari, Thai, Georgian, Armenian). 22,345 characters, 189,878 font-render entries, 23.6M character pairs scored:
+
+- **563 cross-script confusable discoveries** (mean SSIM >= 0.7) across 37 of 66 script pairs.
+- **Highest-yield pairs:** Cyrillic-Greek (126), Latin-Cyrillic (103), Latin-Greek (86), Cyrillic-Arabic (33), Latin-Arabic (24), Hangul-Han (20), Greek-Arabic (20).
+- **Top discovery: Hangul jamo U+1175 vs CJK U+4E28** (vertical stroke) at SSIM 0.999 -- near pixel-identical.
+- **CJK crossover:** Katakana `ロ` vs CJK `口` (0.71), `ヽ` vs `丶` (0.76), `カ` vs `力` (0.68). Classic confusables confirmed empirically.
+- **Indic-Thai crossover:** Devanagari `०` vs Thai `๐` (0.71) -- zero digits from different scripts.
+- **Caucasian scripts:** Georgian `Ⴝ` vs Latin `S` (0.87), Georgian `Ⴙ` vs Cyrillic `Ь` (0.83).
+- **29 of 66 pairs produced zero high-scoring matches**, confirming that most distant scripts are visually distinct.
+
 ## How it works
 
 Two pipelines:
@@ -125,8 +137,9 @@ npx tsx scripts/extract-discoveries.ts
 - [x] **Milestone 1b** -- Expand to full confusables.txt (1,418 pairs), 230 fonts, technical report
 - [x] **Milestone 2** -- Discover novel confusable pairs not in TR39 (793 high-scoring pairs from 23,317 candidates)
 - [x] **Milestone 3** -- Glyph reuse detection, identifier property annotations, weighted edge computation, namespace-guard integration
-- [ ] **Milestone 2b** -- CJK/Hangul verification and cross-script validation (Cyrillic, Greek, Armenian, Georgian). M2 excluded logographic scripts on the assumption they're structurally different from Latin; M2b tests that assumption.
-- [ ] **Milestone 4** -- Multi-character confusables. Current scoring is single-character; M4 would detect sequences that visually compose into a different character (e.g. `rn` vs `m`, `cl` vs `d`).
+- [x] **Milestone 2b** -- CJK/Hangul verification: scanned 122,862 logographic characters excluded from M2 (1.69M SSIM comparisons). 69 high-scoring pairs found, mostly vertical stroke characters (CJK U+4E28, Hangul jungseong U+1175). Confirms M2 exclusion was broadly correct but not absolute.
+- [x] **Milestone 5** -- Cross-script confusable scanning: all 66 pairs from 12 ICANN-relevant scripts (Latin, Cyrillic, Greek, Arabic, Han, Hangul, Katakana, Hiragana, Devanagari, Thai, Georgian, Armenian). 23.6M character pairs scored, 563 cross-script confusable discoveries. Top findings: Hangul jamo vs CJK strokes (0.999), Katakana vs CJK radicals, Devanagari vs Thai digits, Georgian vs Latin letters.
+- [ ] **Milestone 4** (shelved) -- Multi-character confusables (`rn` vs `m`, `cl` vs `d`). Pipeline built and validated (148x faster than v1), but SSIM cannot weight categorical features like dots: `ni` scores 0.86 against `m` because the dot is a handful of pixels, while humans treat it as an instant disambiguator. Revisit with a perceptual metric that weights distinctive features (dots, crossbars, descenders).
 
 ## Related
 

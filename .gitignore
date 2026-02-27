@@ -6,6 +6,8 @@ data/output/*
 !data/output/confusable-weights.json
 !data/output/m2b-verification-report.json
 !data/output/multichar-discoveries.json
+!data/output/cross-script-discoveries.json
+!data/output/cross-script-summary.json
 .DS_Store
 *.tsbuildinfo
 attack-tests/results/*
