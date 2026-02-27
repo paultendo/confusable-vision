@@ -2,7 +2,13 @@
 
 Empirical visual similarity scoring for Unicode confusable characters. Renders character pairs across 230 system fonts, measures structural similarity (SSIM), and produces scored JSON artifacts that tell you exactly how confusable two characters are, in which fonts, and with what confidence.
 
-Built to replace hand-tuned weights with measured data. The output (`confusable-weights.json`) feeds directly into [namespace-guard](https://github.com/paultendo/namespace-guard) for runtime confusable detection in package names, domain names, and identifiers.
+Key results from 26.5 million SSIM comparisons across 22,000+ characters and 12 writing systems:
+
+- **793 confusable pairs not in any standard.** Characters that look like Latin letters on screen but are absent from Unicode's official confusables.txt. 74.5% are valid in package names and domain names today.
+- **World-first cross-script confusable dataset.** 563 visually confusable pairs between non-Latin scripts (Cyrillic vs Greek, Hangul vs Han, Devanagari vs Thai) that no prior public dataset covers.
+- **Font-aware confidence scores replace binary lists.** TR39 says a pair is confusable or it isn't. confusable-vision says *how* confusable, *in which fonts*, with measured SSIM. 96.5% of TR39 pairs score below 0.7; the dangerous 3.5% score above 0.95.
+
+The output (`confusable-weights.json`) feeds directly into [namespace-guard](https://github.com/paultendo/namespace-guard) for runtime confusable detection in package names, domain names, and identifiers.
 
 ## Why this matters
 
@@ -36,7 +42,7 @@ These are characters that look like Latin letters on screen but do not appear in
 
 Same-font comparisons average 0.536 SSIM; cross-font average 0.339. Font danger rates range from 0% (Zapfino) to 67.5% (Phosphate). Switching from Arial to Georgia drops confusable pair coverage from 438 to 103. The font a product ships matters for its attack surface.
 
-### First systematic cross-script confusable measurement
+### World-first cross-script confusable measurement
 
 Prior work on confusable detection focuses almost entirely on non-Latin vs Latin (Cyrillic `а` vs Latin `a`). No public dataset measures visual confusability *between* non-Latin scripts: Cyrillic vs Greek, Hangul vs Han, Devanagari vs Thai.
 
