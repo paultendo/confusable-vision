@@ -8,6 +8,6 @@ data/output/*
 !data/output/multichar-discoveries.json
 .DS_Store
 *.tsbuildinfo
-attack-tests/results/
+attack-tests/results/*
 !attack-tests/results/*.md
 attack-tests/.env
