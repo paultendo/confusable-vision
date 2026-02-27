@@ -111,6 +111,31 @@ npx tsx scripts/score-candidates.ts          # Score against Latin targets (~15m
 npx tsx scripts/extract-discoveries.ts
 ```
 
+## Font querying
+
+Query which confusable pairs exist for a specific font. Reads the intermediate discovery files (requires running the scoring pipeline first).
+
+```bash
+# List all 218 fonts in the discovery data
+npx tsx scripts/query-font.ts --list-fonts
+
+# Show all confusable pairs for Arial (SSIM >= 0.7)
+npx tsx scripts/query-font.ts "Arial"
+
+# Raise the threshold to only show high-confidence pairs
+npx tsx scripts/query-font.ts "Arial" --threshold 0.8
+
+# Compare two fonts: sorted by biggest SSIM delta
+npx tsx scripts/query-font.ts "Arial" --compare "Georgia"
+
+# JSON output for downstream processing
+npx tsx scripts/query-font.ts "Arial" --json
+```
+
+Font name matching is case-insensitive substring, so `"arial"` matches Arial, Arial Black, and Arial Unicode MS. The compare mode surfaces pairs where switching fonts changes confusable risk, sorted by the biggest differences first.
+
+Cross-script pairs only store the single best font (not the full per-font array), so coverage is partial for those. They're labelled `cross-script` in the output.
+
 ## Output
 
 ### Committed (CC-BY-4.0)
