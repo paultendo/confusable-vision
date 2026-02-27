@@ -1,17 +1,18 @@
 /**
- * generate-weights.ts -- Milestone 3
+ * generate-weights.ts -- Milestone 3 + 5
  *
  * Combines all milestone outputs into a single confusable-weights.json artifact
  * for integration with namespace-guard's risk scoring.
  *
- * Inputs (903 pairs, not the 572 MB full scores):
+ * Inputs:
  *   - confusable-discoveries.json (110 TR39 high-risk pairs)
  *   - candidate-discoveries.json (793 novel pairs)
  *   - confusable-glyph-reuse.json + candidate-glyph-reuse.json (from Item 1)
  *   - candidate-discoveries-annotated.json (from Item 3)
  *   - confusable-discoveries-annotated.json (from Item 3)
+ *   - cross-script-discoveries.json (M5 cross-script confusable pairs)
  *
- * Output: data/output/confusable-weights.json (~50-80 KB, committed to repo)
+ * Output: data/output/confusable-weights.json (~80-120 KB, committed to repo)
  *
  * Usage: npx tsx scripts/generate-weights.ts
  */
@@ -34,6 +35,7 @@ const CONFUSABLE_GLYPH_PATH = path.join(DATA, 'confusable-glyph-reuse.json');
 const CANDIDATE_GLYPH_PATH = path.join(DATA, 'candidate-glyph-reuse.json');
 const CONFUSABLE_ANNOTATED_PATH = path.join(DATA, 'confusable-discoveries-annotated.json');
 const CANDIDATE_ANNOTATED_PATH = path.join(DATA, 'candidate-discoveries-annotated.json');
+const CROSS_SCRIPT_PATH = path.join(DATA, 'cross-script-discoveries.json');
 const OUTPUT_PATH = path.join(DATA, 'confusable-weights.json');
 
 const FONT_SET_ID = 'macos-m1-system-230fonts';
@@ -63,6 +65,29 @@ interface DiscoveryPair {
 
 interface AnnotatedPair extends DiscoveryPair {
   properties: IdentifierProperties;
+}
+
+interface CrossScriptPair {
+  charA: string;
+  codepointA: string;
+  scriptA: string;
+  charB: string;
+  codepointB: string;
+  scriptB: string;
+  summary: {
+    meanSsim: number | null;
+    meanPHash: number | null;
+    nativeFontCount: number;
+    fallbackFontCount: number;
+    notdefFontCount: number;
+    validFontCount: number;
+  };
+  bestFont: {
+    sourceFont: string;
+    targetFont: string;
+    ssim: number;
+    pHash: number;
+  };
 }
 
 /**
@@ -146,6 +171,43 @@ function computeEdge(
   };
 }
 
+/**
+ * Compute edge weight for a cross-script pair (M5).
+ * Cross-script pairs only have bestFont and summary (no full fonts array).
+ * All comparisons are same-font, so mean approximates p95 for the 1-3 shared fonts.
+ * Property flags are omitted: cross-script edges work with context "all"
+ * but are filtered out by "identifier" or "domain".
+ */
+function computeCrossScriptEdge(pair: CrossScriptPair): ConfusableEdgeWeight {
+  const danger = round(pair.bestFont.ssim);
+  const stableDanger = round(pair.summary.meanSsim ?? pair.bestFont.ssim);
+  const cost = round(Math.max(0, Math.min(1, 1 - stableDanger)));
+
+  return {
+    source: pair.charA,
+    sourceCodepoint: pair.codepointA,
+    target: pair.charB,
+    sameMax: danger,
+    sameP95: stableDanger,
+    sameMean: stableDanger,
+    sameN: pair.summary.validFontCount,
+    crossMax: 0,
+    crossP95: 0,
+    crossMean: 0,
+    crossN: 0,
+    danger,
+    stableDanger,
+    cost,
+    glyphReuse: false,
+    xidContinue: false,
+    xidStart: false,
+    idnaPvalid: false,
+    tr39Allowed: false,
+    inTr39: false,
+    fontSetId: FONT_SET_ID,
+  };
+}
+
 function round(n: number): number {
   return Math.round(n * 10000) / 10000;
 }
@@ -173,8 +235,12 @@ function main() {
     fs.readFileSync(CANDIDATE_ANNOTATED_PATH, 'utf-8')
   );
 
-  console.log(`  TR39 pairs:  ${confusable.pairs.length}`);
-  console.log(`  Novel pairs: ${candidate.pairs.length}`);
+  // Load cross-script discoveries (M5)
+  const crossScript = JSON.parse(fs.readFileSync(CROSS_SCRIPT_PATH, 'utf-8'));
+
+  console.log(`  TR39 pairs:       ${confusable.pairs.length}`);
+  console.log(`  Novel pairs:      ${candidate.pairs.length}`);
+  console.log(`  Cross-script raw: ${crossScript.pairs.length}`);
 
   // Build glyph-reuse lookup by sourceCodepoint
   const glyphLookup = new Map<string, boolean>();
@@ -217,6 +283,25 @@ function main() {
     edges.push(computeEdge(pair, glyphReuse, properties, false));
   }
 
+  // Cross-script pairs (M5) -- deduplicate against TR39/novel pairs
+  const existingPairKeys = new Set<string>();
+  for (const edge of edges) {
+    existingPairKeys.add(`${edge.source}:${edge.target}`);
+    existingPairKeys.add(`${edge.target}:${edge.source}`);
+  }
+
+  let crossScriptAdded = 0;
+  for (const pair of crossScript.pairs as CrossScriptPair[]) {
+    const k1 = `${pair.charA}:${pair.charB}`;
+    const k2 = `${pair.charB}:${pair.charA}`;
+    if (existingPairKeys.has(k1) || existingPairKeys.has(k2)) continue;
+    edges.push(computeCrossScriptEdge(pair));
+    existingPairKeys.add(k1);
+    existingPairKeys.add(k2);
+    crossScriptAdded++;
+  }
+  console.log(`  Cross-script new: ${crossScriptAdded} (${crossScript.pairs.length - crossScriptAdded} deduplicated)`);
+
   // Sort by danger descending
   edges.sort((a, b) => b.danger - a.danger || a.sourceCodepoint.localeCompare(b.sourceCodepoint));
 
@@ -226,6 +311,7 @@ function main() {
       pairCount: edges.length,
       tr39PairCount: confusable.pairs.length,
       novelPairCount: candidate.pairs.length,
+      crossScriptPairCount: crossScriptAdded,
       fontSetId: FONT_SET_ID,
       licence: 'CC-BY-4.0',
       attribution: 'Paul Wood FRSA (@paultendo), confusable-vision',
@@ -237,7 +323,6 @@ function main() {
 
   // Summary stats
   const tr39Edges = edges.filter(e => e.inTr39);
-  const novelEdges = edges.filter(e => !e.inTr39);
 
   const costs = edges.map(e => e.cost);
   costs.sort((a, b) => a - b);
@@ -248,9 +333,10 @@ function main() {
   const highCost = edges.filter(e => e.cost >= 0.3);
 
   console.log(`\n=== Weight Summary ===`);
-  console.log(`  Total edges: ${edges.length}`);
-  console.log(`  TR39:  ${tr39Edges.length}`);
-  console.log(`  Novel: ${novelEdges.length}`);
+  console.log(`  Total edges:  ${edges.length}`);
+  console.log(`  TR39:         ${tr39Edges.length}`);
+  console.log(`  Novel:        ${candidate.pairs.length}`);
+  console.log(`  Cross-script: ${crossScriptAdded}`);
   console.log(`\n  Cost distribution:`);
   console.log(`    cost = 0:       ${zeroCost.length}  (pixel-identical in p95)`);
   console.log(`    0 < cost < 0.1: ${lowCost.length}  (near-identical)`);

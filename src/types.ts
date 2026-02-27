@@ -268,6 +268,7 @@ export interface ConfusableWeightsOutput {
     pairCount: number;
     tr39PairCount: number;
     novelPairCount: number;
+    crossScriptPairCount: number;
     fontSetId: string;
     licence: string;
     attribution: string;
