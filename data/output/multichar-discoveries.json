@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "generatedAt": "2026-02-25T23:59:51.879Z",
+    "pairCount": 0,
+    "totalPairsScored": 17576,
+    "ssimThreshold": 0.7,
+    "note": "Multi-character confusable pairs where two-char Latin sequences visually resemble a single Latin character. Scored across macOS system fonts (same-font comparisons only).",
+    "licence": "CC-BY-4.0",
+    "attribution": "Paul Wood FRSA (@paultendo), confusable-vision"
+  },
+  "pairs": []
+}
