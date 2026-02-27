@@ -25,6 +25,7 @@ import os from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
 import { computeSsim, pHashSimilarity } from '../src/compare.js';
+import { createGzWriter } from '../src/gz-json.js';
 import type {
   ConfusablePair,
   RenderIndex,
@@ -43,7 +44,7 @@ const INDEX_DIR = path.join(ROOT, 'data/output/render-index');
 const INDEX_JSON = path.join(INDEX_DIR, 'index.json');
 const RENDERS_DIR = path.join(INDEX_DIR, 'renders');
 const OUTPUT_DIR = path.join(ROOT, 'data/output');
-const OUTPUT_JSON = path.join(OUTPUT_DIR, 'confusable-scores.json');
+const OUTPUT_JSON = path.join(OUTPUT_DIR, 'confusable-scores.json.gz');
 
 const PHASH_PREFILTER_THRESHOLD = 0.2;
 
@@ -207,8 +208,11 @@ async function main() {
   };
 
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-  fs.writeFileSync(OUTPUT_JSON, JSON.stringify(output, null, 2));
-  console.log(`Output written to: ${OUTPUT_JSON}\n`);
+  const gz = createGzWriter(OUTPUT_JSON);
+  gz.write(JSON.stringify(output, null, 2));
+  await gz.close();
+  const fileSizeMB = (fs.statSync(OUTPUT_JSON).size / 1024 / 1024).toFixed(1);
+  console.log(`Output written to: ${OUTPUT_JSON} (${fileSizeMB} MB)\n`);
 
   printSummary(output);
 }

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-02-26T03:43:51.428Z",
+    "generatedAt": "2026-02-27T10:19:44.392Z",
     "milestone": "2b",
     "purpose": "Verify that CJK/Hangul/logographic characters excluded from M2 do not produce high visual similarity to Latin a-z/0-9",
     "licence": "CC-BY-4.0",

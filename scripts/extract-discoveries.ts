@@ -15,14 +15,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { createReadStream } from 'node:fs';
-import { createInterface } from 'node:readline';
+import { readJsonGz, createGzLineReader } from '../src/gz-json.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUTPUT_DIR = path.join(ROOT, 'data/output');
 
-const M1B_SCORES = path.join(OUTPUT_DIR, 'confusable-scores.json');
-const M2_SCORES = path.join(OUTPUT_DIR, 'candidate-scores.json');
+const M1B_SCORES = path.join(OUTPUT_DIR, 'confusable-scores.json.gz');
+const M2_SCORES = path.join(OUTPUT_DIR, 'candidate-scores.json.gz');
 const M1B_OUTPUT = path.join(OUTPUT_DIR, 'confusable-discoveries.json');
 const M2_OUTPUT = path.join(OUTPUT_DIR, 'candidate-discoveries.json');
 
@@ -32,11 +31,11 @@ async function extractM1b() {
   console.log('[1/2] Extracting TR39 confusable discoveries...');
 
   if (!fs.existsSync(M1B_SCORES)) {
-    console.log('  SKIP: confusable-scores.json not found');
+    console.log('  SKIP: confusable-scores.json.gz not found');
     return;
   }
 
-  const data = JSON.parse(fs.readFileSync(M1B_SCORES, 'utf-8'));
+  const data = readJsonGz<any>(M1B_SCORES);
   const pairs = data.pairs as any[];
 
   // High mean SSIM or pixel-identical in at least one font
@@ -73,16 +72,12 @@ async function extractM2() {
   console.log('[2/2] Extracting novel candidate discoveries...');
 
   if (!fs.existsSync(M2_SCORES)) {
-    console.log('  SKIP: candidate-scores.json not found');
+    console.log('  SKIP: candidate-scores.json.gz not found');
     return;
   }
 
-  // candidate-scores.json is too large for readFileSync (572 MB).
-  // Stream-parse line by line. Each pair is written as one JSON object per line.
-  const rl = createInterface({
-    input: createReadStream(M2_SCORES, { encoding: 'utf-8' }),
-    crlfDelay: Infinity,
-  });
+  // Stream-parse line by line through gunzip.
+  const rl = createGzLineReader(M2_SCORES);
 
   const highPairs: any[] = [];
   let totalParsed = 0;

@@ -15,14 +15,13 @@
  */
 
 import fs from 'node:fs';
-import { createReadStream } from 'node:fs';
-import { createInterface } from 'node:readline';
 import path from 'node:path';
+import { createGzLineReader } from '../src/gz-json.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUTPUT_DIR = path.join(ROOT, 'data/output');
 
-const SCORES_PATH = path.join(OUTPUT_DIR, 'multichar-scores.json');
+const SCORES_PATH = path.join(OUTPUT_DIR, 'multichar-scores.json.gz');
 const OUTPUT_PATH = path.join(OUTPUT_DIR, 'multichar-discoveries.json');
 
 const SSIM_THRESHOLD = 0.7;
@@ -35,9 +34,9 @@ async function main() {
     process.exit(1);
   }
 
-  // Stream line-by-line to avoid ERR_STRING_TOO_LONG on large files (>1GB)
+  // Stream line-by-line through gunzip
   console.log('[1/2] Streaming multichar scores...');
-  const rl = createInterface({ input: createReadStream(SCORES_PATH) });
+  const rl = createGzLineReader(SCORES_PATH);
   let inPairs = false;
   const high: any[] = [];
   let totalPairs = 0;

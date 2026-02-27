@@ -293,6 +293,47 @@ export interface MulticharPairResult {
   summary: PairSummary;
 }
 
+// --- Milestone 5 types (cross-script confusables) ---
+
+/** Result for one cross-script character pair */
+export interface CrossScriptPairResult {
+  charA: string;
+  codepointA: string;
+  scriptA: string;
+  charB: string;
+  codepointB: string;
+  scriptB: string;
+  fonts: PairFontResult[];
+  summary: PairSummary;
+}
+
+/** Top-level output for a single cross-script score file */
+export interface CrossScriptScoreOutput {
+  meta: {
+    generatedAt: string;
+    scriptA: string;
+    scriptB: string;
+    charsA: number;
+    charsB: number;
+    totalPairs: number;
+    ssimComputed: number;
+    ssimSkipped: number;
+    widthRatioSkipped: number;
+    pHashThreshold: number;
+    widthRatioMax: number;
+    licence: string;
+    attribution: string;
+  };
+  distribution: {
+    high: number;
+    medium: number;
+    low: number;
+    noData: number;
+    total: number;
+  };
+  pairs: CrossScriptPairResult[];
+}
+
 /** Top-level output for milestone 1b */
 export interface ScoreAllPairsOutput {
   meta: {

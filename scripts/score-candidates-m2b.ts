@@ -24,6 +24,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
 import { computeSsim, pHashSimilarity } from '../src/compare.js';
+import { createGzWriter } from '../src/gz-json.js';
 import type {
   RenderIndex,
   IndexRenderEntry,
@@ -47,7 +48,7 @@ const M1B_INDEX_JSON = path.join(M1B_INDEX_DIR, 'index.json');
 const M1B_RENDERS_DIR = path.join(M1B_INDEX_DIR, 'renders');
 
 const OUTPUT_DIR = path.join(ROOT, 'data/output');
-const OUTPUT_JSON = path.join(OUTPUT_DIR, 'm2b-scores.json');
+const OUTPUT_JSON = path.join(OUTPUT_DIR, 'm2b-scores.json.gz');
 const PROGRESS_JSONL = path.join(OUTPUT_DIR, 'm2b-scores-progress.jsonl');
 
 const PHASH_PREFILTER_THRESHOLD = 0.3;
@@ -374,12 +375,12 @@ async function main() {
 
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-  console.log('Writing m2b-scores.json (streaming)...');
-  const fd = fs.openSync(OUTPUT_JSON, 'w');
-  fs.writeSync(fd, '{\n');
-  fs.writeSync(fd, `"meta": ${JSON.stringify(meta, null, 2)},\n`);
-  fs.writeSync(fd, `"distribution": ${JSON.stringify(distribution, null, 2)},\n`);
-  fs.writeSync(fd, '"pairs": [\n');
+  console.log('Writing m2b-scores.json.gz (streaming)...');
+  const gz = createGzWriter(OUTPUT_JSON);
+  gz.write('{\n');
+  gz.write(`"meta": ${JSON.stringify(meta, null, 2)},\n`);
+  gz.write(`"distribution": ${JSON.stringify(distribution, null, 2)},\n`);
+  gz.write('"pairs": [\n');
 
   const BATCH_SIZE = 1000;
   for (let i = 0; i < allResults.length; i += BATCH_SIZE) {
@@ -388,11 +389,11 @@ async function main() {
       const isLast = (i + j) === allResults.length - 1;
       return JSON.stringify(r) + (isLast ? '' : ',');
     });
-    fs.writeSync(fd, lines.join('\n') + '\n');
+    gz.write(lines.join('\n') + '\n');
   }
 
-  fs.writeSync(fd, ']\n}\n');
-  fs.closeSync(fd);
+  gz.write(']\n}\n');
+  await gz.close();
 
   // Clean up progress on successful completion
   if (fs.existsSync(PROGRESS_JSONL)) {

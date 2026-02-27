@@ -16,13 +16,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { createReadStream } from 'node:fs';
-import { createInterface } from 'node:readline';
+import { createGzLineReader } from '../src/gz-json.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUTPUT_DIR = path.join(ROOT, 'data/output');
 
-const M2B_SCORES = path.join(OUTPUT_DIR, 'm2b-scores.json');
+const M2B_SCORES = path.join(OUTPUT_DIR, 'm2b-scores.json.gz');
 const M2B_CANDIDATES = path.join(OUTPUT_DIR, 'm2b-candidates.json');
 const REPORT_OUTPUT = path.join(OUTPUT_DIR, 'm2b-verification-report.json');
 const DISCOVERIES_OUTPUT = path.join(OUTPUT_DIR, 'm2b-discoveries.json');
@@ -60,10 +59,7 @@ async function main() {
   }
 
   console.log('[1/2] Parsing M2b scores...');
-  const rl = createInterface({
-    input: createReadStream(M2B_SCORES, { encoding: 'utf-8' }),
-    crlfDelay: Infinity,
-  });
+  const rl = createGzLineReader(M2B_SCORES);
 
   const allPairs: any[] = [];
   let totalParsed = 0;

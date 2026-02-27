@@ -18,11 +18,12 @@ import path from 'node:path';
 import sharp from 'sharp';
 import { initFonts, discoverFontForCodepoint } from '../src/fonts.js';
 import { renderCharacter } from '../src/renderer.js';
+import { readJsonGz } from '../src/gz-json.js';
 import type { ConfusablePairResult, PairFontResult } from '../src/types.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 
-const TR39_SCORES = path.join(ROOT, 'data/output/confusable-scores.json');
+const TR39_SCORES = path.join(ROOT, 'data/output/confusable-scores.json.gz');
 const M2_DISCOVERIES = path.join(ROOT, 'data/output/candidate-discoveries.json');
 const M2B_DISCOVERIES = path.join(ROOT, 'data/output/m2b-discoveries.json');
 
@@ -120,7 +121,7 @@ async function main() {
 
   // Load TR39 scores (all pairs, filter to those with valid SSIM)
   interface ScoresFile { pairs: ConfusablePairResult[] }
-  const tr39All: ScoresFile = JSON.parse(fs.readFileSync(TR39_SCORES, 'utf-8'));
+  const tr39All: ScoresFile = readJsonGz<ScoresFile>(TR39_SCORES);
   const tr39Data = {
     pairs: tr39All.pairs.filter(p => p.summary.meanSsim !== null),
   };

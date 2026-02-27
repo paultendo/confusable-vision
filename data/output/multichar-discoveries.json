@@ -1,12 +1,274 @@
 {
   "meta": {
-    "generatedAt": "2026-02-25T23:59:51.879Z",
-    "pairCount": 0,
-    "totalPairsScored": 17576,
+    "generatedAt": "2026-02-27T10:19:46.038Z",
+    "pairCount": 7,
+    "totalPairsScored": 139756,
     "ssimThreshold": 0.7,
-    "note": "Multi-character confusable pairs where two-char Latin sequences visually resemble a single Latin character. Scored across macOS system fonts (same-font comparisons only).",
+    "note": "Multi-character confusable pairs where two-char sequences from (a-z + A-Z + 0-9) visually resemble a single character from the same set. Scored across macOS system fonts (same-font comparisons only).",
     "licence": "CC-BY-4.0",
     "attribution": "Paul Wood FRSA (@paultendo), confusable-vision"
   },
-  "pairs": []
+  "pairs": [
+    {
+      "source": "qn",
+      "sourceChars": [
+        "q",
+        "n"
+      ],
+      "target": "q",
+      "fonts": [
+        {
+          "sourceFont": "Party LET",
+          "targetFont": "Party LET",
+          "ssim": 0.8166063430541717,
+          "pHash": 0.578125,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        }
+      ],
+      "summary": {
+        "meanSsim": 0.8166063430541717,
+        "meanPHash": 0.578125,
+        "nativeFontCount": 1,
+        "fallbackFontCount": 0,
+        "notdefFontCount": 0,
+        "validFontCount": 1
+      }
+    },
+    {
+      "source": "qa",
+      "sourceChars": [
+        "q",
+        "a"
+      ],
+      "target": "q",
+      "fonts": [
+        {
+          "sourceFont": "Party LET",
+          "targetFont": "Party LET",
+          "ssim": 0.8161130700031223,
+          "pHash": 0.75,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        }
+      ],
+      "summary": {
+        "meanSsim": 0.8161130700031223,
+        "meanPHash": 0.75,
+        "nativeFontCount": 1,
+        "fallbackFontCount": 0,
+        "notdefFontCount": 0,
+        "validFontCount": 1
+      }
+    },
+    {
+      "source": "qz",
+      "sourceChars": [
+        "q",
+        "z"
+      ],
+      "target": "q",
+      "fonts": [
+        {
+          "sourceFont": "Party LET",
+          "targetFont": "Party LET",
+          "ssim": 0.8125363886559057,
+          "pHash": 0.515625,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        }
+      ],
+      "summary": {
+        "meanSsim": 0.8125363886559057,
+        "meanPHash": 0.515625,
+        "nativeFontCount": 1,
+        "fallbackFontCount": 0,
+        "notdefFontCount": 0,
+        "validFontCount": 1
+      }
+    },
+    {
+      "source": "tf",
+      "sourceChars": [
+        "t",
+        "f"
+      ],
+      "target": "f",
+      "fonts": [
+        {
+          "sourceFont": "Zapfino",
+          "targetFont": "Zapfino",
+          "ssim": 0.7782516971220863,
+          "pHash": 0.859375,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        },
+        {
+          "sourceFont": "Party LET",
+          "targetFont": "Party LET",
+          "ssim": 0.7070064025124776,
+          "pHash": 0.8125,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        },
+        {
+          "sourceFont": "Savoye LET",
+          "targetFont": "Savoye LET",
+          "ssim": 0.7390158079656671,
+          "pHash": 0.90625,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        },
+        {
+          "sourceFont": "Trattatello",
+          "targetFont": "Trattatello",
+          "ssim": 0.8260820796106555,
+          "pHash": 0.90625,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        },
+        {
+          "sourceFont": "Snell Roundhand",
+          "targetFont": "Snell Roundhand",
+          "ssim": 0.8598461012611001,
+          "pHash": 0.953125,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        }
+      ],
+      "summary": {
+        "meanSsim": 0.7820404176943974,
+        "meanPHash": 0.8875,
+        "nativeFontCount": 5,
+        "fallbackFontCount": 0,
+        "notdefFontCount": 0,
+        "validFontCount": 5
+      }
+    },
+    {
+      "source": "um",
+      "sourceChars": [
+        "u",
+        "m"
+      ],
+      "target": "m",
+      "fonts": [
+        {
+          "sourceFont": "Snell Roundhand",
+          "targetFont": "Snell Roundhand",
+          "ssim": 0.7279114163961367,
+          "pHash": 0.953125,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        }
+      ],
+      "summary": {
+        "meanSsim": 0.7279114163961367,
+        "meanPHash": 0.953125,
+        "nativeFontCount": 1,
+        "fallbackFontCount": 0,
+        "notdefFontCount": 0,
+        "validFontCount": 1
+      }
+    },
+    {
+      "source": "ef",
+      "sourceChars": [
+        "e",
+        "f"
+      ],
+      "target": "f",
+      "fonts": [
+        {
+          "sourceFont": "Zapfino",
+          "targetFont": "Zapfino",
+          "ssim": 0.71832664699474,
+          "pHash": 0.859375,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        },
+        {
+          "sourceFont": "Party LET",
+          "targetFont": "Party LET",
+          "ssim": 0.6408706483751854,
+          "pHash": 0.90625,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        },
+        {
+          "sourceFont": "Savoye LET",
+          "targetFont": "Savoye LET",
+          "ssim": 0.5454649512422215,
+          "pHash": 0.796875,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        },
+        {
+          "sourceFont": "Trattatello",
+          "targetFont": "Trattatello",
+          "ssim": 0.8165153856260973,
+          "pHash": 0.953125,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        },
+        {
+          "sourceFont": "Snell Roundhand",
+          "targetFont": "Snell Roundhand",
+          "ssim": 0.8363272778228587,
+          "pHash": 0.953125,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        }
+      ],
+      "summary": {
+        "meanSsim": 0.7115009820122206,
+        "meanPHash": 0.89375,
+        "nativeFontCount": 5,
+        "fallbackFontCount": 0,
+        "notdefFontCount": 0,
+        "validFontCount": 5
+      }
+    },
+    {
+      "source": "jz",
+      "sourceChars": [
+        "j",
+        "z"
+      ],
+      "target": "z",
+      "fonts": [
+        {
+          "sourceFont": "Papyrus",
+          "targetFont": "Papyrus",
+          "ssim": 0.7070274586169681,
+          "pHash": 0.703125,
+          "sourceRenderStatus": "native",
+          "sourceFallbackFont": null,
+          "ssimSkipped": false
+        }
+      ],
+      "summary": {
+        "meanSsim": 0.7070274586169681,
+        "meanPHash": 0.703125,
+        "nativeFontCount": 1,
+        "fallbackFontCount": 0,
+        "notdefFontCount": 0,
+        "validFontCount": 1
+      }
+    }
+  ]
 }

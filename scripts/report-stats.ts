@@ -11,6 +11,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readJsonGz } from '../src/gz-json.js';
 import type {
   ScoreAllPairsOutput,
   ConfusablePairResult,
@@ -18,12 +19,12 @@ import type {
 } from '../src/types.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const INPUT = path.resolve(__dirname, '../data/output/confusable-scores.json');
+const INPUT = path.resolve(__dirname, '../data/output/confusable-scores.json.gz');
 
 // ---------------------------------------------------------------------------
 // Load data
 // ---------------------------------------------------------------------------
-const data: ScoreAllPairsOutput = JSON.parse(fs.readFileSync(INPUT, 'utf-8'));
+const data: ScoreAllPairsOutput = readJsonGz<ScoreAllPairsOutput>(INPUT);
 const { meta, pairs, distribution } = data;
 
 const lines: string[] = [];

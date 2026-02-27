@@ -26,6 +26,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
 import { computeSsim, pHashSimilarity } from '../src/compare.js';
+import { createGzWriter } from '../src/gz-json.js';
 import type {
   RenderIndex,
   IndexRenderEntry,
@@ -49,7 +50,7 @@ const M1B_INDEX_JSON = path.join(M1B_INDEX_DIR, 'index.json');
 const M1B_RENDERS_DIR = path.join(M1B_INDEX_DIR, 'renders');
 
 const OUTPUT_DIR = path.join(ROOT, 'data/output');
-const OUTPUT_JSON = path.join(OUTPUT_DIR, 'candidate-scores.json');
+const OUTPUT_JSON = path.join(OUTPUT_DIR, 'candidate-scores.json.gz');
 
 // Looser threshold than Milestone 1b (0.2) because we're scanning blind
 const PHASH_PREFILTER_THRESHOLD = 0.3;
@@ -318,13 +319,13 @@ async function main() {
 
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-  // Stream pairs to disk in batches
-  console.log('Writing candidate-scores.json (streaming)...');
-  const fd = fs.openSync(OUTPUT_JSON, 'w');
-  fs.writeSync(fd, '{\n');
-  fs.writeSync(fd, `"meta": ${JSON.stringify(meta, null, 2)},\n`);
-  fs.writeSync(fd, `"distribution": ${JSON.stringify(distribution, null, 2)},\n`);
-  fs.writeSync(fd, '"pairs": [\n');
+  // Stream pairs to disk through gzip
+  console.log('Writing candidate-scores.json.gz (streaming)...');
+  const gz = createGzWriter(OUTPUT_JSON);
+  gz.write('{\n');
+  gz.write(`"meta": ${JSON.stringify(meta, null, 2)},\n`);
+  gz.write(`"distribution": ${JSON.stringify(distribution, null, 2)},\n`);
+  gz.write('"pairs": [\n');
 
   const BATCH_SIZE = 1000;
   for (let i = 0; i < results.length; i += BATCH_SIZE) {
@@ -333,11 +334,11 @@ async function main() {
       const isLast = (i + j) === results.length - 1;
       return JSON.stringify(r) + (isLast ? '' : ',');
     });
-    fs.writeSync(fd, lines.join('\n') + '\n');
+    gz.write(lines.join('\n') + '\n');
   }
 
-  fs.writeSync(fd, ']\n}\n');
-  fs.closeSync(fd);
+  gz.write(']\n}\n');
+  await gz.close();
 
   const fileSizeMB = (fs.statSync(OUTPUT_JSON).size / 1024 / 1024).toFixed(1);
   console.log(`Output written to: ${OUTPUT_JSON} (${fileSizeMB} MB)\n`);

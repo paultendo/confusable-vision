@@ -1,10 +1,12 @@
 import { ssim } from 'ssim.js';
+import { ssimGrey } from 'ssim-grey';
 import sharp from 'sharp';
 import type { NormalisedResult, PairComparison } from './types.js';
 
 /**
  * Compute SSIM between two normalised greyscale images.
  * ssim.js requires RGBA input, so we expand greyscale to RGBA.
+ * Used by validation scripts that need the reference ssim.js path.
  */
 export function computeSsim(img1: NormalisedResult, img2: NormalisedResult): number {
   const rgba1 = greyToRgba(img1.rawPixels);
@@ -16,6 +18,14 @@ export function computeSsim(img1: NormalisedResult, img2: NormalisedResult): num
   );
 
   return result.mssim;
+}
+
+/**
+ * Compute SSIM directly on greyscale buffers (no RGBA expansion).
+ * Drop-in replacement for computeSsim in hot loops.
+ */
+export function computeSsimFast(img1: NormalisedResult, img2: NormalisedResult): number {
+  return ssimGrey(img1.rawPixels, img2.rawPixels, img1.width, img1.height);
 }
 
 /**
