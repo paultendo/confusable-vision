@@ -28,7 +28,9 @@ Unicode TR39 publishes a [confusables.txt](https://unicode.org/Public/security/l
 
 ### 793 confusable pairs are missing from TR39
 
-These are characters that look like Latin letters on screen but do not appear in Unicode's official confusables.txt. Top find: U+A7FE LATIN EPIGRAPHIC LETTER I LONGA scores 0.998 against "l" in Geneva. Most are vertical stroke characters from obscure scripts (Pahawh Hmong, Nabataean, Duployan) that render as "l" or "i" lookalikes. 74.5% of these are valid in both JavaScript identifiers and domain names, meaning they can appear in package names and URLs today with no tooling flagging them.
+These are characters that look like Latin letters on screen but do not appear in Unicode's official confusables.txt. Top find: U+A7FE LATIN EPIGRAPHIC LETTER I LONGA scores 0.998 against "l" in Geneva. Most are vertical stroke characters from obscure scripts (Pahawh Hmong, Nabataean, Duployan) that render as "l" or "i" lookalikes.
+
+74.5% of these are valid in both JavaScript identifiers and domain names, meaning they can appear in package names and URLs today with no tooling flagging them.
 
 ### Font choice changes confusable risk dramatically
 
@@ -36,7 +38,11 @@ Same-font comparisons average 0.536 SSIM; cross-font average 0.339. Font danger 
 
 ### First systematic cross-script confusable measurement
 
-Prior work on confusable detection focuses almost entirely on non-Latin vs Latin (Cyrillic `а` vs Latin `a`). No public dataset measures visual confusability *between* non-Latin scripts: Cyrillic vs Greek, Hangul vs Han, Devanagari vs Thai. confusable-vision scored all 66 script pairs from 12 ICANN-relevant scripts (23.6M comparisons), finding 563 cross-script confusable pairs across 37 of them. Highest-yield: Cyrillic-Greek (126 pairs), Latin-Cyrillic (103), Latin-Greek (86). Top discovery: Hangul jamo U+1175 vs CJK U+4E28 at SSIM 0.999. Also confirmed empirically: Katakana `ロ` vs CJK `口`, Devanagari `०` vs Thai `๐`, Georgian `Ⴝ` vs Latin `S`. 29 of 66 script pairs produced zero matches, confirming that most distant scripts are visually distinct.
+Prior work on confusable detection focuses almost entirely on non-Latin vs Latin (Cyrillic `а` vs Latin `a`). No public dataset measures visual confusability *between* non-Latin scripts: Cyrillic vs Greek, Hangul vs Han, Devanagari vs Thai.
+
+confusable-vision scored all 66 script pairs from 12 ICANN-relevant scripts (23.6M comparisons), finding 563 cross-script confusable pairs across 37 of them. Highest-yield: Cyrillic-Greek (126 pairs), Latin-Cyrillic (103), Latin-Greek (86).
+
+Top discovery: Hangul jamo U+1175 vs CJK U+4E28 at SSIM 0.999. Also confirmed empirically: Katakana `ロ` vs CJK `口`, Devanagari `०` vs Thai `๐`, Georgian `Ⴝ` vs Latin `S`. 29 of 66 script pairs produced zero matches, confirming that most distant scripts are visually distinct.
 
 ## Quick start
 
