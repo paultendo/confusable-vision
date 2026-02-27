@@ -150,6 +150,7 @@ fc-list ':charset=61-7A' --format='%{file}|%{family[0]}\n'
 - [x] Glyph reuse detection, identifier property annotations, weighted edge computation, namespace-guard integration
 - [x] Cross-script confusable scanning (12 ICANN scripts, 23.6M pairs scored, 563 discoveries)
 - [x] Per-font querying and font comparison
+- [ ] Score arbitrary fonts. Register a new font by path, render all source characters against it, and produce a confusable risk report. Enables "I'm switching from Arial to Inter for my banking app, which confusable pairs change?" without re-running the full pipeline.
 - [ ] Multi-character confusables (`rn` vs `m`, `cl` vs `d`). Shelved: SSIM cannot weight categorical features like dots (`ni` scores 0.86 against `m` because the dot is a handful of pixels, while humans treat it as an instant disambiguator). Revisit with a perceptual metric that weights distinctive features.
 
 ## Related
