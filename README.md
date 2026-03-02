@@ -178,9 +178,10 @@ Requires the discovery files from the scoring pipeline (gitignored, regenerate l
 Write-ups on [paultendo.github.io](https://paultendo.github.io) covering the findings and methodology behind this project:
 
 **RaySpace methodology and findings:**
-- [RaySpace: measuring glyph similarity with vector-outline raycasting](https://paultendo.github.io/posts/rayspace-methodology/) (forthcoming)
-- [From CT scanners to confusable characters: the prior art behind RaySpace](https://paultendo.github.io/posts/rayspace-prior-art/) (forthcoming)
-- [Multi-character confusables: when rn becomes m](https://paultendo.github.io/posts/multichar-confusables/) (forthcoming)
+- [RaySpace: measuring glyph similarity with vector-outline raycasting](https://paultendo.github.io/posts/rayspace-methodology/)
+- [From CT scanners to confusable characters: the prior art behind RaySpace](https://paultendo.github.io/posts/rayspace-prior-art/)
+- [Multi-character confusables: when rn becomes m](https://paultendo.github.io/posts/multichar-confusables/)
+- [250,000 confusable pairs. 102 that matter for domain names.](https://paultendo.github.io/posts/idn-relevance/)
 
 **SSIM pipeline findings:**
 - [I rendered 1,418 Unicode confusable pairs across 230 fonts. Most aren't confusable to the eye.](https://paultendo.github.io/posts/confusable-vision-visual-similarity/)

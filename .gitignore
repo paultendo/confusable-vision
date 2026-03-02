@@ -14,5 +14,7 @@ attack-tests/results/*
 !attack-tests/results/*.md
 attack-tests/.env
 scripts/RAYCASTING_BRIEF.md
+scripts/render-*.ts
+!scripts/render-pairs.ts
 references/
 private/
