@@ -13,3 +13,6 @@ data/output/*
 attack-tests/results/*
 !attack-tests/results/*.md
 attack-tests/.env
+scripts/RAYCASTING_BRIEF.md
+references/
+private/

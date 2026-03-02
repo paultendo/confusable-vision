@@ -1,60 +1,52 @@
 # confusable-vision
 
-Empirical visual similarity scoring for Unicode confusable characters. Renders character pairs across 230 system fonts, measures structural similarity (SSIM), and produces scored JSON artifacts that tell you exactly how confusable two characters are, in which fonts, and with what confidence.
+Empirical glyph similarity scoring using vector-outline raycasting. Renders Unicode confusable character pairs across 245 system fonts, measures structural similarity from font outlines directly (no rasterization), and produces scored JSON artifacts with per-font continuous distance scores.
 
-Key results from 26.5 million SSIM comparisons across 22,000+ characters and 12 writing systems:
+Key results from 52.6 million single-char and 190 million multi-char comparisons across 22,581 characters and 12 writing systems:
 
-- **793 confusable pairs not in any standard.** Characters that look like Latin letters on screen but are absent from Unicode's official confusables.txt. 74.5% are valid in package names and domain names today.
-- **World-first cross-script confusable dataset.** 563 visually confusable pairs between non-Latin scripts (Cyrillic vs Greek, Hangul vs Han, Devanagari vs Thai) that no prior public dataset covers.
-- **Font-aware confidence scores replace binary lists.** TR39 says a pair is confusable or it isn't. confusable-vision says *how* confusable, *in which fonts*, with measured SSIM. 96.5% of TR39 pairs score below 0.7; the dangerous 3.5% score above 0.95.
+- **249,976 unique single-char confusable pairs** across 245 fonts, 12 scripts, 66 cross-script pairs. 764,395 total font-level discoveries.
+- **2,524,275 unique multi-char (bigram) confusable pairs** including rn/m across 95 fonts (33 below distance 0.40) and oy/Cyrillic uk across 16 fonts.
+- **Per-font continuous distance scores**, not binary lists. Each pair has a measured ray distance per font, giving font-aware confidence for downstream security tooling.
+- **305% more discoveries than SDF**, 29% faster. The enriched five-layer ray signature is a strict superset of SDF findings; SDF-exclusive pairs are universally false positives.
 
-The output (`confusable-weights.json`) feeds directly into [namespace-guard](https://github.com/paultendo/namespace-guard) for runtime confusable detection in package names, domain names, and identifiers.
+The output feeds directly into [namespace-guard](https://github.com/paultendo/namespace-guard) for runtime confusable detection in package names, domain names, and identifiers.
 
-## Why this matters
+## How it works
 
-Unicode has over 149,000 characters. Many look identical to Latin letters: Cyrillic `а` (U+0430) is visually indistinguishable from Latin `a` in most fonts. Attackers exploit this for [IDN homograph attacks](https://en.wikipedia.org/wiki/IDN_homograph_attack), package name typosquatting, and credential phishing.
+RaySpace casts parallel rays through font outlines at 36 angles and captures five layers of information per glyph: crossing counts, crossing positions, crossing angles, ping distances (stroke width from each crossing), and ping depth (counter width). This produces a compact signature per character per font. Two signatures are compared with a weighted L1 distance across all five layers.
 
-Unicode TR39 publishes a [confusables.txt](https://unicode.org/Public/security/latest/confusables.txt) mapping, but it's a binary list: a pair is either confusable or it isn't. It doesn't account for fonts, doesn't score confidence, and misses hundreds of pairs. confusable-vision fills that gap with per-font, per-pair SSIM scores derived from actual rendered pixels.
+A three-stage filter cascade makes exhaustive comparison tractable:
 
-## What it found
+1. **Advance width filter** (15% tolerance) eliminates pairs with different character widths. Removes 63% of candidates.
+2. **Ray comparison** (threshold 2.0, tightened to 1.0 for large script pairs). Removes another 33%.
+3. Only 3.3% of candidates survive to become discoveries.
 
-**26.5 million SSIM comparisons** across 230 macOS system fonts, 12 ICANN-relevant scripts, and 22,000+ Unicode characters:
-
-| | Pairs | Comparisons | Source |
-|---|---|---|---|
-| TR39 validation | 1,418 | 235,625 | confusables.txt (single-codepoint, Latin targets) |
-| Novel discovery | 793 | 2,904,376 | 23,317 identifier-safe codepoints vs Latin a-z/0-9 |
-| Cross-script | 563 | 23,629,492 | 12 scripts x 66 script pairs (Latin, Cyrillic, Greek, Arabic, Han, Hangul, Katakana, Hiragana, Devanagari, Thai, Georgian, Armenian) |
-
-**1,397 weighted confusable edges** in the final output, each with same-font/cross-font statistics, danger scores, and cost values.
-
-### TR39 is mostly noise, but the high end is severe
-
-96.5% of confusables.txt scores below 0.7 mean SSIM. The median pair scores 0.322. But 82 pairs are pixel-identical (SSIM 1.000) in at least one font, and 47 pairs score negative SSIM (less similar than random noise). The list conflates genuinely dangerous pairs with pairs no human would confuse.
-
-### 793 confusable pairs are missing from TR39
-
-These are characters that look like Latin letters on screen but do not appear in Unicode's official confusables.txt. Top find: U+A7FE LATIN EPIGRAPHIC LETTER I LONGA scores 0.998 against "l" in Geneva. Most are vertical stroke characters from obscure scripts (Pahawh Hmong, Nabataean, Duployan) that render as "l" or "i" lookalikes.
-
-74.5% of these are valid in both JavaScript identifiers and domain names, meaning they can appear in package names and URLs today with no tooling flagging them.
-
-### Font choice changes confusable risk dramatically
-
-Same-font comparisons average 0.536 SSIM; cross-font average 0.339. Font danger rates range from 0% (Zapfino) to 67.5% (Phosphate). Switching from Arial to Georgia drops confusable pair coverage from 438 to 103. The font a product ships matters for its attack surface.
-
-### World-first cross-script confusable measurement
-
-Prior work on confusable detection focuses almost entirely on non-Latin vs Latin (Cyrillic `а` vs Latin `a`). No public dataset measures visual confusability *between* non-Latin scripts: Cyrillic vs Greek, Hangul vs Han, Devanagari vs Thai.
-
-confusable-vision scored all 66 script pairs from 12 ICANN-relevant scripts (23.6M comparisons), finding 563 cross-script confusable pairs across 37 of them. Highest-yield: Cyrillic-Greek (126 pairs), Latin-Cyrillic (103), Latin-Greek (86).
-
-Top discovery: Hangul jamo U+1175 vs CJK U+4E28 at SSIM 0.999. Also confirmed empirically: Katakana `ロ` vs CJK `口`, Devanagari `०` vs Thai `๐`, Georgian `Ⴝ` vs Latin `S`. 29 of 66 script pairs produced zero matches, confirming that most distant scripts are visually distinct.
+The signature bank (294,646 entries across 245 fonts) is precomputed once. Discovery then runs as single-threaded arithmetic on the bank, completing 52.6 million pair comparisons in 31 minutes with no worker threads or GPU.
 
 ## Quick start
 
 ```bash
 npm install
 
+# 1. Build the ray signature bank (prerequisite, ~24 min)
+npx tsx scripts/build-signature-bank.ts
+
+# 2. Single-char discovery (22,581 chars, 12 scripts, ~36 min)
+npx tsx scripts/discover-singlechar-sdf.ts --scorer=ray
+
+# 3. Multi-char (bigram) discovery (676 bigrams, ~63 min)
+npx tsx scripts/discover-multichar-sdf.ts --scorer=ray
+
+# 4. Score known TR39 multi-char confusables (~5 min)
+npx tsx scripts/score-multichar-sdf.ts --scorer=ray
+```
+
+<details>
+<summary>Legacy SSIM pipeline</summary>
+
+The original SSIM-based pipeline scored 26.5 million comparisons across 230 fonts. It remains functional but is superseded by RaySpace for all discovery and scoring tasks.
+
+```bash
 # TR39 confusable pair scoring
 npx tsx scripts/build-index.ts          # Render index (~160s, 11,370 PNGs)
 npx tsx scripts/score-all-pairs.ts      # Score all pairs (~65s, 235K comparisons)
@@ -67,6 +59,62 @@ npx tsx scripts/score-candidates.ts          # Score against Latin targets (~15m
 # Extract high-scoring discoveries from both pipelines
 npx tsx scripts/extract-discoveries.ts
 ```
+
+</details>
+
+## What it found
+
+### Top confusable pairs (single-char, mean distance < 0.10)
+
+| Source | Target | Scripts | Mean | Fonts | Zeros |
+|---|---|---|---|---|---|
+| w U+0077 | ԝ U+051D | Latin-Cyrillic | 0.000 | 19 | 19 |
+| j U+006A | ϳ U+03F3 | Latin-Greek | 0.013 | 21 | 18 |
+| i U+0069 | і U+0456 | Latin-Cyrillic | 0.018 | 62 | 50 |
+| s U+0073 | ѕ U+0455 | Latin-Cyrillic | 0.018 | 62 | 46 |
+| c U+0063 | с U+0441 | Latin-Cyrillic | 0.019 | 61 | 45 |
+| o U+006F | о U+043E | Latin-Cyrillic | 0.020 | 61 | 44 |
+| j U+006A | ј U+0458 | Latin-Cyrillic | 0.021 | 60 | 48 |
+| x U+0078 | х U+0445 | Latin-Cyrillic | 0.023 | 59 | 50 |
+| p U+0070 | р U+0440 | Latin-Cyrillic | 0.024 | 61 | 46 |
+| e U+0065 | е U+0435 | Latin-Cyrillic | 0.032 | 61 | 44 |
+| a U+0061 | а U+0430 | Latin-Cyrillic | 0.042 | 61 | 45 |
+
+"Zeros" = fonts where the outlines produce bit-identical ray signatures (distance 0.000). Latin w/Cyrillic ԝ is identical in all 19 fonts that contain both glyphs.
+
+### Cross-script breakthroughs (single-char)
+
+| Source | Target | Scripts | Mean | Fonts |
+|---|---|---|---|---|
+| ο U+03BF | ჿ U+10FF | Greek-Georgian | 0.057 | 2 |
+| ヘ U+30D8 | へ U+3078 | Katakana-Hiragana | 0.122 | 11 |
+| 丶 U+4E36 | ヽ U+30FD | Han-Katakana | 0.125 | 9 |
+| 二 U+4E8C | ニ U+30CB | Han-Katakana | 0.249 | 11 |
+| 口 U+53E3 | ロ U+30ED | Han-Katakana | 0.268 | 11 |
+
+Georgian Coda (U+10FF) forms a four-way confusable ring with Latin o, Cyrillic o, and Greek omicron, all below distance 0.08.
+
+### Multi-char headline results
+
+| Bigram | Target | Mean | Fonts | Notes |
+|---|---|---|---|---|
+| ll | ॥ U+0965 (Devanagari double danda) | 0.176 | 8 | Cross-script |
+| oy | ѹ U+0479 (Cyrillic uk) | 0.322 | 16 | Novel cross-script bigram confusable |
+| rn | m U+006D | 0.531 | 95 | 33 fonts below 0.40 |
+| bl | ы U+044B (Cyrillic yeru) | 0.797 | 49 | Cross-script |
+
+The **oy/Cyrillic uk** discovery is the standout novel finding: the Latin bigram "oy" is visually identical to the Cyrillic digraph letter uk (ѹ) at distance 0.000 in Helvetica and 0.0005 in Arial Unicode MS.
+
+### Threshold calibration
+
+| Mean threshold | Single-char unique pairs | Multi-char unique pairs |
+|---|---|---|
+| < 0.50 | 138 | 13 |
+| < 1.00 | 4,174 | 1,631 |
+| < 1.50 | 59,700 | (noise) |
+| < 2.00 | 249,976 | 2,524,275 |
+
+Recommended operating threshold: **1.0** for security applications, **0.5** for high-confidence-only.
 
 ## Font querying
 
@@ -84,44 +132,6 @@ Font name matching is case-insensitive substring, so `"arial"` matches Arial, Ar
 
 Requires the discovery files from the scoring pipeline (gitignored, regenerate locally).
 
-## How it works
-
-### Rendering pipeline
-
-1. **build-index** renders source and target characters as 48x48 greyscale PNGs, one per font that natively contains the character. Fontconfig is queried per-character to skip fonts lacking coverage (97% reduction vs brute-force).
-
-2. **score-all-pairs** / **score-candidates** computes SSIM for every valid source/target combination in two modes: same-font (both characters in one font) and cross-font (source in supplemental font, target in standard font).
-
-3. **extract-discoveries** filters to high-scoring pairs (mean SSIM >= 0.7) and writes compact, licenced JSON files.
-
-4. **generate-weights** combines all discoveries into `confusable-weights.json` with per-pair same-font/cross-font statistics, danger (max SSIM), stableDanger (p95 SSIM), and cost (1 - stableDanger).
-
-### Design choices
-
-- **Greyscale rendering.** [Gupta et al. 2023 ("GlyphNet")](https://arxiv.org/abs/2306.10392) found greyscale outperforms colour for glyph comparison.
-- **No image augmentation.** Flipping/rotating characters creates unrealistic glyphs.
-- **SSIM over learned embeddings.** Deterministic, reproducible, no training data or GPU required.
-- **Fontconfig-targeted rendering.** Only render characters in fonts that actually contain them.
-
-No GlyphNet code is incorporated (GPL licence ambiguity in their repository).
-
-### Font discovery
-
-Rather than a hardcoded font list, confusable-vision auto-discovers every system font with Latin a-z coverage:
-
-```bash
-fc-list ':charset=61-7A' --format='%{file}|%{family[0]}\n'
-```
-
-| Category | Count | Purpose |
-|----------|-------|---------|
-| standard | 74 | Latin-primary fonts (Arial, Menlo, Georgia, Helvetica, etc.) |
-| script | 49 | CJK, Indic, Thai fonts that also contain Latin glyphs |
-| noto | 103 | Noto Sans variants for non-Latin scripts |
-| math | 3 | STIX Two Math, STIX Two Text, STIXGeneral |
-| symbol | 1 | Apple Symbols |
-| **Total** | **230** | |
-
 ## Output
 
 ### Committed (CC-BY-4.0)
@@ -131,55 +141,66 @@ fc-list ':charset=61-7A' --format='%{file}|%{family[0]}\n'
 | `data/output/confusable-discoveries.json` | 110 TR39 pairs with high SSIM (>= 0.7) or pixel-identical |
 | `data/output/candidate-discoveries.json` | 793 novel pairs not in TR39, mean SSIM >= 0.7 |
 | `data/output/confusable-weights.json` | 1,397 weighted edges for namespace-guard integration |
+| `data/output/cross-script-discoveries.json` | 563 cross-script confusable pairs |
+| `data/output/cross-script-summary.json` | Cross-script summary by script pair |
+| `data/output/multichar-discoveries.json` | Multi-char confusable discoveries |
 
 ### Generated (gitignored, run pipeline to regenerate)
 
 | File | Description |
 |------|-------------|
-| `data/output/render-index/` | 11,370 render PNGs + index.json |
-| `data/output/candidate-index/` | 89,478 render PNGs + index.json |
-| `data/output/confusable-scores.json` | Full scored results (63 MB) |
-| `data/output/candidate-scores.json` | Full scored results (573 MB) |
-| `data/output/report-stats.txt` | Detailed statistics for REPORT.md |
+| `data/output/render-index/` | Render PNGs + index (SSIM pipeline) |
+| `data/output/singlechar-sdf-scores.jsonl` | Single-char RaySpace scores |
+| `data/output/multichar-rayspace-scores.jsonl` | Multi-char RaySpace scores |
+| `data/output/signature-bank/` | Ray signature bank (294,646 entries, 7.9GB compressed) |
 
 ## Progress
 
-- [x] TR39 validation (1,418 pairs, 230 fonts, technical report)
-- [x] Novel confusable discovery (793 high-scoring pairs from 23,317 candidates)
-- [x] CJK/Hangul verification (122,862 logographic characters, 69 high-scoring pairs found, confirms M2 exclusion was broadly correct)
-- [x] Glyph reuse detection, identifier property annotations, weighted edge computation, namespace-guard integration
-- [x] Cross-script confusable scanning (12 ICANN scripts, 23.6M pairs scored, 563 discoveries)
+- [x] TR39 validation (1,418 pairs, 230 fonts, SSIM pipeline)
+- [x] Novel confusable discovery (793 high-scoring pairs from 23,317 candidates, SSIM)
+- [x] Cross-script confusable scanning (12 ICANN scripts, 23.6M pairs, 563 discoveries, SSIM)
 - [x] Per-font querying and font comparison
-- [ ] Score arbitrary fonts. Register a new font by path, render all source characters against it, and produce a confusable risk report. Enables "I'm switching from Arial to Inter for my banking app, which confusable pairs change?" without re-running the full pipeline.
-- [ ] Multi-character confusables (`rn` vs `m`, `cl` vs `d`). Shelved: SSIM cannot weight categorical features like dots (`ni` scores 0.86 against `m` because the dot is a handful of pixels, while humans treat it as an instant disambiguator). Revisit with a perceptual metric that weights distinctive features.
+- [x] RaySpace five-layer vector-outline scorer (replaces SDF and SSIM for discovery)
+- [x] Single-char RaySpace discovery (249,976 unique pairs, 245 fonts, 12 scripts)
+- [x] Multi-char RaySpace discovery (2,524,275 unique bigram pairs, 245 fonts)
+- [x] Cross-script discovery with RaySpace (305% more pairs than SDF, strict superset)
+- [ ] Produce `confusable-weights.json` v2 using RaySpace distances for namespace-guard
+- [ ] Binary signature bank format (reduce 273s load time to seconds)
+- [ ] Score arbitrary fonts by path without re-running full pipeline
 
 ## Related
 
 - [namespace-guard](https://github.com/paultendo/namespace-guard) (v0.16.0+) consumes `confusable-weights.json` for measured visual risk scoring via `confusableDistance({ weights })`
-- [REPORT.md](REPORT.md): full technical report (12 sections, per-font analysis, appendices)
+- [REPORT.md](REPORT.md): full technical report from the SSIM pipeline (12 sections, per-font analysis, appendices)
 
 ### Blog posts
 
 Write-ups on [paultendo.github.io](https://paultendo.github.io) covering the findings and methodology behind this project:
 
-- [I rendered 1,418 Unicode confusable pairs across 230 fonts. Most aren't confusable to the eye.](https://paultendo.github.io/posts/confusable-vision-visual-similarity/) — TR39 validation results and the case for measured confidence scores
-- [793 Unicode characters look like Latin letters but aren't (yet) in confusables.txt](https://paultendo.github.io/posts/confusable-vision-novel-discoveries/) — novel discovery pipeline and the highest-scoring finds
-- [28 CJK and Hangul characters look like Latin letters](https://paultendo.github.io/posts/confusable-vision-cjk-hangul-scan/) — verifying the CJK/Hangul exclusion from the main scan
-- [248 cross-script confusable pairs that no standard covers](https://paultendo.github.io/posts/confusable-vision-cross-script/) — cross-script scanning across 12 ICANN scripts
-- [148x faster: rebuilding a Unicode scanning pipeline for cross-script scale](https://paultendo.github.io/posts/confusable-vision-pipeline-148x/) — WASM SSIM workers, pure JS resize, and the optimisation path to 23.6M comparisons
-- [When shape similarity lies: size-ratio artifacts in confusable detection](https://paultendo.github.io/posts/confusable-vision-size-ratio/) — why normalisation choices matter and how size-ratio filtering reduces false positives
-- [The new DDoS: Unicode confusables can't fool LLMs, but they can 5x your API bill](https://paultendo.github.io/posts/confusable-vision-llm-attack-tests/) — testing confusable attacks against GPT-4o, Claude, Gemini, and Llama
+**RaySpace methodology and findings:**
+- [RaySpace: measuring glyph similarity with vector-outline raycasting](https://paultendo.github.io/posts/rayspace-methodology/) (forthcoming)
+- [From CT scanners to confusable characters: the prior art behind RaySpace](https://paultendo.github.io/posts/rayspace-prior-art/) (forthcoming)
+- [Multi-character confusables: when rn becomes m](https://paultendo.github.io/posts/multichar-confusables/) (forthcoming)
+
+**SSIM pipeline findings:**
+- [I rendered 1,418 Unicode confusable pairs across 230 fonts. Most aren't confusable to the eye.](https://paultendo.github.io/posts/confusable-vision-visual-similarity/)
+- [793 Unicode characters look like Latin letters but aren't (yet) in confusables.txt](https://paultendo.github.io/posts/confusable-vision-novel-discoveries/)
+- [28 CJK and Hangul characters look like Latin letters](https://paultendo.github.io/posts/confusable-vision-cjk-hangul-scan/)
+- [248 cross-script confusable pairs that no standard covers](https://paultendo.github.io/posts/confusable-vision-cross-script/)
+- [148x faster: rebuilding a Unicode scanning pipeline for cross-script scale](https://paultendo.github.io/posts/confusable-vision-pipeline-148x/)
+- [When shape similarity lies: size-ratio artifacts in confusable detection](https://paultendo.github.io/posts/confusable-vision-size-ratio/)
+- [The new DDoS: Unicode confusables can't fool LLMs, but they can 5x your API bill](https://paultendo.github.io/posts/confusable-vision-llm-attack-tests/)
 
 ### Background
 
 Posts covering the broader problem space that motivated this project:
 
-- [A threat model for Unicode identifier spoofing](https://paultendo.github.io/posts/unicode-identifier-threat-model/) — attack taxonomy for package names, domains, and source code identifiers
-- [Making Unicode risk measurable](https://paultendo.github.io/posts/making-unicode-risk-measurable/) — why binary confusable lists aren't enough and what a scored approach looks like
-- [Your LLM reads Unicode codepoints, not glyphs. That's an attack surface.](https://paultendo.github.io/posts/confusable-llm-attack-vectors/) — how confusables interact with tokenisation and code review by LLMs
-- [Who does confusable detection actually protect?](https://paultendo.github.io/posts/anglocentric-confusable-detection/) — the anglocentric bias in TR39 and what it means for non-Latin users
-- [Unicode ships one confusable map. You need two.](https://paultendo.github.io/posts/confusable-detection-without-nfkc/) — the NFKC/TR39 divergence that started this project
-- [confusables.txt and NFKC disagree on 31 characters](https://paultendo.github.io/posts/unicode-confusables-nfkc-conflict/) — the 31 composability vectors that confusable-vision was originally built to resolve
+- [A threat model for Unicode identifier spoofing](https://paultendo.github.io/posts/unicode-identifier-threat-model/)
+- [Making Unicode risk measurable](https://paultendo.github.io/posts/making-unicode-risk-measurable/)
+- [Your LLM reads Unicode codepoints, not glyphs. That's an attack surface.](https://paultendo.github.io/posts/confusable-llm-attack-vectors/)
+- [Who does confusable detection actually protect?](https://paultendo.github.io/posts/anglocentric-confusable-detection/)
+- [Unicode ships one confusable map. You need two.](https://paultendo.github.io/posts/confusable-detection-without-nfkc/)
+- [confusables.txt and NFKC disagree on 31 characters](https://paultendo.github.io/posts/unicode-confusables-nfkc-conflict/)
 
 ## Licence
 

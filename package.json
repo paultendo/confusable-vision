@@ -12,7 +12,15 @@
     "fetch-confusables": "npx tsx scripts/fetch-confusables.ts",
     "build-index": "npx tsx scripts/build-index.ts",
     "score-all-pairs": "npx tsx scripts/score-all-pairs.ts",
-    "query-font": "npx tsx scripts/query-font.ts"
+    "query-font": "npx tsx scripts/query-font.ts",
+    "raycast-spike": "npx tsx scripts/raycast-spike.ts",
+    "sdf-spike": "npx tsx scripts/sdf-spike.ts",
+    "validate-raycast-sdf": "npx tsx scripts/validate-raycast-sdf.ts",
+    "score-multichar-sdf": "node --max-old-space-size=8192 --import tsx/esm scripts/score-multichar-sdf.ts",
+    "discover-multichar-sdf": "node --max-old-space-size=8192 --import tsx/esm scripts/discover-multichar-sdf.ts",
+    "build-signature-bank": "node --max-old-space-size=8192 --import tsx/esm scripts/build-signature-bank.ts",
+    "score-singlechar-sdf": "node --max-old-space-size=8192 --import tsx/esm scripts/score-singlechar-sdf.ts",
+    "discover-singlechar-sdf": "node --max-old-space-size=8192 --import tsx/esm scripts/discover-singlechar-sdf.ts"
   },
   "dependencies": {
     "canvas": "^3.1.0",

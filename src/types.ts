@@ -335,6 +335,117 @@ export interface CrossScriptScoreOutput {
   pairs: CrossScriptPairResult[];
 }
 
+// --- Glyph path types (raycasting & SDF) ---
+
+/** A 2D point in glyph coordinate space */
+export interface PathPoint { x: number; y: number }
+
+/** A Bezier path segment extracted from a font glyph outline */
+export type PathSegment =
+  | { type: 'line'; p0: PathPoint; p1: PathPoint }
+  | { type: 'quadratic'; p0: PathPoint; p1: PathPoint; p2: PathPoint }
+  | { type: 'cubic'; p0: PathPoint; p1: PathPoint; p2: PathPoint; p3: PathPoint };
+
+/** Extracted glyph outline data from fontkit */
+export interface GlyphPathData {
+  segments: PathSegment[];
+  advanceWidth: number;
+  bbox: { minX: number; minY: number; maxX: number; maxY: number };
+}
+
+/** Font-level metrics needed for coordinate normalisation */
+export interface FontMetricsData {
+  unitsPerEm: number;
+  ascender: number;
+  descender: number;
+}
+
+// --- Raycasting types ---
+
+/** Intersection result for a single ray */
+export interface RayResult { offset: number; intersectionCount: number }
+
+/** All ray results at a single projection angle */
+export interface AngleSignature { angle: number; rays: RayResult[] }
+
+/** Full topological signature: multi-angle ray intersection data */
+export interface TopologicalSignature {
+  angles: AngleSignature[];
+  intersectionHistogram: Map<number, number>;
+}
+
+// --- SDF types ---
+
+/** A 2D signed distance field grid */
+export interface SDFGrid {
+  width: number;
+  height: number;
+  data: Float64Array;
+  /** Grid row corresponding to the font baseline (for alignment validation) */
+  baselineRow: number;
+}
+
+/** Comparison metrics between two SDF grids */
+export interface SDFComparison {
+  /** L2 distance (sum of squared differences, normalised by grid size) */
+  l2: number;
+  /** Normalised cross-correlation (-1 to 1, 1 = identical) */
+  ncc: number;
+}
+
+// --- Signature bank types (build-signature-bank.ts) ---
+
+/** A single (codepoint, font) entry in the signature bank */
+export interface BankEntry {
+  font: string;
+  glyphId: number;
+  advanceWidth: number;
+  segmentCount: number;
+  counts: number[];       // flat: numAngles * raysPerAngle
+  positions?: number[];   // flat: all normalised positions, concatenated
+                          // quantised uint8 (0-255 -> [0.0, 1.0] of ray bbox span)
+                          // offset for ray i = sum(counts[0..i-1])
+                          // only stored for rays where count > 0
+  angles?: number[];      // flat: crossing angles, parallel to positions
+                          // quantised uint8 (0=grazing, 255=perpendicular)
+                          // [0, pi/2] -> [0, 255]
+  pingDistances?: number[]; // flat: shorter ping (stroke width), parallel to positions/angles
+                            // quantised uint8: 0-254 = distance / gridSize, 255 = miss/escaped
+  pingMax?: number[];       // flat: longer ping (counter width), parallel to positions/angles
+                            // self-silencing: outer contour hits produce 255 on both sides -> zero distance
+}
+
+/** Meta header line in signature-bank.jsonl */
+export interface BankMetaLine {
+  type: 'meta';
+  generatedAt: string;
+  platform: string;
+  gridSize: number;
+  numAngles: number;
+  raysPerAngle: number;
+  fontsUsed: string[];
+  hasPositions?: boolean;
+  hasAngles?: boolean;
+  hasPings?: boolean;
+}
+
+/** One codepoint's entries in signature-bank.jsonl */
+export interface BankEntryLine {
+  type: 'entry';
+  cp: string;  // hex codepoint, e.g. "0061"
+  entries: BankEntry[];
+}
+
+// --- Multi-character confusable types ---
+
+/** A multi-character confusable mapping from confusables.txt */
+export interface MulticharConfusable {
+  source: string;
+  sourceCodepoints: string[];
+  target: string;
+  targetCodepoints: string[];
+}
+
 /** Top-level output for milestone 1b */
 export interface ScoreAllPairsOutput {
   meta: {

@@ -16,11 +16,12 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import type { ConfusablePair } from '../src/types.js';
+import type { ConfusablePair, MulticharConfusable } from '../src/types.js';
 
 const URL = 'https://unicode.org/Public/security/latest/confusables.txt';
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUTPUT_PATH = path.join(ROOT, 'data/input/confusable-pairs.json');
+const MULTICHAR_OUTPUT_PATH = path.join(ROOT, 'data/input/confusable-multichar.json');
 
 const LATIN_LOWER = new Set('abcdefghijklmnopqrstuvwxyz'.split(''));
 const DIGITS = new Set('0123456789'.split(''));
@@ -50,6 +51,7 @@ async function main() {
   console.log(`Downloaded ${text.length} bytes, ${lines.length} lines`);
 
   const pairs: ConfusablePair[] = [];
+  const multicharPairs: MulticharConfusable[] = [];
   let skippedMultiChar = 0;
   let skippedNonLatin = 0;
   let skippedBasicLatin = 0;
@@ -63,12 +65,33 @@ async function main() {
     const parts = trimmed.split(';');
     if (parts.length < 2) continue;
 
-    const sourceHex = parts[0]!.trim();
+    const sourceHexes = parts[0]!.trim().split(/\s+/);
     const targetHexes = parts[1]!.trim().split(/\s+/);
 
-    // Parse source codepoint
-    const sourceCp = parseInt(sourceHex, 16);
-    if (isNaN(sourceCp)) continue;
+    // Parse source codepoints
+    const sourceCps = sourceHexes.map(h => parseInt(h, 16));
+    if (sourceCps.some(cp => isNaN(cp))) continue;
+
+    // Parse target codepoints
+    const targetCps = targetHexes.map(h => parseInt(h, 16));
+    if (targetCps.some(cp => isNaN(cp))) continue;
+
+    // Multi-character: source or target has multiple codepoints
+    if (sourceHexes.length > 1 || targetHexes.length > 1) {
+      const sourceStr = sourceCps.map(cp => String.fromCodePoint(cp)).join('');
+      const targetStr = targetCps.map(cp => String.fromCodePoint(cp)).join('');
+      multicharPairs.push({
+        source: sourceStr,
+        sourceCodepoints: sourceCps.map(codePointToHex),
+        target: targetStr,
+        targetCodepoints: targetCps.map(codePointToHex),
+      });
+      skippedMultiChar++;
+      continue;
+    }
+
+    // Single-character source and target from here
+    const sourceCp = sourceCps[0]!;
 
     // Skip basic Latin sources
     if (isBasicLatin(sourceCp)) {
@@ -76,15 +99,7 @@ async function main() {
       continue;
     }
 
-    // Single-character targets only
-    if (targetHexes.length !== 1) {
-      skippedMultiChar++;
-      continue;
-    }
-
-    const targetCp = parseInt(targetHexes[0]!, 16);
-    if (isNaN(targetCp)) continue;
-
+    const targetCp = targetCps[0]!;
     const targetChar = String.fromCodePoint(targetCp).toLowerCase();
 
     // Target must be a-z or 0-9
@@ -109,9 +124,17 @@ async function main() {
     return cpA - cpB;
   });
 
-  // Write output
+  // Sort multi-char pairs by first source codepoint
+  multicharPairs.sort((a, b) => {
+    const cpA = parseInt(a.sourceCodepoints[0]!.slice(2), 16);
+    const cpB = parseInt(b.sourceCodepoints[0]!.slice(2), 16);
+    return cpA - cpB;
+  });
+
+  // Write outputs
   fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(pairs, null, 2));
+  fs.writeFileSync(MULTICHAR_OUTPUT_PATH, JSON.stringify(multicharPairs, null, 2));
 
   // Stats
   const bmpCount = pairs.filter(p => parseInt(p.sourceCodepoint.slice(2), 16) <= 0xFFFF).length;
@@ -128,7 +151,9 @@ async function main() {
   console.log(`  BMP: ${bmpCount}, SMP: ${smpCount}`);
   console.log(`  Skipped: ${skippedMultiChar} multi-char, ${skippedNonLatin} non-Latin target, ${skippedBasicLatin} basic Latin`);
   console.log(`  Top targets: ${topTargets.map(([t, c]) => `"${t}":${c}`).join(', ')}`);
+  console.log(`\n  Multi-char mappings: ${multicharPairs.length}`);
   console.log(`\nWritten to: ${OUTPUT_PATH}`);
+  console.log(`Written to: ${MULTICHAR_OUTPUT_PATH}`);
 }
 
 main().catch((err) => {
