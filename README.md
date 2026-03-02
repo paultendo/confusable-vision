@@ -7,13 +7,13 @@ Key results from 52.6 million single-char and 190 million multi-char comparisons
 - **249,976 unique single-char confusable pairs** across 245 fonts, 12 scripts, 66 cross-script pairs. 764,395 total font-level discoveries.
 - **2,524,275 unique multi-char (bigram) confusable pairs** including rn/m across 95 fonts (33 below distance 0.40) and oy/Cyrillic uk across 16 fonts.
 - **Per-font continuous distance scores**, not binary lists. Each pair has a measured ray distance per font, giving font-aware confidence for downstream security tooling.
-- **305% more discoveries than SDF**, 29% faster. The enriched five-layer ray signature is a strict superset of SDF findings; SDF-exclusive pairs are universally false positives.
+- **305% more discoveries than SDF**, 29% faster. The enriched five-layer ray signature is a strict superset of SDF findings; SDF-exclusive pairs did not replicate under manual review.
 
 The output feeds directly into [namespace-guard](https://github.com/paultendo/namespace-guard) for runtime confusable detection in package names, domain names, and identifiers.
 
 ## How it works
 
-RaySpace casts parallel rays through font outlines at 36 angles and captures five layers of information per glyph: crossing counts, crossing positions, crossing angles, ping distances (stroke width from each crossing), and ping depth (counter width). This produces a compact signature per character per font. Two signatures are compared with a weighted L1 distance across all five layers.
+RaySpace casts parallel rays through font outlines at 36 angles and captures five layers of information per glyph: crossing counts, crossing positions, crossing angles, ping distances (stroke width at each crossing), and ping max (counter width between crossings). This produces a compact signature per character per font. Two signatures are compared with a weighted L1 distance across all five layers.
 
 A three-stage filter cascade makes exhaustive comparison tractable:
 
@@ -114,7 +114,11 @@ The **oy/Cyrillic uk** discovery is the standout novel finding: the Latin bigram
 | < 1.50 | 59,700 | (noise) |
 | < 2.00 | 249,976 | 2,524,275 |
 
-Recommended operating threshold: **1.0** for security applications, **0.5** for high-confidence-only.
+Three recommended operating tiers:
+
+- **Strict (< 0.50)**: 138 single-char pairs, near-zero false positives. Suitable for automated blocking (IDN registration, package name validation) where false positives have real cost.
+- **Standard (< 1.00)**: 4,174 single-char pairs, good balance of coverage and precision. Suitable for flagging and manual review in security tooling.
+- **Exploratory (< 2.00)**: Full discovery set. Contains noise at the upper end but useful for research, font auditing, and building training sets.
 
 ## Font querying
 
@@ -164,7 +168,7 @@ Requires the discovery files from the scoring pipeline (gitignored, regenerate l
 - [x] Single-char RaySpace discovery (249,976 unique pairs, 245 fonts, 12 scripts)
 - [x] Multi-char RaySpace discovery (2,524,275 unique bigram pairs, 245 fonts)
 - [x] Cross-script discovery with RaySpace (305% more pairs than SDF, strict superset)
-- [ ] Produce `confusable-weights.json` v2 using RaySpace distances for namespace-guard
+- [ ] Produce `confusable-weights.json` v2 with per-pair distributional records: mean, p50, p90, font count, zero-distance count, zero fraction, and recommended tier (strict/standard/exploratory). RaySpace distances replace SSIM.
 - [ ] Binary signature bank format (reduce 273s load time to seconds)
 - [ ] Score arbitrary fonts by path without re-running full pipeline
 
