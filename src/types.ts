@@ -259,6 +259,26 @@ export interface ConfusableEdgeWeight {
   inTr39: boolean;
   /** Font set used for scoring */
   fontSetId: string;
+
+  // v2 distributional fields (RaySpace, optional for backward compat)
+  /** Mean ray distance across all fonts */
+  rayMean?: number;
+  /** Median (p50) ray distance */
+  rayP50?: number;
+  /** 90th percentile ray distance */
+  rayP90?: number;
+  /** Minimum ray distance (best font match) */
+  rayMin?: number;
+  /** Number of fonts where ray distance is exactly 0 */
+  zeroCount?: number;
+  /** zeroCount / fontCount */
+  zeroFraction?: number;
+  /** Recommended operating tier based on rayMean */
+  tier?: 'strict' | 'standard' | 'exploratory';
+  /** Source character script */
+  sourceScript?: string;
+  /** Target character script */
+  targetScript?: string;
 }
 
 /** Top-level output for confusable-weights.json */
@@ -266,12 +286,18 @@ export interface ConfusableWeightsOutput {
   meta: {
     generatedAt: string;
     pairCount: number;
-    tr39PairCount: number;
-    novelPairCount: number;
-    crossScriptPairCount: number;
+    tr39PairCount?: number;
+    novelPairCount?: number;
+    crossScriptPairCount?: number;
     fontSetId: string;
     licence: string;
     attribution: string;
+    /** v2: scoring methodology */
+    scorer?: 'ssim' | 'rayspace';
+    /** v2: number of fonts in the scoring set */
+    fontCount?: number;
+    /** v2: pair counts by tier */
+    tiers?: { strict: number; standard: number; exploratory: number };
   };
   edges: ConfusableEdgeWeight[];
 }

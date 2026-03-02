@@ -168,7 +168,7 @@ Requires the discovery files from the scoring pipeline (gitignored, regenerate l
 - [x] Single-char RaySpace discovery (249,976 unique pairs, 245 fonts, 12 scripts)
 - [x] Multi-char RaySpace discovery (2,524,275 unique bigram pairs, 245 fonts)
 - [x] Cross-script discovery with RaySpace (305% more pairs than SDF, strict superset)
-- [ ] Produce `confusable-weights.json` v2 with per-pair distributional records: mean, p50, p90, font count, zero-distance count, zero fraction, and recommended tier (strict/standard/exploratory). RaySpace distances replace SSIM.
+- [x] Produce `confusable-weights-v2.json` with per-pair distributional records: mean, p50, p90, font count, zero-distance count, zero fraction, and recommended tier (strict/standard/exploratory). RaySpace distances replace SSIM. 4,174 pairs at standard threshold.
 - [ ] Binary signature bank format (reduce 273s load time to seconds)
 - [ ] Score arbitrary fonts by path without re-running full pipeline
 
