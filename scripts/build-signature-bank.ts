@@ -15,7 +15,8 @@
  * Output: data/output/signature-bank.jsonl.gz
  *
  * Usage: npx tsx scripts/build-signature-bank.ts
- *        npx tsx scripts/build-signature-bank.ts --include-mapped  # Include uppercase A-Z etc.
+ *        npx tsx scripts/build-signature-bank.ts --include-uppercase   # Add uppercase A-Z
+ *        npx tsx scripts/build-signature-bank.ts --extra-range=0041-005A  # Add specific range
  */
 
 import fs from 'node:fs';
@@ -44,7 +45,19 @@ const NUM_ANGLES = 36;
 const RAYS_PER_ANGLE = 50;
 const PROGRESS_INTERVAL = 500;
 const BATCH_SIZE = 200;
-const INCLUDE_MAPPED = process.argv.includes('--include-mapped');
+const INCLUDE_UPPERCASE = process.argv.includes('--include-uppercase');
+
+/** Parse --extra-range=XXXX-YYYY flags into [start, end] pairs */
+function parseExtraRanges(): [number, number][] {
+  const ranges: [number, number][] = [];
+  if (INCLUDE_UPPERCASE) ranges.push([0x0041, 0x005A]); // A-Z
+  for (const arg of process.argv) {
+    const m = arg.match(/^--extra-range=([0-9A-Fa-f]+)-([0-9A-Fa-f]+)$/);
+    if (m) ranges.push([parseInt(m[1]!, 16), parseInt(m[2]!, 16)]);
+  }
+  return ranges;
+}
+const EXTRA_RANGES = parseExtraRanges();
 
 // ---- Worker pool ----
 
@@ -143,16 +156,19 @@ async function main(): Promise<void> {
   console.log(`  ${numCpus} cores detected, using ${numWorkers} worker threads\n`);
 
   // 1. Parse IDN codepoints
-  const statusLabel = INCLUDE_MAPPED ? 'PVALID + mapped' : 'PVALID';
-  console.log(`[1/7] Parsing ${statusLabel} codepoints from IdnaMappingTable.txt...`);
-  if (INCLUDE_MAPPED) console.log('  --include-mapped: including uppercase Latin and other mapped codepoints');
+  console.log('[1/7] Parsing codepoints from IdnaMappingTable.txt...');
+  if (EXTRA_RANGES.length > 0) {
+    for (const [s, e] of EXTRA_RANGES) {
+      console.log(`  extra range: U+${s.toString(16).toUpperCase().padStart(4, '0')}..U+${e.toString(16).toUpperCase().padStart(4, '0')} (${e - s + 1} codepoints)`);
+    }
+  }
   if (!fs.existsSync(IDN_TABLE_PATH)) {
     console.error(`  IdnaMappingTable.txt not found at ${IDN_TABLE_PATH}`);
     console.error('  Download from: https://unicode.org/Public/idna/16.0.0/IdnaMappingTable.txt');
     process.exit(1);
   }
-  const allCodepoints = parseIdnCodepoints(IDN_TABLE_PATH, { includeMapped: INCLUDE_MAPPED });
-  console.log(`  ${allCodepoints.length} ${statusLabel} codepoints\n`);
+  const allCodepoints = parseIdnCodepoints(IDN_TABLE_PATH, { extraRanges: EXTRA_RANGES });
+  console.log(`  ${allCodepoints.length} codepoints\n`);
 
   // 2. Init fonts (system only)
   console.log('[2/7] Initialising system fonts...');
@@ -326,17 +342,27 @@ async function main(): Promise<void> {
   let totalEntries = 0;
   let skippedNoGlyph = 0;
 
-  // Process in batches: extract glyphs on main thread, compute signatures on workers
+  // Process in batches: extract glyphs on main thread, compute signatures on workers.
+  // Write buffer collects serialised lines and flushes to disk periodically to bound memory.
+  const FLUSH_INTERVAL = 50; // flush every N codepoints
+  let writeBuf: string[] = [];
+
+  function flushWriteBuf(): void {
+    if (writeBuf.length === 0) return;
+    fs.writeSync(fd, writeBuf.join(''));
+    writeBuf.length = 0;
+  }
+
+  interface PendingItem {
+    fontFamily: string;
+    glyphId: number;
+    advanceWidth: number;
+    segmentCount: number;
+    promise: Promise<SignatureResult>;
+  }
+
   for (let bStart = 0; bStart < remaining.length; bStart += BATCH_SIZE) {
     const batch = remaining.slice(bStart, bStart + BATCH_SIZE);
-
-    interface PendingItem {
-      fontFamily: string;
-      glyphId: number;
-      advanceWidth: number;
-      segmentCount: number;
-      promise: Promise<SignatureResult>;
-    }
 
     const batchData: { cp: number; hex: string; items: PendingItem[] }[] = [];
 
@@ -397,10 +423,11 @@ async function main(): Promise<void> {
 
       if (entries.length === 0) skippedNoGlyph++;
 
-      const entryLine: BankEntryLine = { type: 'entry', cp: hex, entries };
-      fs.writeSync(fd, JSON.stringify(entryLine) + '\n');
+      writeBuf.push(JSON.stringify({ type: 'entry', cp: hex, entries } as BankEntryLine) + '\n');
       totalEntries += entries.length;
       processed++;
+
+      if (processed % FLUSH_INTERVAL === 0) flushWriteBuf();
 
       if (processed % PROGRESS_INTERVAL === 0) {
         const elapsed = ((Date.now() - t0) / 1000).toFixed(0);
@@ -413,6 +440,7 @@ async function main(): Promise<void> {
     }
   }
 
+  flushWriteBuf();
   await pool.shutdown();
   fs.closeSync(fd);
 
