@@ -21,7 +21,7 @@ A three-stage filter cascade makes exhaustive comparison tractable:
 2. **Ray comparison** (threshold 2.0, tightened to 1.0 for large script pairs). Removes another 33%.
 3. Only 3.3% of candidates survive to become discoveries.
 
-The signature bank (294,646 entries across 245 fonts) is precomputed once. Discovery then runs as single-threaded arithmetic on the bank, completing 52.6 million pair comparisons in 31 minutes with no worker threads or GPU.
+The signature bank (294,646+ entries across 245 fonts; more with `--include-mapped`) is precomputed once. Discovery then runs as single-threaded arithmetic on the bank, completing 52.6 million pair comparisons in 31 minutes with no worker threads or GPU.
 
 ## Quick start
 
@@ -30,6 +30,15 @@ npm install
 
 # 1. Build the ray signature bank (prerequisite, ~24 min)
 npx tsx scripts/build-signature-bank.ts
+
+# 1b. Include uppercase Latin and other IDNA "mapped" codepoints (optional)
+#     By default the bank only includes PVALID codepoints (lowercase, digits,
+#     symbols). Use --include-mapped to add uppercase A-Z and other codepoints
+#     that IDNA maps to their lowercase equivalents. Useful for font
+#     identification and trademark visual comparison where uppercase glyph
+#     shapes matter. The builder is resumable, so this only computes the
+#     additional codepoints.
+npx tsx scripts/build-signature-bank.ts --include-mapped
 
 # 2. Single-char discovery (22,581 chars, 12 scripts, ~36 min)
 npx tsx scripts/discover-singlechar-sdf.ts --scorer=ray

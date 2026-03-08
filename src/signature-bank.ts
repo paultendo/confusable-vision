@@ -26,9 +26,18 @@ import type {
  * PVALID = entries with status "valid" in UTS #46 format.
  * Returns sorted array of codepoint numbers.
  */
-export function parseIdnCodepoints(filePath: string): number[] {
+export interface ParseIdnOptions {
+  /** Include codepoints with IDNA status "mapped" (e.g. uppercase A-Z, which map to lowercase).
+   *  Useful for font identification and trademark comparison where uppercase glyph shapes matter. */
+  includeMapped?: boolean;
+}
+
+export function parseIdnCodepoints(filePath: string, options?: ParseIdnOptions): number[] {
+  const { includeMapped = false } = options ?? {};
   const text = fs.readFileSync(filePath, 'utf-8');
   const result: number[] = [];
+  const validStatuses = new Set(['valid']);
+  if (includeMapped) validStatuses.add('mapped');
 
   for (const line of text.split('\n')) {
     const trimmed = line.trim();
@@ -38,7 +47,7 @@ export function parseIdnCodepoints(filePath: string): number[] {
     if (parts.length < 2) continue;
 
     const status = parts[1]!.trim().split('#')[0]!.trim();
-    if (status !== 'valid') continue;
+    if (!validStatuses.has(status)) continue;
 
     const range = parts[0]!.trim();
     if (range.includes('..')) {

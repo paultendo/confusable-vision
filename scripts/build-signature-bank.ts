@@ -15,6 +15,7 @@
  * Output: data/output/signature-bank.jsonl.gz
  *
  * Usage: npx tsx scripts/build-signature-bank.ts
+ *        npx tsx scripts/build-signature-bank.ts --include-mapped  # Include uppercase A-Z etc.
  */
 
 import fs from 'node:fs';
@@ -43,6 +44,7 @@ const NUM_ANGLES = 36;
 const RAYS_PER_ANGLE = 50;
 const PROGRESS_INTERVAL = 500;
 const BATCH_SIZE = 200;
+const INCLUDE_MAPPED = process.argv.includes('--include-mapped');
 
 // ---- Worker pool ----
 
@@ -141,14 +143,16 @@ async function main(): Promise<void> {
   console.log(`  ${numCpus} cores detected, using ${numWorkers} worker threads\n`);
 
   // 1. Parse IDN codepoints
-  console.log('[1/7] Parsing PVALID codepoints from IdnaMappingTable.txt...');
+  const statusLabel = INCLUDE_MAPPED ? 'PVALID + mapped' : 'PVALID';
+  console.log(`[1/7] Parsing ${statusLabel} codepoints from IdnaMappingTable.txt...`);
+  if (INCLUDE_MAPPED) console.log('  --include-mapped: including uppercase Latin and other mapped codepoints');
   if (!fs.existsSync(IDN_TABLE_PATH)) {
     console.error(`  IdnaMappingTable.txt not found at ${IDN_TABLE_PATH}`);
     console.error('  Download from: https://unicode.org/Public/idna/16.0.0/IdnaMappingTable.txt');
     process.exit(1);
   }
-  const allCodepoints = parseIdnCodepoints(IDN_TABLE_PATH);
-  console.log(`  ${allCodepoints.length} PVALID codepoints\n`);
+  const allCodepoints = parseIdnCodepoints(IDN_TABLE_PATH, { includeMapped: INCLUDE_MAPPED });
+  console.log(`  ${allCodepoints.length} ${statusLabel} codepoints\n`);
 
   // 2. Init fonts (system only)
   console.log('[2/7] Initialising system fonts...');
