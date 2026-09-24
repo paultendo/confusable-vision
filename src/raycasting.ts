@@ -679,8 +679,11 @@ export function computeEnrichedSignature(
   numAngles = 36,
   raysPerAngle = 50,
   gridSize = 128,
+  frame?: { minX: number; minY: number; maxX: number; maxY: number },
 ): { counts: number[]; positions: number[]; angles: number[]; pingDistances: number[]; pingMax: number[] } {
-  const bbox = computeBBoxFromSegments(segments);
+  // By default rays span the glyph's own box, so the signature ignores size and position. A fixed frame (the em box,
+  // see normalizeToEmFrame) keeps both: every glyph is measured against the same baseline at the same scale.
+  const bbox = frame ?? computeBBoxFromSegments(segments);
   const counts: number[] = [];
   const positions: number[] = [];
   const angles: number[] = [];

@@ -5,10 +5,13 @@ data/output/*
 !data/output/candidate-discoveries.json
 !data/output/confusable-weights.json
 !data/output/confusable-weights-v2.json
+!data/output/confusable-weights-v3.json
 !data/output/m2b-verification-report.json
 !data/output/multichar-discoveries.json
 !data/output/cross-script-discoveries.json
 !data/output/cross-script-summary.json
+!data/output/idn-relevant-pairs.json
+!data/output/unicode-submission/
 .DS_Store
 *.tsbuildinfo
 attack-tests/results/*
@@ -19,3 +22,4 @@ scripts/render-*.ts
 !scripts/render-pairs.ts
 references/
 private/
+data/fonts/

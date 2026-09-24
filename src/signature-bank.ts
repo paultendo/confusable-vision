@@ -422,6 +422,65 @@ export function compareEnrichedArrays(
 }
 
 /**
+ * RaySpace distance with geometry weighted to match what readers see (release 2 metric).
+ *
+ * compareEnrichedArrays() adds squared differences of positions, angles and pings (each on a 0 to 1 scale) to a flat
+ * 1.0 for every unmatched crossing. Squaring shrinks a real shape difference (a crossing a quarter of the glyph away
+ * scores 0.06), so that metric is mostly a count of crossings: D and O, both rings, came out almost as close as 0 and O.
+ * Here the differences are absolute and the geometry terms carry GEOMETRY_WEIGHT. Chosen against labelled pairs: the
+ * ASCII letters and digits (distinct except TR39's own mappings), then checked on held-out Latin against Cyrillic
+ * and Greek lowercase, where false matches fell from 10 to 1 with 18 of TR39's 23 lookalikes kept. See
+ * docs/metric-calibration.md.
+ */
+export const GEOMETRY_WEIGHT = 3;
+
+export function compareGeometric(
+  a: CompactBankTarget,
+  b: CompactBankTarget,
+  numAngles: number,
+  raysPerAngle: number,
+): number {
+  if (!a.positions || !b.positions) return compareCountArrays(a.counts, b.counts, numAngles, raysPerAngle);
+  const pa = a.positions, pb = b.positions;
+  const aa = a.angles?.length && b.angles?.length ? a.angles : undefined, ab = aa ? b.angles! : undefined;
+  const da = a.pingDistances?.length && b.pingDistances?.length ? a.pingDistances : undefined, db = da ? b.pingDistances! : undefined;
+  const ma = a.pingMax?.length && b.pingMax?.length ? a.pingMax : undefined, mb = ma ? b.pingMax! : undefined;
+  let offA = 0;
+  let offB = 0;
+  let meanSum = 0;
+  let maxAngle = 0;
+  for (let ai = 0; ai < numAngles; ai++) {
+    let angleSum = 0;
+    for (let ri = 0; ri < raysPerAngle; ri++) {
+      const i = ai * raysPerAngle + ri;
+      const cA = a.counts[i]!;
+      const cB = b.counts[i]!;
+      const matched = Math.min(cA, cB);
+      let ray = Math.abs(cA - cB);
+      if (matched > 0) {
+        let pos = 0, ang = 0, pd = 0, pm = 0;
+        for (let p = 0; p < matched; p++) {
+          const i = offA + p, j = offB + p;
+          pos += Math.abs(pa[i]! - pb[j]!);
+          if (aa) ang += Math.abs(aa[i]! - ab![j]!);
+          if (da) pd += Math.abs(da[i]! - db![j]!);
+          if (ma) pm += Math.abs(ma[i]! - mb![j]!);
+        }
+        const geometry = (pos + 0.3 * (ang + pd + pm)) / (255 * matched);
+        ray += GEOMETRY_WEIGHT * geometry;
+      }
+      angleSum += ray;
+      offA += cA;
+      offB += cB;
+    }
+    const angleMean = angleSum / raysPerAngle;
+    meanSum += angleMean;
+    if (angleMean > maxAngle) maxAngle = angleMean;
+  }
+  return 0.5 * (meanSum / numAngles) + 0.5 * maxAngle;
+}
+
+/**
  * Compact bank entry for per-font indexing. Avoids full BankEntry overhead.
  */
 export interface CompactBankTarget {

@@ -159,6 +159,10 @@ Requires the discovery files from the scoring pipeline (gitignored, regenerate l
 | `data/output/cross-script-discoveries.json` | 563 cross-script confusable pairs |
 | `data/output/cross-script-summary.json` | Cross-script summary by script pair |
 | `data/output/multichar-discoveries.json` | Multi-char confusable discoveries |
+| `data/release/2026.09.24/` | **The dataset, versioned (release 2).** `lookalikes.jsonl.gz`: 857 pairs found alike at the size and baseline position each glyph has in running text, 409 within one font and 448 across fonts (a rare-script character in its fallback font against Latin in Roboto or a common text font), each with the counts behind it. `characters.jsonl.gz`: 23,038 code points with script, general category, TR39 type, IDNA2008 status and the TLDs whose registries accept each one. `DATASET.md` gives the fields, what was compared and suggested thresholds. Pin a release by version; built by `scripts/build-release.ts`. Method and tests: [docs/metric-calibration.md](docs/metric-calibration.md) |
+| `data/output/idn-relevant-pairs.json` | The IDN view of the release: 120 lookalike pairs whose characters can both be registered at a common TLD, with where. Regenerate with `npx tsx scripts/export-idn-pairs.ts` |
+| `data/output/unicode-submission/` | Proposed additions to Unicode confusables data (78 lines in the layout of unicodetools' formatted-source.txt), with the measurements behind each line and pairs that would merge existing classes. Built by `scripts/build-unicode-submission.ts` |
+| `data/input/idn-registrable.json` | Second-level repertoires for .com, .net, .org, .info, .co, .biz, .xyz, .app, .dev and .jp from the IANA IDN tables (fetched 24 Sep 2026); built by `scripts/build-idn-registrable.py` |
 
 ### Generated (gitignored, run pipeline to regenerate)
 

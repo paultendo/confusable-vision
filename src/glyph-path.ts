@@ -58,7 +58,7 @@ export function getFontMetrics(font: ReturnType<typeof fontkit.openSync>): FontM
  * Convert fontkit path commands to typed PathSegment array.
  * Tracks the current point through moveTo/lineTo/curveTo commands.
  */
-function commandsToSegments(commands: any[]): PathSegment[] {
+export function commandsToSegments(commands: any[]): PathSegment[] {
   const segments: PathSegment[] = [];
   let currentX = 0;
   let currentY = 0;
@@ -133,7 +133,7 @@ function commandsToSegments(commands: any[]): PathSegment[] {
  * from Bezier extrema would be tighter, but control-point bbox is
  * sufficient for our normalisation and ray-casting grid).
  */
-function computeBBox(segments: PathSegment[]): { minX: number; minY: number; maxX: number; maxY: number } {
+export function computeBBox(segments: PathSegment[]): { minX: number; minY: number; maxX: number; maxY: number } {
   let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
 
   function update(p: PathPoint): void {
@@ -427,6 +427,30 @@ export function normalizeToGrid(
           p2: transformPoint(seg.p2),
           p3: transformPoint(seg.p3),
         };
+    }
+  });
+}
+
+/**
+ * Place a glyph in a fixed em frame for baseline-anchored signatures: one scale for every font (the grid spans
+ * EM_FRAME_BELOW below the baseline to EM_FRAME_ABOVE above it, in em), the baseline on the same row, and the glyph
+ * centred on its advance width. Pass EM_FRAME as the frame to computeEnrichedSignature().
+ */
+export const EM_FRAME_ABOVE = 1.1;
+export const EM_FRAME_BELOW = 0.3;
+export function emFrame(gridSize: number) {
+  return { minX: 0, minY: 0, maxX: gridSize, maxY: gridSize };
+}
+export function normalizeToEmFrame(pathData: GlyphPathData, unitsPerEm: number, gridSize: number): PathSegment[] {
+  const scale = gridSize / ((EM_FRAME_ABOVE + EM_FRAME_BELOW) * unitsPerEm);
+  const baselineRow = gridSize * (EM_FRAME_ABOVE / (EM_FRAME_ABOVE + EM_FRAME_BELOW));
+  const xShift = (gridSize - pathData.advanceWidth * scale) / 2;
+  const t = (p: PathPoint): PathPoint => ({ x: p.x * scale + xShift, y: baselineRow - p.y * scale });
+  return pathData.segments.map((seg) => {
+    switch (seg.type) {
+      case 'line': return { type: 'line', p0: t(seg.p0), p1: t(seg.p1) };
+      case 'quadratic': return { type: 'quadratic', p0: t(seg.p0), p1: t(seg.p1), p2: t(seg.p2) };
+      case 'cubic': return { type: 'cubic', p0: t(seg.p0), p1: t(seg.p1), p2: t(seg.p2), p3: t(seg.p3) };
     }
   });
 }

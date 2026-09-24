@@ -1,0 +1,4792 @@
+{
+  "description": "Lookalike characters that can appear in domain names: pairs from the confusable-vision release named below that pass its suggested thresholds and whose characters can both be registered at a common TLD. Measured by RaySpace at the size and baseline position each glyph has in running text; see the release's DATASET.md.",
+  "license": "CC-BY-4.0. Attribution: confusable-vision, Paul Wood FRSA (@paultendo).",
+  "release": "2026.09.24",
+  "selection": {
+    "rule": "Within one font: alike in at least 3 text fonts (or all of them, if fewer render both) and at least 5% of the text fonts rendering both. Across fonts: alike in at least 3 font combinations and at least 10% of them. Both characters registrable at a common TLD (\"registrableAt\").",
+    "sameFont": {
+      "minFonts": 3,
+      "minShare": 0.05
+    },
+    "acrossFonts": {
+      "minCombinations": 3,
+      "minShare": 0.1
+    }
+  },
+  "counts": {
+    "pairs": 120,
+    "sameFont": 65,
+    "acrossFonts": 55,
+    "crossScript": 107,
+    "bothRecommended": 57
+  },
+  "pairs": [
+    {
+      "a": {
+        "char": "0",
+        "codepoint": "U+0030",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ዐ",
+        "codepoint": "U+12D0",
+        "script": "Ethiopic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Ethiopic",
+      "method": "same font",
+      "textFontsAlike": 1,
+      "textFontsRenderingBoth": 1,
+      "share": 1,
+      "meanDistanceWhereAlike": 0.2222,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Kefa III"
+      ]
+    },
+    {
+      "a": {
+        "char": "b",
+        "codepoint": "U+0062",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ᖯ",
+        "codepoint": "U+15AF",
+        "script": "Canadian_Aboriginal",
+        "identifierType": "Limited_Use"
+      },
+      "scripts": "Canadian_Aboriginal-Latin",
+      "method": "same font",
+      "textFontsAlike": 1,
+      "textFontsRenderingBoth": 1,
+      "share": 1,
+      "meanDistanceWhereAlike": 0.2069,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Euphemia UCAS"
+      ]
+    },
+    {
+      "a": {
+        "char": "j",
+        "codepoint": "U+006A",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ϳ",
+        "codepoint": "U+03F3",
+        "script": "Greek",
+        "identifierType": "Technical Obsolete"
+      },
+      "scripts": "Greek-Latin",
+      "method": "same font",
+      "textFontsAlike": 19,
+      "textFontsRenderingBoth": 19,
+      "share": 1,
+      "meanDistanceWhereAlike": 0.0187,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial",
+        "Arial Unicode MS",
+        "Bradley Hand",
+        "Charter",
+        "Copperplate",
+        "Courier New",
+        "DIN Condensed",
+        "Geneva",
+        "Iowan Old Style",
+        "Lucida Grande",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Seravek",
+        "Snell Roundhand",
+        "Superclarendon",
+        "Tahoma",
+        "Times",
+        "Times New Roman",
+        "Roboto",
+        "Athelas",
+        "Helvetica",
+        "Helvetica Neue"
+      ]
+    },
+    {
+      "a": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ꓲ",
+        "codepoint": "U+A4F2",
+        "script": "Lisu",
+        "identifierType": "Limited_Use"
+      },
+      "scripts": "Latin-Lisu",
+      "method": "same font",
+      "textFontsAlike": 1,
+      "textFontsRenderingBoth": 1,
+      "share": 1,
+      "meanDistanceWhereAlike": 0.0803,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Geneva"
+      ]
+    },
+    {
+      "a": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "௦",
+        "codepoint": "U+0BE6",
+        "script": "Tamil",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Tamil",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 3,
+      "share": 1,
+      "meanDistanceWhereAlike": 0.2821,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Tamil Sangam MN",
+        "InaiMathi",
+        "Tamil MN"
+      ]
+    },
+    {
+      "a": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ᴏ",
+        "codepoint": "U+1D0F",
+        "script": "Latin",
+        "identifierType": "Technical"
+      },
+      "scripts": "Latin-Latin",
+      "method": "same font",
+      "textFontsAlike": 16,
+      "textFontsRenderingBoth": 16,
+      "share": 1,
+      "meanDistanceWhereAlike": 0.0922,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial",
+        "Tahoma",
+        "Seravek",
+        "Courier New",
+        "Times New Roman",
+        "Microsoft Sans Serif",
+        "Superclarendon",
+        "DIN Condensed",
+        "Iowan Old Style",
+        "System Font",
+        "Bodoni 72",
+        "Roboto",
+        "Lucida Grande",
+        "Charter",
+        "Monaco",
+        "Geneva"
+      ]
+    },
+    {
+      "a": {
+        "char": "q",
+        "codepoint": "U+0071",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ԛ",
+        "codepoint": "U+051B",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 10,
+      "textFontsRenderingBoth": 10,
+      "share": 1,
+      "meanDistanceWhereAlike": 0,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Bradley Hand",
+        "Charter",
+        "DIN Alternate",
+        "DIN Condensed",
+        "Geneva",
+        "Iowan Old Style",
+        "Menlo",
+        "Rockwell",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "Superclarendon",
+        "Roboto"
+      ]
+    },
+    {
+      "a": {
+        "char": "s",
+        "codepoint": "U+0073",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ѕ",
+        "codepoint": "U+0455",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 51,
+      "textFontsRenderingBoth": 51,
+      "share": 1,
+      "meanDistanceWhereAlike": 0.0244,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info"
+      ],
+      "alikeIn": [
+        "American Typewriter",
+        "Andale Mono",
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Baskerville",
+        "Bradley Hand",
+        "Brush Script MT",
+        "Chalkboard SE",
+        "Charter",
+        "Cochin",
+        "Comic Sans MS",
+        "Copperplate",
+        "Courier New",
+        "DIN Condensed",
+        "Georgia",
+        "Hoefler Text",
+        "Impact",
+        "Iowan Old Style",
+        "Lucida Grande",
+        "Luminari",
+        "Marion",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Noteworthy",
+        "PT Mono",
+        "PT Sans",
+        "PT Serif",
+        "PT Serif Caption",
+        "Phosphate",
+        "Rockwell",
+        "STIX Two Math",
+        "STIX Two Text",
+        "STIXGeneral",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "Superclarendon",
+        "System Font",
+        "Tahoma",
+        "Times New Roman",
+        "Trattatello",
+        "Verdana",
+        "Roboto",
+        "Athelas",
+        "DIN Alternate",
+        "Helvetica Neue",
+        "Heiti TC",
+        "Trebuchet MS",
+        "Geneva",
+        "Thonburi",
+        "Gill Sans",
+        "Sathu",
+        "Ayuthaya",
+        "Monaco",
+        "Times",
+        "Helvetica",
+        "Palatino",
+        "Heiti SC"
+      ]
+    },
+    {
+      "a": {
+        "char": "w",
+        "codepoint": "U+0077",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ԝ",
+        "codepoint": "U+051D",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 15,
+      "textFontsRenderingBoth": 15,
+      "share": 1,
+      "meanDistanceWhereAlike": 0,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Bradley Hand",
+        "Charter",
+        "Copperplate",
+        "DIN Alternate",
+        "DIN Condensed",
+        "Geneva",
+        "Iowan Old Style",
+        "Menlo",
+        "PT Mono",
+        "PT Sans",
+        "PT Serif",
+        "PT Serif Caption",
+        "Rockwell",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "Superclarendon",
+        "System Font",
+        "Roboto"
+      ]
+    },
+    {
+      "a": {
+        "char": "i",
+        "codepoint": "U+0069",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "і",
+        "codepoint": "U+0456",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 50,
+      "textFontsRenderingBoth": 51,
+      "share": 0.9804,
+      "meanDistanceWhereAlike": 0.0216,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info"
+      ],
+      "alikeIn": [
+        "American Typewriter",
+        "Andale Mono",
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Baskerville",
+        "Bradley Hand",
+        "Brush Script MT",
+        "Chalkboard SE",
+        "Charter",
+        "Cochin",
+        "Comic Sans MS",
+        "Copperplate",
+        "Courier New",
+        "DIN Alternate",
+        "DIN Condensed",
+        "Geneva",
+        "Georgia",
+        "Helvetica Neue",
+        "Hoefler Text",
+        "Impact",
+        "Lucida Grande",
+        "Luminari",
+        "Marion",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Noteworthy",
+        "PT Mono",
+        "PT Sans",
+        "PT Serif",
+        "PT Serif Caption",
+        "Phosphate",
+        "Rockwell",
+        "STIX Two Math",
+        "STIX Two Text",
+        "Sathu",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "Superclarendon",
+        "System Font",
+        "Tahoma",
+        "Thonburi",
+        "Times New Roman",
+        "Trattatello",
+        "Verdana",
+        "Roboto",
+        "Athelas",
+        "Monaco",
+        "Heiti TC",
+        "Ayuthaya",
+        "Gill Sans",
+        "Helvetica",
+        "Palatino",
+        "Times",
+        "Heiti SC",
+        "Iowan Old Style",
+        "Trebuchet MS"
+      ]
+    },
+    {
+      "a": {
+        "char": "ϳ",
+        "codepoint": "U+03F3",
+        "script": "Greek",
+        "identifierType": "Technical Obsolete"
+      },
+      "b": {
+        "char": "ј",
+        "codepoint": "U+0458",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Greek",
+      "method": "same font",
+      "textFontsAlike": 18,
+      "textFontsRenderingBoth": 19,
+      "share": 0.9474,
+      "meanDistanceWhereAlike": 0.0258,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial",
+        "Arial Unicode MS",
+        "Athelas",
+        "Bradley Hand",
+        "Charter",
+        "Copperplate",
+        "Courier New",
+        "DIN Condensed",
+        "Iowan Old Style",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Seravek",
+        "Snell Roundhand",
+        "Superclarendon",
+        "Tahoma",
+        "Times New Roman",
+        "Roboto",
+        "Geneva",
+        "Times",
+        "Helvetica",
+        "Helvetica Neue"
+      ]
+    },
+    {
+      "a": {
+        "char": "j",
+        "codepoint": "U+006A",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ј",
+        "codepoint": "U+0458",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 48,
+      "textFontsRenderingBoth": 51,
+      "share": 0.9412,
+      "meanDistanceWhereAlike": 0.0131,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info"
+      ],
+      "alikeIn": [
+        "American Typewriter",
+        "Andale Mono",
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Baskerville",
+        "Bradley Hand",
+        "Brush Script MT",
+        "Charter",
+        "Cochin",
+        "Comic Sans MS",
+        "Copperplate",
+        "Courier New",
+        "DIN Condensed",
+        "Georgia",
+        "Heiti TC",
+        "Hoefler Text",
+        "Impact",
+        "Iowan Old Style",
+        "Luminari",
+        "Marion",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Noteworthy",
+        "PT Mono",
+        "PT Sans",
+        "PT Serif",
+        "PT Serif Caption",
+        "Rockwell",
+        "STIX Two Math",
+        "STIX Two Text",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "Superclarendon",
+        "System Font",
+        "Tahoma",
+        "Times New Roman",
+        "Trattatello",
+        "Verdana",
+        "Roboto",
+        "DIN Alternate",
+        "Sathu",
+        "Thonburi",
+        "Geneva",
+        "Helvetica Neue",
+        "Monaco",
+        "Athelas",
+        "Ayuthaya",
+        "Phosphate",
+        "Gill Sans",
+        "Helvetica",
+        "Palatino",
+        "Times",
+        "Heiti SC"
+      ]
+    },
+    {
+      "a": {
+        "char": "z",
+        "codepoint": "U+007A",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ᴢ",
+        "codepoint": "U+1D22",
+        "script": "Latin",
+        "identifierType": "Technical"
+      },
+      "scripts": "Latin-Latin",
+      "method": "same font",
+      "textFontsAlike": 15,
+      "textFontsRenderingBoth": 16,
+      "share": 0.9375,
+      "meanDistanceWhereAlike": 0.1124,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial",
+        "Tahoma",
+        "Seravek",
+        "Courier New",
+        "DIN Condensed",
+        "Lucida Grande",
+        "Superclarendon",
+        "Times New Roman",
+        "Microsoft Sans Serif",
+        "Roboto",
+        "Bodoni 72",
+        "System Font",
+        "Charter",
+        "Monaco",
+        "Iowan Old Style"
+      ]
+    },
+    {
+      "a": {
+        "char": "ヽ",
+        "codepoint": "U+30FD",
+        "script": "Katakana",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "丶",
+        "codepoint": "U+4E36",
+        "script": "Han",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Han-Katakana",
+      "method": "same font",
+      "textFontsAlike": 8,
+      "textFontsRenderingBoth": 9,
+      "share": 0.8889,
+      "meanDistanceWhereAlike": 0.1964,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".co",
+        ".biz",
+        ".xyz",
+        ".app",
+        ".dev",
+        ".jp"
+      ],
+      "alikeIn": [
+        "Hiragino Maru Gothic Pro",
+        "Heiti SC",
+        "Heiti TC",
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans GB",
+        "Hiragino Sans",
+        "Hiragino Mincho Pro",
+        "Hiragino Kaku Gothic Std"
+      ]
+    },
+    {
+      "a": {
+        "char": "ο",
+        "codepoint": "U+03BF",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "о",
+        "codepoint": "U+043E",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Greek",
+      "method": "same font",
+      "textFontsAlike": 43,
+      "textFontsRenderingBoth": 49,
+      "share": 0.8776,
+      "meanDistanceWhereAlike": 0.067,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "American Typewriter",
+        "Andale Mono",
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Brush Script MT",
+        "Charter",
+        "Copperplate",
+        "Courier New",
+        "DIN Condensed",
+        "Georgia",
+        "Impact",
+        "Lucida Grande",
+        "Luminari",
+        "Marion",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Noteworthy",
+        "Phosphate",
+        "Rockwell",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "Superclarendon",
+        "System Font",
+        "Tahoma",
+        "Times New Roman",
+        "Verdana",
+        "Roboto",
+        "DIN Alternate",
+        "STIXGeneral",
+        "Trebuchet MS",
+        "Iowan Old Style",
+        "Geneva",
+        "Apple SD Gothic Neo",
+        "Helvetica Neue",
+        "Baskerville",
+        "Athelas",
+        "Trattatello",
+        "Helvetica",
+        "Cochin",
+        "Palatino",
+        "Times",
+        "Chalkboard SE",
+        "Hiragino Kaku Gothic Std",
+        "Marker Felt",
+        "Hiragino Sans",
+        "Hiragino Maru Gothic Pro",
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans GB",
+        "Hiragino Mincho Pro"
+      ]
+    },
+    {
+      "a": {
+        "char": "v",
+        "codepoint": "U+0076",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ᴠ",
+        "codepoint": "U+1D20",
+        "script": "Latin",
+        "identifierType": "Technical"
+      },
+      "scripts": "Latin-Latin",
+      "method": "same font",
+      "textFontsAlike": 14,
+      "textFontsRenderingBoth": 16,
+      "share": 0.875,
+      "meanDistanceWhereAlike": 0.071,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial",
+        "Tahoma",
+        "Seravek",
+        "Courier New",
+        "DIN Condensed",
+        "Superclarendon",
+        "Times New Roman",
+        "Microsoft Sans Serif",
+        "Roboto",
+        "Monaco",
+        "System Font",
+        "Lucida Grande",
+        "Geneva",
+        "Iowan Old Style"
+      ]
+    },
+    {
+      "a": {
+        "char": "w",
+        "codepoint": "U+0077",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ᴡ",
+        "codepoint": "U+1D21",
+        "script": "Latin",
+        "identifierType": "Technical"
+      },
+      "scripts": "Latin-Latin",
+      "method": "same font",
+      "textFontsAlike": 14,
+      "textFontsRenderingBoth": 16,
+      "share": 0.875,
+      "meanDistanceWhereAlike": 0.0832,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial",
+        "Tahoma",
+        "Seravek",
+        "Courier New",
+        "DIN Condensed",
+        "Lucida Grande",
+        "Superclarendon",
+        "Times New Roman",
+        "Microsoft Sans Serif",
+        "Roboto",
+        "Monaco",
+        "System Font",
+        "Charter",
+        "Iowan Old Style"
+      ]
+    },
+    {
+      "a": {
+        "char": "d",
+        "codepoint": "U+0064",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ԁ",
+        "codepoint": "U+0501",
+        "script": "Cyrillic",
+        "identifierType": "Obsolete"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 13,
+      "textFontsRenderingBoth": 15,
+      "share": 0.8667,
+      "meanDistanceWhereAlike": 0.0021,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial",
+        "Courier New",
+        "DIN Condensed",
+        "Geneva",
+        "Iowan Old Style",
+        "Microsoft Sans Serif",
+        "Seravek",
+        "Superclarendon",
+        "Tahoma",
+        "Times New Roman",
+        "Roboto",
+        "Charter",
+        "Lucida Grande"
+      ]
+    },
+    {
+      "a": {
+        "char": "c",
+        "codepoint": "U+0063",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "с",
+        "codepoint": "U+0441",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 49,
+      "textFontsRenderingBoth": 59,
+      "share": 0.8305,
+      "meanDistanceWhereAlike": 0.0231,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info",
+        ".co",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "American Typewriter",
+        "Andale Mono",
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Baskerville",
+        "Bradley Hand",
+        "Brush Script MT",
+        "Charter",
+        "Cochin",
+        "Comic Sans MS",
+        "Copperplate",
+        "Courier New",
+        "DIN Condensed",
+        "Georgia",
+        "Hoefler Text",
+        "Impact",
+        "Iowan Old Style",
+        "Lucida Grande",
+        "Luminari",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Noteworthy",
+        "PT Mono",
+        "PT Sans",
+        "PT Serif",
+        "PT Serif Caption",
+        "Phosphate",
+        "Rockwell",
+        "STIX Two Math",
+        "STIX Two Text",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "System Font",
+        "Tahoma",
+        "Times New Roman",
+        "Trattatello",
+        "Roboto",
+        "Marion",
+        "Athelas",
+        "Superclarendon",
+        "Helvetica Neue",
+        "DIN Alternate",
+        "Trebuchet MS",
+        "Gill Sans",
+        "Thonburi",
+        "Geneva",
+        "Ayuthaya",
+        "Monaco",
+        "Verdana",
+        "Palatino",
+        "Sathu",
+        "Helvetica",
+        "Times",
+        "Apple SD Gothic Neo",
+        "Marker Felt"
+      ]
+    },
+    {
+      "a": {
+        "char": "e",
+        "codepoint": "U+0065",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "е",
+        "codepoint": "U+0435",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 49,
+      "textFontsRenderingBoth": 59,
+      "share": 0.8305,
+      "meanDistanceWhereAlike": 0.0172,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info",
+        ".co",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "American Typewriter",
+        "Andale Mono",
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Baskerville",
+        "Bradley Hand",
+        "Brush Script MT",
+        "Charter",
+        "Cochin",
+        "Comic Sans MS",
+        "Copperplate",
+        "Courier New",
+        "DIN Condensed",
+        "Georgia",
+        "Hoefler Text",
+        "Impact",
+        "Iowan Old Style",
+        "Lucida Grande",
+        "Marion",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Noteworthy",
+        "PT Mono",
+        "PT Sans",
+        "PT Serif",
+        "PT Serif Caption",
+        "Phosphate",
+        "Rockwell",
+        "STIX Two Math",
+        "STIX Two Text",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "Superclarendon",
+        "System Font",
+        "Tahoma",
+        "Times New Roman",
+        "Trattatello",
+        "Verdana",
+        "Roboto",
+        "DIN Alternate",
+        "Helvetica Neue",
+        "Athelas",
+        "Geneva",
+        "Thonburi",
+        "Sathu",
+        "Ayuthaya",
+        "Palatino",
+        "Trebuchet MS",
+        "Monaco",
+        "Gill Sans",
+        "Times",
+        "Helvetica",
+        "Apple SD Gothic Neo"
+      ]
+    },
+    {
+      "a": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "о",
+        "codepoint": "U+043E",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 49,
+      "textFontsRenderingBoth": 59,
+      "share": 0.8305,
+      "meanDistanceWhereAlike": 0.0217,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info",
+        ".co",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "American Typewriter",
+        "Andale Mono",
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Baskerville",
+        "Bradley Hand",
+        "Brush Script MT",
+        "Charter",
+        "Cochin",
+        "Copperplate",
+        "Courier New",
+        "DIN Condensed",
+        "Georgia",
+        "Hoefler Text",
+        "Impact",
+        "Iowan Old Style",
+        "Lucida Grande",
+        "Luminari",
+        "Marion",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Noteworthy",
+        "PT Mono",
+        "PT Sans",
+        "PT Serif",
+        "PT Serif Caption",
+        "Phosphate",
+        "Rockwell",
+        "STIX Two Math",
+        "STIX Two Text",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "System Font",
+        "Tahoma",
+        "Times New Roman",
+        "Trattatello",
+        "Verdana",
+        "Roboto",
+        "Athelas",
+        "STIXGeneral",
+        "Helvetica Neue",
+        "Superclarendon",
+        "Thonburi",
+        "Trebuchet MS",
+        "DIN Alternate",
+        "Geneva",
+        "Monaco",
+        "Ayuthaya",
+        "Sathu",
+        "Times",
+        "Gill Sans",
+        "Helvetica",
+        "Palatino",
+        "Apple SD Gothic Neo",
+        "Marker Felt"
+      ]
+    },
+    {
+      "a": {
+        "char": "y",
+        "codepoint": "U+0079",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "у",
+        "codepoint": "U+0443",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 49,
+      "textFontsRenderingBoth": 59,
+      "share": 0.8305,
+      "meanDistanceWhereAlike": 0.0323,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info",
+        ".co",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "American Typewriter",
+        "Andale Mono",
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Baskerville",
+        "Brush Script MT",
+        "Charter",
+        "Comic Sans MS",
+        "DIN Condensed",
+        "Georgia",
+        "Hoefler Text",
+        "Impact",
+        "Iowan Old Style",
+        "Luminari",
+        "Marion",
+        "Marker Felt",
+        "Menlo",
+        "Noteworthy",
+        "PT Mono",
+        "PT Sans",
+        "PT Serif",
+        "PT Serif Caption",
+        "Rockwell",
+        "STIX Two Math",
+        "STIX Two Text",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "Superclarendon",
+        "System Font",
+        "Tahoma",
+        "Times New Roman",
+        "Trattatello",
+        "Verdana",
+        "Roboto",
+        "DIN Alternate",
+        "Athelas",
+        "Microsoft Sans Serif",
+        "Ayuthaya",
+        "Monaco",
+        "Cochin",
+        "Sathu",
+        "Geneva",
+        "Thonburi",
+        "Gill Sans",
+        "Helvetica Neue",
+        "Trebuchet MS",
+        "Helvetica",
+        "Times",
+        "Lucida Grande",
+        "Palatino",
+        "STIXGeneral",
+        "Apple SD Gothic Neo"
+      ]
+    },
+    {
+      "a": {
+        "char": "h",
+        "codepoint": "U+0068",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "һ",
+        "codepoint": "U+04BB",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 28,
+      "textFontsRenderingBoth": 34,
+      "share": 0.8235,
+      "meanDistanceWhereAlike": 0.0004,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "American Typewriter",
+        "Arial",
+        "Arial Unicode MS",
+        "Baskerville",
+        "Bradley Hand",
+        "Brush Script MT",
+        "Cochin",
+        "Courier New",
+        "DIN Alternate",
+        "DIN Condensed",
+        "Georgia",
+        "Helvetica Neue",
+        "Hoefler Text",
+        "Iowan Old Style",
+        "Marion",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Noteworthy",
+        "PT Mono",
+        "PT Sans",
+        "PT Serif",
+        "PT Serif Caption",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "Superclarendon",
+        "System Font",
+        "Tahoma",
+        "Times New Roman",
+        "Verdana",
+        "Roboto",
+        "Charter",
+        "Gill Sans"
+      ]
+    },
+    {
+      "a": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ο",
+        "codepoint": "U+03BF",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Greek-Latin",
+      "method": "same font",
+      "textFontsAlike": 40,
+      "textFontsRenderingBoth": 49,
+      "share": 0.8163,
+      "meanDistanceWhereAlike": 0.0314,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "American Typewriter",
+        "Andale Mono",
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Brush Script MT",
+        "Charter",
+        "Comic Sans MS",
+        "Copperplate",
+        "Courier New",
+        "DIN Condensed",
+        "Georgia",
+        "Impact",
+        "Lucida Grande",
+        "Luminari",
+        "Marion",
+        "Marker Felt",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Noteworthy",
+        "Phosphate",
+        "Rockwell",
+        "STIXGeneral",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "System Font",
+        "Tahoma",
+        "Times New Roman",
+        "Verdana",
+        "Roboto",
+        "Geneva",
+        "Superclarendon",
+        "Heiti TC",
+        "Trebuchet MS",
+        "DIN Alternate",
+        "Iowan Old Style",
+        "Helvetica Neue",
+        "Baskerville",
+        "Athelas",
+        "Trattatello",
+        "Apple Symbols",
+        "Times",
+        "Heiti SC",
+        "Helvetica",
+        "Cochin",
+        "Apple SD Gothic Neo",
+        "Palatino"
+      ]
+    },
+    {
+      "a": {
+        "char": "a",
+        "codepoint": "U+0061",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "а",
+        "codepoint": "U+0430",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 48,
+      "textFontsRenderingBoth": 59,
+      "share": 0.8136,
+      "meanDistanceWhereAlike": 0.0184,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info",
+        ".co",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "American Typewriter",
+        "Andale Mono",
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Baskerville",
+        "Bradley Hand",
+        "Brush Script MT",
+        "Charter",
+        "Cochin",
+        "Comic Sans MS",
+        "Copperplate",
+        "Courier New",
+        "DIN Condensed",
+        "Georgia",
+        "Hoefler Text",
+        "Impact",
+        "Iowan Old Style",
+        "Lucida Grande",
+        "Luminari",
+        "Marion",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Noteworthy",
+        "PT Mono",
+        "PT Sans",
+        "PT Serif",
+        "PT Serif Caption",
+        "Phosphate",
+        "Rockwell",
+        "STIX Two Math",
+        "STIX Two Text",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "Superclarendon",
+        "System Font",
+        "Tahoma",
+        "Times New Roman",
+        "Trattatello",
+        "Verdana",
+        "Roboto",
+        "DIN Alternate",
+        "Athelas",
+        "Helvetica Neue",
+        "Ayuthaya",
+        "Monaco",
+        "Trebuchet MS",
+        "Geneva",
+        "Thonburi",
+        "Sathu",
+        "Gill Sans",
+        "Helvetica",
+        "Times",
+        "Palatino"
+      ]
+    },
+    {
+      "a": {
+        "char": "x",
+        "codepoint": "U+0078",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "х",
+        "codepoint": "U+0445",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 48,
+      "textFontsRenderingBoth": 59,
+      "share": 0.8136,
+      "meanDistanceWhereAlike": 0.0113,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info",
+        ".co",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "American Typewriter",
+        "Andale Mono",
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Ayuthaya",
+        "Baskerville",
+        "Bradley Hand",
+        "Brush Script MT",
+        "Charter",
+        "Cochin",
+        "Comic Sans MS",
+        "Copperplate",
+        "Courier New",
+        "DIN Condensed",
+        "Geneva",
+        "Georgia",
+        "Gill Sans",
+        "Helvetica Neue",
+        "Hoefler Text",
+        "Impact",
+        "Iowan Old Style",
+        "Lucida Grande",
+        "Luminari",
+        "Marion",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Monaco",
+        "Noteworthy",
+        "PT Mono",
+        "PT Sans",
+        "PT Serif",
+        "PT Serif Caption",
+        "Phosphate",
+        "Rockwell",
+        "STIX Two Math",
+        "STIX Two Text",
+        "Sathu",
+        "Savoye LET",
+        "Seravek",
+        "Snell Roundhand",
+        "System Font",
+        "Tahoma",
+        "Thonburi",
+        "Times New Roman",
+        "Trattatello",
+        "Verdana",
+        "Roboto",
+        "Superclarendon",
+        "DIN Alternate",
+        "Athelas",
+        "Helvetica",
+        "Trebuchet MS",
+        "Times",
+        "Apple SD Gothic Neo"
+      ]
+    },
+    {
+      "a": {
+        "char": "p",
+        "codepoint": "U+0070",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "р",
+        "codepoint": "U+0440",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 47,
+      "textFontsRenderingBoth": 59,
+      "share": 0.7966,
+      "meanDistanceWhereAlike": 0.023,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info",
+        ".co",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "American Typewriter",
+        "Andale Mono",
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Baskerville",
+        "Bradley Hand",
+        "Brush Script MT",
+        "Charter",
+        "Cochin",
+        "Comic Sans MS",
+        "Copperplate",
+        "Courier New",
+        "DIN Condensed",
+        "Georgia",
+        "Impact",
+        "Iowan Old Style",
+        "Lucida Grande",
+        "Luminari",
+        "Marion",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Noteworthy",
+        "PT Mono",
+        "PT Sans",
+        "PT Serif",
+        "PT Serif Caption",
+        "Phosphate",
+        "Rockwell",
+        "STIX Two Math",
+        "STIX Two Text",
+        "Savoye LET",
+        "Seravek",
+        "SignPainter",
+        "Snell Roundhand",
+        "Superclarendon",
+        "System Font",
+        "Tahoma",
+        "Times New Roman",
+        "Trattatello",
+        "Verdana",
+        "Roboto",
+        "Helvetica Neue",
+        "DIN Alternate",
+        "Thonburi",
+        "Athelas",
+        "Geneva",
+        "Sathu",
+        "Trebuchet MS",
+        "Ayuthaya",
+        "Monaco",
+        "Gill Sans",
+        "Helvetica",
+        "Times",
+        "Palatino",
+        "Marker Felt"
+      ]
+    },
+    {
+      "a": {
+        "char": "s",
+        "codepoint": "U+0073",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ꜱ",
+        "codepoint": "U+A731",
+        "script": "Latin",
+        "identifierType": "Obsolete"
+      },
+      "scripts": "Latin-Latin",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 4,
+      "share": 0.75,
+      "meanDistanceWhereAlike": 0.0821,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Geneva",
+        "Roboto",
+        "System Font"
+      ]
+    },
+    {
+      "a": {
+        "char": "へ",
+        "codepoint": "U+3078",
+        "script": "Hiragana",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ヘ",
+        "codepoint": "U+30D8",
+        "script": "Katakana",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Hiragana-Katakana",
+      "method": "same font",
+      "textFontsAlike": 8,
+      "textFontsRenderingBoth": 11,
+      "share": 0.7273,
+      "meanDistanceWhereAlike": 0.1502,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".co",
+        ".biz",
+        ".xyz",
+        ".app",
+        ".dev",
+        ".jp"
+      ],
+      "alikeIn": [
+        "Hiragino Sans",
+        "Hiragino Kaku Gothic Std",
+        "Hiragino Maru Gothic Pro",
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans GB",
+        "Apple SD Gothic Neo",
+        "Hiragino Mincho Pro",
+        "STSong"
+      ]
+    },
+    {
+      "a": {
+        "char": "ዐ",
+        "codepoint": "U+12D0",
+        "script": "Ethiopic",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "0",
+        "codepoint": "U+0030",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Ethiopic",
+      "method": "across fonts",
+      "alike": 15,
+      "combinations": 21,
+      "share": 0.7143,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Kefa III vs Roboto",
+        "Kefa III vs Arial",
+        "Kefa III vs Helvetica",
+        "Kefa III vs Helvetica Neue",
+        "Kefa III vs Times New Roman",
+        "Kefa III vs Georgia"
+      ]
+    },
+    {
+      "a": {
+        "char": "᱐",
+        "codepoint": "U+1C50",
+        "script": "Ol_Chiki",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "0",
+        "codepoint": "U+0030",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Ol_Chiki",
+      "method": "across fonts",
+      "alike": 14,
+      "combinations": 21,
+      "share": 0.6667,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Ol Chiki vs Roboto",
+        "Noto Sans Ol Chiki vs Arial",
+        "Noto Sans Ol Chiki vs Helvetica",
+        "Noto Sans Ol Chiki vs Helvetica Neue",
+        "Noto Sans Ol Chiki vs Verdana",
+        "Noto Sans Ol Chiki vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "c",
+        "codepoint": "U+0063",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ᴄ",
+        "codepoint": "U+1D04",
+        "script": "Latin",
+        "identifierType": "Technical"
+      },
+      "scripts": "Latin-Latin",
+      "method": "same font",
+      "textFontsAlike": 10,
+      "textFontsRenderingBoth": 16,
+      "share": 0.625,
+      "meanDistanceWhereAlike": 0.1618,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial",
+        "Tahoma",
+        "Seravek",
+        "Courier New",
+        "Microsoft Sans Serif",
+        "System Font",
+        "Roboto",
+        "DIN Condensed",
+        "Monaco",
+        "Superclarendon"
+      ]
+    },
+    {
+      "a": {
+        "char": "ε",
+        "codepoint": "U+03B5",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ԑ",
+        "codepoint": "U+0511",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Greek",
+      "method": "same font",
+      "textFontsAlike": 9,
+      "textFontsRenderingBoth": 15,
+      "share": 0.6,
+      "meanDistanceWhereAlike": 0.0197,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Iowan Old Style",
+        "Menlo",
+        "Microsoft Sans Serif",
+        "Seravek",
+        "Snell Roundhand",
+        "Tahoma",
+        "Roboto",
+        "Geneva",
+        "Superclarendon",
+        "DIN Condensed"
+      ]
+    },
+    {
+      "a": {
+        "char": "べ",
+        "codepoint": "U+3079",
+        "script": "Hiragana",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ベ",
+        "codepoint": "U+30D9",
+        "script": "Katakana",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Hiragana-Katakana",
+      "method": "same font",
+      "textFontsAlike": 6,
+      "textFontsRenderingBoth": 11,
+      "share": 0.5455,
+      "meanDistanceWhereAlike": 0.2712,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".co",
+        ".biz",
+        ".xyz",
+        ".app",
+        ".dev",
+        ".jp"
+      ],
+      "alikeIn": [
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans GB",
+        "Hiragino Sans",
+        "Hiragino Maru Gothic Pro",
+        "Hiragino Kaku Gothic Std",
+        "Apple SD Gothic Neo"
+      ]
+    },
+    {
+      "a": {
+        "char": "v",
+        "codepoint": "U+0076",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ν",
+        "codepoint": "U+03BD",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Greek-Latin",
+      "method": "same font",
+      "textFontsAlike": 26,
+      "textFontsRenderingBoth": 49,
+      "share": 0.5306,
+      "meanDistanceWhereAlike": 0.1048,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Andale Mono",
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Comic Sans MS",
+        "DIN Alternate",
+        "Geneva",
+        "Heiti TC",
+        "Impact",
+        "Marion",
+        "Microsoft Sans Serif",
+        "Noteworthy",
+        "SignPainter",
+        "Tahoma",
+        "Verdana",
+        "Roboto",
+        "Luminari",
+        "Trebuchet MS",
+        "Heiti SC",
+        "Helvetica",
+        "Helvetica Neue",
+        "Apple Symbols",
+        "DIN Condensed",
+        "Seravek",
+        "Apple SD Gothic Neo",
+        "System Font",
+        "Savoye LET",
+        "Lucida Grande",
+        "Iowan Old Style"
+      ]
+    },
+    {
+      "a": {
+        "char": "𐤱",
+        "codepoint": "U+10931",
+        "script": "Lydian",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "8",
+        "codepoint": "U+0038",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Lydian",
+      "method": "across fonts",
+      "alike": 11,
+      "combinations": 21,
+      "share": 0.5238,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Lydian vs Roboto",
+        "Noto Sans Lydian vs Arial",
+        "Noto Sans Lydian vs Helvetica",
+        "Noto Sans Lydian vs Helvetica Neue",
+        "Noto Sans Lydian vs Georgia",
+        "Noto Sans Lydian vs Verdana"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᑲ",
+        "codepoint": "U+1472",
+        "script": "Canadian_Aboriginal",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "b",
+        "codepoint": "U+0062",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Canadian_Aboriginal-Latin",
+      "method": "across fonts",
+      "alike": 11,
+      "combinations": 21,
+      "share": 0.5238,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Euphemia UCAS vs Roboto",
+        "Euphemia UCAS vs Georgia",
+        "Euphemia UCAS vs Verdana",
+        "Euphemia UCAS vs Tahoma",
+        "Euphemia UCAS vs Trebuchet MS",
+        "Euphemia UCAS vs Menlo"
+      ]
+    },
+    {
+      "a": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ا",
+        "codepoint": "U+0627",
+        "script": "Arabic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Arabic-Latin",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 6,
+      "share": 0.5,
+      "meanDistanceWhereAlike": 0.1113,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".info",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Arial Unicode MS",
+        "Tahoma",
+        "Microsoft Sans Serif"
+      ]
+    },
+    {
+      "a": {
+        "char": "ぺ",
+        "codepoint": "U+307A",
+        "script": "Hiragana",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ペ",
+        "codepoint": "U+30DA",
+        "script": "Katakana",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Hiragana-Katakana",
+      "method": "same font",
+      "textFontsAlike": 5,
+      "textFontsRenderingBoth": 11,
+      "share": 0.4545,
+      "meanDistanceWhereAlike": 0.2584,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".co",
+        ".biz",
+        ".xyz",
+        ".app",
+        ".dev",
+        ".jp"
+      ],
+      "alikeIn": [
+        "Hiragino Sans",
+        "Hiragino Maru Gothic Pro",
+        "Hiragino Kaku Gothic Std",
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans GB"
+      ]
+    },
+    {
+      "a": {
+        "char": "ߊ",
+        "codepoint": "U+07CA",
+        "script": "Nko",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Nko",
+      "method": "across fonts",
+      "alike": 9,
+      "combinations": 21,
+      "share": 0.4286,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans NKo vs Roboto",
+        "Noto Sans NKo vs Arial",
+        "Noto Sans NKo vs Helvetica",
+        "Noto Sans NKo vs Helvetica Neue",
+        "Noto Sans NKo vs Verdana",
+        "Noto Sans NKo vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "ߋ",
+        "codepoint": "U+07CB",
+        "script": "Nko",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Nko",
+      "method": "across fonts",
+      "alike": 9,
+      "combinations": 21,
+      "share": 0.4286,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans NKo vs Roboto",
+        "Noto Sans NKo vs Arial",
+        "Noto Sans NKo vs Helvetica",
+        "Noto Sans NKo vs Helvetica Neue",
+        "Noto Sans NKo vs Verdana",
+        "Noto Sans NKo vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "𐤦",
+        "codepoint": "U+10926",
+        "script": "Lydian",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Lydian",
+      "method": "across fonts",
+      "alike": 9,
+      "combinations": 21,
+      "share": 0.4286,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Lydian vs Roboto",
+        "Noto Sans Lydian vs Arial",
+        "Noto Sans Lydian vs Helvetica",
+        "Noto Sans Lydian vs Helvetica Neue",
+        "Noto Sans Lydian vs Verdana",
+        "Noto Sans Lydian vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "𐰾",
+        "codepoint": "U+10C3E",
+        "script": "Old_Turkic",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Old_Turkic",
+      "method": "across fonts",
+      "alike": 9,
+      "combinations": 21,
+      "share": 0.4286,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Old Turkic vs Roboto",
+        "Noto Sans Old Turkic vs Arial",
+        "Noto Sans Old Turkic vs Helvetica",
+        "Noto Sans Old Turkic vs Helvetica Neue",
+        "Noto Sans Old Turkic vs Verdana",
+        "Noto Sans Old Turkic vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᛁ",
+        "codepoint": "U+16C1",
+        "script": "Runic",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Runic",
+      "method": "across fonts",
+      "alike": 9,
+      "combinations": 21,
+      "share": 0.4286,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Geneva vs Roboto",
+        "Geneva vs Arial",
+        "Geneva vs Helvetica",
+        "Geneva vs Helvetica Neue",
+        "Geneva vs Verdana",
+        "Geneva vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "ⲟ",
+        "codepoint": "U+2C9F",
+        "script": "Coptic",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Coptic-Latin",
+      "method": "across fonts",
+      "alike": 9,
+      "combinations": 21,
+      "share": 0.4286,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Coptic vs Roboto",
+        "Noto Sans Coptic vs Arial",
+        "Noto Sans Coptic vs Helvetica",
+        "Noto Sans Coptic vs Helvetica Neue",
+        "Noto Sans Coptic vs Verdana",
+        "Noto Sans Coptic vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "ⵏ",
+        "codepoint": "U+2D4F",
+        "script": "Tifinagh",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Tifinagh",
+      "method": "across fonts",
+      "alike": 9,
+      "combinations": 21,
+      "share": 0.4286,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Tifinagh vs Roboto",
+        "Noto Sans Tifinagh vs Arial",
+        "Noto Sans Tifinagh vs Helvetica",
+        "Noto Sans Tifinagh vs Helvetica Neue",
+        "Noto Sans Tifinagh vs Verdana",
+        "Noto Sans Tifinagh vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "꧐",
+        "codepoint": "U+A9D0",
+        "script": "Javanese",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Javanese-Latin",
+      "method": "across fonts",
+      "alike": 9,
+      "combinations": 21,
+      "share": 0.4286,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Javanese vs Roboto",
+        "Noto Sans Javanese vs Arial",
+        "Noto Sans Javanese vs Helvetica",
+        "Noto Sans Javanese vs Helvetica Neue",
+        "Noto Sans Javanese vs Verdana",
+        "Noto Sans Javanese vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "௦",
+        "codepoint": "U+0BE6",
+        "script": "Tamil",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Tamil",
+      "method": "across fonts",
+      "alike": 26,
+      "combinations": 63,
+      "share": 0.4127,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Tamil MN vs Roboto",
+        "Tamil MN vs Arial",
+        "Tamil MN vs Helvetica",
+        "Tamil MN vs Helvetica Neue",
+        "Tamil MN vs Verdana",
+        "Tamil MN vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "y",
+        "codepoint": "U+0079",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ỵ",
+        "codepoint": "U+1EF5",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Latin",
+      "method": "same font",
+      "textFontsAlike": 16,
+      "textFontsRenderingBoth": 41,
+      "share": 0.3902,
+      "meanDistanceWhereAlike": 0.4153,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Baskerville",
+        "Tamil Sangam MN",
+        "Cochin",
+        "Menlo",
+        "Arial Unicode MS",
+        "Verdana",
+        "STIX Two Text",
+        "STIX Two Math",
+        "Lucida Grande",
+        "Times New Roman",
+        "Microsoft Sans Serif",
+        "Tahoma",
+        "Kefa III",
+        "Brush Script MT",
+        "Arial",
+        "Courier New",
+        "Georgia"
+      ]
+    },
+    {
+      "a": {
+        "char": "u",
+        "codepoint": "U+0075",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ᴜ",
+        "codepoint": "U+1D1C",
+        "script": "Latin",
+        "identifierType": "Technical"
+      },
+      "scripts": "Latin-Latin",
+      "method": "same font",
+      "textFontsAlike": 7,
+      "textFontsRenderingBoth": 18,
+      "share": 0.3889,
+      "meanDistanceWhereAlike": 0.4096,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "DIN Condensed",
+        "Microsoft Sans Serif",
+        "Tahoma",
+        "Seravek",
+        "Arial",
+        "System Font",
+        "Lucida Grande"
+      ]
+    },
+    {
+      "a": {
+        "char": "γ",
+        "codepoint": "U+03B3",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ү",
+        "codepoint": "U+04AF",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Greek",
+      "method": "same font",
+      "textFontsAlike": 10,
+      "textFontsRenderingBoth": 26,
+      "share": 0.3846,
+      "meanDistanceWhereAlike": 0.186,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial Unicode MS",
+        "Verdana",
+        "Roboto",
+        "Tahoma",
+        "Arial",
+        "Microsoft Sans Serif",
+        "Seravek",
+        "Menlo",
+        "Helvetica Neue",
+        "DIN Condensed"
+      ]
+    },
+    {
+      "a": {
+        "char": "ߗ",
+        "codepoint": "U+07D7",
+        "script": "Nko",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "1",
+        "codepoint": "U+0031",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Nko",
+      "method": "across fonts",
+      "alike": 8,
+      "combinations": 21,
+      "share": 0.381,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans NKo vs Roboto",
+        "Noto Sans NKo vs Arial",
+        "Noto Sans NKo vs Helvetica",
+        "Noto Sans NKo vs Helvetica Neue",
+        "Noto Sans NKo vs Trebuchet MS",
+        "Noto Sans NKo vs Avenir"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᑯ",
+        "codepoint": "U+146F",
+        "script": "Canadian_Aboriginal",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "d",
+        "codepoint": "U+0064",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Canadian_Aboriginal-Latin",
+      "method": "across fonts",
+      "alike": 8,
+      "combinations": 21,
+      "share": 0.381,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Euphemia UCAS vs Roboto",
+        "Euphemia UCAS vs Verdana",
+        "Euphemia UCAS vs Tahoma",
+        "Euphemia UCAS vs Trebuchet MS",
+        "Euphemia UCAS vs Menlo",
+        "Euphemia UCAS vs Monaco"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᦞ",
+        "codepoint": "U+199E",
+        "script": "New_Tai_Lue",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-New_Tai_Lue",
+      "method": "across fonts",
+      "alike": 8,
+      "combinations": 21,
+      "share": 0.381,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans New Tai Lue vs Roboto",
+        "Noto Sans New Tai Lue vs Arial",
+        "Noto Sans New Tai Lue vs Helvetica",
+        "Noto Sans New Tai Lue vs Verdana",
+        "Noto Sans New Tai Lue vs Tahoma",
+        "Noto Sans New Tai Lue vs Trebuchet MS"
+      ]
+    },
+    {
+      "a": {
+        "char": "᧐",
+        "codepoint": "U+19D0",
+        "script": "New_Tai_Lue",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-New_Tai_Lue",
+      "method": "across fonts",
+      "alike": 8,
+      "combinations": 21,
+      "share": 0.381,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans New Tai Lue vs Roboto",
+        "Noto Sans New Tai Lue vs Arial",
+        "Noto Sans New Tai Lue vs Helvetica",
+        "Noto Sans New Tai Lue vs Verdana",
+        "Noto Sans New Tai Lue vs Tahoma",
+        "Noto Sans New Tai Lue vs Trebuchet MS"
+      ]
+    },
+    {
+      "a": {
+        "char": "ⲭ",
+        "codepoint": "U+2CAD",
+        "script": "Coptic",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "x",
+        "codepoint": "U+0078",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Coptic-Latin",
+      "method": "across fonts",
+      "alike": 8,
+      "combinations": 21,
+      "share": 0.381,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Coptic vs Roboto",
+        "Noto Sans Coptic vs Arial",
+        "Noto Sans Coptic vs Verdana",
+        "Noto Sans Coptic vs Tahoma",
+        "Noto Sans Coptic vs Trebuchet MS",
+        "Noto Sans Coptic vs Menlo"
+      ]
+    },
+    {
+      "a": {
+        "char": "꘡",
+        "codepoint": "U+A621",
+        "script": "Vai",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Vai",
+      "method": "across fonts",
+      "alike": 8,
+      "combinations": 21,
+      "share": 0.381,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Vai vs Roboto",
+        "Noto Sans Vai vs Arial",
+        "Noto Sans Vai vs Helvetica",
+        "Noto Sans Vai vs Helvetica Neue",
+        "Noto Sans Vai vs Verdana",
+        "Noto Sans Vai vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "ψ",
+        "codepoint": "U+03C8",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ѱ",
+        "codepoint": "U+0471",
+        "script": "Cyrillic",
+        "identifierType": "Obsolete"
+      },
+      "scripts": "Cyrillic-Greek",
+      "method": "same font",
+      "textFontsAlike": 6,
+      "textFontsRenderingBoth": 16,
+      "share": 0.375,
+      "meanDistanceWhereAlike": 0.1038,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial Unicode MS",
+        "Helvetica",
+        "Snell Roundhand",
+        "Roboto",
+        "Times New Roman",
+        "Microsoft Sans Serif",
+        "Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ӏ",
+        "codepoint": "U+04CF",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 7,
+      "textFontsRenderingBoth": 20,
+      "share": 0.35,
+      "meanDistanceWhereAlike": 0.0073,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial",
+        "Iowan Old Style",
+        "Microsoft Sans Serif",
+        "Snell Roundhand",
+        "System Font",
+        "Tahoma",
+        "Times New Roman",
+        "Roboto"
+      ]
+    },
+    {
+      "a": {
+        "char": "𐊊",
+        "codepoint": "U+1028A",
+        "script": "Lycian",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Lycian",
+      "method": "across fonts",
+      "alike": 14,
+      "combinations": 42,
+      "share": 0.3333,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Geneva vs Verdana",
+        "Geneva vs Tahoma",
+        "Geneva vs Avenir Next",
+        "Geneva vs Futura",
+        "Geneva vs Gill Sans",
+        "Noto Sans Lycian vs Roboto"
+      ]
+    },
+    {
+      "a": {
+        "char": "𐡆",
+        "codepoint": "U+10846",
+        "script": "Imperial_Aramaic",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Imperial_Aramaic-Latin",
+      "method": "across fonts",
+      "alike": 7,
+      "combinations": 21,
+      "share": 0.3333,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Imperial Aramaic vs Arial",
+        "Noto Sans Imperial Aramaic vs Helvetica",
+        "Noto Sans Imperial Aramaic vs Helvetica Neue",
+        "Noto Sans Imperial Aramaic vs Verdana",
+        "Noto Sans Imperial Aramaic vs Tahoma",
+        "Noto Sans Imperial Aramaic vs Avenir Next"
+      ]
+    },
+    {
+      "a": {
+        "char": "𑀭",
+        "codepoint": "U+1102D",
+        "script": "Brahmi",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Brahmi-Latin",
+      "method": "across fonts",
+      "alike": 7,
+      "combinations": 21,
+      "share": 0.3333,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Tamil Sangam MN vs Roboto",
+        "Tamil Sangam MN vs Arial",
+        "Tamil Sangam MN vs Helvetica",
+        "Tamil Sangam MN vs Helvetica Neue",
+        "Tamil Sangam MN vs Verdana",
+        "Tamil Sangam MN vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᖯ",
+        "codepoint": "U+15AF",
+        "script": "Canadian_Aboriginal",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "b",
+        "codepoint": "U+0062",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Canadian_Aboriginal-Latin",
+      "method": "across fonts",
+      "alike": 7,
+      "combinations": 21,
+      "share": 0.3333,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Euphemia UCAS vs Roboto",
+        "Euphemia UCAS vs Verdana",
+        "Euphemia UCAS vs Tahoma",
+        "Euphemia UCAS vs Trebuchet MS",
+        "Euphemia UCAS vs Menlo",
+        "Euphemia UCAS vs Monaco"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᩅ",
+        "codepoint": "U+1A45",
+        "script": "Tai_Tham",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Tai_Tham",
+      "method": "across fonts",
+      "alike": 7,
+      "combinations": 21,
+      "share": 0.3333,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Tai Tham vs Roboto",
+        "Noto Sans Tai Tham vs Arial",
+        "Noto Sans Tai Tham vs Helvetica",
+        "Noto Sans Tai Tham vs Verdana",
+        "Noto Sans Tai Tham vs Tahoma",
+        "Noto Sans Tai Tham vs Menlo"
+      ]
+    },
+    {
+      "a": {
+        "char": "᪀",
+        "codepoint": "U+1A80",
+        "script": "Tai_Tham",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Tai_Tham",
+      "method": "across fonts",
+      "alike": 7,
+      "combinations": 21,
+      "share": 0.3333,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Tai Tham vs Roboto",
+        "Noto Sans Tai Tham vs Arial",
+        "Noto Sans Tai Tham vs Helvetica",
+        "Noto Sans Tai Tham vs Verdana",
+        "Noto Sans Tai Tham vs Tahoma",
+        "Noto Sans Tai Tham vs Menlo"
+      ]
+    },
+    {
+      "a": {
+        "char": "᪐",
+        "codepoint": "U+1A90",
+        "script": "Tai_Tham",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Tai_Tham",
+      "method": "across fonts",
+      "alike": 7,
+      "combinations": 21,
+      "share": 0.3333,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Tai Tham vs Roboto",
+        "Noto Sans Tai Tham vs Arial",
+        "Noto Sans Tai Tham vs Helvetica",
+        "Noto Sans Tai Tham vs Verdana",
+        "Noto Sans Tai Tham vs Tahoma",
+        "Noto Sans Tai Tham vs Menlo"
+      ]
+    },
+    {
+      "a": {
+        "char": "ꓲ",
+        "codepoint": "U+A4F2",
+        "script": "Lisu",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Lisu",
+      "method": "across fonts",
+      "alike": 14,
+      "combinations": 42,
+      "share": 0.3333,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Geneva vs Verdana",
+        "Geneva vs Tahoma",
+        "Geneva vs Avenir Next",
+        "Geneva vs Futura",
+        "Geneva vs Gill Sans",
+        "Noto Sans Lisu vs Roboto"
+      ]
+    },
+    {
+      "a": {
+        "char": "p",
+        "codepoint": "U+0070",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ρ",
+        "codepoint": "U+03C1",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Greek-Latin",
+      "method": "same font",
+      "textFontsAlike": 16,
+      "textFontsRenderingBoth": 49,
+      "share": 0.3265,
+      "meanDistanceWhereAlike": 0.3105,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Copperplate",
+        "Phosphate",
+        "SignPainter",
+        "DIN Alternate",
+        "DIN Condensed",
+        "Verdana",
+        "Roboto",
+        "Menlo",
+        "Seravek",
+        "Helvetica Neue",
+        "Trebuchet MS",
+        "Arial Narrow",
+        "Arial",
+        "Heiti TC",
+        "Arial Unicode MS",
+        "Microsoft Sans Serif",
+        "System Font",
+        "Arial Black",
+        "Avenir Next"
+      ]
+    },
+    {
+      "a": {
+        "char": "ρ",
+        "codepoint": "U+03C1",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "р",
+        "codepoint": "U+0440",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Greek",
+      "method": "same font",
+      "textFontsAlike": 15,
+      "textFontsRenderingBoth": 49,
+      "share": 0.3061,
+      "meanDistanceWhereAlike": 0.3083,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Copperplate",
+        "Phosphate",
+        "SignPainter",
+        "DIN Condensed",
+        "DIN Alternate",
+        "Verdana",
+        "Roboto",
+        "Menlo",
+        "Seravek",
+        "Helvetica Neue",
+        "Arial Narrow",
+        "Trebuchet MS",
+        "Arial",
+        "Arial Unicode MS",
+        "Microsoft Sans Serif",
+        "System Font",
+        "Arial Black",
+        "Avenir Next"
+      ]
+    },
+    {
+      "a": {
+        "char": "τ",
+        "codepoint": "U+03C4",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "т",
+        "codepoint": "U+0442",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Greek",
+      "method": "same font",
+      "textFontsAlike": 15,
+      "textFontsRenderingBoth": 49,
+      "share": 0.3061,
+      "meanDistanceWhereAlike": 0.2355,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Arial Black",
+        "Copperplate",
+        "Phosphate",
+        "Tahoma",
+        "Verdana",
+        "Comic Sans MS",
+        "Avenir Next",
+        "Andale Mono",
+        "Lucida Grande",
+        "Helvetica",
+        "DIN Condensed",
+        "DIN Alternate",
+        "Microsoft Sans Serif",
+        "Helvetica Neue",
+        "Apple SD Gothic Neo",
+        "Roboto",
+        "System Font"
+      ]
+    },
+    {
+      "a": {
+        "char": "𐡅",
+        "codepoint": "U+10845",
+        "script": "Imperial_Aramaic",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "1",
+        "codepoint": "U+0031",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Imperial_Aramaic",
+      "method": "across fonts",
+      "alike": 6,
+      "combinations": 21,
+      "share": 0.2857,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Imperial Aramaic vs Roboto",
+        "Noto Sans Imperial Aramaic vs Helvetica",
+        "Noto Sans Imperial Aramaic vs Helvetica Neue",
+        "Noto Sans Imperial Aramaic vs Avenir",
+        "Noto Sans Imperial Aramaic vs Futura",
+        "Noto Sans Imperial Aramaic vs Optima"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᥒ",
+        "codepoint": "U+1952",
+        "script": "Tai_Le",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "n",
+        "codepoint": "U+006E",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Tai_Le",
+      "method": "across fonts",
+      "alike": 6,
+      "combinations": 21,
+      "share": 0.2857,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Tai Le vs Roboto",
+        "Noto Sans Tai Le vs Tahoma",
+        "Noto Sans Tai Le vs Menlo",
+        "Noto Sans Tai Le vs Monaco",
+        "Noto Sans Tai Le vs Avenir",
+        "Noto Sans Tai Le vs Optima"
+      ]
+    },
+    {
+      "a": {
+        "char": "ト",
+        "codepoint": "U+30C8",
+        "script": "Katakana",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "卜",
+        "codepoint": "U+535C",
+        "script": "Han",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Han-Katakana",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 11,
+      "share": 0.2727,
+      "meanDistanceWhereAlike": 0.2492,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".co",
+        ".biz",
+        ".xyz",
+        ".app",
+        ".dev",
+        ".jp"
+      ],
+      "alikeIn": [
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans GB",
+        "Hiragino Sans"
+      ]
+    },
+    {
+      "a": {
+        "char": "ϊ",
+        "codepoint": "U+03CA",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ї",
+        "codepoint": "U+0457",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Greek",
+      "method": "same font",
+      "textFontsAlike": 11,
+      "textFontsRenderingBoth": 41,
+      "share": 0.2683,
+      "meanDistanceWhereAlike": 0.1498,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial Black",
+        "Avenir Next",
+        "Comic Sans MS",
+        "Copperplate",
+        "Heiti SC",
+        "Heiti TC",
+        "Luminari",
+        "Tahoma",
+        "Verdana",
+        "Arial Narrow",
+        "Phosphate",
+        "SignPainter",
+        "Impact",
+        "Brush Script MT",
+        "Snell Roundhand",
+        "DIN Alternate",
+        "Marion"
+      ]
+    },
+    {
+      "a": {
+        "char": "b",
+        "codepoint": "U+0062",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ƅ",
+        "codepoint": "U+0185",
+        "script": "Latin",
+        "identifierType": "Uncommon_Use"
+      },
+      "scripts": "Latin-Latin",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 12,
+      "share": 0.25,
+      "meanDistanceWhereAlike": 0.2997,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial Unicode MS",
+        "Times New Roman",
+        "Courier New"
+      ]
+    },
+    {
+      "a": {
+        "char": "v",
+        "codepoint": "U+0076",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ѵ",
+        "codepoint": "U+0475",
+        "script": "Cyrillic",
+        "identifierType": "Obsolete"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 8,
+      "textFontsRenderingBoth": 33,
+      "share": 0.2424,
+      "meanDistanceWhereAlike": 0.3459,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Palatino",
+        "Arial Unicode MS",
+        "Lucida Grande",
+        "DIN Condensed",
+        "Seravek",
+        "Roboto",
+        "PT Mono",
+        "PT Sans"
+      ]
+    },
+    {
+      "a": {
+        "char": "߀",
+        "codepoint": "U+07C0",
+        "script": "Nko",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "0",
+        "codepoint": "U+0030",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Nko",
+      "method": "across fonts",
+      "alike": 5,
+      "combinations": 21,
+      "share": 0.2381,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans NKo vs Roboto",
+        "Noto Sans NKo vs Times New Roman",
+        "Noto Sans NKo vs Tahoma",
+        "Noto Sans NKo vs Trebuchet MS",
+        "Noto Sans NKo vs Gill Sans"
+      ]
+    },
+    {
+      "a": {
+        "char": "ട",
+        "codepoint": "U+0D1F",
+        "script": "Malayalam",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "s",
+        "codepoint": "U+0073",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Malayalam",
+      "method": "across fonts",
+      "alike": 15,
+      "combinations": 63,
+      "share": 0.2381,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Malayalam MN vs Arial",
+        "Malayalam MN vs Helvetica",
+        "Malayalam MN vs Helvetica Neue",
+        "Malayalam MN vs Georgia",
+        "Malayalam MN vs Verdana",
+        "Malayalam MN vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "ി",
+        "codepoint": "U+0D3F",
+        "script": "Malayalam",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "1",
+        "codepoint": "U+0031",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Malayalam",
+      "method": "across fonts",
+      "alike": 15,
+      "combinations": 63,
+      "share": 0.2381,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Malayalam MN vs Roboto",
+        "Malayalam MN vs Arial",
+        "Malayalam MN vs Helvetica",
+        "Malayalam MN vs Helvetica Neue",
+        "Malayalam MN vs Trebuchet MS",
+        "Malayalam MN vs Avenir"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᛐ",
+        "codepoint": "U+16D0",
+        "script": "Runic",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "1",
+        "codepoint": "U+0031",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Runic",
+      "method": "across fonts",
+      "alike": 5,
+      "combinations": 21,
+      "share": 0.2381,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Geneva vs Roboto",
+        "Geneva vs Arial",
+        "Geneva vs Trebuchet MS",
+        "Geneva vs Avenir",
+        "Geneva vs Optima"
+      ]
+    },
+    {
+      "a": {
+        "char": "u",
+        "codepoint": "U+0075",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "υ",
+        "codepoint": "U+03C5",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Greek-Latin",
+      "method": "same font",
+      "textFontsAlike": 11,
+      "textFontsRenderingBoth": 49,
+      "share": 0.2245,
+      "meanDistanceWhereAlike": 0.4188,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Impact",
+        "Microsoft Sans Serif",
+        "Verdana",
+        "Tahoma",
+        "Arial Narrow",
+        "Arial",
+        "Arial Unicode MS",
+        "Avenir Next",
+        "Helvetica",
+        "Trebuchet MS",
+        "Arial Black",
+        "Apple Symbols"
+      ]
+    },
+    {
+      "a": {
+        "char": "ഠ",
+        "codepoint": "U+0D20",
+        "script": "Malayalam",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Malayalam",
+      "method": "across fonts",
+      "alike": 14,
+      "combinations": 63,
+      "share": 0.2222,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Malayalam MN vs Roboto",
+        "Malayalam MN vs Arial",
+        "Malayalam MN vs Helvetica",
+        "Malayalam MN vs Helvetica Neue",
+        "Malayalam MN vs Verdana",
+        "Malayalam MN vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "᠐",
+        "codepoint": "U+1810",
+        "script": "Mongolian",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "0",
+        "codepoint": "U+0030",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Mongolian",
+      "method": "across fonts",
+      "alike": 14,
+      "combinations": 63,
+      "share": 0.2222,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Mongolian vs Roboto",
+        "Noto Sans Mongolian vs Arial",
+        "Noto Sans Mongolian vs Helvetica",
+        "Noto Sans Mongolian vs Helvetica Neue",
+        "Noto Sans Mongolian vs Verdana",
+        "Noto Sans Mongolian vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "ω",
+        "codepoint": "U+03C9",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ѡ",
+        "codepoint": "U+0461",
+        "script": "Cyrillic",
+        "identifierType": "Obsolete"
+      },
+      "scripts": "Cyrillic-Greek",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 14,
+      "share": 0.2143,
+      "meanDistanceWhereAlike": 0.1115,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial Unicode MS",
+        "Geneva",
+        "DIN Condensed"
+      ]
+    },
+    {
+      "a": {
+        "char": "ꓒ",
+        "codepoint": "U+A4D2",
+        "script": "Lisu",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "d",
+        "codepoint": "U+0064",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Lisu",
+      "method": "across fonts",
+      "alike": 9,
+      "combinations": 42,
+      "share": 0.2143,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Geneva vs Trebuchet MS",
+        "Geneva vs Monaco",
+        "Geneva vs Avenir",
+        "Geneva vs Avenir Next",
+        "Geneva vs Futura",
+        "Geneva vs Gill Sans"
+      ]
+    },
+    {
+      "a": {
+        "char": "Ꮟ",
+        "codepoint": "U+13CF",
+        "script": "Cherokee",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "b",
+        "codepoint": "U+0062",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cherokee-Latin",
+      "method": "across fonts",
+      "alike": 13,
+      "combinations": 63,
+      "share": 0.2063,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Galvji vs Verdana",
+        "Galvji vs Tahoma",
+        "Galvji vs Trebuchet MS",
+        "Galvji vs Avenir",
+        "Galvji vs Iowan Old Style",
+        "Geneva vs Verdana"
+      ]
+    },
+    {
+      "a": {
+        "char": "ା",
+        "codepoint": "U+0B3E",
+        "script": "Oriya",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Oriya",
+      "method": "across fonts",
+      "alike": 17,
+      "combinations": 84,
+      "share": 0.2024,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Oriya Sangam MN vs Arial",
+        "Oriya Sangam MN vs Helvetica",
+        "Oriya Sangam MN vs Helvetica Neue",
+        "Oriya Sangam MN vs Gill Sans",
+        "Arial Unicode MS vs Roboto",
+        "Arial Unicode MS vs Arial"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᥙ",
+        "codepoint": "U+1959",
+        "script": "Tai_Le",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "u",
+        "codepoint": "U+0075",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Tai_Le",
+      "method": "across fonts",
+      "alike": 4,
+      "combinations": 21,
+      "share": 0.1905,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Tai Le vs Roboto",
+        "Noto Sans Tai Le vs Tahoma",
+        "Noto Sans Tai Le vs Trebuchet MS",
+        "Noto Sans Tai Le vs Menlo"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᥴ",
+        "codepoint": "U+1974",
+        "script": "Tai_Le",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "c",
+        "codepoint": "U+0063",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Tai_Le",
+      "method": "across fonts",
+      "alike": 4,
+      "combinations": 21,
+      "share": 0.1905,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Tai Le vs Trebuchet MS",
+        "Noto Sans Tai Le vs Menlo",
+        "Noto Sans Tai Le vs Monaco",
+        "Noto Sans Tai Le vs Charter"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᱠ",
+        "codepoint": "U+1C60",
+        "script": "Ol_Chiki",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "b",
+        "codepoint": "U+0062",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Ol_Chiki",
+      "method": "across fonts",
+      "alike": 4,
+      "combinations": 21,
+      "share": 0.1905,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Ol Chiki vs Arial",
+        "Noto Sans Ol Chiki vs Helvetica",
+        "Noto Sans Ol Chiki vs Helvetica Neue",
+        "Noto Sans Ol Chiki vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "ⲥ",
+        "codepoint": "U+2CA5",
+        "script": "Coptic",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "c",
+        "codepoint": "U+0063",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Coptic-Latin",
+      "method": "across fonts",
+      "alike": 4,
+      "combinations": 21,
+      "share": 0.1905,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Coptic vs Verdana",
+        "Noto Sans Coptic vs Tahoma",
+        "Noto Sans Coptic vs Monaco",
+        "Noto Sans Coptic vs Charter"
+      ]
+    },
+    {
+      "a": {
+        "char": "丨",
+        "codepoint": "U+4E28",
+        "script": "Han",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Han-Latin",
+      "method": "across fonts",
+      "alike": 40,
+      "combinations": 210,
+      "share": 0.1905,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info",
+        ".co",
+        ".biz",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Heiti SC vs Roboto",
+        "Heiti SC vs Arial",
+        "Heiti SC vs Helvetica",
+        "Heiti SC vs Helvetica Neue",
+        "Heiti SC vs Verdana",
+        "Heiti SC vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "κ",
+        "codepoint": "U+03BA",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "к",
+        "codepoint": "U+043A",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Greek",
+      "method": "same font",
+      "textFontsAlike": 9,
+      "textFontsRenderingBoth": 49,
+      "share": 0.1837,
+      "meanDistanceWhereAlike": 0.1603,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Bradley Hand",
+        "Copperplate",
+        "Menlo",
+        "Noteworthy",
+        "Savoye LET",
+        "Seravek",
+        "Snell Roundhand",
+        "Roboto",
+        "Microsoft Sans Serif",
+        "Tahoma",
+        "Verdana",
+        "Helvetica Neue",
+        "SignPainter",
+        "Andale Mono",
+        "Lucida Grande"
+      ]
+    },
+    {
+      "a": {
+        "char": "ୀ",
+        "codepoint": "U+0B40",
+        "script": "Oriya",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "1",
+        "codepoint": "U+0031",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Oriya",
+      "method": "across fonts",
+      "alike": 15,
+      "combinations": 84,
+      "share": 0.1786,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Oriya Sangam MN vs Roboto",
+        "Oriya Sangam MN vs Arial",
+        "Oriya Sangam MN vs Helvetica",
+        "Oriya Sangam MN vs Helvetica Neue",
+        "Oriya Sangam MN vs Avenir",
+        "Oriya Sangam MN vs Futura"
+      ]
+    },
+    {
+      "a": {
+        "char": "໐",
+        "codepoint": "U+0ED0",
+        "script": "Lao",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Lao-Latin",
+      "method": "across fonts",
+      "alike": 11,
+      "combinations": 63,
+      "share": 0.1746,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Lao MN vs Times New Roman",
+        "Lao MN vs Courier New",
+        "Lao MN vs Baskerville",
+        "Lao MN vs Palatino",
+        "Lao Sangam MN vs Courier New",
+        "Lao Sangam MN vs Monaco"
+      ]
+    },
+    {
+      "a": {
+        "char": "൦",
+        "codepoint": "U+0D66",
+        "script": "Malayalam",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Malayalam",
+      "method": "across fonts",
+      "alike": 10,
+      "combinations": 63,
+      "share": 0.1587,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Malayalam MN vs Roboto",
+        "Malayalam MN vs Arial",
+        "Malayalam MN vs Helvetica",
+        "Malayalam MN vs Helvetica Neue",
+        "Malayalam MN vs Verdana",
+        "Malayalam MN vs Tahoma"
+      ]
+    },
+    {
+      "a": {
+        "char": "ፀ",
+        "codepoint": "U+1340",
+        "script": "Ethiopic",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "6",
+        "codepoint": "U+0036",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Ethiopic",
+      "method": "across fonts",
+      "alike": 3,
+      "combinations": 21,
+      "share": 0.1429,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Kefa III vs Arial",
+        "Kefa III vs Helvetica",
+        "Kefa III vs Helvetica Neue"
+      ]
+    },
+    {
+      "a": {
+        "char": "Ꮾ",
+        "codepoint": "U+13EE",
+        "script": "Cherokee",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "6",
+        "codepoint": "U+0036",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cherokee-Common",
+      "method": "across fonts",
+      "alike": 9,
+      "combinations": 63,
+      "share": 0.1429,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Galvji vs Arial",
+        "Galvji vs Helvetica",
+        "Galvji vs Helvetica Neue",
+        "Galvji vs Monaco",
+        "Geneva vs Verdana",
+        "Geneva vs Menlo"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᒿ",
+        "codepoint": "U+14BF",
+        "script": "Canadian_Aboriginal",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "2",
+        "codepoint": "U+0032",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Canadian_Aboriginal-Common",
+      "method": "across fonts",
+      "alike": 3,
+      "combinations": 21,
+      "share": 0.1429,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Euphemia UCAS vs Menlo",
+        "Euphemia UCAS vs Monaco",
+        "Euphemia UCAS vs Futura"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᨡ",
+        "codepoint": "U+1A21",
+        "script": "Tai_Tham",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "a",
+        "codepoint": "U+0061",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Tai_Tham",
+      "method": "across fonts",
+      "alike": 3,
+      "combinations": 21,
+      "share": 0.1429,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Tai Tham vs Roboto",
+        "Noto Sans Tai Tham vs Tahoma",
+        "Noto Sans Tai Tham vs Avenir"
+      ]
+    },
+    {
+      "a": {
+        "char": "ᩮ",
+        "codepoint": "U+1A6E",
+        "script": "Tai_Tham",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "c",
+        "codepoint": "U+0063",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Tai_Tham",
+      "method": "across fonts",
+      "alike": 3,
+      "combinations": 21,
+      "share": 0.1429,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Tai Tham vs Trebuchet MS",
+        "Noto Sans Tai Tham vs Menlo",
+        "Noto Sans Tai Tham vs Monaco"
+      ]
+    },
+    {
+      "a": {
+        "char": "ⲅ",
+        "codepoint": "U+2C85",
+        "script": "Coptic",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "r",
+        "codepoint": "U+0072",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Coptic-Latin",
+      "method": "across fonts",
+      "alike": 3,
+      "combinations": 21,
+      "share": 0.1429,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Coptic vs Roboto",
+        "Noto Sans Coptic vs Menlo",
+        "Noto Sans Coptic vs Monaco"
+      ]
+    },
+    {
+      "a": {
+        "char": "ⲑ",
+        "codepoint": "U+2C91",
+        "script": "Coptic",
+        "identifierType": "Exclusion"
+      },
+      "b": {
+        "char": "e",
+        "codepoint": "U+0065",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Coptic-Latin",
+      "method": "across fonts",
+      "alike": 3,
+      "combinations": 21,
+      "share": 0.1429,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Coptic vs Arial",
+        "Noto Sans Coptic vs Helvetica",
+        "Noto Sans Coptic vs Helvetica Neue"
+      ]
+    },
+    {
+      "a": {
+        "char": "ꕃ",
+        "codepoint": "U+A543",
+        "script": "Vai",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "6",
+        "codepoint": "U+0036",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Vai",
+      "method": "across fonts",
+      "alike": 3,
+      "combinations": 21,
+      "share": 0.1429,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noto Sans Vai vs Trebuchet MS",
+        "Noto Sans Vai vs Gill Sans",
+        "Noto Sans Vai vs Palatino"
+      ]
+    },
+    {
+      "a": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ǀ",
+        "codepoint": "U+01C0",
+        "script": "Latin",
+        "identifierType": "Technical"
+      },
+      "scripts": "Latin-Latin",
+      "method": "same font",
+      "textFontsAlike": 5,
+      "textFontsRenderingBoth": 38,
+      "share": 0.1316,
+      "meanDistanceWhereAlike": 0.0968,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Noteworthy",
+        "Thonburi",
+        "Sathu",
+        "Geneva",
+        "Roboto",
+        "System Font"
+      ]
+    },
+    {
+      "a": {
+        "char": "Ꮽ",
+        "codepoint": "U+13ED",
+        "script": "Cherokee",
+        "identifierType": "Limited_Use"
+      },
+      "b": {
+        "char": "9",
+        "codepoint": "U+0039",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cherokee-Common",
+      "method": "across fonts",
+      "alike": 8,
+      "combinations": 63,
+      "share": 0.127,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Geneva vs Verdana",
+        "Geneva vs Tahoma",
+        "Geneva vs Menlo",
+        "Geneva vs Monaco",
+        "Plantagenet Cherokee vs Arial",
+        "Plantagenet Cherokee vs Helvetica"
+      ]
+    },
+    {
+      "a": {
+        "char": "y",
+        "codepoint": "U+0079",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "γ",
+        "codepoint": "U+03B3",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Greek-Latin",
+      "method": "same font",
+      "textFontsAlike": 6,
+      "textFontsRenderingBoth": 49,
+      "share": 0.1224,
+      "meanDistanceWhereAlike": 0.4143,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Verdana",
+        "Tahoma",
+        "Heiti SC",
+        "Heiti TC",
+        "DIN Alternate",
+        "Seravek"
+      ]
+    },
+    {
+      "a": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ı",
+        "codepoint": "U+0131",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Latin-Latin",
+      "method": "same font",
+      "textFontsAlike": 9,
+      "textFontsRenderingBoth": 78,
+      "share": 0.1154,
+      "meanDistanceWhereAlike": 0.2038,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".co",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Impact",
+        "Krungthep",
+        "Silom",
+        "Sukhumvit Set",
+        "Tamil Sangam MN",
+        "Helvetica Neue",
+        "Microsoft Sans Serif",
+        "Arial Rounded MT Bold",
+        "Arial Black"
+      ]
+    },
+    {
+      "a": {
+        "char": "e",
+        "codepoint": "U+0065",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ɵ",
+        "codepoint": "U+0275",
+        "script": "Latin",
+        "identifierType": "Technical"
+      },
+      "scripts": "Latin-Latin",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 27,
+      "share": 0.1111,
+      "meanDistanceWhereAlike": 0.4705,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Arial",
+        "Arial Unicode MS",
+        "Helvetica"
+      ]
+    },
+    {
+      "a": {
+        "char": "r",
+        "codepoint": "U+0072",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ɾ",
+        "codepoint": "U+027E",
+        "script": "Latin",
+        "identifierType": "Technical"
+      },
+      "scripts": "Latin-Latin",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 27,
+      "share": 0.1111,
+      "meanDistanceWhereAlike": 0.4509,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "DIN Condensed",
+        "Arial",
+        "Arial Unicode MS"
+      ]
+    },
+    {
+      "a": {
+        "char": "π",
+        "codepoint": "U+03C0",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "п",
+        "codepoint": "U+043F",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Greek",
+      "method": "same font",
+      "textFontsAlike": 6,
+      "textFontsRenderingBoth": 58,
+      "share": 0.1034,
+      "meanDistanceWhereAlike": 0.1181,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Copperplate",
+        "Microsoft Sans Serif",
+        "Phosphate",
+        "Tahoma",
+        "Verdana",
+        "Avenir Next",
+        "Courier New",
+        "Impact"
+      ]
+    },
+    {
+      "a": {
+        "char": "y",
+        "codepoint": "U+0079",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ү",
+        "codepoint": "U+04AF",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 33,
+      "share": 0.0909,
+      "meanDistanceWhereAlike": 0.1761,
+      "registrableAt": [
+        ".com",
+        ".net"
+      ],
+      "alikeIn": [
+        "Copperplate",
+        "Phosphate",
+        "SignPainter",
+        "Seravek",
+        "Tahoma",
+        "Verdana"
+      ]
+    },
+    {
+      "a": {
+        "char": "γ",
+        "codepoint": "U+03B3",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "у",
+        "codepoint": "U+0443",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Greek",
+      "method": "same font",
+      "textFontsAlike": 4,
+      "textFontsRenderingBoth": 49,
+      "share": 0.0816,
+      "meanDistanceWhereAlike": 0.413,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Verdana",
+        "Tahoma",
+        "DIN Alternate",
+        "Seravek"
+      ]
+    },
+    {
+      "a": {
+        "char": "0",
+        "codepoint": "U+0030",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "o",
+        "codepoint": "U+006F",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Latin",
+      "method": "same font",
+      "textFontsAlike": 7,
+      "textFontsRenderingBoth": 106,
+      "share": 0.066,
+      "meanDistanceWhereAlike": 0.2222,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info",
+        ".co",
+        ".biz",
+        ".xyz",
+        ".app",
+        ".dev",
+        ".jp"
+      ],
+      "alikeIn": [
+        "Didot",
+        "Georgia",
+        "Plantagenet Cherokee",
+        "Skia",
+        "Athelas",
+        "Bodoni 72 Smallcaps",
+        "Herculanum",
+        "Hoefler Text",
+        "Big Caslon"
+      ]
+    },
+    {
+      "a": {
+        "char": "a",
+        "codepoint": "U+0061",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "α",
+        "codepoint": "U+03B1",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Greek-Latin",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 49,
+      "share": 0.0612,
+      "meanDistanceWhereAlike": 0.104,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Brush Script MT",
+        "Copperplate",
+        "Phosphate",
+        "Snell Roundhand",
+        "Heiti TC",
+        "Heiti SC",
+        "Comic Sans MS"
+      ]
+    },
+    {
+      "a": {
+        "char": "l",
+        "codepoint": "U+006C",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "ι",
+        "codepoint": "U+03B9",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Greek-Latin",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 49,
+      "share": 0.0612,
+      "meanDistanceWhereAlike": 0.221,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Arial",
+        "Arial Unicode MS",
+        "Arial Black"
+      ]
+    },
+    {
+      "a": {
+        "char": "x",
+        "codepoint": "U+0078",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "χ",
+        "codepoint": "U+03C7",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Greek-Latin",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 49,
+      "share": 0.0612,
+      "meanDistanceWhereAlike": 0.051,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Copperplate",
+        "Iowan Old Style",
+        "Phosphate",
+        "Luminari",
+        "Trebuchet MS",
+        "Marion"
+      ]
+    },
+    {
+      "a": {
+        "char": "χ",
+        "codepoint": "U+03C7",
+        "script": "Greek",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "х",
+        "codepoint": "U+0445",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Greek",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 49,
+      "share": 0.0612,
+      "meanDistanceWhereAlike": 0.0283,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Copperplate",
+        "Iowan Old Style",
+        "Phosphate",
+        "Trebuchet MS",
+        "Luminari",
+        "Marion"
+      ]
+    },
+    {
+      "a": {
+        "char": "0",
+        "codepoint": "U+0030",
+        "script": "Common",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "о",
+        "codepoint": "U+043E",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Common-Cyrillic",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 59,
+      "share": 0.0508,
+      "meanDistanceWhereAlike": 0.2131,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info",
+        ".co",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Georgia",
+        "Athelas",
+        "Hoefler Text"
+      ]
+    },
+    {
+      "a": {
+        "char": "n",
+        "codepoint": "U+006E",
+        "script": "Latin",
+        "identifierType": "Recommended"
+      },
+      "b": {
+        "char": "п",
+        "codepoint": "U+043F",
+        "script": "Cyrillic",
+        "identifierType": "Recommended"
+      },
+      "scripts": "Cyrillic-Latin",
+      "method": "same font",
+      "textFontsAlike": 3,
+      "textFontsRenderingBoth": 59,
+      "share": 0.0508,
+      "meanDistanceWhereAlike": 0.1587,
+      "registrableAt": [
+        ".com",
+        ".net",
+        ".org",
+        ".info",
+        ".co",
+        ".xyz",
+        ".app",
+        ".dev"
+      ],
+      "alikeIn": [
+        "Brush Script MT",
+        "Savoye LET",
+        "SignPainter",
+        "Snell Roundhand",
+        "Trattatello",
+        "Impact",
+        "Apple SD Gothic Neo",
+        "DIN Condensed"
+      ]
+    }
+  ]
+}
