@@ -6,7 +6,7 @@
  *
  *   1. it passes the release's suggested thresholds: within one font, alike in at least 3 text fonts and at least 5%
  *      of the text fonts rendering both; across fonts, alike in at least 3 font combinations and at least 10% of them;
- *   2. both characters can be registered at a common TLD among the ten whose registry tables the release records
+ *   2. both characters can be registered at a common TLD, among those whose registry rules the release records
  *      ("registrableAt": ASCII letters and digits count everywhere).
  *
  * Registrability decides, not TR39 status: Verisign's .com and .net tables accept characters TR39 marks Obsolete or

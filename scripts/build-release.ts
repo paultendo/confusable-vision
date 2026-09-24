@@ -22,6 +22,7 @@
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { domainToUnicode } from "node:url";
 import { gzipSync } from "node:zlib";
 import { rangeLookup } from "../src/ranges.js";
 
@@ -41,19 +42,30 @@ function rangeProperty(file: string): { get: (cp: number) => string | undefined;
   return { get: rangeLookup(join(ROOT, file)), date: text.match(/^# Date: (\S+)/m)?.[1] };
 }
 
+/** Where each code point can be registered, from data/input/tld-rules.json (scripts/build-tld-rules.py): a TLD takes a
+ * character when one of its registry's tables lists it. ASCII letters, digits and hyphen are registrable everywhere. */
 function registrable() {
-  const data = JSON.parse(readFileSync(join(ROOT, "data/input/idn-registrable.json"), "utf8"));
-  const sets = Object.entries(data.tlds).map(([tld, v]: [string, any]) => {
+  const data = JSON.parse(readFileSync(join(ROOT, "data/input/tld-rules.json"), "utf8"));
+  const tables: Set<number>[] = (data.tables as string[]).map((t) => {
     const set = new Set<number>();
-    for (const r of v.ranges as string[]) {
-      const [a, b] = r.split("..");
+    for (const part of t.split(" ")) {
+      if (!part || part === "CJK") continue;
+      const [a, b] = part.split("..");
       for (let cp = parseInt(a!, 16); cp <= parseInt(b ?? a!, 16); cp++) set.add(cp);
     }
-    return [tld, set] as const;
+    return set;
   });
+  const cjkTables = new Set((data.tables as string[]).flatMap((t, i) => (t.startsWith("CJK") ? [i] : [])));
+  const cjk = (cp: number) => (cp >= 0x3400 && cp <= 0x9fff) || (cp >= 0xac00 && cp <= 0xd7af) ||
+    (cp >= 0xf900 && cp <= 0xfaff) || cp >= 0x20000;
+  const rules = Object.entries(data.rules as Record<string, number[] | "ascii">);
   const ascii = (cp: number) => (cp >= 0x61 && cp <= 0x7a) || (cp >= 0x30 && cp <= 0x39) || cp === 0x2d;
-  return { at: (cp: number) => sets.filter(([, s]) => ascii(cp) || s.has(cp)).map(([tld]) => tld),
-    tlds: sets.map(([tld]) => tld), fetched: data.fetched as string };
+  const tld = (t: string) => "." + (t.startsWith("xn--") ? domainToUnicode(t) : t);
+  return {
+    at: (cp: number) => rules.filter(([, r]) => ascii(cp) ||
+      (r !== "ascii" && r.some((i) => (cjk(cp) ? cjkTables.has(i) : tables[i]!.has(cp))))).map(([t]) => tld(t)),
+    tlds: rules.map(([t]) => tld(t)), fetched: data.fetched as string,
+  };
 }
 
 function main() {
@@ -145,7 +157,7 @@ This release replaces the March 2026 measurements, which were blind to size and 
 | \`codepoint\`, \`char\`, \`name\`, \`script\`, \`generalCategory\` | the character, from the Unicode Character Database |
 | \`identifierType\` | TR39 Identifier_Type (IdentifierType.txt dated ${x.idTypeDate ?? "unknown"}) |
 | \`idna2008\` | status in the IDNA mapping table: \`valid\`, \`mapped\`, \`disallowed\` and so on |
-| \`registrableAt\` | TLDs whose registry tables accept it at the second level: ${x.reg.tlds.join(", ")} (IANA IDN tables, fetched ${x.reg.fetched}). Lowercase ASCII letters and digits count everywhere |
+| \`registrableAt\` | TLDs whose registry accepts it at the second level, out of all ${x.reg.tlds.length} with known rules (data/input/tld-rules.json: IANA IDN tables fetched ${x.reg.fetched}, the ICANN rule for generic TLDs without tables, and researched country-code policies). Lowercase ASCII letters and digits count everywhere |
 
 ### lookalikes.jsonl.gz
 
@@ -178,7 +190,7 @@ Fonts: every macOS system font and Roboto (the Android build). Within one font:
 
 - every pair of characters from different scripts among the twelve March script sets (Latin A-Z, a-z, 0-9; Cyrillic;
   Greek; Arabic; Han; Hangul jamo; Katakana; Hiragana; Devanagari; Thai; Georgian; Armenian);
-- every letter, mark or number that at least one of the ten TLDs' registry tables accepts (except Han, Hangul and kana)
+- every letter, mark or number that at least one TLD's registry accepts (data/input/tld-rules.json; except Han, Hangul and kana)
   against the 62 ASCII letters and digits, and those against one another;
 - every Roboto letter or digit against every other from a different script, and against the ASCII letters and digits.
 
@@ -197,7 +209,7 @@ combinations and at least 10% of them. \`src/thresholds.ts\` implements this.
 ## Views
 
 - **IDN-relevant** (\`scripts/export-idn-pairs.ts\`): lookalikes at those thresholds whose characters can both be
-  registered at one of the ten TLDs, with where.
+  registered at a common TLD, with where.
 
 ## Changes
 

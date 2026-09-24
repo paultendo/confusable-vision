@@ -126,7 +126,8 @@ The signature bank (`data/output/signature-bank.jsonl.gz`, 7.8 GB) and the March
 set `CV_BANK` to a local copy of the bank if it lives on another drive.
 
 1. `npx tsx scripts/score-pairs-from-bank.ts <pairs.json> data/output/registrable-ascii-discoveries.jsonl`: the
-   registrable characters against ASCII (pair list built from `data/input/idn-registrable.json`).
+   registrable characters against ASCII (pair list built from `data/input/tld-rules.json`; the 10-TLD list at release
+   2026.09.24, extended on 24 Sep 2026 to the 105 characters only other TLDs accept, none of which was found alike).
 2. `npx tsx scripts/add-font-to-bank.ts <Roboto-Regular.ttf> Roboto data/output/signature-bank-roboto.jsonl.gz`, then
    `score-pairs-from-bank.ts --font Roboto` over Roboto's letters and digits.
 3. `npx tsx scripts/compute-glyph-boxes.ts <discoveries>... > data/output/glyph-boxes.jsonl`.

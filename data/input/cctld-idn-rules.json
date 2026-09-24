@@ -1,0 +1,4134 @@
+[
+ {
+  "tld": "ac",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "nic.ac 'IDN Code Points Policy for the .AC Top Level Domain' (https://www.nic.ac/pdf/AC-IDN-Policy.pdf) - not retrievable 2026-09-24 (connection reset/502). CentralNic Reseller lists .ac IDN language tags: DA, DE, HU, IS, KO, LV, LT, PL, ES, SV.",
+  "scripts": [
+   "Latin",
+   "Hangul"
+  ],
+  "mixing": "language tag required at registration (X-IDN-LANGUAGE per CentralNic Reseller); script-mixing rule not seen",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.ac/pdf/AC-IDN-Policy.pdf",
+   "https://kb.centralnicreseller.com/domains/tlds/ac/",
+   "https://en.wikipedia.org/wiki/.ac"
+  ],
+  "confidence": "medium",
+  "notes": "IDN accepted per registry policy doc (cited by Wikipedia) and registrar docs, but exact code point list not obtained. The sister .IO policy (http://tmdb.cdns.net/IO-IDN-Policy.pdf, same Internet Computer Bureau format) is a per-character Latin list by language; .AC likely parallel but not verified. Operator: Internet Computer Bureau / Identity Digital (shared with .io, .sh). Scripts inferred from language tags (KO -> Hangul)."
+ },
+ {
+  "tld": "ae",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://tdra.gov.ae/-/media/aeda/Policies/ae-policies/English/Domain_Name_Policy-EN.ashx",
+   "https://tdra.gov.ae/en/aeda/ae-policies"
+  ],
+  "confidence": "high",
+  "notes": ".ae Domain Name Policy s.8.5: names must 'use the English character set' a-z, 0-9, hyphen. Arabic IDNs are offered only under the separate IDN ccTLD .امارات (xn--mgbaam7a8h). Policy covers second and third level; direct second-level .ae open."
+ },
+ {
+  "tld": "af",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://nic.af/"
+  ],
+  "confidence": "low",
+  "notes": "Registry site returned HTTP 500 on 2026-09-24; no primary statement found."
+ },
+ {
+  "tld": "ag",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.ag/rules.htm"
+  ],
+  "confidence": "medium",
+  "notes": "NIC AG rules: 'Use only letters, numbers, or hyphen'. Does not say 'ASCII' explicitly, but no IDN provision exists and registrar sources state IDN unsupported. Direct .ag plus .com.ag/.net.ag/.org.ag etc."
+ },
+ {
+  "tld": "ai",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.eurodns.com/domain-extensions/ai-domain-registration",
+   "https://www.101domain.com/ai-information-help.htm",
+   "https://www.nic.ai/faq"
+  ],
+  "confidence": "low",
+  "notes": "Registrar sources state letters a-z, digits, hyphen only, no IDN. nic.ai FAQ is JS-rendered and its answers could not be read. Registry backend run by Identity Digital since 2025; Identity Digital's generic IDN policy defers to per-TLD tables and none exists for .ai."
+ },
+ {
+  "tld": "al",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://akep.al/"
+  ],
+  "confidence": "low",
+  "notes": "AKEP site has no retrievable domain-name character rules; no primary source found."
+ },
+ {
+  "tld": "am",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.isoc.am/wp-content/uploads/2022/12/policy_0.pdf"
+  ],
+  "confidence": "high",
+  "notes": "ISOC-AM policy cl.8: .am names only a-z, 0-9, hyphen. Armenian script (U+0561..U+0586 small letters except U+0587 'և', plus 'ւ' U+0582) is permitted only in the separate IDN ccTLD .հայ (cl.9). Also third-level .com.am/.co.am/.org.am/.net.am/.commune.am."
+ },
+ {
+  "tld": "ao",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.dns.ao/ao/",
+   "https://www.dns.ao/ao/faq/"
+  ],
+  "confidence": "low",
+  "notes": "dns.ao (INFOSI) pages give no character rules. Homepage 'latest registrations' list shows direct second-level .ao names alongside .it.ao/.co.ao/.org.ao."
+ },
+ {
+  "tld": "aq",
+  "idn": "unused",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "n/a",
+  "second_level_open": false,
+  "source": [],
+  "confidence": "low",
+  "notes": "Not open to the public; per task instruction treated as unused (restricted to Antarctic-treaty entities)."
+ },
+ {
+  "tld": "ar",
+  "idn": "yes",
+  "chars": "U+00E1 U+00E2 U+00E3 U+00E0 U+00E9 U+00EA U+00ED U+00F3 U+00F4 U+00F5 U+00FA U+00FC U+00E7 U+00F1",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://nic.ar/es/ayuda/faq/15",
+   "https://www.argentina.gob.ar/normativa/nacional/resoluci%C3%B3n-2-2022-359304/texto"
+  ],
+  "confidence": "medium",
+  "notes": "Reglamento (Res. SLyT 2/2022) art.12: letters of the Spanish and Portuguese alphabets incl. 'ñ' and 'ç', accented vowels and vowels with diaeresis, digits, hyphen. The code point list here is taken from NIC Argentina's FAQ equivalence table (á â ã à->a; é ê->e; í->i; ó ô õ->o; ú ü->u; ç->c/s; ñ distinct), which is the most explicit enumeration published; the regulation wording is generic so other accented vowels are not excluded outright. Accented forms are treated as equivalent to unaccented for priority. Direct .ar general availability since 15 Sep 2020; also .com.ar etc."
+ },
+ {
+  "tld": "as",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "https://www.nic.as/idn/chars.cfm (registry's published list; 'limited to an additional 92 UTF-8 characters') - HTTP 403 on 2026-09-24, list not obtained",
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.as/idn/info.cfm",
+   "https://www.nic.as/idn/chars.cfm"
+  ],
+  "confidence": "medium",
+  "notes": "AS Domain Registry states IDN support limited to an additional 92 characters (from search snippet of the registry page). Exact list and scripts not retrievable. CentralNic Reseller shows a language list identical to its .ac template (incl. Korean), which looks unreliable, so not used."
+ },
+ {
+  "tld": "au",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://files.auda.org.au/documents/au-Licensing-Rules-July-2026.pdf"
+  ],
+  "confidence": "high",
+  "notes": "auDA Licensing Rules (July 2026) 2.7: a-z, 0-9, hyphen. Rule 2.8 (IDNs: Chinese Simplified, Korean, Japanese, Arabic, Vietnamese) 'will commence on [to be advised]' (1.2.4), so not currently registrable. Direct .au open since 24 Mar 2022."
+ },
+ {
+  "tld": "aw",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.setarnet.aw/domain-registration/"
+  ],
+  "confidence": "low",
+  "notes": "Registry (SETAR) page 404; no primary source found."
+ },
+ {
+  "tld": "ax",
+  "idn": "yes",
+  "chars": "U+00E1 U+00E2 U+00E4 U+00E5 U+010D U+0111 U+01E5 U+01E7 U+01E9 U+014B U+00F5 U+00F6 U+0161 U+0167 U+017E U+0292 U+01EF",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://whois.ax/app/uploads/2025/05/domain-name-regulation-68.pdf",
+   "https://whois.ax/en/"
+  ],
+  "confidence": "high",
+  "notes": "FICORA Regulation 68/2016 M s.12 (applies to both .fi and .ax; published on whois.ax): a-z, 0-9, hyphen plus the 17 listed characters (Finnish, Swedish and Sami letters). Same repertoire as .fi. The PDF mislabels U+00E4 as 'o with diaeresis' but the glyph/code point is ä."
+ },
+ {
+  "tld": "az",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.nic.az/"
+  ],
+  "confidence": "low",
+  "notes": "nic.az shows only an under-construction page / HTTP 406; no primary source found."
+ },
+ {
+  "tld": "ba",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://nic.ba/info/opti-uslovi-preieni-tekst"
+  ],
+  "confidence": "high",
+  "notes": "General Terms art.5: only the 26 letters of the English alphabet, digits 0-9, hyphen; 3-63 chars. Registrants: legal persons registered in the relevant registers, adult natural persons, international organisations (art.6)."
+ },
+ {
+  "tld": "bb",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://whois.telecoms.gov.bb/"
+  ],
+  "confidence": "low",
+  "notes": "Registration is by application form (Telecommunications Unit); terms document not retrievable."
+ },
+ {
+  "tld": "bd",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.btcl.com.bd/"
+  ],
+  "confidence": "low",
+  "notes": "BTCL site unreachable. Bangla IDNs exist under the separate IDN ccTLD .বাংলা; second-level structure of .bd not verified from primary source."
+ },
+ {
+  "tld": "bf",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "http://www.nic.bf/"
+  ],
+  "confidence": "low",
+  "notes": "Registry site unreachable (502)."
+ },
+ {
+  "tld": "bh",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://kb.centralnicreseller.com/domains/tlds/bh/"
+  ],
+  "confidence": "low",
+  "notes": "Only a registrar source: CentralNic Reseller lists .bh as IDN-capable with tags AR, ZH, CYRL, GREK, HE, JA, KO, LO, LATN, MYMR, RU, TH (resembles CentralNic's generic IDN table set). Registry (TRA Bahrain / nic.bh) not reachable, so not confirmed; treat as possible IDN."
+ },
+ {
+  "tld": "bi",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://site.nic.bi/acceptable-domain-names-and-policy/"
+  ],
+  "confidence": "low",
+  "notes": "Burundi NIC policy gives min 3 characters and naming guidance but no character-set rule."
+ },
+ {
+  "tld": "bj",
+  "idn": "yes",
+  "chars": "U+00E0 U+00E1 U+00E2 U+00E3 U+00E4 U+00E5 U+00E6 U+00E7 U+00E8 U+00E9 U+00EA U+00EB U+00EC U+00ED U+00EE U+00EF U+00F1 U+00F2 U+00F3 U+00F4 U+00F5 U+00F6 U+0153 U+00F9 U+00FA U+00FB U+00FC U+00FD U+00FF U+00DF",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.bj/wp-content/uploads/2020/04/CHARTE-DE-NOMMAGE_22.05.19_final.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Charte de nommage .bj art.10 lists permitted characters: a-z, digits, hyphen plus the 30 listed (incl. U+00DF ß and U+0153 œ). 'Characters outside extended ASCII are not allowed.' Second-level (e.g. secur-229.bj) plus sectoral .com.bj/.org.bj etc.; second-level openness inferred from charter examples."
+ },
+ {
+  "tld": "bm",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.bermudanic.bm/"
+  ],
+  "confidence": "low",
+  "notes": "BermudaNIC offers .bm, .com.bm, .net.bm, .org.bm; eligibility limited to Bermuda businesses/residents. No character rules found."
+ },
+ {
+  "tld": "bn",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.bnnic.bn/"
+  ],
+  "confidence": "low",
+  "notes": "Registry unreachable."
+ },
+ {
+  "tld": "bs",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.register.bs/"
+  ],
+  "confidence": "low",
+  "notes": "Registry site 403 / expired certificate."
+ },
+ {
+  "tld": "bt",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.bt/domainReg"
+  ],
+  "confidence": "low",
+  "notes": "NIC.bt lists .bt, .com.bt, .org.bt, .net.bt, .gov.bt, .edu.bt; no character rules published."
+ },
+ {
+  "tld": "bv",
+  "idn": "unused",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "n/a",
+  "second_level_open": false,
+  "source": [],
+  "confidence": "low",
+  "notes": "Reserved by Norway (Norid); no registrations accepted."
+ },
+ {
+  "tld": "bw",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": false,
+  "source": [
+   "https://nic.net.bw/"
+  ],
+  "confidence": "low",
+  "notes": "BOCRA registry describes names as name.domain.bw (third level under ac/org/net/co/gov/shop/agric/me.bw). Terms & Conditions and policy PDFs contain no character-set rule."
+ },
+ {
+  "tld": "by",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://domain.by/en/domain-register/",
+   "https://cctld.by/documents/instruction-on-the-procedure-of-registration-of-domain/"
+  ],
+  "confidence": "medium",
+  "notes": "domain.by: .BY names contain Latin letters, numerals and hyphen; Russian/Belarusian Cyrillic only under the separate IDN ccTLD .бел. The official cctld.by instruction was unreachable (ECONNREFUSED/502)."
+ },
+ {
+  "tld": "bz",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.belizenic.bz/domain-registration/idn",
+   "https://en.wikipedia.org/wiki/.bz"
+  ],
+  "confidence": "low",
+  "notes": "Conflicting secondary sources (some say IDN not allowed, Wikipedia says IDNs available). belizenic.bz has an 'IDN Domain Registration' search but it is a multi-TLD storefront, so not proof for .bz."
+ },
+ {
+  "tld": "cc",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "Verisign IDN registration rules (same system as .com/.net/.name): IDNA2008 PVALID code points; 3-letter language tag required; for 13 languages with tables (e.g. Chinese, Japanese, Korean, Russian) only table characters; ß and ς disallowed. https://www.verisign.com/resources/internationalized-domain-names/idn-registration-rules/ ; tags https://www.verisign.com/assets/idn-valid-language-tags.pdf",
+  "scripts": [
+   "multiple (all scripts via language tags)"
+  ],
+  "mixing": "language tag required; for languages without a table, a label with code points from two or more scripts is rejected",
+  "second_level_open": true,
+  "source": [
+   "https://www.verisign.com/resources/internationalized-domain-names/",
+   "https://www.verisign.com/resources/internationalized-domain-names/idn-registration-rules/",
+   "https://www.verisign.com/assets/idn-valid-language-tags.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Verisign: 'Verisign offers the registration of IDNs for all .com, .net, .name, and .cc domain names in many different languages.' The rules page does not name .cc explicitly; applied here by that statement."
+ },
+ {
+  "tld": "cd",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "http://www.nic.cd/"
+  ],
+  "confidence": "low",
+  "notes": "Registry page only a migration notice (SCPT operator)."
+ },
+ {
+  "tld": "cf",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.nic.cf/"
+  ],
+  "confidence": "low",
+  "notes": "Registry unreachable (formerly Freenom-run)."
+ },
+ {
+  "tld": "cg",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.nic.cg/index.php/terms-and-conditions.html"
+  ],
+  "confidence": "low",
+  "notes": "DNSAfrica/Interpoint T&C (Aug 2026) contain no character-set rule; 'acceptable domain names' page 404."
+ },
+ {
+  "tld": "ch",
+  "idn": "yes",
+  "chars": "U+00E0..U+00F6 U+00F8..U+00FF U+0153",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated (single Latin repertoire)",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.ch/terms/agb/",
+   "https://www.nic.ch/support/idn/"
+  ],
+  "confidence": "high",
+  "notes": "SWITCH GTC Annex 1 (a-z, 0-9, hyphen) and Annex 2 (images): à á â ã ä å æ ç è é ê ë ì í î ï ð ñ ò ó ô õ ö ø ù ú û ü ý þ ÿ œ. Same rules for .li."
+ },
+ {
+  "tld": "ci",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.nic.ci/"
+  ],
+  "confidence": "low",
+  "notes": "Registry homepage has no content retrievable."
+ },
+ {
+  "tld": "ck",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.nic.ck/"
+  ],
+  "confidence": "low",
+  "notes": "Registry unreachable; second-level structure not verified."
+ },
+ {
+  "tld": "cm",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://nic.cm/telecharger-le-projet-de-charte-de-nommage/"
+  ],
+  "confidence": "low",
+  "notes": "ANTIC naming charter only available as a draft download; not retrieved."
+ },
+ {
+  "tld": "cr",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://nic.cr/capitulo-1-registro-de-un-nombre-de-dominio/",
+   "https://nic.cr/faqs-dominios/"
+  ],
+  "confidence": "high",
+  "notes": "NIC Costa Rica policy ch.1: valid characters are English alphabet A-Z, 0-9, hyphen; FAQ says no accented words. Direct .cr open to anyone; .co.cr open; other third-level zones need local presence."
+ },
+ {
+  "tld": "cu",
+  "idn": "yes",
+  "chars": "U+00E1 U+00E9 U+00ED U+00F3 U+00FA U+00FC U+00F1",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.cu/docum_det.php?doc_id=1&opt=1"
+  ],
+  "confidence": "high",
+  "notes": "CUBANIC norms 3.1(a): Castilian alphabet a-z, 0-9, hyphen and á, é, í, ó, ú, ü, ñ (called internationalized domain names). 4.4: accented/diaeresis letters and ñ are treated as equivalent to their base letters for conflict checks. CUBANIC grants second-level names under .cu and third-level under edu/gob/org/inf/net/com/nat.cu; eligibility rules may limit who can register."
+ },
+ {
+  "tld": "cv",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "http://www.dns.cv/"
+  ],
+  "confidence": "low",
+  "notes": "Registry unreachable (502/refused)."
+ },
+ {
+  "tld": "cw",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://uoc.cw/domain-registration/"
+  ],
+  "confidence": "low",
+  "notes": "University of Curaçao registration page has no character rules."
+ },
+ {
+  "tld": "cx",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.gandi.net/en-US/domain/tld/cx",
+   "https://www.101domain.com/cx-information-help.htm"
+  ],
+  "confidence": "low",
+  "notes": "Registrar sources only: a-z, 0-9, hyphen; IDN not supported. nic.cx unreachable (DNS failure) on 2026-09-24. CoCCA-platform registry."
+ },
+ {
+  "tld": "cy",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://nic.cy/faqs/"
+  ],
+  "confidence": "high",
+  "notes": "Registry .cy FAQ: Latin A-Z, a-z, 0-9 and hyphen; 3-63 chars. Direct .cy plus .com.cy, .org.cy etc."
+ },
+ {
+  "tld": "cz",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.cz/page/4099/prijmout-nebo-odmitnout-diakritiku-v-ceskych-domenach-stanovisko-verejnosti-se-v-teto-otazce-nemeni/"
+  ],
+  "confidence": "high",
+  "notes": "CZ.NIC has repeatedly declined to introduce IDN in .cz after public surveys (7th survey, Dec 2019: 88% of organisations and 64% of users opposed). Only háčkyčárky.cz exists as a CZ.NIC demo. ASCII LDH only."
+ },
+ {
+  "tld": "de",
+  "idn": "yes",
+  "chars": "U+00DF U+00E0 U+00E1 U+00E2 U+00E3 U+00E4 U+00E5 U+00E6 U+00E7 U+00E8 U+00E9 U+00EA U+00EB U+00EC U+00ED U+00EE U+00EF U+00F0 U+00F1 U+00F2 U+00F3 U+00F4 U+00F5 U+00F6 U+00F8 U+00F9 U+00FA U+00FB U+00FC U+00FD U+00FE U+00FF U+0101 U+0103 U+0105 U+0107 U+0109 U+010B U+010D U+010F U+0111 U+0113 U+0115 U+0117 U+0119 U+011B U+011D U+011F U+0121 U+0123 U+0125 U+0127 U+0129 U+012B U+012D U+012F U+0131 U+0135 U+0137 U+0138 U+013A U+013C U+013E U+0142 U+0144 U+0146 U+0148 U+014B U+014D U+014F U+0151 U+0153 U+0155 U+0157 U+0159 U+015B U+015D U+015F U+0161 U+0163 U+0165 U+0167 U+0169 U+016B U+016D U+016F U+0171 U+0173 U+0175 U+0177 U+017A U+017C U+017E",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated; any combination of the 93 listed characters with a-z, 0-9, hyphen",
+  "second_level_open": true,
+  "source": [
+   "https://www.denic.de/en/produkte/de-domains/idn-domains/"
+  ],
+  "confidence": "high",
+  "notes": "93 characters copied from the DENIC IDN table (hex column). DENIC describes the set as all RFC 5892 PVALID characters of the Latin-1 Supplement and Latin Extended-A blocks; IDNA2008, Unicode 5.2. U+00DF (ß) registrable since 2010."
+ },
+ {
+  "tld": "dj",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://www.netim.com/en/domain-name/dj-domain"
+  ],
+  "confidence": "low",
+  "notes": "Registry site www.nic.dj serves only an empty directory index; no registry policy found. Registrar (Netim) states .dj IDNs with non-ASCII characters cannot be registered; 3-63 LDH characters. Operator: Djibouti Telecom."
+ },
+ {
+  "tld": "dk",
+  "idn": "yes",
+  "chars": "U+00E4 U+00E5 U+00E6 U+00E9 U+00F6 U+00F8 U+00FC U+00DF",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://punktum.dk/en/articles/approved-characters-for-dk-domain-names"
+  ],
+  "confidence": "high",
+  "notes": "Punktum dk (v2.1, 26 Apr 2023): all Danish letters incl. æ ø å, plus ö ä ü é and ß, digits, hyphen. æøåäöüé since 2004; ß added 2021."
+ },
+ {
+  "tld": "dm",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://nic.dm/policies/pdf/DM%20Rules%20and%20Guidelines%202026%20V1.3.pdf"
+  ],
+  "confidence": "high",
+  "notes": "DM Rules and Guidelines 2026 v1.3: \"only alpha characters (A-Z) may be registered\", 1-63 chars. Second-level .dm and .co.dm open; com/net/org.dm brand-protected but not in zone."
+ },
+ {
+  "tld": "do",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.do/politicas/politica-de-delegacion-de-nombres-de-dominio/",
+   "https://www.nic.do/ayuda/preguntas-frecuentes/"
+  ],
+  "confidence": "high",
+  "notes": "NIC.DO delegation policy (last modified May 2017): valid characters are digits, English-alphabet letters and hyphen. Direct second-level registration since Dec 2009."
+ },
+ {
+  "tld": "dz",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://www.idn.dz/static/media/charte.4dabcfc76103cb33b6e4.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Charte de nommage du .DZ (Oct 2018) §14.1: only a-z, 0-9, hyphen; 2-24 characters; not all-numeric. Second level (.dz) plus com/gov/org/edu/asso/pol/art/net/tm/soc.dz; eligibility restricted (local presence / Algerian trademark). Arabic IDNs go under the separate IDN ccTLD .الجزائر."
+ },
+ {
+  "tld": "ec",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://nic.ec/politicas.php"
+  ],
+  "confidence": "high",
+  "notes": "NIC.EC policies: only A-Z, 0-9 and hyphen; accented letters, ñ and underscore explicitly not allowed. Second-level minimum 4 characters."
+ },
+ {
+  "tld": "ee",
+  "idn": "yes",
+  "chars": "U+00E4 U+00F5 U+00F6 U+00FC U+0161 U+017E",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.internet.ee/registrar-portal/help-and-info/domain-regulations-and-registrar-contract",
+   "https://meedia.internet.ee/files/Domain_Regulation_EN_01.02.2025.docx.pdf"
+  ],
+  "confidence": "high",
+  "notes": ".ee Domain Regulation (1 Feb 2025) §3.2.2: non-ASCII only for letters of the Estonian alphabet; registry help page lists them as õ, ä, ö, ü, š, ž."
+ },
+ {
+  "tld": "eg",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://egregistry.eg/subdomain-names",
+   "https://web-solutions.eu/registry-regulations-egypt.htm"
+  ],
+  "confidence": "low",
+  "notes": "Registry site (egregistry.eg) lists .eg (all entities) plus com/edu/net/org/gov/info/tv/sport/name/me/sci.eg, so second level is open (documented, name must match the applicant). No character rule found on the registry site; registrar source says letters A-Z and digits only, 2-22 characters. Arabic-script names go under the separate IDN ccTLD .مصر."
+ },
+ {
+  "tld": "er",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": null,
+  "second_level_open": null,
+  "source": [
+   "https://www.iana.org/domains/root/db/er.html"
+  ],
+  "confidence": "low",
+  "notes": "Eritrea Telecommunications Corporation. IANA lists no registration-services URL; no public registry policy found. Registration is widely reported as very restricted/local only; could not verify."
+ },
+ {
+  "tld": "es",
+  "idn": "yes",
+  "chars": "U+00E1 U+00E0 U+00E9 U+00E8 U+00ED U+00EF U+00F3 U+00F2 U+00FA U+00FC U+00F1 U+00E7 U+00B7",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "U+00B7 (middle dot) only in the Catalan l·l sequence (between two l)",
+  "second_level_open": true,
+  "source": [
+   "https://www.dominios.es/es/informacion-de-interes/noticias/caracteres-multilingues",
+   "https://www.dominios.es/sites/dominios/files/2021-05/Faqs_IDN_011007_metadatok.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Red.es: 13 multilingual characters á à é è í ï ó ò ú ü ñ ç and l·l (Catalan geminated l). The 2007 FAQ lists the 13th character as ŀl (U+0140) and separately as l·l (U+00B7); under IDNA2008 U+0140 is DISALLOWED, so the registrable form is l U+00B7 l (CONTEXTO). IDN available since 2 Oct 2007."
+ },
+ {
+  "tld": "et",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://www.ethiotelecom.et/domain-name/"
+  ],
+  "confidence": "low",
+  "notes": "Ethio telecom sells first-level .et names and com/net/org/edu/tv.et names. No character or IDN rule found."
+ },
+ {
+  "tld": "fi",
+  "idn": "yes",
+  "chars": "U+00E1 U+00E2 U+00E4 U+00E5 U+010D U+0111 U+01E5 U+01E7 U+01E9 U+014B U+00F5 U+00F6 U+0161 U+0167 U+017E U+0292 U+01EF",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://traficom.fi/en/fi-domains/information-about-domain-names/native-language-characters-domain-names"
+  ],
+  "confidence": "medium",
+  "notes": "Traficom: a-z, 0-9, hyphen plus national characters (Finnish/Swedish å ä ö and Sámi letters). The list is published only as an image (fi-kansalliset-merkit): á, â, ä, å, č, đ, ǥ, ǧ, ǩ, ŋ, õ, ö, š, ŧ, ž, ʒ, ǯ. Code points transcribed from that image (ǥ and ŧ shown with stroke). No xn-- prefix at the start."
+ },
+ {
+  "tld": "fj",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": null,
+  "second_level_open": null,
+  "source": [
+   "https://www.domains.fj/"
+  ],
+  "confidence": "low",
+  "notes": ".FJ registry (University of the South Pacific, domains.fj) upgraded its platform Apr 2025. No policy on characters, IDN or zone structure found (historically registrations are under com.fj/org.fj etc.); could not verify."
+ },
+ {
+  "tld": "fk",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": null,
+  "second_level_open": null,
+  "source": [
+   "https://www.iana.org/domains/root/db/fk.html",
+   "https://www.sure.co.fk/"
+  ],
+  "confidence": "low",
+  "notes": "IANA points to Sure (Falklands) as registration service; no domain policy found on its site. Historically only third-level (co.fk etc.) registrations; could not verify."
+ },
+ {
+  "tld": "fm",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "dotFM IDN languages/scripts: latn (Latin script), zh (Chinese), ja (Japanese), ko (Korean), cyrl (Cyrillic script), he (Hebrew), ar (Arabic), grek (Greek script), th (Thai), lo (Lao), mymr (Myanmar script); no per-code-point table published",
+  "scripts": [
+   "Latin",
+   "Han",
+   "Hiragana",
+   "Katakana",
+   "Hangul",
+   "Cyrillic",
+   "Hebrew",
+   "Arabic",
+   "Greek",
+   "Thai",
+   "Lao",
+   "Myanmar"
+  ],
+  "mixing": "language/script tag per registration (codes listed by registry); explicit mixing rule not stated",
+  "second_level_open": true,
+  "source": [
+   "https://dot.fm/idn/"
+  ],
+  "confidence": "medium",
+  "notes": "dotFM (BRS Media) IDN page covers .FM, .RADIO.am, .RADIO.fm. Latin tag described as covering 120+ languages (Croatian, Czech, Danish, Finnish, French, German, Hungarian, Irish, Norwegian, Polish, Portuguese, Romanian, Spanish, Swedish, Turkish, Welsh...); Cyrillic tag 50+ languages. Exact repertoire unknown; treat as broad."
+ },
+ {
+  "tld": "fo",
+  "idn": "yes",
+  "chars": "U+00E1 U+00ED U+00F3 U+00FA U+00FD U+00E6 U+00F8 U+00F0",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.xn--kisnavn-p1a.fo/okisnovn-vid-foroyskum-stavum/",
+   "https://www.xn--kisnavn-p1a.fo/nytslutreytir-fyri-okisnavn-fo/"
+  ],
+  "confidence": "high",
+  "notes": "FO-ráðið / Økisnavn announcement 21.04.2020: the letters á, ó, í, ý, ð, ø, æ and ú can now be used in .fo names. Terms of use: letters of the Faroese and English alphabets, digits, hyphen. (Registrar sites claiming .fo has no IDN are outdated.)"
+ },
+ {
+  "tld": "fr",
+  "idn": "yes",
+  "chars": "U+00DF U+00E0 U+00E1 U+00E2 U+00E3 U+00E4 U+00E5 U+00E6 U+00E7 U+00E8 U+00E9 U+00EA U+00EB U+00EC U+00ED U+00EE U+00EF U+00F1 U+00F2 U+00F3 U+00F4 U+00F5 U+00F6 U+00F9 U+00FA U+00FB U+00FC U+00FD U+00FF U+0153",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.afnic.fr/wp-media/uploads/2021/07/afnic-charte-de-nommage-2021-09-15.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Afnic Charte de nommage (15 Sep 2021) art. 19: a-z plus à á â ã ä å æ ç è é ê ë ì í î ï ñ ò ó ô õ ö œ ù ú û ü ý ÿ ß, digits, hyphen (30 non-ASCII). Same rules apply to all Afnic TLDs (.re .pm .yt .wf .tf). IDN since 3 May 2012. Later charter versions not checked."
+ },
+ {
+  "tld": "ga",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://kb.centralnicreseller.com/domains/tlds/ga/",
+   "https://www.iana.org/domains/root/db/ga.html"
+  ],
+  "confidence": "low",
+  "notes": "Operated by ANINF since Freenom ended June 2023 (nic.ga / mon.ga). Registry policy PDF (mon.ga) unreachable. CentralNic Reseller KB lists .ga as supporting IPv6/DNSSEC but not IDN, 3-63 characters. Local-presence/link to Gabon required."
+ },
+ {
+  "tld": "gb",
+  "idn": "unused",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": null,
+  "second_level_open": false,
+  "source": [
+   "https://www.iana.org/domains/root/db/gb.html"
+  ],
+  "confidence": "high",
+  "notes": "Delegated to Jisc (UK); no registration services; not open for registration. .uk is used instead."
+ },
+ {
+  "tld": "gd",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://nic.gd/terms.php"
+  ],
+  "confidence": "high",
+  "notes": "Nic.GD terms (KSregistry GmbH for NTRC Grenada): 1-63 characters, letters A-Z, digits (text says \"1 to 9\"), hyphen not at start/end. No IDN."
+ },
+ {
+  "tld": "ge",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://nic.ge/en/domains/faq"
+  ],
+  "confidence": "high",
+  "notes": "NIC.GE FAQ: names may only contain digits, hyphens and Latin letters; 2-63 characters. Direct .ge open worldwide; com/edu/gov/org/mil/net/pvt/school.ge restricted. Georgian-script names go under the separate IDN ccTLD .გე (different operator)."
+ },
+ {
+  "tld": "gf",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://www.netim.com/en/domain-name/gf-domain",
+   "https://www.dom-enic.com/informations.html"
+  ],
+  "confidence": "low",
+  "notes": "Registry DOM-eNIC (Canal+ Telecom) does not state a character rule in its published conditions; registrar sources say only a-z, 0-9, hyphen (3-63), no special characters."
+ },
+ {
+  "tld": "gg",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": "CentralNic Reseller lists IDN language tags DA, DE, HU, IS, KO, LV, LT, PL, ES, SV for .gg (unverified with registry)",
+  "scripts": [],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://kb.centralnicreseller.com/domains/tlds/gg/",
+   "https://www.channelisles.net/legal/terms-and-conditions-1"
+  ],
+  "confidence": "low",
+  "notes": "Conflicting: a registrar KB (CentralNic Reseller) says .gg supports IDN with 10 language tags, while the Channel Isles (Island Networks) registration terms §5.2 say names with two consecutive hyphens (used for IDNs) \"may be subject to additional conditions, special procedures or not accepted for general registration\". No registry IDN table found. Same operator as .je."
+ },
+ {
+  "tld": "gh",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": false,
+  "source": [
+   "https://nic.gh/documents/GH_Registration_Domain_Name_Policy.pdf"
+  ],
+  "confidence": "high",
+  "notes": "GH Registry Domain Name Policy (updated Feb 2026) §2.2: only a-z, 0-9, hyphen; §2.5: \".GH Registry does not offer Internationalised Domain Names (IDN) for now\". Public registrations under com/org/net/biz/edu/gov/mil/idi.gh; some second-level names only sold by auction/premium."
+ },
+ {
+  "tld": "gi",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.gi/content.php?action=mypages&page=rules_gi.html",
+   "https://cp.nic.gi/kb/answer/1740",
+   "https://kb.centralnicreseller.com/domains/tlds/gi/"
+  ],
+  "confidence": "low",
+  "notes": "Gibraltar .GI Registry (Sapphire Networks). Rules page gives no character rule; .gi second level is for Gibraltar-registered businesses (com.gi etc. more open). Its reseller KB (LogicBoxes template) says it supports IDN but the list of extensions/character sets is empty; CentralNic Reseller KB does not list IDN for .gi. Unresolved."
+ },
+ {
+  "tld": "gl",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://nic.gl/"
+  ],
+  "confidence": "high",
+  "notes": "nic.gl (Tusass) FAQ: \"Do you use/allow IDN? No, nor are there plans to support it.\" 1-63 characters."
+ },
+ {
+  "tld": "gm",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": null,
+  "second_level_open": null,
+  "source": [
+   "https://www.nic.gm/"
+  ],
+  "confidence": "low",
+  "notes": "nic.gm shows only a site-transition notice; no policy retrievable."
+ },
+ {
+  "tld": "gn",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": null,
+  "second_level_open": false,
+  "source": [
+   "https://ande.gov.gn/dns-gn/"
+  ],
+  "confidence": "medium",
+  "notes": "ANDE registration page lists only com.gn, edu.gn, gov.gn, org.gn, net.gn (email application form, local presence required). No character/IDN rule stated; almost certainly ASCII-only given the manual RFC 1591-style process, but not stated."
+ },
+ {
+  "tld": "gp",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.gp/index.php?action=tou&lang=fr"
+  ],
+  "confidence": "low",
+  "notes": "NIC.GP (Networking Technologies Group) general conditions cover second-level .gp and com/net/edu/asso/org.gp; only length (2-63) is specified, no character repertoire or IDN statement."
+ },
+ {
+  "tld": "gq",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "http://www.dominio.gq/en/faq.html",
+   "http://www.dominio.gq/en/policies.html"
+  ],
+  "confidence": "low",
+  "notes": "Dominio GQ (GETESA; legacy Freenom-style platform) says the registry is open to anyone. No character/IDN rule found."
+ },
+ {
+  "tld": "gr",
+  "idn": "yes",
+  "chars": "U+0390 U+03AC U+03AD U+03AE U+03AF U+03B0 U+03B1 U+03B2 U+03B3 U+03B4 U+03B5 U+03B6 U+03B7 U+03B8 U+03B9 U+03BA U+03BB U+03BC U+03BD U+03BE U+03BF U+03C0 U+03C1 U+03C2 U+03C3 U+03C4 U+03C5 U+03C6 U+03C7 U+03C8 U+03C9 U+03CA U+03CB U+03CC U+03CD U+03CE U+1F00 U+1F01 U+1F02 U+1F03 U+1F04 U+1F05 U+1F06 U+1F07 U+1F10 U+1F11 U+1F12 U+1F13 U+1F14 U+1F15 U+1F20 U+1F21 U+1F22 U+1F23 U+1F24 U+1F25 U+1F26 U+1F27 U+1F30 U+1F31 U+1F32 U+1F33 U+1F34 U+1F35 U+1F36 U+1F37 U+1F40 U+1F41 U+1F42 U+1F43 U+1F44 U+1F45 U+1F50 U+1F51 U+1F52 U+1F53 U+1F54 U+1F55 U+1F56 U+1F57 U+1F60 U+1F61 U+1F62 U+1F63 U+1F64 U+1F65 U+1F66 U+1F67 U+1F70 U+1F71 U+1F72 U+1F73 U+1F74 U+1F75 U+1F76 U+1F77 U+1F78 U+1F79 U+1F7A U+1F7B U+1F7C U+1F7D U+1F80 U+1F81 U+1F82 U+1F83 U+1F84 U+1F85 U+1F86 U+1F87 U+1F90 U+1F91 U+1F92 U+1F93 U+1F94 U+1F95 U+1F96 U+1F97 U+1FA0 U+1FA1 U+1FA2 U+1FA3 U+1FA4 U+1FA5 U+1FA6 U+1FA7 U+1FB0 U+1FB1 U+1FB2 U+1FB3 U+1FB4 U+1FB6 U+1FB7 U+1FC2 U+1FC3 U+1FC4 U+1FC6 U+1FC7 U+1FD0 U+1FD1 U+1FD2 U+1FD3 U+1FD6 U+1FD7 U+1FE0 U+1FE1 U+1FE2 U+1FE3 U+1FE4 U+1FE5 U+1FE6 U+1FE7 U+1FF2 U+1FF3 U+1FF4 U+1FF6 U+1FF7",
+  "chars_ref": "ICS-FORTH \"Acceptable Greek characters table\" (Unicode 4.1), 286 entries; chars lists the 157 lowercase entries. The table also lists 129 uppercase forms: U+0386 U+0388 U+0389 U+038A U+038C U+038E U+038F U+0391 U+0392 U+0393 U+0394 U+0395 U+0396 U+0397 U+0398 U+0399 U+039A U+039B U+039C U+039D U+039E U+039F U+03A0 U+03A1 U+03A3 U+03A4 U+03A5 U+03A6 U+03A7 U+03A8 U+03A9 U+03AA U+03AB U+1F08 U+1F09 U+1F0A U+1F0B U+1F0C U+1F0D U+1F0E U+1F0F U+1F18 U+1F19 U+1F1A U+1F1B U+1F1C U+1F1D U+1F28 U+1F29 U+1F2A U+1F2B U+1F2C U+1F2D U+1F2E U+1F2F U+1F38 U+1F39 U+1F3A U+1F3B U+1F3C U+1F3D U+1F3E U+1F3F U+1F48 U+1F49 U+1F4A U+1F4B U+1F4C U+1F4D U+1F59 U+1F5B U+1F5D U+1F5F U+1F68 U+1F69 U+1F6A U+1F6B U+1F6C U+1F6D U+1F6E U+1F6F U+1F88 U+1F89 U+1F8A U+1F8B U+1F8C U+1F8D U+1F8E U+1F8F U+1F98 U+1F99 U+1F9A U+1F9B U+1F9C U+1F9D U+1F9E U+1F9F U+1FA8 U+1FA9 U+1FAA U+1FAB U+1FAC U+1FAD U+1FAE U+1FAF U+1FB8 U+1FB9 U+1FBA U+1FBB U+1FBC U+1FC8 U+1FC9 U+1FCA U+1FCB U+1FCC U+1FD8 U+1FD9 U+1FDA U+1FDB U+1FE8 U+1FE9 U+1FEA U+1FEB U+1FEC U+1FF8 U+1FF9 U+1FFA U+1FFB U+1FFC",
+  "scripts": [
+   "Greek"
+  ],
+  "mixing": "mixing of Greek and Latin in one label not explicitly addressed; registry treats visually identical Latin/Greek names as homographs (h/n/v~η/ν, u/y~υ etc.) and blocks/bundles them",
+  "second_level_open": true,
+  "source": [
+   "https://grweb.ics.forth.gr/public/domains/idn?lang=en",
+   "https://grweb.ics.forth.gr/public/assets/docs/en/acceptable-greek-chars-29d9874ecbeb8ca27e43d49cf1fd7af6.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Greek IDNs under .gr since 4 Jul 2005 (and .ελ since 2018). Table includes monotonic (U+0386-U+03CE) and polytonic Greek Extended (U+1F00-U+1FFC) letters; several polytonic code points (e.g. U+1F71 etc.) are not IDNA2008 PVALID, so actually registrable set may be smaller. Names are assigned in the lowercase form with accents; the unaccented form is granted to the same registrant. Operator ICS-FORTH under EETT."
+ },
+ {
+  "tld": "gs",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://www.netim.com/en/domain-name/gs-domain",
+   "https://kb.centralnicreseller.com/domains/tlds/gs/",
+   "https://nic.gs/"
+  ],
+  "confidence": "low",
+  "notes": "Operated on the CoCCA platform (Atlantis North). Registry pages give no character rule; registrar sources say .gs IDNs with non-ASCII characters cannot be registered; CentralNic Reseller KB lists no IDN support."
+ },
+ {
+  "tld": "gt",
+  "idn": "yes",
+  "chars": "U+00E1 U+00E9 U+00ED U+00F3 U+00FA U+00FC U+00F1",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.gt/sitio/idn.php"
+  ],
+  "confidence": "high",
+  "notes": "Registro de Dominios .gt (Universidad del Valle de Guatemala): Spanish letters á é í ó ú ü ñ allowed under .gt and com/org/net/ind/edu/gob/mil.gt."
+ },
+ {
+  "tld": "gu",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": null,
+  "second_level_open": null,
+  "source": [
+   "https://give.uog.edu/gu-domain-application-form/"
+  ],
+  "confidence": "low",
+  "notes": "University of Guam (UOG Endowment Foundation) online application form; eligibility: businesses registered with Guam Dept. of Revenue & Taxation. No character/IDN or zone-structure rule found."
+ },
+ {
+  "tld": "gy",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://registry.gy/",
+   "https://www.netim.com/en/domain-name/gy-domain",
+   "https://kb.centralnicreseller.com/domains/tlds/gy/"
+  ],
+  "confidence": "low",
+  "notes": "University of Guyana, CoCCA platform; .gy plus co/com/org/net/edu/gov.gy open. Registry site gives no character rule; registrar sources say the registry does not offer IDN."
+ },
+ {
+  "tld": "hk",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "HKIRC Chinese Character Variant Table, stated to be based on the Chinese Domain Name Consortium CN and TW language tables (as registered at IANA for .cn/.tw) per RFC 3743 (JET) variant rules",
+  "scripts": [
+   "Han",
+   "Latin"
+  ],
+  "mixing": "Chinese Domain Name must contain at least one Chinese character and may also contain ASCII letters, digits and hyphen; max 15 characters total",
+  "second_level_open": true,
+  "source": [
+   "https://www.hkdnr.hk/wp-content/uploads/HKIRC-Registration-Policy-v1.3-Eng_2021.01.28-clean.pdf",
+   "https://www.hkdnr.hk/en/faq-2/domain-name-registration/english-chinese-mixture-domain-name/"
+  ],
+  "confidence": "medium",
+  "notes": "HKIRC Registration Policy v1.3 (Jan 2021) §4.4 and §5: traditional and simplified variants are bundled; not all Han characters are allowed (only those in the variant table). HKIRC cites IDNA2003 RFCs 3454/3490-3492/3743. ASCII second-level .hk also open; third-level com/org/net/edu/gov/idv.hk."
+ },
+ {
+  "tld": "hm",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "http://www.registry.hm/HR_conditions.php"
+  ],
+  "confidence": "high",
+  "notes": "HM Domain Registry policy: names directly under .hm, at least 3 characters, only a-z, 0-9, hyphen, must start with a letter. Open to anyone ($35/yr)."
+ },
+ {
+  "tld": "hn",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.hn/politicas",
+   "https://kb.centralnicreseller.com/domains/tlds/hn/"
+  ],
+  "confidence": "low",
+  "notes": "NIC-HN published policies (registrant agreement, AUP, dispute policy) state no character repertoire. CentralNic Reseller KB lists DNSSEC but not IDN; registrar sources conflict. Probably ASCII-only but not confirmed."
+ },
+ {
+  "tld": "hr",
+  "idn": "yes",
+  "chars": "U+010D U+0107 U+0111 U+0161 U+017E",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://domene.hr/portal/news/promjene",
+   "https://domene.hr/portal/register"
+  ],
+  "confidence": "high",
+  "notes": "CARNET (.hr registry) announcement 25 Apr 2016: names with č, ć, đ, š, ž registrable from 4 Jul 2016, as free or paid .hr names depending on the Pravilnik conditions. Also under com.hr / from.hr per registry portal."
+ },
+ {
+  "tld": "ht",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://nic.ht/index.php/en/nom-de-domaine/charte-de-nommage"
+  ],
+  "confidence": "low",
+  "notes": "NIC.HT charter (page now 404; content known only via search snippet): for accented letters only the base letter is kept (e.g. ñ -> n, ë -> e), so no IDN. Registry now on CoCCA platform (registry.nic.ht); CentralNic Reseller KB lists no IDN support."
+ },
+ {
+  "tld": "hu",
+  "idn": "yes",
+  "chars": "U+00E1 U+00E9 U+00ED U+00F3 U+00F6 U+0151 U+00FA U+00FC U+0171",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.domain.hu/app/uploads/2025/06/DRSz-20250701.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Domainregisztrációs Szabályzat (effective 1 Jul 2025) §2.1.2: a-z, the Hungarian accented lowercase letters á é í ó ö ő ú ü ű, 0-9, hyphen. Applies to .hu and its public second-level zones (co.hu etc.). Older rules allowed a wider Latin set; current set is Hungarian only."
+ },
+ {
+  "tld": "id",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": null,
+  "second_level_open": true,
+  "source": [
+   "https://pandi.id/public/files/2024/2/1-20170324-001-k-dnp-kebijakan-umum-nama-domain-iii-2017-pandi-publik-1709174222.pdf"
+  ],
+  "confidence": "high",
+  "notes": "PANDI General Domain Name Policy (001/K/DNP/III/2017) §6.3.2: letters A-Z/a-z, digits 0-9, hyphen. Direct <name>.id names (min 5 characters) are open, plus co/web/my/biz/or/ac/sch/go/mil/net/desa/ponpes.id."
+ },
+ {
+  "tld": "ie",
+  "idn": "yes",
+  "chars": "U+00E1 U+00E9 U+00ED U+00F3 U+00FA",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.weare.ie/faq-list/what-characters-can-i-use-in-my-domain-name/",
+   "https://www.weare.ie/uploads/2016/08/IDN_Frequently_Asked_Questions.pdf"
+  ],
+  "confidence": "high",
+  "notes": "IEDR (.ie Domain Registry): letters, digits, hyphen and the fada (acute accent) vowels á é í ó ú. IDN launched 23 Oct 2016 (sunrise), general availability 17 Nov 2016."
+ },
+ {
+  "tld": "im",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.im/pdfs/IMRules.pdf"
+  ],
+  "confidence": "high",
+  "notes": "IM Rules (5 July 2023) s.4.2-4.3: SLD may only contain a-z, 0-9 and hyphen; \"Internationalised domain names are not currently offered\", xn-- labels may not be registered."
+ },
+ {
+  "tld": "in",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.registry.in/policies"
+  ],
+  "confidence": "high",
+  "notes": "NIXI .IN Registry: \"Only letters, digits, and hyphens\"; \"Until further announcements, no applications for domain names in internationalized script (including diacritical marks) shall be accepted.\" Indian-language IDNs are offered under the separate .भारत family of IDN ccTLDs, not under .in. (CentralNic Reseller lists Indic language tags for .in, which appear to relate to .भारत.)"
+ },
+ {
+  "tld": "io",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "Identity Digital (ex-Afilias) per-language IDN tables with mandatory language tag; no .io table at IANA. 101domain lists languages: Arabic, Belarusian, Bulgarian, Chinese Simplified, Chinese Traditional, Danish, Finnish, French, German, Hungarian, Icelandic, Italian, Korean, Latvian, Lithuanian, Macedonian, Polish, Portuguese, Russian, Serbian, Spanish, Swedish, Ukrainian (CentralNic Reseller lists only DA DE HU IS KO LV LT PL ES SV).",
+  "scripts": [
+   "Latin",
+   "Cyrillic",
+   "Arabic",
+   "Han",
+   "Hangul"
+  ],
+  "mixing": "one script per label (Identity Digital IDN policy); language tag required",
+  "second_level_open": true,
+  "source": [
+   "https://www.101domain.com/io-information-help.htm",
+   "https://kb.centralnicreseller.com/domains/tlds/io/",
+   "https://www.identity.digital/policies/idn-policy"
+  ],
+  "confidence": "low",
+  "notes": "Registry operated by Internet Computer Bureau / Identity Digital. nic.io was unreachable; no primary .io-specific IDN statement found. Registrar sources disagree on the language list. .io future uncertain given BIOT sovereignty change."
+ },
+ {
+  "tld": "iq",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.101domain.com/iq-information-help.htm",
+   "https://kb.centralnicreseller.com/domains/tlds/iq/"
+  ],
+  "confidence": "low",
+  "notes": "CMC (Iraq) registry site unreachable; no primary policy found. 101domain lists \"Languages Supported: None\". Arabic IDN ccTLD is separate (.عراق)."
+ },
+ {
+  "tld": "is",
+  "idn": "yes",
+  "chars": "U+00E1 U+00E9 U+00FD U+00FA U+00ED U+00F3 U+00FE U+00E6 U+00F6 U+00F0",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.isnic.is/en/domain/rules"
+  ],
+  "confidence": "high",
+  "notes": "ISNIC Domain Rules art. 6: English letters, digits, hyphen and á é ý ú í ó þ æ ö ð. IDN since 1 July 2004. Max length 66 (59 if containing Icelandic letters)."
+ },
+ {
+  "tld": "it",
+  "idn": "yes",
+  "chars": "U+00E0 U+00E1 U+00E2 U+00E3 U+00E4 U+00E5 U+00E6 U+00E7 U+00E8 U+00E9 U+00EA U+00EB U+00EC U+00ED U+00EE U+00EF U+00F0 U+00F1 U+00F2 U+00F3 U+00F4 U+00F5 U+00F6 U+00F8 U+00F9 U+00FA U+00FB U+00FC U+00FD U+00FE U+00FF U+00DF U+0101 U+0103 U+0105 U+0107 U+0109 U+010B U+010D U+010F U+0111 U+0113 U+0115 U+0117 U+0119 U+011B U+011D U+011F U+0121 U+0123 U+0125 U+0127 U+0129 U+012B U+012D U+012F U+0131 U+0135 U+0137 U+013A U+013C U+013E U+0140 U+0142 U+0144 U+0146 U+0148 U+0149 U+014B U+014D U+014F U+0151 U+0153 U+0155 U+0157 U+0159 U+015B U+015D U+0161 U+0165 U+0167 U+0169 U+016B U+016D U+016F U+0171 U+0173 U+0175 U+0177 U+017A U+017C U+017E U+0219 U+021B U+0390 U+03AC U+03AD U+03AE U+03AF U+03B0 U+03B1 U+03B2 U+03B3 U+03B4 U+03B5 U+03B6 U+03B7 U+03B8 U+03B9 U+03BA U+03BB U+03BC U+03BD U+03BE U+03BF U+03C0 U+03C1 U+03C2 U+03C3 U+03C4 U+03C5 U+03C6 U+03C7 U+03C8 U+03C9 U+03CA U+03CB U+03CC U+03CD U+03CE U+1F00 U+1F01 U+1F02 U+1F03 U+1F04 U+1F05 U+1F06 U+1F07 U+1F10 U+1F11 U+1F12 U+1F13 U+1F14 U+1F15 U+1F20 U+1F21 U+1F22 U+1F23 U+1F24 U+1F25 U+1F26 U+1F27 U+1F30 U+1F31 U+1F32 U+1F33 U+1F34 U+1F35 U+1F36 U+1F37 U+1F40 U+1F41 U+1F42 U+1F43 U+1F44 U+1F45 U+1F50 U+1F51 U+1F52 U+1F53 U+1F54 U+1F55 U+1F56 U+1F57 U+1F60 U+1F61 U+1F62 U+1F63 U+1F64 U+1F65 U+1F66 U+1F67 U+1F70 U+1F71 U+1F72 U+1F73 U+1F74 U+1F75 U+1F76 U+1F77 U+1F78 U+1F79 U+1F7A U+1F7B U+1F7C U+1F7D U+1F80 U+1F81 U+1F82 U+1F83 U+1F84 U+1F85 U+1F86 U+1F87 U+1F90 U+1F91 U+1F92 U+1F93 U+1F94 U+1F95 U+1F96 U+1F97 U+1FA0 U+1FA1 U+1FA2 U+1FA3 U+1FA4 U+1FA5 U+1FA6 U+1FA7 U+1FB0 U+1FB1 U+1FB2 U+1FB3 U+1FB4 U+1FB6 U+1FB7 U+1FC2 U+1FC3 U+1FC4 U+1FC6 U+1FC7 U+1FD0 U+1FD1 U+1FD2 U+1FD3 U+1FD6 U+1FD7 U+1FE0 U+1FE1 U+1FE2 U+1FE3 U+1FE4 U+1FE5 U+1FE6 U+1FE7 U+1FF2 U+1FF3 U+1FF4 U+1FF6 U+1FF7 U+0430 U+0431 U+0432 U+0433 U+0434 U+0435 U+0436 U+0437 U+0438 U+0439 U+043A U+043B U+043C U+043D U+043E U+043F U+0440 U+0441 U+0442 U+0443 U+0444 U+0445 U+0446 U+0447 U+0448 U+0449 U+044A U+044B U+044C U+044D U+044E U+044F",
+  "chars_ref": null,
+  "scripts": [
+   "Latin",
+   "Greek",
+   "Cyrillic"
+  ],
+  "mixing": "one charset per label: labels mixing Latin, Greek and Cyrillic characters are refused (Linee Guida Tecniche s.2.2.1)",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.it/sites/default/files/documenti/2024/Linee_Guida_Tecniche_Sincrone_v3.2_0.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Registro .it Technical Guidelines v3.2 s.2.2 and Appendices E-L (Latin-1 Supplement, Latin Extended-A, Latin Extended-B, Greek, Greek Extended, Cyrillic), intended to cover the 24 official EU languages. List copied from the appendices (U+013A appears OCR-garbled as \"U+013°\" in the PDF). Cyrillic list is only U+0430..U+044F (no ё/ѓ/ј etc.)."
+ },
+ {
+  "tld": "je",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.channelisles.net/legal/terms-and-conditions-1",
+   "https://kb.centralnicreseller.com/domains/tlds/je/",
+   "https://www.101domain.com/je-information-help.htm"
+  ],
+  "confidence": "low",
+  "notes": "Channel Isles registry (also runs .gg). Registration agreement s.5.2 only says strings with two consecutive hyphens (as used for IDNs) \"may be subject to additional conditions, special procedures or not accepted\". 101domain says languages supported: None; CentralNic Reseller lists a generic IDN language list identical to its .io page (unreliable). No primary character policy found."
+ },
+ {
+  "tld": "jm",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.101domain.com/jm-information-help.htm"
+  ],
+  "confidence": "low",
+  "notes": "No registry policy page reachable (nic.jm / UWI). Historically .jm registrations are third-level (e.g. .com.jm); not verified."
+ },
+ {
+  "tld": "jo",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "no mixing: English letters only under .jo, Arabic letters only under .الاردن",
+  "second_level_open": true,
+  "source": [
+   "https://dns.jo/FAQ.aspx",
+   "https://dns.jo/Policy.aspx"
+  ],
+  "confidence": "high",
+  "notes": "MoDEE registry FAQ: non-English letters (e.g. French or Turkish) are not accepted under .jo; only English letters under .jo and only Arabic letters under .الاردن. Policy forbids names starting with xn--. Registration is also available in .com.jo etc.; direct .jo second-level registration exists per the policy page (not independently re-verified)."
+ },
+ {
+  "tld": "ke",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://kenic.or.ke/wp-content/uploads/2023/05/SDL-Policy.pdf"
+  ],
+  "confidence": "high",
+  "notes": "KeNIC Second Level Domain policy: \"All .KE Domain Names should have a syntax pattern of [a-z 0-9]\" (hyphen handling not stated). Third-level zones (.co.ke etc.) also exist."
+ },
+ {
+  "tld": "kg",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.cctld.kg/ru/service-regulations"
+  ],
+  "confidence": "medium",
+  "notes": "CCTLD.KG service regulations: name must begin and end with a Latin letter or digit; intermediate characters letters, digits or hyphen. No IDN mentioned."
+ },
+ {
+  "tld": "kh",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.101domain.com/kh-information-help.htm"
+  ],
+  "confidence": "low",
+  "notes": "No registry policy found (nic.kh unreachable). Registrations historically only under third-level zones (.com.kh etc.); not verified."
+ },
+ {
+  "tld": "ki",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://kb.centralnicreseller.com/domains/tlds/ki/",
+   "https://www.101domain.com/ki-information-help.htm"
+  ],
+  "confidence": "low",
+  "notes": "nic.ki unreachable; 101domain says languages supported: None; CentralNic Reseller does not list IDN among supported features. No primary source."
+ },
+ {
+  "tld": "km",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.domaine.km/faq"
+  ],
+  "confidence": "low",
+  "notes": "Registry (ANADEN) FAQ gives no character rules. Special sub-zones .gouv.km/.edu.km exist."
+ },
+ {
+  "tld": "kn",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.kn/procedure-polices/",
+   "https://www.nic.kn/wp-content/uploads/2018/03/kn-Domain-Registration.pdf"
+  ],
+  "confidence": "high",
+  "notes": "NIC.KN procedures A.3: letters a-z, digits 0-9 and hyphen only (hyphen is the only non-alphanumeric character allowed). SLDs and third-level names both possible."
+ },
+ {
+  "tld": "kp",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.101domain.com/kp-information-help.htm"
+  ],
+  "confidence": "low",
+  "notes": "Registry (Star JV) unreachable; no public policy found. Registration effectively not open to the public."
+ },
+ {
+  "tld": "kw",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.101domain.com/kw-information-help.htm"
+  ],
+  "confidence": "low",
+  "notes": "Registry site (nic.kw / CITRA) blocked behind a JavaScript challenge; no policy found."
+ },
+ {
+  "tld": "ky",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.ofreg.ky/ict/domain-policies",
+   "https://www.ofreg.ky/viewPDF/documents/KY-Domain/2022-07-20-04-20-49-the-Offices-KY-Domain---Rights-of-Use-terms-and-conditions.pdf",
+   "https://www.101domain.com/ky-information-help.htm"
+  ],
+  "confidence": "low",
+  "notes": "OfReg .KY terms and conditions do not state a character repertoire. 101domain says languages supported: None. Treat as probably ASCII-only but unconfirmed."
+ },
+ {
+  "tld": "kz",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "Russian per RFC 5992 (draft-sharikov-idn-reg) Cyrillic guidelines, as announced Dec 2010; Kazakh letters evidently also accepted (see notes). No published KazNIC character table found.",
+  "scripts": [
+   "Cyrillic"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.kz/",
+   "https://www.webnames.ru/news/webnamesru_otkril_registraciyu_domenov_kz_na_russkom_yazike",
+   "https://www.101domain.com/kz-information-help.htm"
+  ],
+  "confidence": "medium",
+  "notes": "Cyrillic IDN under .kz announced 29 Dec 2010 (Russian). KazNIC homepage (Sep 2026) lists the recent registration xn--c1adb6av51h.kz = \"өтеген.kz\" (Kazakh U+04E9), so Kazakh Cyrillic letters are also registrable. KazNIC FAQ gives length 1-63 for \"KZ or .Қаз\". The separate .қаз IDN ccTLD also exists. Current rules PDF (main-rules-rus.pdf) does not define the character set."
+ },
+ {
+  "tld": "lb",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://lbdr.org.lb/",
+   "https://www.101domain.com/lb-information-help.htm"
+  ],
+  "confidence": "low",
+  "notes": "LBDR site has no character policy published; not found."
+ },
+ {
+  "tld": "lc",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://nic.lc/rules.htm"
+  ],
+  "confidence": "medium",
+  "notes": "NIC.LC Domain Name Rules: \"Only letters, numbers, or hyphen (\\\"-\\\") allowed in domain names\". No IDN mentioned; CentralNic Reseller does not list IDN for .lc. Identity Digital back-end."
+ },
+ {
+  "tld": "li",
+  "idn": "yes",
+  "chars": "U+00E0..U+00F6 U+00F8..U+00FF U+0153",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.li/terms/agb/",
+   "https://www.nic.li/export/shared/.content/images/neuezeichen2.gif",
+   "https://www.nic.li/support/idn/"
+  ],
+  "confidence": "high",
+  "notes": "Switch GTC (same for .ch and .li), Annex 2 (image) lists: à á â ã ä å æ ç è é ê ë ì í î ï ð ñ ò ó ô õ ö ø ù ú û ü ý þ ÿ œ (00E0-00F6, 00F8-00FF, 0153). No ß. Annex 1 = a-z, 0-9, hyphen."
+ },
+ {
+  "tld": "lk",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "IDN (Sinhala/Tamil) only under .ලංකා / .இலங்கை; may not combine English and IDN characters",
+  "second_level_open": true,
+  "source": [
+   "https://www.domains.lk/domain-registration-policy/",
+   "https://www.domains.lk/policies-conditions/idn-policy/",
+   "https://www.domains.lk/lk-domain-naming-structure/"
+  ],
+  "confidence": "high",
+  "notes": ".lk: \"only letters a-z, digits 0-9 and hyphens\". Direct second-level .lk registration exists alongside .com.lk, .org.lk, .edu.lk, .hotel.lk, .web.lk."
+ },
+ {
+  "tld": "lr",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.101domain.com/lr-information-help.htm"
+  ],
+  "confidence": "low",
+  "notes": "No registry site reachable; no policy found. Historically third-level only (.com.lr etc.)."
+ },
+ {
+  "tld": "ls",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.nic.ls/policies.html"
+  ],
+  "confidence": "low",
+  "notes": "LsNIC Domain Name Registration Policy v1.0.0 PDF (mail-hosting.nic.ls) could not be retrieved. 101domain: languages supported None."
+ },
+ {
+  "tld": "lt",
+  "idn": "yes",
+  "chars": "U+0105 U+010D U+0119 U+0117 U+012F U+0161 U+0173 U+016B U+017E",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.domreg.lt/duk/pageidaujantiems-domeno/kas-yra-idn-domeno-vardas/"
+  ],
+  "confidence": "high",
+  "notes": "DOMREG: Lithuanian letters ą č ę ė į š ų ū ž may be used in second-level names in addition to a-z, 0-9, hyphen."
+ },
+ {
+  "tld": "lu",
+  "idn": "yes",
+  "chars": "U+00E0 U+00E2 U+00E4 U+00E6 U+00E7 U+00E8 U+00E9 U+00EA U+00EB U+00EE U+00EF U+00F4 U+00F6 U+0153 U+00F9 U+00FB U+00FC",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://dns.lu/en/functioning/guiding-principles"
+  ],
+  "confidence": "high",
+  "notes": "DNS-LU guiding principles: accented characters used in Luxembourgish, French and German: à â ä æ ç è é ê ë î ï ô ö œ ù û ü."
+ },
+ {
+  "tld": "lv",
+  "idn": "yes",
+  "chars": "U+0101 U+0113 U+012B U+016B U+014D U+0137 U+013C U+0146 U+0157 U+0123 U+0161 U+010D U+017E",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.lv/en/latvian-domain-names"
+  ],
+  "confidence": "high",
+  "notes": "NIC.LV: Latvian letters ā ē ī ū ō ķ ļ ņ ŗ ģ š č ž available since 1 March 2004."
+ },
+ {
+  "tld": "ly",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://nic.ly/regulations.php",
+   "https://kb.centralnicreseller.com/domains/tlds/ly/"
+  ],
+  "confidence": "low",
+  "notes": "NIC.LY regulation gives no character rules (only content restrictions); it describes 3LD zones (com.ly etc.) but direct .ly registrations exist (registrar docs: names under 4 characters directly under .ly only via LTT). 101domain: languages supported None."
+ },
+ {
+  "tld": "ma",
+  "idn": "yes",
+  "chars": "U+00E0 U+00E2 U+00E7 U+00E8 U+00E9 U+00EA U+00EB U+00EE U+00EF U+00F4 U+00F9 U+00FB U+00FC U+00FF",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "Latin (with listed accents) only under .ma; Arabic letters (Annex 2) only under .المغرب",
+  "second_level_open": true,
+  "source": [
+   "https://www.anrt.ma/sites/default/files/2024-06/decision_02-2024_-_ndd_fr_.pdf"
+  ],
+  "confidence": "high",
+  "notes": "ANRT Decision ANRT/DG/02/2024 art. 6.1: a-z plus à â ç è é ê ë î ï ô ù û ü ÿ, digits, hyphen. Replaces decision 12/14. Sub-zones .co.ma, .net.ma, .org.ma, .ac.ma, .press.ma, .gov.ma also exist."
+ },
+ {
+  "tld": "mc",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.mc/documents/NIC_02_Guide_v1.3c_en.pdf"
+  ],
+  "confidence": "high",
+  "notes": "NIC Monaco guide: only A-Z, 0-9 and hyphen; \"No other characters, accents or punctuation marks are permitted.\" Monaco-registered entities only."
+ },
+ {
+  "tld": "md",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://nic.md/img/legal/Rules_registration_subdomain_md.pdf?v=20240718122336"
+  ],
+  "confidence": "high",
+  "notes": "nic.md rules annex 2: Latin letters a-z \"without diacritics\", digits, hyphen."
+ },
+ {
+  "tld": "me",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "Identity Digital (ex-Afilias) language tables (language tag required); no .me table at IANA. Languages: Arabic, Belarusian, Bosnian, Bulgarian, Chinese (Simplified/Traditional), Croatian, Danish, Finnish, French, German, Hindi, Hungarian, Icelandic, Italian, Korean, Latvian, Lithuanian, Macedonian, Montenegrin (Latin and Cyrillic), Polish, Portuguese, Russian, Serbian (Latin and Cyrillic), Spanish, Swedish, Turkish, Ukrainian.",
+  "scripts": [
+   "Latin",
+   "Cyrillic",
+   "Arabic",
+   "Han",
+   "Hangul",
+   "Devanagari"
+  ],
+  "mixing": "one script per label (Identity Digital IDN policy); language tag required",
+  "second_level_open": true,
+  "source": [
+   "https://domain.me/idn-me-internationalized-domain-names/",
+   "https://senat.me/en/montenegrin-international-domain-me-now-became-even-more-international/",
+   "https://www.identity.digital/policies/idn-policy"
+  ],
+  "confidence": "medium",
+  "notes": ".ME IDN launched 12 Nov 2018 (doMEn). domain.me page blocked by JS challenge; language list taken from its search snippet and a contemporaneous report. Exact code points not published by registry."
+ },
+ {
+  "tld": "mg",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://nic.mg/faqs/",
+   "https://kb.centralnicreseller.com/domains/tlds/mg/"
+  ],
+  "confidence": "low",
+  "notes": "NIC-MG FAQ gives no character rules. 101domain: languages supported None."
+ },
+ {
+  "tld": "mh",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.101domain.com/mh-information-help.htm"
+  ],
+  "confidence": "low",
+  "notes": "No registry site reachable; no policy found."
+ },
+ {
+  "tld": "mk",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "Cyrillic (Macedonian alphabet) only under the separate .мкд TLD",
+  "second_level_open": true,
+  "source": [
+   "https://registrar.mk/agreements/RulebookEN.pdf"
+  ],
+  "confidence": "high",
+  "notes": "MARnet rulebook: .mk names consist of letters of the English alphabet, digits and hyphen; Macedonian-alphabet names are for .мкд. (101domain lists \"Macedonian\" for .mk, contradicting the rulebook.)"
+ },
+ {
+  "tld": "ml",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.point.ml/",
+   "https://kb.centralnicreseller.com/domains/tlds/ml/"
+  ],
+  "confidence": "low",
+  "notes": "Former Freenom-run TLD; now point.ml (JS app, no policy text retrievable). No character policy found."
+ },
+ {
+  "tld": "mm",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://www.101domain.com/mm-information-help.htm"
+  ],
+  "confidence": "low",
+  "notes": "Registry unreachable; no policy found."
+ },
+ {
+  "tld": "mn",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "Mongolian Cyrillic only under the separate .мон TLD",
+  "second_level_open": true,
+  "source": [
+   "https://domain.mn/faquestions.php",
+   "https://domain.mn/mnpolicy.php"
+  ],
+  "confidence": "high",
+  "notes": "Datacom .MN FAQ: English letters A-Z, digits and hyphen; policy lists names with characters other than a-z, 0-9, - as ineligible."
+ },
+ {
+  "tld": "mo",
+  "idn": "yes",
+  "chars": [
+   "U+00E1 U+00E0 U+00E2 U+00E3 U+00E7 U+00E9 U+00EA U+00ED U+00F3 U+00F4 U+00F5 U+00FA",
+   "U+4E00..U+9FFF"
+  ],
+  "chars_ref": "Plus Chinese characters from the MONIC published list/variant table (https://www.monic.mo/html/downloads/monic_variant_tab.pdf).",
+  "scripts": [
+   "Latin",
+   "Han"
+  ],
+  "mixing": "A label is either (a) a-z/0-9/hyphen plus Portuguese special characters, or (b) Chinese characters optionally with a-z/0-9/hyphen and at least one Chinese character; Portuguese letters and Chinese may not be combined.",
+  "second_level_open": true,
+  "source": [
+   "https://www.monic.mo/monic/faces/regulation",
+   "https://monic.mo/html/notice/schedule_on_priority_registration_eng.html",
+   "https://www.monic.mo/html/notice/description_of_chinese_domain_name_eng.html"
+  ],
+  "confidence": "high",
+  "notes": "Macao domain regulation art. 12: .com.mo/.net.mo/.org.mo/.edu.mo/.gov.mo allow a-z, 0-9, hyphen, and Portuguese á à â ã ç é ê í ó ô õ ú; Chinese zones (.公司.mo etc.) require ≥1 Chinese character; second-level names directly under .mo may follow either rule (in force 21 Jan 2014). Registration of Chinese names grants both Traditional and Simplified variants. Registrants must be Macao-registered entities.",
+  "resolution": "Two alternative tables: Portuguese letters, or Chinese characters (never both in one label)."
+ },
+ {
+  "tld": "mp",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://get.mp/",
+   "https://kb.centralnicreseller.com/domains/tlds/mp/"
+  ],
+  "confidence": "low",
+  "notes": "get.mp site gives no character rules. 101domain: languages supported None."
+ },
+ {
+  "tld": "mq",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://kb.centralnicreseller.com/domains/tlds/mq/"
+  ],
+  "confidence": "low",
+  "notes": "Registry (Mediaserv, nic.mq) unreachable; no policy found."
+ },
+ {
+  "tld": "mr",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": null,
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://kb.centralnicreseller.com/domains/tlds/mr/"
+  ],
+  "confidence": "low",
+  "notes": "nic.mr unreachable; no policy found. 101domain: languages supported None."
+ },
+ {
+  "tld": "ms",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://nic.ms/domain-registrations/",
+   "https://www.godaddy.com/help/about-ms-domains-5840"
+  ],
+  "confidence": "low",
+  "notes": "Registry runs on CoCCA (whois Registry Domain ID suffix -CoCCA). Only secondary sources (registrar help pages) state the .MS registry does not offer IDN (a-z, 0-9, hyphen only); no registry policy text found."
+ },
+ {
+  "tld": "mt",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.org.mt/dotmt/policy"
+  ],
+  "confidence": "low",
+  "notes": "NIC(Malta) policy allows registration at second level (e.g. myname.mt) and third level (myname.com.mt), but the policy page does not state the character repertoire or IDN support."
+ },
+ {
+  "tld": "mu",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "https://www.nic.mu/policies.html"
+  ],
+  "confidence": "low",
+  "notes": "Registry backend is Identity Digital (whois.identitydigital.services). nic.mu policies page lists agreements but no character/IDN rules found."
+ },
+ {
+  "tld": "mv",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "No registry website listed in IANA root db; no policy found."
+ },
+ {
+  "tld": "mw",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.registrar.mw/policies/SDNP-dot-MW-Domain-Registration-Policy-ver-1.5.pdf"
+  ],
+  "confidence": "high",
+  "notes": "SDNP .mw Domain Registration Policy v1.5: name contains only characters A-Z, a-z, 0-9, hyphen and dot. Domain names may be registered directly under .mw or under registry-managed SLDs."
+ },
+ {
+  "tld": "mx",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.dominios.mx/politicas-generales-de-nombre-de-dominio-mx/",
+   "https://www.godaddy.com/help/about-mx-domains-5305",
+   "whois.mx (tested 2026-09-24)"
+  ],
+  "confidence": "medium",
+  "notes": "Registry policy text does not spell out the repertoire; registrar documentation states .MX registry does not offer IDN. Empirical check: whois.mx returns 'Cadena_Invalida/Invalid_String' for xn-- labels (xn--caf-dma.mx, xn--diseo-rta.mx) and for U-label café.mx, but 'Object_Not_Found' for an unregistered ASCII label. Direct .mx and .com.mx open to anyone."
+ },
+ {
+  "tld": "mz",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "Registry whois (whois.nic.mz) is live; no policy on characters/IDN found."
+ },
+ {
+  "tld": "na",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "https://www.na-nic.com.na/"
+  ],
+  "confidence": "low",
+  "notes": "Registry homepage links only accreditation docs and AUP; no character/IDN rules found."
+ },
+ {
+  "tld": "nc",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "https://www.domaine.nc/"
+  ],
+  "confidence": "low",
+  "notes": "domaine.nc homepage gives naming advice but no character/IDN rules; no naming charter located."
+ },
+ {
+  "tld": "ne",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "http://www.intnet.ne"
+  ],
+  "confidence": "low",
+  "notes": "Registry site unreachable (timeout) during research."
+ },
+ {
+  "tld": "nf",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "Registry runs on CoCCA (whois Registry Domain ID suffix -CoCCA); no published character/IDN policy located."
+ },
+ {
+  "tld": "ng",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://nira.org.ng/pdf/NIRA-Domain-Names-Policy.pdf"
+  ],
+  "confidence": "high",
+  "notes": "NiRA Domain Names Policy s.4.2: 2LD/3LD/4LD may only contain a-z, 0-9 and hyphen; s.4.5: 'NiRA does not offer Internationalised Domain Names (IDN) for now' and xn-- labels may not be registered."
+ },
+ {
+  "tld": "ni",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "http://www.nic.ni/"
+  ],
+  "confidence": "low",
+  "notes": "No character/IDN policy found on nic.ni."
+ },
+ {
+  "tld": "nl",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.sidn.nl/en/nl-domain-name/technical-requirements-for-the-registration-and-use-of-nl-domain-names",
+   "https://www.sidn.nl/en/nl-domain-name/what-is-a-domain-name"
+  ],
+  "confidence": "high",
+  "notes": "SIDN: a .nl domain name can only contain letters a-z, digits 0-9 and hyphens. No IDN."
+ },
+ {
+  "tld": "no",
+  "idn": "yes",
+  "chars": "U+00E0 U+00E1 U+00E4 U+00E5 U+00E6 U+00E7 U+00E8 U+00E9 U+00EA U+00EF U+00F1 U+00F2 U+00F3 U+00F4 U+00F6 U+00F8 U+00FC U+010D U+0111 U+0144 U+014B U+0161 U+0167 U+017E",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated (single Latin repertoire)",
+  "second_level_open": true,
+  "source": [
+   "https://www.norid.no/en/om-domenenavn/regelverk-for-no/"
+  ],
+  "confidence": "high",
+  "notes": "Norid domain name policy s.3.2: a-z, 0-9, hyphen plus 24 national characters (Norwegian, Sami and others) listed with Unicode code points. Same repertoire applies to geographic and category sub-domains. Registration via Norid-accredited registrar; registrants must be Norwegian organisations (up to 100 names) or individuals (up to 5)."
+ },
+ {
+  "tld": "np",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": false,
+  "source": [
+   "https://register.com.np/registry-policy"
+  ],
+  "confidence": "low",
+  "notes": "Registration only under com.np, org.np, edu.np, net.np, gov.np, name.np, coop.np, mil.np (no direct .np). Registry policy does not state the character repertoire; no IDN offering documented."
+ },
+ {
+  "tld": "nr",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "http://www.cenpac.net.nr/"
+  ],
+  "confidence": "low",
+  "notes": "CENPAC site has no character/IDN rules found."
+ },
+ {
+  "tld": "om",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "http://www.registry.om/om/en/?page_id=197"
+  ],
+  "confidence": "low",
+  "notes": "registry.om site could not be fetched (TLS certificate error). Arabic IDN ccTLD عمان exists separately."
+ },
+ {
+  "tld": "pa",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "http://www.nic.pa/"
+  ],
+  "confidence": "low",
+  "notes": "nic.pa unreachable during research."
+ },
+ {
+  "tld": "pe",
+  "idn": "yes",
+  "chars": "U+00E1 U+00E9 U+00ED U+00F1 U+00F3 U+00FA",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a (single Latin repertoire)",
+  "second_level_open": true,
+  "source": [
+   "https://punto.pe/policy.php",
+   "https://punto.pe/rules_and_procedures.php"
+  ],
+  "confidence": "high",
+  "notes": "Punto.pe syntax rules: a-z, 0-9, hyphen and the characters á é í ó ú ñ. Note: ü is NOT listed. Second-level registration open to any natural or legal person, national or foreign."
+ },
+ {
+  "tld": "pf",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "whois.registry.pf listed by IANA; no policy found."
+ },
+ {
+  "tld": "pg",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "https://www.nic.pg/"
+  ],
+  "confidence": "low",
+  "notes": "No character/IDN policy found."
+ },
+ {
+  "tld": "ph",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "http://dot.ph"
+  ],
+  "confidence": "low",
+  "notes": "dot.ph returned HTTP 403 to automated fetch; no policy text obtained."
+ },
+ {
+  "tld": "pk",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "https://pknic.net.pk/"
+  ],
+  "confidence": "low",
+  "notes": "No character/IDN policy found on PKNIC site."
+ },
+ {
+  "tld": "pm",
+  "idn": "yes",
+  "chars": "U+00DF U+00E0..U+00EF U+00F1..U+00F6 U+00F9..U+00FD U+00FF U+0153",
+  "chars_ref": "Afnic Naming Policy art. 2.2 no.19 (same repertoire for .fr, .re, .pm, .tf, .wf, .yt)",
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a (single Latin repertoire)",
+  "second_level_open": true,
+  "source": [
+   "https://www.afnic.fr/wp-media/uploads/2026/07/afnic-naming-policy-2026-07-06.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Operated by Afnic under the common Afnic Naming Policy (July 2026 edition). 30 non-ASCII characters: à á â ã ä å æ ç è é ê ë ì í î ï ñ ò ó ô õ ö œ ù ú û ü ý ÿ ß. 1- and 2-character names not authorised for .pm."
+ },
+ {
+  "tld": "pn",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": true,
+  "source": [
+   "https://registrars.nominet.uk/registry/dot-pn/policies/"
+  ],
+  "confidence": "low",
+  "notes": "Operated by Nominet; open zones .pn, .co.pn, .org.pn, .net.pn (gov.pn/edu.pn restricted). Policies do not state character repertoire or IDN."
+ },
+ {
+  "tld": "pr",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": null,
+  "source": [
+   "https://domains.pr/",
+   "https://letsdomains.com/domain-database/pr"
+  ],
+  "confidence": "low",
+  "notes": "Only registrar pages state IDN is not supported for .pr; registry site (domains.pr, backend Identity Digital/Donuts per whois) has no character policy text. Treat as unverified."
+ },
+ {
+  "tld": "ps",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "http://www.pnina.ps"
+  ],
+  "confidence": "low",
+  "notes": "pnina.ps behind bot-verification; no policy text obtained. Arabic IDN ccTLD فلسطين is separate."
+ },
+ {
+  "tld": "pt",
+  "idn": "yes",
+  "chars": "U+00E0 U+00E1 U+00E2 U+00E3 U+00E7 U+00E9 U+00EA U+00ED U+00F3 U+00F4 U+00F5 U+00FA",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a (single Latin repertoire)",
+  "second_level_open": true,
+  "source": [
+   "https://www.pt.pt/fotos/editor2/regras_rgpd_17maiofinal.pdf"
+  ],
+  "confidence": "high",
+  "notes": "DNS.PT registration rules art. 9: 0-9, a-z plus Portuguese special characters á à â ã ç é ê í ó ô õ ú (IDN since 1 Jan 2005). Registration directly under .pt and under .org.pt/.edu.pt/.com.pt/.gov.pt."
+ },
+ {
+  "tld": "qa",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.cra.gov.qa/en/Services/Domains/FAQs",
+   "https://www.aeserver.com/support/qa-domain-name-policy-explained/"
+  ],
+  "confidence": "medium",
+  "notes": "CRA/QDR directs Arabic names to the separate IDN ccTLD .قطر (e.g. شركة.قطر). Registrar summaries of QDR policy say .qa names use English letters a-z, 0-9 and hyphen. Registry policy PDF not retrievable (JS-rendered site)."
+ },
+ {
+  "tld": "re",
+  "idn": "yes",
+  "chars": "U+00DF U+00E0..U+00EF U+00F1..U+00F6 U+00F9..U+00FD U+00FF U+0153",
+  "chars_ref": "Afnic Naming Policy art. 2.2 no.19 (same repertoire for .fr, .re, .pm, .tf, .wf, .yt)",
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a (single Latin repertoire)",
+  "second_level_open": true,
+  "source": [
+   "https://www.afnic.fr/wp-media/uploads/2026/07/afnic-naming-policy-2026-07-06.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Operated by Afnic under the common Afnic Naming Policy (July 2026 edition). 30 non-ASCII characters: à á â ã ä å æ ç è é ê ë ì í î ï ñ ò ó ô õ ö œ ù ú û ü ý ÿ ß. 1- and 2-character names not authorised for .re. .com.re/.asso.re closed to new registrations since 2013."
+ },
+ {
+  "tld": "ro",
+  "idn": "yes",
+  "chars": "U+00E2 U+00EE U+0103 U+0219 U+021B",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a (single Latin repertoire); IDN label must contain Romanian diacritics with permitted ASCII",
+  "second_level_open": true,
+  "source": [
+   "https://www.rotld.ro/idn-related-questions/",
+   "https://rotld.ro/blog/what-diacritic-characters-are-premised-in-ro-domains/"
+  ],
+  "confidence": "high",
+  "notes": "RoTLD since 2 June 2015: â î ă ș ț (comma-below, Romanian Standard). Cedilla forms ş U+015F / ţ U+0163 (Romanian Legacy) explicitly NOT permitted."
+ },
+ {
+  "tld": "ru",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://cctld.ru/en/domains/about/"
+  ],
+  "confidence": "high",
+  "notes": "Coordination Center: only Latin letters, digits and hyphen in .RU. Cyrillic names go under the separate IDN ccTLD .рф."
+ },
+ {
+  "tld": "rw",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": true,
+  "source": [
+   "https://ricta.org.rw/"
+  ],
+  "confidence": "low",
+  "notes": "RICTA site lists .rw, .co.rw, .net.rw, .org.rw, .coop.rw, .ac.rw but no character/IDN rules found."
+ },
+ {
+  "tld": "sa",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://nic.sa/en",
+   "https://nic.sa/en/help/guidelines-for-writing-arabic-idn/"
+  ],
+  "confidence": "medium",
+  "notes": "SaudiNIC Arabic IDN guidelines apply only to the IDN ccTLD .السعودية (no Arabic/Latin mixing there). No indication Arabic labels are accepted under .sa. .sa offered alongside com.sa, net.sa, org.sa etc.; registration via licensed registrars, Saudi presence required."
+ },
+ {
+  "tld": "sb",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "Registry runs on CoCCA (whois Registry Domain ID suffix -CoCCA); no published character/IDN policy located."
+ },
+ {
+  "tld": "sd",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "Registry whois live (sdnic); no policy found."
+ },
+ {
+  "tld": "sg",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Han",
+   "Latin"
+  ],
+  "mixing": "Label may be Latin only, Latin+Chinese, or Chinese only; Chinese and Tamil may not be mixed",
+  "second_level_open": true,
+  "source": [
+   "https://www.sgnic.sg/docs/default-source/policies-and-agreements/rules-of-registration.pdf",
+   "https://www.sgnic.sg/faq/domain-registration"
+  ],
+  "confidence": "high",
+  "notes": "SGNIC Rules of Registration (23 Mar 2024): under .SG (and .com.sg etc.) the applied name may be Latin, Latin+Chinese, or Chinese only. Tamil only under .சிங்கப்பூர், not .sg. Exact Han repertoire/variant table not published in the rules ('non-Latin characters ... accepted by SGNIC from time to time')."
+ },
+ {
+  "tld": "sh",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "nic.SH 'IDN Code Points Policy for the .SH Top Level Domain' https://nic.sh/legal/SH-IDN-Policy.pdf (not retrievable during research)",
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://nic.sh/legal/SH-IDN-Policy.pdf"
+  ],
+  "confidence": "medium",
+  "notes": "nic.SH (ICB, now Identity Digital; shared with .io/.ac) publishes an IDN code point policy; other code points not allowed. PDF could not be downloaded (server hangup), so repertoire not copied. The sister .IO policy (http://tmdb.cdns.net/IO-IDN-Policy.pdf) lists Latin letters only, U+00E0..U+017E range subset, but .SH list was NOT verified to be identical."
+ },
+ {
+  "tld": "sj",
+  "idn": "unused",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "n/a",
+  "second_level_open": false,
+  "source": [
+   "https://www.norid.no/en/omnorid/toppdomenet-sj/"
+  ],
+  "confidence": "high",
+  "notes": "Norid: 'The .sj top level domain has never been opened for domain name registrations.'"
+ },
+ {
+  "tld": "sk",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://sk-nic.sk/wp-content/uploads/dokumenty/Pravidla_2024_01_01.pdf"
+  ],
+  "confidence": "high",
+  "notes": "SK-NIC rules (1 Jan 2024) 4.1.1.2 c): only letters a-z without diacritics, digits 0-9 and hyphen."
+ },
+ {
+  "tld": "sl",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "https://www.nic.sl/domain"
+  ],
+  "confidence": "low",
+  "notes": "No character/IDN policy found."
+ },
+ {
+  "tld": "sm",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.sm/regulation.php"
+  ],
+  "confidence": "high",
+  "notes": "NIC.SM regulation 5.1.1: min 3 / max 63 characters; allowed characters digits 0-9, letters a-z, hyphen."
+ },
+ {
+  "tld": "sn",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": [
+   "https://www.nic.sn/"
+  ],
+  "confidence": "low",
+  "notes": "NIC Sénégal site is a JS app; no policy text obtained."
+ },
+ {
+  "tld": "so",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.gandi.net/en/domain/tld/so",
+   "https://www.101domain.com/so-information-help.htm"
+  ],
+  "confidence": "low",
+  "notes": "Registrar pages (secondary) say IDN not supported and syntax is a-z 0-9 hyphen; registry site nic.so unreachable (TLS failure), so not confirmed from primary source. Likely 'no'. Registration open to those with a Somalia connection per registrar summaries."
+ },
+ {
+  "tld": "sr",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "No registry policy found (nic.sr unreachable); no usable secondary source found. Second-level availability not verified."
+ },
+ {
+  "tld": "ss",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "http://nic.ss/wp-content/uploads/2024/07/ssNIC-ccTLD-Registration-Policy.pdf",
+   "http://nic.ss/faqs/"
+  ],
+  "confidence": "high",
+  "notes": "ssNIC Registration Policy (July 2024) s.4.3: 'All .SS Domain Names should have a syntax pattern of [a-z 0-9]'; min 3 chars. FAQ confirms direct second-level (name.ss) registration."
+ },
+ {
+  "tld": "st",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.st/register-domain?domain=help"
+  ],
+  "confidence": "medium",
+  "notes": "Search-result excerpt of the ST Registry (nic.st) help page: 'Accented names are not accepted'; spaces/other characters rejected. Page returned 403 to direct fetch, so the wording was seen only via search-engine excerpt."
+ },
+ {
+  "tld": "su",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "Registry-defined national-alphabet repertoires (Cyrillic incl. 37 extra characters for languages of Russia approved Aug 2008; also Arabic, Greek, Hebrew, and per RIPN Armenian and Georgian). No published code-point list found.",
+  "scripts": [
+   "Latin",
+   "Cyrillic",
+   "Arabic",
+   "Greek",
+   "Hebrew",
+   "Armenian",
+   "Georgian"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://cctld.ru/en/media/news/kc/38795/",
+   "https://ripn.su/en/domen-su/",
+   "https://help.r01.ru/domain/ru/reg/en/faq-idn.html"
+  ],
+  "confidence": "medium",
+  "notes": "Coordination Center for TLD RU news ('.SU domain turns 35'): xn-- restriction lifted April 2008; extra 37 Cyrillic chars Aug 2008; 'supports registrations not only in Latin and Cyrillic but also in Arabic, Greek, and Hebrew', with Chinese/Thai/Hindi/Korean announced as coming. RIPN page also lists Armenian and Georgian. Mixing rule not found. From Sept 2026 Russian law 569-FZ requires Gosuslugi identity verification of .su administrators."
+ },
+ {
+  "tld": "sv",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://svnet.sv/politicas-generales/",
+   "https://svnet.sv/instrucciones-generales/"
+  ],
+  "confidence": "medium",
+  "notes": "SVNet general policy item 10: valid characters are 'letras, números, guión y guión bajo', lowercase only; no mention of IDN or accented letters ('letras' not explicitly limited to a-z, hence medium). Pricing lists both 2nd level (miempresa.sv) and 3rd level (miempresa.com.sv)."
+ },
+ {
+  "tld": "sx",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://registry.sx/faq"
+  ],
+  "confidence": "high",
+  "notes": "SX Registry FAQ: 'Domain names may currently only contain: the letters a - z, the numbers 0 - 9, Hyphens (-)'; 3-63 chars."
+ },
+ {
+  "tld": "sy",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "No registry policy retrieved (tld.sy unreachable). Syria also has the Arabic IDN ccTLD .سورية (separate TLD, not covered here)."
+ },
+ {
+  "tld": "sz",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "SISPA site reachable but contains no character/IDN rules; no other source found. Whether registration is at second level or only under co.sz etc. not verified."
+ },
+ {
+  "tld": "tc",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.tc/terms-and-conditions"
+  ],
+  "confidence": "high",
+  "notes": "NIC.TC terms: 2-63 characters 'using the letters A-Z ... and numbers from 1 to 9' plus hyphens (not at start/end). No IDN provision. (A registrar KB lists IDN for .tc; contradicted by registry terms.)"
+ },
+ {
+  "tld": "td",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "nic.td unreachable; no policy found."
+ },
+ {
+  "tld": "tf",
+  "idn": "yes",
+  "chars": "U+00DF U+00E0..U+00EF U+00F1..U+00F6 U+00F9..U+00FD U+00FF U+0153",
+  "chars_ref": "Afnic Naming Policy art. 19 (same list as .fr)",
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a (single Latin repertoire)",
+  "second_level_open": true,
+  "source": [
+   "https://www.afnic.fr/wp-media/uploads/2026/07/afnic-naming-policy-2026-07-06.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Afnic Naming Policy (2026-07-06) covers .fr, .re, .yt, .pm, .wf, .tf. Art. 19 accepted characters: a-z, à á â ã ä å æ ç è é ê ë ì í î ï ñ ò ó ô õ ö œ ù ú û ü ý ÿ ß, 0-9, hyphen. IDN available since 3 May 2012. Eligibility rules apply."
+ },
+ {
+  "tld": "tg",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.tg/charte-de-nommage/index.html"
+  ],
+  "confidence": "medium",
+  "notes": "NIC.TG technical rules: 'Les seuls caractères valides pour un nom de domaine sont : les lettres; les chiffres; le trait d'union'. No IDN mentioned; 'lettres' not explicitly limited to a-z, and the full charter (Décision N°174 PDF) is a scanned image. Zones offered: .tg, .com.tg, .net.tg, asso.tg, .edu.tg."
+ },
+ {
+  "tld": "tj",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://fuguesolutions.com/domains/tld/tj-domain-names/",
+   "https://web-solutions.eu/tj-domain-name-registration.htm"
+  ],
+  "confidence": "low",
+  "notes": "Only registrar pages say .tj does not support IDN (letters, numbers, hyphen). Registry policy http://www.nic.tj/policy.html unreachable; 2004 registration rules exist (cis-legislation.com) but the text is paywalled."
+ },
+ {
+  "tld": "tk",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": false,
+  "source": [
+   "https://en.wikipedia.org/wiki/.tk",
+   "https://tld-list.com/blog/the-tk-domain-name"
+  ],
+  "confidence": "low",
+  "notes": "After Freenom's exit (2023-24), new .tk registrations are unavailable per secondary sources; Teletok is moving .tk to a new registry operator. No current IDN policy found. Treat as closed for new registrations; existing names may persist."
+ },
+ {
+  "tld": "tl",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.eurodns.com/domain-extensions/tl-domain-registration",
+   "https://www.asiaregistry.com/domains/domains_tl"
+  ],
+  "confidence": "low",
+  "notes": "Only registrar pages say IDN not supported (a-z, 0-9, hyphen). nic.tl did not resolve."
+ },
+ {
+  "tld": "tm",
+  "idn": "unknown",
+  "chars": "U+00E0..U+00F6 U+00F8..U+00FF U+0101 U+0103 U+0105 U+0107 U+0109 U+010B U+010D U+010F U+0111 U+0113 U+0117 U+0119 U+011B U+011D U+0121 U+0123 U+0125 U+0127 U+012B U+012F U+0135 U+0137 U+013A U+013C U+013E U+0140 U+0142 U+0144 U+0146 U+0148 U+014B U+0151 U+0153 U+0155 U+0157 U+0159 U+015B U+015D U+015F U+0161 U+0163 U+0165 U+0167 U+016B U+016D U+016F U+0171 U+0173 U+0175 U+0177 U+017A U+017C U+017E",
+  "chars_ref": "NIC.TM IDN Code Points Policy: the listed Latin code points, plus whole scripts by reference: CJK Unified Ideographs (excluding 2FF0-2FFF and 3000-303F), Arabic, Armenian, Bengali, Braille, Burmese, Bopomofo, Canadian Aboriginal syllabics, Cherokee, Cyrillic, Devanagari, Ge'ez, Georgian, Gurmukhi, Greek & Coptic, Gujarati, Hebrew, Kannada, Lao, Malayalam, Mongolian, Oriya, Philippine scripts (Buhid, Hanunoo, Tagalog, Tagbanwa), Tamil, Telugu, Thai, Tibetan",
+  "scripts": [
+   "Latin",
+   "Han",
+   "Arabic",
+   "Armenian",
+   "Bengali",
+   "Braille",
+   "Myanmar",
+   "Bopomofo",
+   "Canadian_Aboriginal",
+   "Cherokee",
+   "Cyrillic",
+   "Devanagari",
+   "Ethiopic",
+   "Georgian",
+   "Gurmukhi",
+   "Greek",
+   "Coptic",
+   "Gujarati",
+   "Hebrew",
+   "Kannada",
+   "Lao",
+   "Malayalam",
+   "Mongolian",
+   "Oriya",
+   "Buhid",
+   "Hanunoo",
+   "Tagalog",
+   "Tagbanwa",
+   "Tamil",
+   "Telugu",
+   "Thai",
+   "Tibetan"
+  ],
+  "mixing": "not stated; registry reserves right to refuse code points posing homograph risk and checks all applications",
+  "second_level_open": true,
+  "source": [
+   "https://nic.tm/TM-IDN-Policy.pdf",
+   "https://www.nic.tm/"
+  ],
+  "confidence": "high",
+  "notes": "Explicit 'chars' lists only the non-ASCII Latin code points in the policy table (European-language letters). Other scripts are admitted wholesale by reference to Wikipedia script pages, not by code-point list. The site shows examples such as 상표.tm (Hangul), which the script list does not name. The policy calls itself a 'living document'. Registry is NIC.TM (TM Domain Registry).",
+  "resolution": "Set to unknown: only the Latin part is a code point list; about 30 more scripts are admitted by name, so a Latin-only table would wrongly refuse them."
+ },
+ {
+  "tld": "tn",
+  "idn": "yes",
+  "chars": "U+00DF U+00E0..U+00EF U+00F1..U+00F6 U+00F9..U+00FD U+00FF U+0153",
+  "chars_ref": "Charte de nommage du .tn (INT Décision n°141, 24 July 2013) art. 6.1; identical to Afnic list",
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.registre.tn/upload/files/Charte_de_nommage__%20tn__24072013_FR.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Art. 6.1 IDN letters: à á â ã ä å æ ç è é ê ë ì í î ï ñ ò ó ô õ ö œ ù ú û ü ý ÿ ß. Art. 3.1: names can sit directly under .tn or under sector domains (.com.tn etc.). IDN registration open to all first-come-first-served from 1 Feb 2014. The 2013 charter is the latest version found. The Arabic IDN ccTLD .تونس is separate."
+ },
+ {
+  "tld": "to",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "Any Unicode code point (Tonic FAQ); in practice limited by IDNA2008 validity",
+  "scripts": [
+   "any"
+  ],
+  "mixing": "not restricted; intentional homograph registrations prohibited and removable",
+  "second_level_open": true,
+  "source": [
+   "https://www.tonic.to/faq.htm"
+  ],
+  "confidence": "high",
+  "notes": "Tonic FAQ: '.TO allows the registration of domain names containing any unicode code point.' Zero tolerance for 'homonym' (homograph) abuse. For a scanner, treat the whole IDNA2008 PVALID repertoire as registrable."
+ },
+ {
+  "tld": "tr",
+  "idn": "yes",
+  "chars": "U+00E7 U+00F6 U+00FC U+011F U+0131 U+015F",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://kk.trabis.gov.tr/plugin/support_manager/knowledgebase/view/1/t%C3%BCrk%C3%A7e-karakterli-alan-ad%C4%B1-alabilir-miyim/",
+   "https://www.mevzuat.gov.tr/File/GeneratePdf?mevzuatNo=14416&mevzuatTur=KurumVeKurulusYonetmeligi&mevzuatTertip=5",
+   "https://www.trabis.gov.tr/FAQ"
+  ],
+  "confidence": "medium",
+  "notes": "TRABIS registrar knowledge base: individuals and legal entities may register names containing Turkish characters (ğ, ı, ü, ş, ö, ç). However, the Internet Alan Adları Yönetmeliği art. 6 and the TRABIS FAQ say the label must be only a-z, 0-9 and hyphen. This may mean the ASCII (xn--) form. Turkish-character registration has existed since 4 March 2006 per registrars. Whether â/î/û are also accepted is unknown. Structure is 'a.b.tr' and 'a.tr': direct second level (e.g. ornek.tr) opened about 12 months after TRABIS launched (Sept 2022)."
+ },
+ {
+  "tld": "tt",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.tt/rules.shtml",
+   "https://www.nic.tt/faq.shtml"
+  ],
+  "confidence": "medium",
+  "notes": "TTNIC rules: 'Domain Names shall include only letters, numbers, or hyphens' (max 63). No IDN provision; 'letters' not explicitly a-z. FAQ confirms second level (name.tt) and third level (name.org.tt)."
+ },
+ {
+  "tld": "tv",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://registry.godaddy/blog/godaddy-registry-signs-contract-to-be-the-registry-operator-for-the-tv-cctld/",
+   "https://dynadot.com/domain/tv.html",
+   "https://www.godaddy.com/help/about-tv-domains-5850",
+   "https://kb.centralnicreseller.com/domains/tlds/tv"
+  ],
+  "confidence": "low",
+  "notes": "Operator changed from Verisign (which offered .tv IDNs with a 3-letter language tag, single-script rule) to GoDaddy Registry. The contract was signed Dec 2021 and .tv relaunched 15 Nov 2022. Secondary sources conflict: the GoDaddy help page, per search excerpt, says IDNs are not supported for .tv, while Dynadot and CentralNic Reseller list IDN support with Verisign-style language tags. No GoDaddy Registry .tv policy found. Legacy Verisign-era IDNs may still exist."
+ },
+ {
+  "tld": "tz",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "tzNIC site unreachable (502/timeout); no policy found. Second-level vs third-level (co.tz) structure not verified."
+ },
+ {
+  "tld": "ug",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://registry.co.ug/",
+   "https://i3c.co.ug/terms-conditions/"
+  ],
+  "confidence": "low",
+  "notes": "The UG Registry (i3C) offers direct .ug plus .co.ug, .or.ug, .ac.ug etc. No character/IDN rule found in its terms (revised Aug 2025)."
+ },
+ {
+  "tld": "uk",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://media.nominet.uk/wp-content/uploads/2015/10/Rules_June_2014.pdf",
+   "https://nominet.uk/wp-content/uploads/2025/03/UK-rules-of-registration.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Nominet Rules s.5.2: only 37 characters (unaccented a-z, 0-9, hyphen); s.5.4: 'Nominet does not offer Internationalised Domain Names and so domain names that start with the characters \"xn--\" may not be registered.' Current rules PDF (2024/2025) is summarised the same way but could not be fetched directly. Direct .uk second level since June 2014, alongside .co.uk, .org.uk etc."
+ },
+ {
+  "tld": "us",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.about.us/faqs"
+  ],
+  "confidence": "high",
+  "notes": "Official .US FAQ: '.US does not currently offer IDN registrations'. Registry operator is GoDaddy Registry for NTIA. The CentralNic Reseller KB claims .us IDN support; the registry FAQ contradicts it."
+ },
+ {
+  "tld": "uy",
+  "idn": "yes",
+  "chars": "U+00E1 U+00E9 U+00ED U+00F1 U+00F3 U+00FA U+00FC",
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.nic.uy/Registrar/reg-dns.htm"
+  ],
+  "confidence": "high",
+  "notes": "RAU/NIC Uruguay rules s.8: valid characters are numbers, letters, hyphen 'y los siguientes caracteres: á, é, í, ó, ú, ü y ñ'. S.5: names can be registered directly under .uy or under .com.uy/.org.uy/.net.uy/.edu.uy/.gub.uy/.mil.uy."
+ },
+ {
+  "tld": "uz",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://cctld.uz/info/polru/"
+  ],
+  "confidence": "medium",
+  "notes": "Regulation on registration in the UZ domain (Order No.155 of 26 May 2008), point 54: letters a-z, digits 0-9, hyphen only. This is an older document; no newer IDN policy found. The CentralNic Reseller KB page for .uz claims IDN support but shows another TLD's data (whois.isoc.org.il), so it is unreliable."
+ },
+ {
+  "tld": "va",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "No registry policy found. Not verified whether .va is open to the public at all; possibly restricted to Holy See institutions (would be 'unused' for scanner purposes if confirmed)."
+ },
+ {
+  "tld": "vc",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.identity.digital/help-articles/idn-information",
+   "https://www.identity.digital/policies/idn-policy",
+   "https://en.wikipedia.org/wiki/.vc"
+  ],
+  "confidence": "low",
+  "notes": ".vc is operated by Identity Digital. Its help page says IDN is supported 'for all Identity Digital TLDs except .travel', but its IDN policy points to IANA tables, and none exist for .vc per this task's premise. A registrar (OnlineNIC) reportedly does not offer IDN .vc, and the CentralNic Reseller KB does not list IDN. Registration is direct at second level or under com.vc/net.vc/org.vc."
+ },
+ {
+  "tld": "vg",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://nic.vg/terms.php",
+   "https://nic.vg/assets/files/new-tac-vg.pdf"
+  ],
+  "confidence": "high",
+  "notes": "nic.VG terms: 1-63 characters 'using the letters A-Z ... and numbers from 1 to 9' plus hyphens. No IDN provision. Back-end KSregistry GmbH."
+ },
+ {
+  "tld": "vi",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [
+   "https://secure.nic.vi/"
+  ],
+  "confidence": "low",
+  "notes": "nic.vi portal contains no character/IDN rules; zone structure (second level vs co.vi) not verified."
+ },
+ {
+  "tld": "vn",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "Vietnamese characters per TCVN 6909:2001 (Vietnamese Unicode standard) and its extended table",
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://vnnic.vn/tenmientiengviet/gioi-thieu-ve-tmtv",
+   "https://www.vnnic.vn/tenmientiengviet/congnghe/b%E1%BA%A3ng-m%C3%A3-d%C3%B9ng-cho-t%C3%AAn-mi%E1%BB%81n-ti%E1%BA%BFng-vi%E1%BB%87t"
+  ],
+  "confidence": "medium",
+  "notes": "VNNIC text (seen via search excerpt; pages now 404): Vietnamese domain names are within .vn, using characters in the Vietnamese code table per TCVN 6909:2001 and its extended table, and follow a second-level structure directly after '.vn'. VNNIC's 'Bảng mã dùng cho tên miền tiếng Việt' page (character table) no longer resolves, so no exact code-point list. Expect a-z plus Vietnamese precomposed letters (ă â đ ê ô ơ ư and tone-marked vowels)."
+ },
+ {
+  "tld": "vu",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.vunic.vu/"
+  ],
+  "confidence": "high",
+  "notes": "Vunic home page notice: 'Please avoid registrations of ... (IDNs) as the registry does not support them.'"
+ },
+ {
+  "tld": "wf",
+  "idn": "yes",
+  "chars": "U+00DF U+00E0..U+00EF U+00F1..U+00F6 U+00F9..U+00FD U+00FF U+0153",
+  "chars_ref": "Afnic Naming Policy art. 19 (same list as .fr)",
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.afnic.fr/wp-media/uploads/2026/07/afnic-naming-policy-2026-07-06.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Same Afnic policy as .fr/.tf/.yt/.pm/.re; IDN since 3 May 2012."
+ },
+ {
+  "tld": "ws",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "No published list; registry/registrars state broad multi-script IDN and emoji support",
+  "scripts": [
+   "Latin",
+   "Cyrillic",
+   "Greek",
+   "Arabic",
+   "Hebrew",
+   "Han",
+   "Hangul",
+   "Thai",
+   "Devanagari",
+   "emoji"
+  ],
+  "mixing": "not stated",
+  "second_level_open": true,
+  "source": [
+   "https://www.worldsite.ws/idn/faq.dhtml?sponsor=idntraffic",
+   "https://en.wikipedia.org/wiki/.ws",
+   "https://en.wikipedia.org/wiki/Emoji_domain",
+   "https://kb.centralnicreseller.com/domains/tlds/ws"
+  ],
+  "confidence": "low",
+  "notes": "Registry GDI (worldsite.ws) markets .WS IDNs 'regardless of the language ... or character set'. .ws is one of the main TLDs accepting emoji labels (about 25,000 emoji .ws in 2018 per Wikipedia). No code-point table found. The scripts list is indicative, from registrar language lists (101domain), not exhaustive. For a scanner, treat as near-unrestricted Unicode including emoji. Also com.ws/net.ws/org.ws."
+ },
+ {
+  "tld": "ye",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "No registry policy found (nic.ye unreachable)."
+ },
+ {
+  "tld": "yt",
+  "idn": "yes",
+  "chars": "U+00DF U+00E0..U+00EF U+00F1..U+00F6 U+00F9..U+00FD U+00FF U+0153",
+  "chars_ref": "Afnic Naming Policy art. 19 (same list as .fr)",
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": true,
+  "source": [
+   "https://www.afnic.fr/wp-media/uploads/2026/07/afnic-naming-policy-2026-07-06.pdf"
+  ],
+  "confidence": "high",
+  "notes": "Same Afnic policy as .fr; IDN since 3 May 2012."
+ },
+ {
+  "tld": "za",
+  "idn": "no",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [
+   "Latin"
+  ],
+  "mixing": "n/a",
+  "second_level_open": false,
+  "source": [
+   "https://hosterion.com/domains/co.za",
+   "https://gtldresult.icann.org/applicationstatus/applicationdetails:downloadapplication/1184?t:ac=1184"
+  ],
+  "confidence": "low",
+  "notes": "No direct second-level registration under .za; the public zone is co.za (also org.za, net.za, web.za), now run by ZARC for ZADNA. Registrar pages say IDN is not supported for co.za. ZACR earlier deferred IDN to future policy work. Not confirmed from a ZARC/ZADNA policy document."
+ },
+ {
+  "tld": "zm",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": null,
+  "source": [],
+  "confidence": "low",
+  "notes": "No registry source found (nic.zm unreachable)."
+ },
+ {
+  "tld": "zw",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": [],
+  "mixing": "not stated",
+  "second_level_open": false,
+  "source": [
+   "https://zispa.org.zw/terms_and_conditions.html"
+  ],
+  "confidence": "low",
+  "notes": "ZISPA administers the co.zw namespace 'including all other subdomains of .zw'. No character/IDN rule in its terms. Second-level registration directly under .zw appears unavailable (low confidence)."
+ },
+ {
+  "tld": "ελ",
+  "idn": "yes",
+  "chars": "U+0390 U+03AC..U+03CE U+1F00..U+1F07 U+1F10..U+1F15 U+1F20..U+1F27 U+1F30..U+1F37 U+1F40..U+1F45 U+1F50..U+1F57 U+1F60..U+1F67 U+1F70..U+1F7D U+1F80..U+1F87 U+1F90..U+1F97 U+1FA0..U+1FA7 U+1FB0..U+1FB4 U+1FB6..U+1FB7 U+1FC2..U+1FC4 U+1FC6..U+1FC7 U+1FD0..U+1FD3 U+1FD6..U+1FD7 U+1FE0..U+1FE7 U+1FF2..U+1FF4 U+1FF6..U+1FF7",
+  "chars_ref": "ICS-FORTH 'Acceptable Greek characters table' (Unicode 4.1; 286 entries incl. capitals, which are case-folded)",
+  "scripts": "Greek (Latin also accepted)",
+  "mixing": "a label is either Greek or Latin ('either of latin or of Greek characters'); mixing not explicitly addressed but not provided for; ASCII digits and hyphen",
+  "second_level_open": true,
+  "source": "https://grweb.ics.forth.gr/public/assets/docs/en/acceptable-greek-chars.pdf https://grweb.ics.forth.gr/public/domains/idn?lang=en https://grweb.ics.forth.gr/public/faqs?lang=en",
+  "confidence": "high",
+  "notes": "Registry: ICS-FORTH (.gr/.ελ), Greek IDN registration under .ελ since 10 Jul 2018. chars = the lowercase (Ll) entries of the registry table. 45 of them (polytonic oxia forms U+1F71/73/75/77/79/7B/7D and ypogegrammeni forms U+1F80..1FAF, U+1FB2..1FB4, U+1FB7, U+1FC2..1FC4, U+1FC7, U+1FD3, U+1FE3, U+1FF2..1FF4, U+1FF7) are not IDNA2008 PVALID; the IDNA2008-valid subset is U+0390 U+03AC..U+03CE U+1F00..U+1F07 U+1F10..U+1F15 U+1F20..U+1F27 U+1F30..U+1F37 U+1F40..U+1F45 U+1F50..U+1F57 U+1F60..U+1F67 U+1F70 U+1F72 U+1F74 U+1F76 U+1F78 U+1F7A U+1F7C U+1FB0..U+1FB1 U+1FB6 U+1FC6 U+1FD0..U+1FD2 U+1FD6..U+1FD7 U+1FE0..U+1FE2 U+1FE4..U+1FE7 U+1FF6. FAQ: the label may be of Latin or Greek characters, so ASCII letters a-z ARE also allowed under .ελ. Registering a Greek name also blocks/reserves its homograph bundle (accented/unaccented, final/medial sigma, Latin homograph); unaccented form activated free."
+ },
+ {
+  "tld": "ευ",
+  "idn": "yes",
+  "chars": "U+0390 U+03AC..U+03CE U+1F00..U+1F07 U+1F10..U+1F15 U+1F20..U+1F27 U+1F30..U+1F37 U+1F40..U+1F45 U+1F50..U+1F57 U+1F60..U+1F67 U+1F70..U+1F7D U+1F80..U+1F87 U+1F90..U+1F97 U+1FA0..U+1FA7 U+1FB0..U+1FB4 U+1FB6..U+1FB7 U+1FC2..U+1FC4 U+1FC6..U+1FC7 U+1FD0..U+1FD3 U+1FD6..U+1FD7 U+1FE0..U+1FE7 U+1FF2..U+1FF4 U+1FF6..U+1FF7",
+  "chars_ref": "EURid 'IDNA2008 and Homoglyph bundling' Table 5 (Allowed characters of the Greek script)",
+  "scripts": "Greek",
+  "mixing": "single script (Greek only under .ευ); ASCII digits and hyphen allowed",
+  "second_level_open": true,
+  "source": "https://cdn.eurid.eu/assets/idna2008-homoglyph-bundling.pdf https://eurid.eu/en/knowledge-centre/domain-names-with-special-characters-idns/",
+  "confidence": "high",
+  "notes": "EURid rule: second-level script must match TLD script (Latin->.eu, Cyrillic->.ею, Greek->.ευ), so ASCII letters are NOT allowed under .ευ. chars = lowercase (Ll) entries of Table 5 (table also lists capitals/titlecase which are case-folded; Table 11 gives normalisation of non-NFC/oxia forms). IDNA2008-PVALID subset: U+0390 U+03AC..U+03CE U+1F00..U+1F07 U+1F10..U+1F15 U+1F20..U+1F27 U+1F30..U+1F37 U+1F40..U+1F45 U+1F50..U+1F57 U+1F60..U+1F67 U+1F70 U+1F72 U+1F74 U+1F76 U+1F78 U+1F7A U+1F7C U+1FB0..U+1FB1 U+1FB6 U+1FC6 U+1FD0..U+1FD2 U+1FD6..U+1FD7 U+1FE0..U+1FE2 U+1FE4..U+1FE7 U+1FF6. Homoglyph bundling applies across .eu/.ευ. Eligibility: EU/EEA citizens/residents/organisations."
+ },
+ {
+  "tld": "бг",
+  "idn": "yes",
+  "chars": "U+0430..U+044A U+044C U+044E..U+044F",
+  "chars_ref": "Bulgarian alphabet; IANA table xn--90ae_bg-bg_1.0 (Imena.BG)",
+  "scripts": "Cyrillic (Bulgarian)",
+  "mixing": "Cyrillic (Bulgarian alphabet) letters, ASCII digits and hyphen only; no Latin",
+  "second_level_open": true,
+  "source": "https://www.imena.bg/tld_user_nam/documents/bg/Obshti_uslovia_Imena.BG_v1.4.pdf https://www.iana.org/domains/idn-tables/tables/xn--90ae_bg-bg_1.0.txt",
+  "confidence": "high",
+  "notes": "Registry Imena.BG AD. General Terms v1.4 (09.08.2026) s.5.2.1: letters of the Cyrillic (Bulgarian alphabet) [А-Я, а-я], digits, hyphen; registered in lowercase; min length 3. Bulgarian alphabet excludes ы (U+044B), э (U+044D), ё. ASCII letters NOT allowed. Note an IANA table IS lodged for .бг."
+ },
+ {
+  "tld": "бел",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "lowercase letters of the Belarusian or Russian alphabet, plus apostrophe (code point not specified); per Instruction on registration of domain names in the national domain zone (cctld.by)",
+  "scripts": "Cyrillic (Belarusian, Russian)",
+  "mixing": "Cyrillic letters, digits, hyphen and apostrophe; no Latin stated",
+  "second_level_open": true,
+  "source": "https://cctld.by/documents/instruction-on-the-procedure-of-registration-of-domain/ https://cctld.by/questions/",
+  "confidence": "medium",
+  "notes": "Registry: Republican Unitary Enterprise/Operator of cctld.by (.by/.бел). Rule (via search excerpts of the official Instruction; cctld.by was unreachable from here): name formed of lowercase Belarusian or Russian letters, digits, '-' and apostrophe, 2..63 chars after transliteration, may not begin/end with hyphen or apostrophe; lowercase required since 10 Apr 2024. Implied letter set would be Russian а..я + ё plus Belarusian і (U+0456), ў (U+045E), but no code-point list was found, so chars left null. Which apostrophe code point is accepted (likely U+02BC since U+0027 is invalid in IDNA) is unknown."
+ },
+ {
+  "tld": "ею",
+  "idn": "yes",
+  "chars": "U+0430..U+044F",
+  "chars_ref": "EURid 'IDNA2008 and Homoglyph bundling' Table 6; IANA table xn--e1a4c_cyrl_1.0",
+  "scripts": "Cyrillic",
+  "mixing": "single script (Cyrillic only under .ею); ASCII digits and hyphen allowed",
+  "second_level_open": true,
+  "source": "https://cdn.eurid.eu/assets/idna2008-homoglyph-bundling.pdf https://www.iana.org/domains/idn-tables/tables/xn--e1a4c_cyrl_1.0.txt https://eurid.eu/en/knowledge-centre/domain-names-with-special-characters-idns/",
+  "confidence": "high",
+  "notes": "Only the 32 basic letters а..я (no ё, і, ї, є, ѓ etc.). ASCII letters NOT allowed under .ею (script must match TLD). Note an IANA table IS lodged for .ею. Eligibility: EU/EEA."
+ },
+ {
+  "tld": "мкд",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "'letters of the Macedonian alphabet' (MARnet Rulebook Art. 14); the 31-letter Macedonian alphabet = U+0430..U+0438 U+043A..U+0448 U+0453 U+0455 U+0458..U+045A U+045C U+045F (derived, not a registry-published code point list)",
+  "scripts": "Cyrillic (Macedonian)",
+  "mixing": "Macedonian letters, ASCII digits and hyphen only; no Latin",
+  "second_level_open": true,
+  "source": "https://registrar.mk/agreements/RulebookEN.pdf https://www.icann.org/sites/default/files/packages/lgr/lgr-second-level-macedonian-30aug16-en.html",
+  "confidence": "medium",
+  "notes": "Registry MARnet. Art. 14: name consists of letters of the Macedonian alphabet (case-insensitive), digits 0-9 and hyphen; length 3..30; no leading/trailing hyphen, no double hyphen. Open to all natural/legal persons (Art. 11). Registry publishes no code point table; derived set cross-checked against ICANN Macedonian reference LGR."
+ },
+ {
+  "tld": "мон",
+  "idn": "yes",
+  "chars": "U+0430..U+044F U+0451 U+04AF U+04E9",
+  "chars_ref": "IANA table xn--l1acc_mn_1.0 (Datacom, 2012)",
+  "scripts": "Cyrillic (Mongolian)",
+  "mixing": "Mongolian Cyrillic letters, ASCII digits and hyphen only",
+  "second_level_open": true,
+  "source": "https://www.iana.org/domains/idn-tables/tables/xn--l1acc_mn_1.0.html https://help.datacom.mn/kb/article/mon-domain",
+  "confidence": "high",
+  "notes": "Registry Datacom Co. 35 letters of the Mongolian Cyrillic alphabet (а..я, ё, ө, ү), digits, hyphen. Note an IANA table IS lodged for .мон. ASCII letters not allowed."
+ },
+ {
+  "tld": "рф",
+  "idn": "yes",
+  "chars": "U+0430..U+044F U+0451 U+0456 U+0458 U+0493 U+0495 U+0497 U+0499 U+04A1 U+04A3 U+04A5 U+04AB U+04AF U+04BB U+04CF U+04D1 U+04D5 U+04D7 U+04D9 U+04DD U+04DF U+04E5 U+04E7 U+04E9 U+04F1 U+04F3 U+04F5 U+04F9",
+  "chars_ref": "Приложение 'Список символов, допустимых в составе доменного имени в домене .РФ' (ред. 24.10.2025, eff. 10.12.2025); also IANA xn--p1ai_cyrl_3.0",
+  "scripts": "Cyrillic (Russian + 18 languages of RF republics)",
+  "mixing": "Cyrillic letters from the list, ASCII digits and hyphen only; no Latin",
+  "second_level_open": true,
+  "source": "https://cctld.ru/files/pdf/docs/rules_add-rf.pdf https://cctld.ru/files/pdf/docs/rules_ru-rf.pdf",
+  "confidence": "high",
+  "notes": "Coordination Center for TLD RU/РФ. Rules s.3.1.2: letters of Russian and other national alphabets of RF per the Appendix; case-insensitive; min 2 chars. ASCII letters NOT allowed. Note an IANA table IS lodged for .рф (v3.0 matches)."
+ },
+ {
+  "tld": "срб",
+  "idn": "yes",
+  "chars": "U+0430..U+045F U+0491 U+04D1",
+  "chars_ref": "RNIDS Pravilnik on IDN registration (27.09.2018), Annex 2; IANA tables xn--90a3ac_{sr-cyrl,bg,mk,ru,uk,rue-cyrl,cnr-cyrl}_2.0",
+  "scripts": "Cyrillic (Serbian, Bulgarian, Macedonian, Russian, Rusyn, Ukrainian, Montenegrin/Vlach)",
+  "mixing": "Cyrillic only, no Latin; ASCII digits and hyphen",
+  "second_level_open": true,
+  "source": "https://www.rnids.rs/storage/uploads/migration/documents/registar-dokumenata/2018-09-27-idn-registracija.pdf https://www.rnids.rs/storage/uploads/migration/documents/registar-dokumenata/2018-12-15-opsti-uslovi-registracije-domena.pdf https://www.rnids.rs/en/%D1%81%D1%80%D0%B1-%D0%B4%D0%BE%D0%BC%D0%B5%D0%BD",
+  "confidence": "high",
+  "notes": "Registry RNIDS. Base: 30 Serbian Cyrillic letters; extended set since 5 Mar 2019. chars is the union of Annex 2 code points; IANA has per-language tables lodged (a label probably must conform to one language table). Min 2 chars. ASCII letters NOT allowed under .срб."
+ },
+ {
+  "tld": "укр",
+  "idn": "yes",
+  "chars": "U+0430..U+044F U+0451 U+0454 U+0456 U+0457 U+0491 U+02BC",
+  "chars_ref": "UANIC 'Таблиця дозволених символів' for .УКР",
+  "scripts": "Cyrillic (Ukrainian, Russian)",
+  "mixing": "Ukrainian/Russian Cyrillic letters, U+02BC apostrophe, ASCII digits and hyphen; no Latin",
+  "second_level_open": true,
+  "source": "http://uanic.net/tablicya-dozvolenix-simvoliv/ http://uanic.net/pravila-registracii-i-polzovaniya-domennymi-imenami-v-domene-ukr/",
+  "confidence": "high",
+  "notes": "Administrator UANIC (Ukrainian Network Information Centre). Rules 4.1.2: only Ukrainian and Russian letters, Arabic digits, internal hyphen and the Ukrainian apostrophe, per the Administrator's table. Includes MODIFIER LETTER APOSTROPHE U+02BC; names with apostrophe may also be registered without it (5.9). ASCII letters not allowed."
+ },
+ {
+  "tld": "қаз",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "'national alphabet symbols (Cyrillic (Kazakh), ISO kk)' per KazNIC Порядок внедрения домена .ҚАЗ; KazNIC kazakh-cyrillic-character-table.txt (no longer online)",
+  "scripts": "Cyrillic (Kazakh)",
+  "mixing": "unknown",
+  "second_level_open": true,
+  "source": "https://www.nic.kz/docs/doc/poryadok_vnedreniya_kaz_ru.pdf https://www.nic.kz/ru/domains/faq",
+  "confidence": "low",
+  "notes": "Registry KazNIC. .ҚАЗ is for second-level names in the Kazakh Cyrillic alphabet; open second-level registration via accredited registrars, plus special-purpose 3LDs (ком.қаз, мем.қаз, біл.қаз, бай.қаз, қау.қаз, қор.қаз). The KazNIC character table URL now 404s; no current code point list found, so chars unknown."
+ },
+ {
+  "tld": "հայ",
+  "idn": "yes",
+  "chars": "U+0561..U+0586",
+  "chars_ref": "ISOC AM Policy of domain names registration in .AM and .ՀԱՅ, para 9",
+  "scripts": "Armenian",
+  "mixing": "Armenian small letters, ASCII digits and hyphen only; no Latin",
+  "second_level_open": true,
+  "source": "https://www.isoc.am/wp-content/uploads/2022/12/policy_0.pdf https://www.amnic.net/policy/en/Policy_EN.pdf",
+  "confidence": "high",
+  "notes": "Registry ISOC AM (tech operator AMNIC). Permitted: Armenian small letters ա..ֆ (listed explicitly, incl. ւ U+0582), excluding the ligature և (U+0587); digits; hyphen. ASCII letters not allowed under .հայ. Third level also under համայնք.հայ."
+ },
+ {
+  "tld": "ישראל",
+  "idn": "yes",
+  "chars": "U+05D0..U+05EA",
+  "chars_ref": "ISOC-IL .ישראל registration rules / IDN FAQ",
+  "scripts": "Hebrew",
+  "mixing": "Hebrew letters, ASCII digits and hyphen only; must contain at least one Hebrew letter",
+  "second_level_open": true,
+  "source": "https://en.isoc.org.il/il-cctld/idn-domains-faq https://en.isoc.org.il/files/docs/israel-registration-rules-eng.pdf",
+  "confidence": "medium",
+  "notes": "Registry ISOC-IL. Per ISOC-IL FAQ (read via search excerpt; site returned 403 to direct fetch): names may only comprise Hebrew letters א..ת incl. final forms (U+05D0..U+05EA), digits 0-9 and hyphen, with at least one Hebrew letter. No niqqud/geresh. Second level open via accredited registrars; sectoral 3LD ישוב.ישראל exists. ASCII letters not allowed."
+ },
+ {
+  "tld": "الاردن",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "single script; Arabic letters + ASCII digits 0-9 + hyphen; no mixing of English and Arabic letters",
+  "second_level_open": true,
+  "source": "https://dns.jo/Policy.aspx https://dns.jo/FAQ.aspx https://dns.jo/fees.aspx",
+  "confidence": "medium",
+  "notes": "Registry: Ministry of Digital Economy and Entrepreneurship (MoDEE), dns.jo; policy last updated 13/6/2024. Policy (Arabic) says names under .الاردن may contain Arabic letters (أ، ب، ت ...), digits (0-9) and hyphen, and may not begin or end with a hyphen. No code-point list is published. FAQ: English letters only under .jo and Arabic letters only under .الاردن, so no mixing. ASCII letters are not allowed. Only Western digits 0-9 are named; Arabic-Indic digits are not mentioned. Registered directly at the second level (fee listed for .الاردن), but eligibility documents are required."
+ },
+ {
+  "tld": "البحرين",
+  "idn": "yes",
+  "chars": "U+0621..U+063A U+0641..U+064A",
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "single script (Arabic only); ASCII digits and hyphen; European and Arabic-Indic digits may not be mixed",
+  "second_level_open": true,
+  "source": "https://register.bh/rules/ https://register.bh/faqs/",
+  "confidence": "high",
+  "notes": "Registry: Telecommunications Regulatory Authority (TRA) Bahrain; Rules of Domain Names of the Kingdom of Bahrain, Appendix A (IDN table v1-1, 14-1-2014). Enumerated list: hyphen, ASCII digits 0-9, and Arabic letters U+0621-U+063A and U+0641-U+064A. The rule text also refers to Arabic-Indic digits U+0660-U+0669 ('may not begin with a number ... U+0660 U+0669'; no mixing of European and Arabic-Indic digits) but does not list them in the table, so their status is ambiguous. Diacritics are not allowed. Labels must be Arabic only, may not start with a number, and digits may not be at the start or end. The FAQ says .البحرين is open to the public (a grandfathering phase gave .bh holders priority). ASCII letters are not allowed."
+ },
+ {
+  "tld": "الجزائر",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "single script; Arabic letters alef..yeh + digits 0-9 + hyphen; no mixing of Arabic and non-Arabic letters",
+  "second_level_open": true,
+  "source": "https://xn--ggbdmbaav3cjl1c9heugfv.xn--lgbbat1ad8j/static/media/charte.a3d321114fc8270b97f1.pdf https://www.nic.dz/",
+  "confidence": "medium",
+  "notes": "Registry: CERIST / NIC.DZ (مركز أسماء النطاقات.الجزائر). Naming charter for .الجزائر (Arabic PDF, dated January 2012). Syntax rules: 2 to 24 characters; only letters from alef to yeh, digits 0 to 9 and hyphen; not digits only; no hyphen at the start or end; no diacritics or shadda; no mixing of Arabic and non-Arabic letters; hyphen recommended between words. No code-point table is given; 'alef to yeh' is not specified in Unicode terms. Digits are written as 0-9 in the charter; whether Arabic-Indic digits are accepted is not stated. ASCII letters are not allowed. Eligibility: an entity based in Algeria or with a representative there, plus a document justifying the name. Registration is through registrars and is free according to the charter."
+ },
+ {
+  "tld": "السعودية",
+  "idn": "yes",
+  "chars": "U+0621..U+063A U+0641..U+064A U+0660..U+0669",
+  "chars_ref": "RFC 5564 (per SaudiNIC Guideline Rules v1.2); IANA LGR xn--mgberp4a5d4ar_ar_2.xml",
+  "scripts": "Arabic",
+  "mixing": "single script; no Arabic/Latin mixing; ASCII digits and Arabic-Indic digits allowed but not mixed within a label; hyphen",
+  "second_level_open": true,
+  "source": "https://nic.sa/en/help/guidelines-for-writing-arabic-idn https://nic.sa/images/arabic-unicode-table-ar.jpg https://nic.sa/en/help/regulation https://www.iana.org/domains/idn-tables/tables/xn--mgberp4a5d4ar_ar_2.xml",
+  "confidence": "high",
+  "notes": "Registry: SaudiNIC (CST). Guideline Rules v1.2 (07/12/2010) say RFC 5564 is followed. The registry's permitted-character table (image on nic.sa) lists U+0621-U+063A, U+0641-U+064A, U+0660-U+0669, ASCII 0-9 and U+002D, which matches the IANA LGR v2. Rules: no diacritics; no mixing of Arabic and Latin (no ASCII letters); no hyphen at the start or end and no double hyphen; digits may not be at the start or end, and Arabic-Indic and ASCII digit sets may not be mixed; ALEF, YEH/ALEF MAKSURA and HEH/TEH MARBUTA variants may be registered by the same registrant. Regulation: any natural or legal person may register directly under .السعودية."
+ },
+ {
+  "tld": "المغرب",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": "https://www.anrt.ma/missions/domaine-ma https://www.iana.org/reports/2011/morocco-report-20110401.html",
+  "confidence": "low",
+  "notes": "Registry: ANRT (registre.ma). The ANRT page lists 'Enregistrer un nom de domaine «.ma» et \"المغرب.\"' and says ANRT manages the rules for both, but the registry site www.registre.ma (which holds the naming charter) could not be reached (connection reset), so no character policy was found. The 2011 IANA report says ANRT was still working on registration policies for المغرب. ANRT's .ma statistics (T1 2026) do not report المغرب figures. Status and character set are unknown."
+ },
+ {
+  "tld": "امارات",
+  "idn": "yes",
+  "chars": "U+0621..U+063A U+0641..U+064A U+0660..U+0669",
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "single script; ASCII digits and Arabic-Indic digits allowed but not both in one label; hyphen",
+  "second_level_open": true,
+  "source": "https://tdra.gov.ae/-/media/aeda/Policies/dotemarat-policies/English/dotEmarat_Domain_Name_Policy.ashx https://tdra.gov.ae/en/aeda/ae-policies",
+  "confidence": "high",
+  "notes": "Registry: .aeDA (TDRA). AEDA-POL-016 v1.0 (22/09/2010), dotEmarat Domain Name Eligibility Policy, Appendix A. The Table of Allowed Arabic Letters gives U+0621-U+063A and U+0641-U+064A. The Table of Allowed Numbers and Special Characters gives U+0660-U+0669, U+002D and ASCII 0-9. Labels must be NFC, may not begin with a digit, may not contain both ASCII and Arabic digits, may not begin or end with a dash, and may not have a dash in positions 3-4. ASCII letters are not allowed. Variants: digit variants are activated automatically; ALEF, HEH/TEH MARBUTA and YEH/ALEF MAKSURA are blocked variants. The Unrestricted Zone is open to any applicant directly under .امارات without documents; no restricted zones exist at this time."
+ },
+ {
+  "tld": "ایران",
+  "idn": "yes",
+  "chars": "U+0621..U+0624 U+0626..U+063A U+0641..U+0642 U+0644..U+0648 U+067E U+0686 U+0698 U+06A9 U+06AF U+06CC U+06F0..U+06F9",
+  "chars_ref": "IANA IDN table ir_fa_1.0 (.IR Persian Language Table, 2005); IRNIC Persian domain guide",
+  "scripts": "Arabic (Persian)",
+  "mixing": "single script; no Latin letters; hyphen allowed inside; must begin and end with a letter",
+  "second_level_open": true,
+  "source": "https://www.nic.ir/docs/idn/international-domains https://www.nic.ir/static/files/2024/06/Domain-Regsitration-Guide-under-dot-iran.pdf https://www.iana.org/domains/idn-tables/tables/ir_fa_1.0.html",
+  "confidence": "high",
+  "notes": "Registry: IRNIC (IPM). IDNs are allowed only under .ایران; .ir is ASCII only. Table 1 of the registry's Persian guide (identical to IANA ir_fa_1.0) is given in chars, plus U+002D. U+0625 is not included. Table 2: ZWNJ U+200C and ZWJ U+200D are accepted in input but removed. Table 3: U+0643, U+064A, Arabic-Indic digits U+0660-U+0669 and ASCII digits U+0030-U+0039 are accepted in input but converted to U+06A9, U+06CC and U+06F0-U+06F9. So stored labels use Extended Arabic-Indic digits only, and ASCII digits are not kept as such. Labels must begin and end with a letter, so all-digit labels are not allowed. A bundle of up to 6 homograph variants is reserved for the registrant. The nic.ir allowed-characters HTML page currently shows the conversion table under the 'Table 1' heading (a site error); the PDF guide has the correct Table 1."
+ },
+ {
+  "tld": "بارت",
+  "idn": "yes",
+  "chars": "U+0622..U+0628 U+062A..U+063A U+0641..U+0642 U+0644..U+0646 U+0648 U+0651 U+0656 U+065F U+0670 U+0672 U+0679 U+067E U+0688 U+0691 U+0698 U+06A9 U+06AF U+06BE U+06C1..U+06C4 U+06CC U+06D2..U+06D3 U+06EA",
+  "chars_ref": "NIXI Policy Document for IDNs, Language: Kashmiri (Perso-Arabic)",
+  "scripts": "Arabic (Kashmiri)",
+  "mixing": "single language/script per label; ASCII (Latin) digits 0-9 only; ASCII hyphen; no ZWJ/ZWNJ",
+  "second_level_open": true,
+  "source": "https://registry.in/internationalized-domain-names-idns https://registry.in/system/files/INTERNATIONALIZED%20DOMAIN%20NAMES-KASHMIRI-PA.pdf",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). registry.in lists .بارت (xn--mgbbh1a, Kashmiri) as 'General Availability'. The code points come from section 4 of the Kashmiri (Perso-Arabic) policy: base letters plus the precomposed and diacritic set (U+0651, U+0656, U+065F, U+0670). The PDF shows U+0626 with a HEH GOAL WITH HAMZA glyph, which looks like a typo. Digits must be Latin 0-9 and Arabic-Indic digits are not allowed. The Latin hyphen is used; ZWJ, ZWNJ and space are not permitted. No mixing of languages. ASCII letters are not allowed (IDN label). Restriction and variant rules are in the PDF."
+ },
+ {
+  "tld": "بھارت",
+  "idn": "yes",
+  "chars": "U+0621..U+0628 U+062A..U+063A U+0641..U+0642 U+0644..U+0648 U+0651 U+0653..U+0656 U+0670 U+0679 U+067E U+0686 U+0688 U+0691 U+0698 U+06A9 U+06AF U+06BA U+06BE U+06C1..U+06C3 U+06CC U+06D2..U+06D3",
+  "chars_ref": "NIXI Policy Document for IDNs, Language: Urdu (v1.0, 29 Sep 2014)",
+  "scripts": "Arabic (Urdu)",
+  "mixing": "single language/script per label; ASCII digits 0-9 only; ASCII hyphen; no ZWJ/ZWNJ; no consecutive hyphens",
+  "second_level_open": true,
+  "source": "https://registry.in/internationalized-domain-names-idns https://registry.in/system/files/INTERNATIONALIZED_DOMAIN_NAMES-URDU.pdf",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). registry.in lists .بھارت (xn--mgbbh1a71e, Urdu) as 'General Availability'. The code points come from section 4 'Permissible Urdu character set' (base letters, precomposed hamza/madda forms and the diacritics U+0651, U+0653-U+0656, U+0670). TEH MARBUTA U+0629 is not included. Digits must be the international set 0-9, not Arabic-Indic digits; the English hyphen is used; ZWJ, ZWNJ and space are not permitted. Diacritic placement rules apply, and labels with more than three variant characters are not permitted. ASCII letters are not allowed."
+ },
+ {
+  "tld": "تونس",
+  "idn": "yes",
+  "chars": "U+0621..U+063A U+0641..U+064A U+0660..U+0669",
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "Arabic letters and/or digits (Arabic-Indic or ASCII) and hyphen; no diacritics; mixing rules for digit sets not stated",
+  "second_level_open": true,
+  "source": "https://www.registre.tn/fr/index.php?rub=265&srub=339 https://www.registre.tn/upload/files/%D9%85%D9%8A%D8%AB%D8%A7%D9%82%20%D8%A7%D9%84%D8%B9%D9%86%D9%88%D9%86%D8%A9.%D8%AA%D9%88%D9%86%D8%B3%20v1.1.pdf",
+  "confidence": "high",
+  "notes": "Registry: ATI (Agence Tunisienne d'Internet), registre.tn. Naming charter for .تونس v1.1 (INT decision 143, 24 July 2013). Chapter 5: a label is a contiguous sequence of Arabic letters and/or digits and hyphen, with no hyphen at the start or end; the ASCII (A-label) form may be at most 63 characters; no madda, tanween or diacritics. Annex 1 lists the letters U+0621-U+063A and U+0641-U+064A, the Arabic-Indic digits U+0660-U+0669, and U+002D with ASCII 0-9. ASCII letters are not allowed. Eligibility: state bodies, legal persons under Tunisian law, holders of trademarks registered in Tunisia, and Tunisian nationals or permanent residents."
+ },
+ {
+  "tld": "سودان",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": "https://www.iana.org/domains/root/db/xn--mgbpl2fh.html https://www.iana.org/reports/2015/sudan-report-20150414.html",
+  "confidence": "low",
+  "notes": "Manager: Sudan Internet Society (per IANA). The registration URL in IANA (http://domains.sd) and isoc.sd both lead to hosting 'suspended' pages. No registry policy or character table was found, so status and character set are unknown."
+ },
+ {
+  "tld": "سورية",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": "https://www.iana.org/domains/root/db/xn--ogbpf8fl.html https://www.iana.org/reports/2011/syria-report-07jan2011.html",
+  "confidence": "low",
+  "notes": "Manager: National Agency for Network Services (NANS), tld.sy. The registry site tld.sy returned 502 or refused connections and nans.gov.sy was unreachable. No policy was found."
+ },
+ {
+  "tld": "عراق",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": "https://www.iana.org/domains/root/db/xn--mgbtx2b.html https://cmc.iq/",
+  "confidence": "low",
+  "notes": "Manager: Communications and Media Commission (CMC). The IANA-listed registration page http://www.cmc.iq/en/iq.html returns 403. cmc.iq mentions 'procedures for registering a domain name for non-governmental entities' without a working link. No IDN policy was found."
+ },
+ {
+  "tld": "عمان",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "Arabic letters, or Arabic letters with numbers, plus hyphen (per Regulation; code points not listed)",
+  "second_level_open": true,
+  "source": "https://www.tra.gov.om/telecom/domain/domain-name-regulations https://www.tra.gov.om/files/uploads/510_Document_List_1_35aa06ba1b.pdf",
+  "confidence": "medium",
+  "notes": "Registry: Telecommunications Regulatory Authority (TRA) Oman. Regulation Organizing the Domain Names, Decision 1152/2/3/2022-5 (Official Gazette 1469; the English text is an unofficial translation). Art. 4: names take the form domainname.عمان (second level only). Art. 5: 2 to 63 Arabic letters, or Arabic letters with numbers; hyphen allowed but not at the start or end; single Arabic letters or single Arabic numbers are allowed at TRA's discretion. The regulation does not say which digit set is meant ('Arabic number') and publishes no code-point table. ASCII letters are not allowed. Art. 9 eligibility: Omani persons, government units, public juristic persons, and companies and associations licensed in Oman."
+ },
+ {
+  "tld": "فلسطين",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": "https://www.iana.org/domains/root/db/xn--ygbi2ammx.html",
+  "confidence": "low",
+  "notes": "Manager: PNINA (pnina.ps). Every pnina.ps URL returns a reCAPTCHA bot-verification page, which was not bypassed. No policy was retrieved."
+ },
+ {
+  "tld": "قطر",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "unknown",
+  "second_level_open": true,
+  "source": "https://www.cra.gov.qa/en/Services/Domains/Registrants https://www.cra.gov.qa/en/Services/Domains/Check-A-Domain https://www.cra.gov.qa/en/Document?q=domain",
+  "confidence": "medium",
+  "notes": "Registry: Qatar Domains Registry (Communications Regulatory Authority, CRA). The Registrants page says '.قطر Open for all' through accredited registrars, and Check-A-Domain offers the قطر. extension. CRA's 'Domain Name Registration Policy - 1 December 2011' document entry has 0 attachments. No character table or IDN rules were found; the character set is unknown."
+ },
+ {
+  "tld": "مصر",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "unknown",
+  "second_level_open": false,
+  "source": "https://www.egregistry.eg/info/register-new-egypt-domain https://www.iana.org/domains/root/db/xn--wgbh1c.html",
+  "confidence": "medium",
+  "notes": "IANA manager: NTRA. Registration is handled through egregistry.eg (the .eg registry site, Supreme Council of Universities; contact domreg@scu.eg). The page says the Arabic-language service under .مصر is available only to Egyptian government bodies and official educational institutions, not to individuals or businesses. Hence second_level_open=false (restricted). No character rules or code-point table were found."
+ },
+ {
+  "tld": "مليسيا",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": "IANA IDN table my_ms-my_1.0 (Jawi, for .my; not stated to apply to .مليسيا)",
+  "scripts": "Arabic (Jawi)",
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": "https://mynic.my/storage/pdf/MYNIC_Registrant_Policy.pdf https://www.iana.org/domains/idn-tables/tables/my_ms-my_1.0.pdf",
+  "confidence": "low",
+  "notes": "Registry: MYNIC. MYNIC Registrant Policy (effective 26 May 2025) defines IDNs as Jawi, Chinese and Tamil second-level labels under .my (for example مليسيا.my); it does not list .مليسيا as a registrable TLD. This suggests the IDN ccTLD may not be open for registration, but no explicit statement was found. The .my Jawi table (IANA my_ms-my_1.0, 2009) allows U+0621 U+0623 U+0625..U+063A U+0641..U+064A U+0686 U+06A0 U+06A4 U+06A9 U+06BD U+06CF U+0762 U+06F2 plus ASCII digits and hyphen. That table applies to .my, not confirmed for .مليسيا."
+ },
+ {
+  "tld": "موريتانيا",
+  "idn": "unknown",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": "Arabic",
+  "mixing": "unknown",
+  "second_level_open": null,
+  "source": "https://www.nic.mr/ https://www.iana.org/reports/2019/xn--mgbah1a3hjkrd-report-20190108.html",
+  "confidence": "low",
+  "notes": "Manager: Université de Nouakchott Al Aasriya / NIC-Mauritanie (per IANA 2019 delegation). www.nic.mr is only a stub landing page with no policy or registration information. Status and character set are unknown."
+ },
+ {
+  "tld": "پاکستان",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": "Arabic (Pakistani languages: Urdu, Sindhi, Punjabi, Pashto, Balochi, etc.)",
+  "mixing": "unknown",
+  "second_level_open": true,
+  "source": "https://ntc.net.pk/DotPakistan.html https://ntc.net.pk/LatestOffers/DotPakistanNew.JPG https://www.iana.org/reports/2017/pakistan-report-20170117.html",
+  "confidence": "low",
+  "notes": "Manager: National Telecommunication Corporation (NTC), not PKNIC (IANA 2017 delegation). An NTC flyer says NTC provides registration of پاکستان. names in Pakistani local languages via https://register.ntc.net.pk and lists 20 languages. register.ntc.net.pk did not resolve (DNS failure), so no character table or rules were retrieved. The character set is unknown. second_level_open is inferred from the NTC flyer only."
+ },
+ {
+  "tld": "ڀارت",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": null,
+  "scripts": "Arabic (Sindhi)",
+  "mixing": "unknown (NIXI generic policy: no mixing of scripts)",
+  "second_level_open": true,
+  "source": "https://registry.in/internationalized-domain-names-idns https://registry.in/system/files/ua-and-multilingual-internet-india.pdf",
+  "confidence": "medium",
+  "notes": "Registry: NIXI (.IN Registry). registry.in lists .ڀارت (xn--mgbgu82a, Sindhi, Arabic script) as 'General Availability'. However, its 'Sindhi Language policies' link points to the Sindhi DEVANAGARI policy (INTERNATIONALIZED DOMAIN NAMES-SINDHI-DEV.pdf), and no Perso-Arabic Sindhi character table was found. The character set is unknown. By analogy with the NIXI Urdu and Kashmiri policies, Latin digits only and no mixing are likely, but this is not confirmed."
+ },
+ {
+  "tld": "भारत",
+  "idn": "yes",
+  "chars": "U+02BC U+0901..U+0903 U+0905..U+090D U+090F..U+0911 U+0913..U+0928 U+092A..U+0933 U+0935..U+0939 U+093C..U+0943 U+0945 U+0947..U+0949 U+094B..U+094D U+0962 U+0972 U+097B..U+097C U+097E..U+097F",
+  "chars_ref": null,
+  "scripts": "Devanagari",
+  "mixing": "single script (language table); ASCII digits and hyphen only; no ASCII letters, no native digits",
+  "second_level_open": true,
+  "source": "https://www.registry.in/internationalized-domain-names-idns https://www.registry.in/system/files/POLICY_DOCUMENT_FOR_CREATION_OF_LANGUAGE_INFORMATION_FOR_INTERNATIONALISED_DOMAIN_NAMES_IN_INDIAN_LANGUAGE.pdf https://www.registry.in/system/files/DEVANAGARI.zip",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). Language(s) per registry page: Hindi, Bodo(Boro), Dogri, Konkani, Maithili, Marathi, Nepali, Sindhi-Devanagari. chars = UNION of the 8 Devanagari language tables in DEVANAGARI.zip; registration is validated per language tag, so a label must satisfy one language's table. Per-language sets: Hindi: U+0901..U+0903 U+0905..U+090B U+090D U+090F..U+0911 U+0913..U+0928 U+092A..U+0930 U+0932 U+0935..U+0939 U+093C..U+0943 U+0945 U+0947..U+0949 U+094B..U+094D; Boro: U+02BC U+0901..U+0903 U+0905..U+090B U+090F..U+0910 U+0913..U+0928 U+092A..U+0930 U+0932 U+0935..U+0939 U+093C..U+0943 U+0947..U+0948 U+094B..U+094D; Dogri: U+02BC U+0902 U+0905..U+090B U+090F..U+0911 U+0913..U+0928 U+092A..U+0930 U+0932 U+0935..U+0939 U+093C..U+0943 U+0947..U+0949 U+094B..U+094D; Konkani: U+0901..U+0903 U+0905..U+090C U+090F..U+0911 U+0913..U+0928 U+092A..U+0933 U+0935..U+0939 U+093D..U+0943 U+0945 U+0947..U+0949 U+094B..U+094D U+0962 U+0972; Maithili: U+02BC U+0901..U+0903 U+0905..U+090C U+090F..U+0910 U+0913..U+0928 U+092A..U+0930 U+0932 U+0935..U+0939 U+093C..U+0943 U+0947..U+0948 U+094B..U+094D U+0962; Marathi: U+0901..U+0903 U+0905..U+090C U+090F..U+0911 U+0913..U+0928 U+092A..U+0933 U+0935..U+0939 U+093D..U+0943 U+0945 U+0947..U+0949 U+094B..U+094D U+0962 U+0972; Nepali: U+0901 U+0903 U+0905..U+090B U+090F..U+0910 U+0913..U+0928 U+092A..U+0932 U+0935..U+0939 U+093D..U+0943 U+0947..U+0948 U+094B..U+094D; Sindhi-Dev: U+0902 U+0905..U+090B U+090F..U+0910 U+0913..U+0928 U+092A..U+0930 U+0932 U+0935..U+0939 U+093C U+093E..U+0943 U+0947..U+0948 U+094B..U+094D U+097B..U+097C U+097E..U+097F. Boro, Dogri and Maithili tables include U+02BC MODIFIER LETTER APOSTROPHE (Boro: 'Gojau kamaa'). Marathi/Konkani list U+0962 (named 'LETTER VOCALIC L' in the PDF; code point is VOWEL SIGN VOCALIC L). Sindhi-Dev includes implosives U+097B..U+097C U+097E..U+097F. IANA 2011 delegation report describes the string as Hindi; one of seven IDN ccTLDs launched 2014. Also: C-DAC .भारत framework reserves सरकार.भारत/शिक्षा.भारत (3rd-level zones) and कंपनी.भारत; 2nd level open to public. https://cdac.in/index.aspx?id=pdf_IDN_policy_framework NIXI generic IDN policy (C-DAC draft policy for IDNs in Indian languages): only letters of the language + ASCII digits 0-9 + hyphen (hyphen/digits 'shall belong to the Latin set'); no mixing of scripts (incl. no Latin letters with Indic, e.g. हिन्दी-Hindi disallowed); Indian-language (native) digits NOT allowed; danda/punctuation, abbreviation signs, Vedic stress marks not allowed; ZWJ U+200D / ZWNJ U+200C NOT allowed; no consecutive hyphens; max two identical consonants joined by halant; syllable ABNF (e.g. H/M/X cannot start a label; halant-final syllable may only be followed by hyphen/digit); per-language variant tables with blocking; labels with >3 variant aksharas disallowed. .IN policy: single-digit / two-digit names not allowed, 3-63 chars; C-DAC .भारत framework: one-character names not allowed. Registry page lists the TLD as 'General Availability'. Per-language documents are titled 'Draft Policy Document'. chars = code points in the 'Nomenclatural description table' of the language policy PDF(s)."
+ },
+ {
+  "tld": "भारतम्",
+  "idn": "yes",
+  "chars": "U+0901..U+0903 U+0905..U+090C U+090F..U+0910 U+0913..U+0928 U+092A..U+0930 U+0932..U+0933 U+0935..U+0939 U+093D..U+0944 U+0947..U+0948 U+094B..U+094D U+0960..U+0963",
+  "chars_ref": null,
+  "scripts": "Devanagari",
+  "mixing": "single script (language table); ASCII digits and hyphen only; no ASCII letters, no native digits",
+  "second_level_open": true,
+  "source": "https://www.registry.in/internationalized-domain-names-idns https://www.registry.in/system/files/POLICY_DOCUMENT_FOR_CREATION_OF_LANGUAGE_INFORMATION_FOR_INTERNATIONALISED_DOMAIN_NAMES_IN_INDIAN_LANGUAGE.pdf https://www.registry.in/system/files/INTERNATIONALIZED%20DOMAIN%20NAMES-SANSKRIT.pdf",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). Language(s) per registry page: Sanskrit. Sanskrit table includes vocalic RR/L/LL letters and signs U+0960..U+0963 and U+0944. Delegated 2017 (IANA report https://www.iana.org/reports/2017/india-report-20170609.html). NIXI generic IDN policy (C-DAC draft policy for IDNs in Indian languages): only letters of the language + ASCII digits 0-9 + hyphen (hyphen/digits 'shall belong to the Latin set'); no mixing of scripts (incl. no Latin letters with Indic, e.g. हिन्दी-Hindi disallowed); Indian-language (native) digits NOT allowed; danda/punctuation, abbreviation signs, Vedic stress marks not allowed; ZWJ U+200D / ZWNJ U+200C NOT allowed; no consecutive hyphens; max two identical consonants joined by halant; syllable ABNF (e.g. H/M/X cannot start a label; halant-final syllable may only be followed by hyphen/digit); per-language variant tables with blocking; labels with >3 variant aksharas disallowed. .IN policy: single-digit / two-digit names not allowed, 3-63 chars; C-DAC .भारत framework: one-character names not allowed. Registry page lists the TLD as 'General Availability'. Per-language documents are titled 'Draft Policy Document'. chars = code points in the 'Nomenclatural description table' of the language policy PDF(s)."
+ },
+ {
+  "tld": "भारोत",
+  "idn": "yes",
+  "chars": "U+0901..U+0903 U+0905..U+090A U+090F..U+0911 U+0913..U+0928 U+092A..U+0930 U+0932 U+0935 U+0938..U+0939 U+093C U+093E..U+0942 U+0947..U+0948 U+094B..U+094D",
+  "chars_ref": null,
+  "scripts": "Devanagari",
+  "mixing": "single script (language table); ASCII digits and hyphen only; no ASCII letters, no native digits",
+  "second_level_open": true,
+  "source": "https://www.registry.in/internationalized-domain-names-idns https://www.registry.in/system/files/POLICY_DOCUMENT_FOR_CREATION_OF_LANGUAGE_INFORMATION_FOR_INTERNATIONALISED_DOMAIN_NAMES_IN_INDIAN_LANGUAGE.pdf https://www.registry.in/system/files/INTERNATIONALIZED%20DOMAIN%20NAMES-SANTALI-DEV.pdf",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). Language(s) per registry page: Santali (Devanagari). Santali in Devanagari script (not Ol Chiki). Delegated 2017 (IANA report https://www.iana.org/reports/2017/india-report-20170609.html). NIXI generic IDN policy (C-DAC draft policy for IDNs in Indian languages): only letters of the language + ASCII digits 0-9 + hyphen (hyphen/digits 'shall belong to the Latin set'); no mixing of scripts (incl. no Latin letters with Indic, e.g. हिन्दी-Hindi disallowed); Indian-language (native) digits NOT allowed; danda/punctuation, abbreviation signs, Vedic stress marks not allowed; ZWJ U+200D / ZWNJ U+200C NOT allowed; no consecutive hyphens; max two identical consonants joined by halant; syllable ABNF (e.g. H/M/X cannot start a label; halant-final syllable may only be followed by hyphen/digit); per-language variant tables with blocking; labels with >3 variant aksharas disallowed. .IN policy: single-digit / two-digit names not allowed, 3-63 chars; C-DAC .भारत framework: one-character names not allowed. Registry page lists the TLD as 'General Availability'. Per-language documents are titled 'Draft Policy Document'. chars = code points in the 'Nomenclatural description table' of the language policy PDF(s)."
+ },
+ {
+  "tld": "বাংলা",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "No BTCL character table found. Fallback reference only: ICANN Second-Level Reference LGR for Bengali https://www.icann.org/sites/default/files/packages/lgr/lgr-second-level-bengali-script-25oct24-en.xml",
+  "scripts": "Bengali",
+  "mixing": "unknown",
+  "second_level_open": true,
+  "source": "https://domain.btcl.gov.bd/ https://www.iana.org/reports/2016/bangla-report-20160902.html",
+  "confidence": "medium",
+  "notes": "Registry: BTCL (delegated 2016 to Ministry of Posts, Telecommunications and IT, P&T Division). BTCL domain site advertises '.বাংলা ডোমেইন' registrations (from Tk. 400) via bdia.btcl.com.bd and partner resellers, so second level is open, but no published IDN policy/character table, digit, ASCII-mixing or ZWJ/ZWNJ rules were found on BTCL sites (btcl.portal.gov.bd unavailable; btcl.com.bd unreachable). Character set unknown."
+ },
+ {
+  "tld": "ভারত",
+  "idn": "yes",
+  "chars": "U+0981..U+0983 U+0985..U+098C U+098F..U+0990 U+0993..U+09A8 U+09AA..U+09B0 U+09B2 U+09B6..U+09B9 U+09BC..U+09C3 U+09C7..U+09C8 U+09CB..U+09CE U+09E2 U+09F1",
+  "chars_ref": null,
+  "scripts": "Bengali",
+  "mixing": "single script (language table); ASCII digits and hyphen only; no ASCII letters, no native digits",
+  "second_level_open": true,
+  "source": "https://www.registry.in/internationalized-domain-names-idns https://www.registry.in/system/files/POLICY_DOCUMENT_FOR_CREATION_OF_LANGUAGE_INFORMATION_FOR_INTERNATIONALISED_DOMAIN_NAMES_IN_INDIAN_LANGUAGE.pdf https://www.registry.in/system/files/INTERNATIONALIZED_DOMAIN_NAMES-BANGLA.pdf https://www.registry.in/system/files/INTERNATIONALIZED_DOMAIN_NAMES-MANIPURI-BENGALI.pdf",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). Language(s) per registry page: Bengali and Manipuri (Bengali script). chars = UNION of Bengali and Manipuri tables; per-language: Bengali: U+0981..U+0983 U+0985..U+098C U+098F..U+0990 U+0993..U+09A8 U+09AA..U+09B0 U+09B2 U+09B6..U+09B9 U+09BC..U+09C3 U+09C7..U+09C8 U+09CB..U+09CE U+09E2; Manipuri: U+0981..U+0983 U+0985..U+098C U+098F..U+0990 U+0993..U+09A8 U+09AA..U+09B0 U+09B2 U+09B6..U+09B9 U+09BC U+09BE..U+09C3 U+09C7..U+09C8 U+09CB..U+09CE U+09E2 U+09F1 (Manipuri adds U+09F1 and omits U+09BD). Bengali variant table includes e.g. U+09C3~U+09C2. One of seven IDN ccTLDs launched 2014. NIXI generic IDN policy (C-DAC draft policy for IDNs in Indian languages): only letters of the language + ASCII digits 0-9 + hyphen (hyphen/digits 'shall belong to the Latin set'); no mixing of scripts (incl. no Latin letters with Indic, e.g. हिन्दी-Hindi disallowed); Indian-language (native) digits NOT allowed; danda/punctuation, abbreviation signs, Vedic stress marks not allowed; ZWJ U+200D / ZWNJ U+200C NOT allowed; no consecutive hyphens; max two identical consonants joined by halant; syllable ABNF (e.g. H/M/X cannot start a label; halant-final syllable may only be followed by hyphen/digit); per-language variant tables with blocking; labels with >3 variant aksharas disallowed. .IN policy: single-digit / two-digit names not allowed, 3-63 chars; C-DAC .भारत framework: one-character names not allowed. Registry page lists the TLD as 'General Availability'. Per-language documents are titled 'Draft Policy Document'. chars = code points in the 'Nomenclatural description table' of the language policy PDF(s)."
+ },
+ {
+  "tld": "ভাৰত",
+  "idn": "yes",
+  "chars": "U+0981..U+0983 U+0985..U+098C U+098F..U+0990 U+0993..U+09A8 U+09AA..U+09AF U+09B2 U+09B6..U+09B9 U+09BC..U+09C3 U+09C7..U+09C8 U+09CB..U+09CE U+09E2 U+09F0..U+09F1",
+  "chars_ref": null,
+  "scripts": "Bengali",
+  "mixing": "single script (language table); ASCII digits and hyphen only; no ASCII letters, no native digits",
+  "second_level_open": true,
+  "source": "https://www.registry.in/internationalized-domain-names-idns https://www.registry.in/system/files/POLICY_DOCUMENT_FOR_CREATION_OF_LANGUAGE_INFORMATION_FOR_INTERNATIONALISED_DOMAIN_NAMES_IN_INDIAN_LANGUAGE.pdf https://www.registry.in/system/files/INTERNATIONALIZED%20DOMAIN%20NAMES-ASSAMESE.pdf",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). Language(s) per registry page: Assamese. Assamese table includes U+09F0 (RA WITH MIDDLE DIAGONAL) and U+09F1 and excludes U+09B0 (Bengali RA). Delegated 2017. NIXI generic IDN policy (C-DAC draft policy for IDNs in Indian languages): only letters of the language + ASCII digits 0-9 + hyphen (hyphen/digits 'shall belong to the Latin set'); no mixing of scripts (incl. no Latin letters with Indic, e.g. हिन्दी-Hindi disallowed); Indian-language (native) digits NOT allowed; danda/punctuation, abbreviation signs, Vedic stress marks not allowed; ZWJ U+200D / ZWNJ U+200C NOT allowed; no consecutive hyphens; max two identical consonants joined by halant; syllable ABNF (e.g. H/M/X cannot start a label; halant-final syllable may only be followed by hyphen/digit); per-language variant tables with blocking; labels with >3 variant aksharas disallowed. .IN policy: single-digit / two-digit names not allowed, 3-63 chars; C-DAC .भारत framework: one-character names not allowed. Registry page lists the TLD as 'General Availability'. Per-language documents are titled 'Draft Policy Document'. chars = code points in the 'Nomenclatural description table' of the language policy PDF(s)."
+ },
+ {
+  "tld": "ਭਾਰਤ",
+  "idn": "yes",
+  "chars": "U+0A02..U+0A03 U+0A05..U+0A0A U+0A0F..U+0A10 U+0A13..U+0A28 U+0A2A..U+0A30 U+0A32 U+0A35 U+0A38..U+0A39 U+0A3C U+0A3E..U+0A42 U+0A47..U+0A48 U+0A4B..U+0A4D U+0A5C U+0A70..U+0A71",
+  "chars_ref": null,
+  "scripts": "Gurmukhi",
+  "mixing": "single script (language table); ASCII digits and hyphen only; no ASCII letters, no native digits",
+  "second_level_open": true,
+  "source": "https://www.registry.in/internationalized-domain-names-idns https://www.registry.in/system/files/POLICY_DOCUMENT_FOR_CREATION_OF_LANGUAGE_INFORMATION_FOR_INTERNATIONALISED_DOMAIN_NAMES_IN_INDIAN_LANGUAGE.pdf https://www.registry.in/system/files/INTERNATIONALIZED_DOMAIN_NAMES-PUNJABI.pdf",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). Language(s) per registry page: Punjabi. Includes tippi/addak U+0A70..U+0A71 and U+0A5C (RRA); nukta U+0A3C. One of seven IDN ccTLDs launched 2014 per registry page. NIXI generic IDN policy (C-DAC draft policy for IDNs in Indian languages): only letters of the language + ASCII digits 0-9 + hyphen (hyphen/digits 'shall belong to the Latin set'); no mixing of scripts (incl. no Latin letters with Indic, e.g. हिन्दी-Hindi disallowed); Indian-language (native) digits NOT allowed; danda/punctuation, abbreviation signs, Vedic stress marks not allowed; ZWJ U+200D / ZWNJ U+200C NOT allowed; no consecutive hyphens; max two identical consonants joined by halant; syllable ABNF (e.g. H/M/X cannot start a label; halant-final syllable may only be followed by hyphen/digit); per-language variant tables with blocking; labels with >3 variant aksharas disallowed. .IN policy: single-digit / two-digit names not allowed, 3-63 chars; C-DAC .भारत framework: one-character names not allowed. Registry page lists the TLD as 'General Availability'. Per-language documents are titled 'Draft Policy Document'. chars = code points in the 'Nomenclatural description table' of the language policy PDF(s)."
+ },
+ {
+  "tld": "ભારત",
+  "idn": "yes",
+  "chars": "U+0A81..U+0A83 U+0A85..U+0A8B U+0A8D U+0A8F..U+0A91 U+0A93..U+0AA8 U+0AAA..U+0AB0 U+0AB2..U+0AB3 U+0AB5..U+0AB9 U+0ABD..U+0AC3 U+0AC5 U+0AC7..U+0AC9 U+0ACB..U+0ACD",
+  "chars_ref": null,
+  "scripts": "Gujarati",
+  "mixing": "single script (language table); ASCII digits and hyphen only; no ASCII letters, no native digits",
+  "second_level_open": true,
+  "source": "https://www.registry.in/internationalized-domain-names-idns https://www.registry.in/system/files/POLICY_DOCUMENT_FOR_CREATION_OF_LANGUAGE_INFORMATION_FOR_INTERNATIONALISED_DOMAIN_NAMES_IN_INDIAN_LANGUAGE.pdf https://www.registry.in/system/files/INTERNATIONALIZED_DOMAIN_NAMES-GUJARATI.pdf",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). Language(s) per registry page: Gujarati. One of seven IDN ccTLDs launched 2014. NIXI generic IDN policy (C-DAC draft policy for IDNs in Indian languages): only letters of the language + ASCII digits 0-9 + hyphen (hyphen/digits 'shall belong to the Latin set'); no mixing of scripts (incl. no Latin letters with Indic, e.g. हिन्दी-Hindi disallowed); Indian-language (native) digits NOT allowed; danda/punctuation, abbreviation signs, Vedic stress marks not allowed; ZWJ U+200D / ZWNJ U+200C NOT allowed; no consecutive hyphens; max two identical consonants joined by halant; syllable ABNF (e.g. H/M/X cannot start a label; halant-final syllable may only be followed by hyphen/digit); per-language variant tables with blocking; labels with >3 variant aksharas disallowed. .IN policy: single-digit / two-digit names not allowed, 3-63 chars; C-DAC .भारत framework: one-character names not allowed. Registry page lists the TLD as 'General Availability'. Per-language documents are titled 'Draft Policy Document'. chars = code points in the 'Nomenclatural description table' of the language policy PDF(s)."
+ },
+ {
+  "tld": "ଭାରତ",
+  "idn": "yes",
+  "chars": "U+0B01..U+0B03 U+0B05..U+0B0B U+0B0F..U+0B10 U+0B13..U+0B28 U+0B2A..U+0B30 U+0B32..U+0B33 U+0B36..U+0B39 U+0B3C..U+0B43 U+0B47..U+0B48 U+0B4B..U+0B4D U+0B5F U+0B71",
+  "chars_ref": null,
+  "scripts": "Oriya",
+  "mixing": "single script (language table); ASCII digits and hyphen only; no ASCII letters, no native digits",
+  "second_level_open": true,
+  "source": "https://www.registry.in/internationalized-domain-names-idns https://www.registry.in/system/files/POLICY_DOCUMENT_FOR_CREATION_OF_LANGUAGE_INFORMATION_FOR_INTERNATIONALISED_DOMAIN_NAMES_IN_INDIAN_LANGUAGE.pdf https://www.registry.in/system/files/INTERNATIONALIZED%20DOMAIN%20NAMES-ORIYA.pdf",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). Language(s) per registry page: Oriya (Odia). Includes U+0B5F (YYA) and U+0B71 (WA). Delegated 2017. NIXI generic IDN policy (C-DAC draft policy for IDNs in Indian languages): only letters of the language + ASCII digits 0-9 + hyphen (hyphen/digits 'shall belong to the Latin set'); no mixing of scripts (incl. no Latin letters with Indic, e.g. हिन्दी-Hindi disallowed); Indian-language (native) digits NOT allowed; danda/punctuation, abbreviation signs, Vedic stress marks not allowed; ZWJ U+200D / ZWNJ U+200C NOT allowed; no consecutive hyphens; max two identical consonants joined by halant; syllable ABNF (e.g. H/M/X cannot start a label; halant-final syllable may only be followed by hyphen/digit); per-language variant tables with blocking; labels with >3 variant aksharas disallowed. .IN policy: single-digit / two-digit names not allowed, 3-63 chars; C-DAC .भारत framework: one-character names not allowed. Registry page lists the TLD as 'General Availability'. Per-language documents are titled 'Draft Policy Document'. chars = code points in the 'Nomenclatural description table' of the language policy PDF(s)."
+ },
+ {
+  "tld": "இந்தியா",
+  "idn": "yes",
+  "chars": "U+0B83 U+0B85..U+0B8A U+0B8E..U+0B90 U+0B92..U+0B95 U+0B99..U+0B9A U+0B9C U+0B9E..U+0B9F U+0BA3..U+0BA4 U+0BA8..U+0BAA U+0BAE..U+0BB9 U+0BBE..U+0BC2 U+0BC6..U+0BC8 U+0BCA..U+0BCD",
+  "chars_ref": null,
+  "scripts": "Tamil",
+  "mixing": "single script (language table); ASCII digits and hyphen only; no ASCII letters, no native digits",
+  "second_level_open": true,
+  "source": "https://www.registry.in/internationalized-domain-names-idns https://www.registry.in/system/files/POLICY_DOCUMENT_FOR_CREATION_OF_LANGUAGE_INFORMATION_FOR_INTERNATIONALISED_DOMAIN_NAMES_IN_INDIAN_LANGUAGE.pdf https://www.registry.in/system/files/INTERNATIONALIZED_DOMAIN_NAMES-TAMIL.pdf",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). Language(s) per registry page: Tamil. Variant table: U+0B92+U+0BB3 ~ U+0B94. One of seven IDN ccTLDs launched 2014. NIXI generic IDN policy (C-DAC draft policy for IDNs in Indian languages): only letters of the language + ASCII digits 0-9 + hyphen (hyphen/digits 'shall belong to the Latin set'); no mixing of scripts (incl. no Latin letters with Indic, e.g. हिन्दी-Hindi disallowed); Indian-language (native) digits NOT allowed; danda/punctuation, abbreviation signs, Vedic stress marks not allowed; ZWJ U+200D / ZWNJ U+200C NOT allowed; no consecutive hyphens; max two identical consonants joined by halant; syllable ABNF (e.g. H/M/X cannot start a label; halant-final syllable may only be followed by hyphen/digit); per-language variant tables with blocking; labels with >3 variant aksharas disallowed. .IN policy: single-digit / two-digit names not allowed, 3-63 chars; C-DAC .भारत framework: one-character names not allowed. Registry page lists the TLD as 'General Availability'. Per-language documents are titled 'Draft Policy Document'. chars = code points in the 'Nomenclatural description table' of the language policy PDF(s)."
+ },
+ {
+  "tld": "இலங்கை",
+  "idn": "yes",
+  "chars": "U+0B83 U+0B85..U+0B8A U+0B8E..U+0B90 U+0B92..U+0B95 U+0B99..U+0B9A U+0B9C U+0B9E..U+0B9F U+0BA3..U+0BA4 U+0BA8..U+0BAA U+0BAE..U+0BB9 U+0BBE..U+0BC2 U+0BC6..U+0BC8 U+0BCA..U+0BCD",
+  "chars_ref": null,
+  "scripts": "Tamil",
+  "mixing": "Tamil + ASCII digits and hyphen; ASCII letters: conflicting (listed in table but disallowed by registration policy and label rules)",
+  "second_level_open": true,
+  "source": "https://www.domains.lk/idn-policy/ https://www.domains.lk/domain-registration-policy/ https://www.domains.lk/lk-domain-naming-structure/",
+  "confidence": "high",
+  "notes": "LK Domain Registry IDN Policy Appendix A 'Permitted String Table for .இலங்கை' (based on ICTA IDN working group). Table's Latin section lists U+002D, U+0030..U+0039 and 'LATIN SMALL LETTER A - Z', but Domain Registration Policy says the name 'cannot be a combination of English and IDN characters', and Appendix B Tamil label rules only allow Tamil consonants/vowels/aytham, ASCII digits and hyphen ('anything else is invalid'). ZWNJ U+200C allowed only in KA+PULLI+ZWNJ+SSA (variant of KA+PULLI+SSA); old Shri form SA+PULLI+RA+II disallowed; vowel sign/pulli only after consonant; context rules for consonant+E+LLA and O+LLA. No native Tamil digits. At least two letters. Registration via request form (https://idn.domains.lk/); .lk registrants can request corresponding Sinhala/Tamil name free of charge; only one Sinhala and one Tamil name per .lk registration."
+ },
+ {
+  "tld": "சிங்கப்பூர்",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "SGNIC publishes no Tamil character table found (ROR 6(d): 'Non-Latin characters of the type that may from time to time be accepted by SGNIC'). Fallback reference only: ICANN Second-Level Reference LGR for Tamil https://www.icann.org/sites/default/files/packages/lgr/lgr-second-level-tamil-script-25oct24-en.xml",
+  "scripts": "Tamil",
+  "mixing": "Tamil only, or Tamil mixed with Latin (a-z), digits, hyphen; at least 1 Tamil character required",
+  "second_level_open": true,
+  "source": "https://www.sgnic.sg/docs/default-source/policies-and-agreements/rules-of-registration.pdf https://www.sgnic.sg/faq/domain-registration https://www.iana.org/reports/2011/singapore-report-07jan2011.html",
+  "confidence": "medium",
+  "notes": "SGNIC Rules of Registration (dated 1 August 2026): for .சிங்கப்பூர் the applied name may be all Tamil characters or a mixture of Latin and Tamil characters, with at least 1 Tamil character; 1-63 characters (Punycode length limit applies). FAQ: 'Tamil characters are allowed for .சிங்கப்பூர்'. ASCII letters allowed (mixed with Tamil). No published per-code-point Tamil table, native-digit or ZWJ/ZWNJ rule found. Delegated 2011 (IANA report)."
+ },
+ {
+  "tld": "భారత్",
+  "idn": "yes",
+  "chars": "U+0C01..U+0C03 U+0C05..U+0C0B U+0C0E..U+0C10 U+0C12..U+0C28 U+0C2A..U+0C33 U+0C35..U+0C39 U+0C3D..U+0C44 U+0C46..U+0C48 U+0C4A..U+0C4D U+0C58..U+0C59 U+0C60",
+  "chars_ref": null,
+  "scripts": "Telugu",
+  "mixing": "single script (language table); ASCII digits and hyphen only; no ASCII letters, no native digits",
+  "second_level_open": true,
+  "source": "https://www.registry.in/internationalized-domain-names-idns https://www.registry.in/system/files/POLICY_DOCUMENT_FOR_CREATION_OF_LANGUAGE_INFORMATION_FOR_INTERNATIONALISED_DOMAIN_NAMES_IN_INDIAN_LANGUAGE.pdf https://www.registry.in/system/files/INTERNATIONALIZED_DOMAIN_NAMES-TELUGU.pdf",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). Language(s) per registry page: Telugu. Includes U+0C58..U+0C59 and U+0C60. One of seven IDN ccTLDs launched 2014. NIXI generic IDN policy (C-DAC draft policy for IDNs in Indian languages): only letters of the language + ASCII digits 0-9 + hyphen (hyphen/digits 'shall belong to the Latin set'); no mixing of scripts (incl. no Latin letters with Indic, e.g. हिन्दी-Hindi disallowed); Indian-language (native) digits NOT allowed; danda/punctuation, abbreviation signs, Vedic stress marks not allowed; ZWJ U+200D / ZWNJ U+200C NOT allowed; no consecutive hyphens; max two identical consonants joined by halant; syllable ABNF (e.g. H/M/X cannot start a label; halant-final syllable may only be followed by hyphen/digit); per-language variant tables with blocking; labels with >3 variant aksharas disallowed. .IN policy: single-digit / two-digit names not allowed, 3-63 chars; C-DAC .भारत framework: one-character names not allowed. Registry page lists the TLD as 'General Availability'. Per-language documents are titled 'Draft Policy Document'. chars = code points in the 'Nomenclatural description table' of the language policy PDF(s)."
+ },
+ {
+  "tld": "ಭಾರತ",
+  "idn": "yes",
+  "chars": "U+0C82..U+0C83 U+0C85..U+0C8C U+0C8E..U+0C90 U+0C92..U+0CA8 U+0CAA..U+0CB3 U+0CB5..U+0CB9 U+0CBD..U+0CC3 U+0CC6..U+0CC8 U+0CCA..U+0CCD U+0CE2",
+  "chars_ref": null,
+  "scripts": "Kannada",
+  "mixing": "single script (language table); ASCII digits and hyphen only; no ASCII letters, no native digits",
+  "second_level_open": true,
+  "source": "https://www.registry.in/internationalized-domain-names-idns https://www.registry.in/system/files/POLICY_DOCUMENT_FOR_CREATION_OF_LANGUAGE_INFORMATION_FOR_INTERNATIONALISED_DOMAIN_NAMES_IN_INDIAN_LANGUAGE.pdf https://www.registry.in/system/files/INTERNATIONALIZED%20DOMAIN%20NAMES-KANNADA.pdf",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). Language(s) per registry page: Kannada. Delegated 2017. NIXI generic IDN policy (C-DAC draft policy for IDNs in Indian languages): only letters of the language + ASCII digits 0-9 + hyphen (hyphen/digits 'shall belong to the Latin set'); no mixing of scripts (incl. no Latin letters with Indic, e.g. हिन्दी-Hindi disallowed); Indian-language (native) digits NOT allowed; danda/punctuation, abbreviation signs, Vedic stress marks not allowed; ZWJ U+200D / ZWNJ U+200C NOT allowed; no consecutive hyphens; max two identical consonants joined by halant; syllable ABNF (e.g. H/M/X cannot start a label; halant-final syllable may only be followed by hyphen/digit); per-language variant tables with blocking; labels with >3 variant aksharas disallowed. .IN policy: single-digit / two-digit names not allowed, 3-63 chars; C-DAC .भारत framework: one-character names not allowed. Registry page lists the TLD as 'General Availability'. Per-language documents are titled 'Draft Policy Document'. chars = code points in the 'Nomenclatural description table' of the language policy PDF(s)."
+ },
+ {
+  "tld": "ഭാരതം",
+  "idn": "yes",
+  "chars": "U+0D02..U+0D03 U+0D05..U+0D0C U+0D0E..U+0D10 U+0D12..U+0D28 U+0D2A..U+0D39 U+0D3D..U+0D43 U+0D46..U+0D48 U+0D4A..U+0D4B U+0D4D U+0D57 U+0D62 U+0D7A..U+0D7E",
+  "chars_ref": null,
+  "scripts": "Malayalam",
+  "mixing": "single script (language table); ASCII digits and hyphen only; no ASCII letters, no native digits",
+  "second_level_open": true,
+  "source": "https://www.registry.in/internationalized-domain-names-idns https://www.registry.in/system/files/POLICY_DOCUMENT_FOR_CREATION_OF_LANGUAGE_INFORMATION_FOR_INTERNATIONALISED_DOMAIN_NAMES_IN_INDIAN_LANGUAGE.pdf https://www.registry.in/system/files/INTERNATIONALIZED%20DOMAIN%20NAMES-MALAYALAM.pdf",
+  "confidence": "high",
+  "notes": "Registry: NIXI (.IN Registry). Language(s) per registry page: Malayalam. Includes chillu letters U+0D7A..U+0D7E and AU length mark U+0D57. Delegated 2017. NIXI generic IDN policy (C-DAC draft policy for IDNs in Indian languages): only letters of the language + ASCII digits 0-9 + hyphen (hyphen/digits 'shall belong to the Latin set'); no mixing of scripts (incl. no Latin letters with Indic, e.g. हिन्दी-Hindi disallowed); Indian-language (native) digits NOT allowed; danda/punctuation, abbreviation signs, Vedic stress marks not allowed; ZWJ U+200D / ZWNJ U+200C NOT allowed; no consecutive hyphens; max two identical consonants joined by halant; syllable ABNF (e.g. H/M/X cannot start a label; halant-final syllable may only be followed by hyphen/digit); per-language variant tables with blocking; labels with >3 variant aksharas disallowed. .IN policy: single-digit / two-digit names not allowed, 3-63 chars; C-DAC .भारत framework: one-character names not allowed. Registry page lists the TLD as 'General Availability'. Per-language documents are titled 'Draft Policy Document'. chars = code points in the 'Nomenclatural description table' of the language policy PDF(s)."
+ },
+ {
+  "tld": "ලංකා",
+  "idn": "yes",
+  "chars": "U+0D82..U+0D83 U+0D85..U+0D8E U+0D91..U+0D96 U+0D9A..U+0DA5 U+0DA7..U+0DAB U+0DAD..U+0DB1 U+0DB3..U+0DBB U+0DBD U+0DC1..U+0DC6 U+0DCA U+0DCF..U+0DD4 U+0DD6 U+0DD8..U+0DDE U+0DF2",
+  "chars_ref": null,
+  "scripts": "Sinhala",
+  "mixing": "Sinhala + ASCII digits and hyphen; ASCII letters: conflicting (table and Appendix B rules allow a-z mixed with Sinhala, but Domain Registration Policy says no combination of English and IDN characters)",
+  "second_level_open": true,
+  "source": "https://www.domains.lk/idn-policy/ https://www.domains.lk/domain-registration-policy/ https://www.domains.lk/lk-domain-naming-structure/",
+  "confidence": "high",
+  "notes": "LK Domain Registry IDN Policy Appendix A 'Permitted String Table for .ලංකා' (ICTA IDN working group); table also lists U+002D, U+0030..U+0039, U+0061..U+007A. ZWJ U+200D permitted in context (AL-LAKUNA + ZWJ + YA/RA, i.e. yansaya/rakaransaya); a name containing ZWJ is registered as a bundle with its non-ZWJ form (e.g. සත්‍ය and සත්ය). Label rules (Appendix B) examples explicitly allow English letters/digits mixed with Sinhala (e.g. 'Aඉර'), contradicting the registration policy statement. No native Sinhala digits. At least two letters; must not contain 'xn--'. Registration by request form; one Sinhala and one Tamil name per .lk registration, free for existing .lk registrants."
+ },
+ {
+  "tld": "ไทย",
+  "idn": "yes",
+  "chars": "U+002D, U+0030..U+0039, U+0E01..U+0E3A, U+0E40..U+0E4D, U+0E50..U+0E59",
+  "chars_ref": "THNIC policy s.7.2.2/7.5 (Thai consonants ก-ฮ, vowels, tone marks, ๆ, pinthu, nikhahit, paiyannoi, thanthakhat, Thai digits ๐-๙) plus Arabic digits and hyphen; code points computed from IANA th_th-th_1.0 table (THNIC, 2004), Thai + ASCII digit/hyphen subset",
+  "scripts": "Thai",
+  "mixing": "Thai + ASCII digits 0-9 + hyphen only (s.7.5); Latin letters not allowed in Thai names; English-only names are .th, not .ไทย",
+  "second_level_open": true,
+  "source": "https://thnic.or.th/doc/thPolicy-EN-MAR2024.pdf https://www.iana.org/domains/idn-tables/tables/th_th-th_1.0.html https://www.iana.org/domains/root/db/xn--o3cw4h.html",
+  "confidence": "high",
+  "notes": "THNIC Policy (rev. March 2024): SLDs directly under .ไทย are free 'Complementary Domain Names' for holders of the matching English .th or .in.th name (1:1), and the pair is managed as one bundled set, with the .th name as primary. Third-level categories exist (.ศึกษา/.ธุรกิจ/.รัฐบาล/.องค์กร/.ทหาร/.เน็ต.ไทย). Eligibility needs a local presence in Thailand. Length is 1-63; hyphen may not be first or last and may not repeat. Code points come from the IANA .th table. The policy text lists the same classes by name, but THNIC has not lodged a separate table for .ไทย."
+ },
+ {
+  "tld": "ລາວ",
+  "idn": "yes",
+  "chars": "U+002D, U+0030..U+0039, U+0E81..U+0E82, U+0E84, U+0E87..U+0E88, U+0E8A, U+0E8D, U+0E94..U+0E97, U+0E99..U+0E9E, U+0EA1..U+0EA3, U+0EA5, U+0EA7, U+0EAA..U+0EAB, U+0EAD..U+0EAE, U+0EB0..U+0EB2, U+0EB4..U+0EB9, U+0EBB..U+0EBD, U+0EC0..U+0EC4, U+0EC6, U+0EC8..U+0EC9, U+0ECD",
+  "chars_ref": "IANA la_lo_2.0 (CentralNic Lao table v2.0, 2017, lodged for .la; 58 code points). CentralNic is LANIC's registry back-end per the IANA delegation report. Not confirmed by LANIC as the .ລາວ repertoire",
+  "scripts": "Lao",
+  "mixing": "Per la_lo_2.0: Lao + ASCII digits + hyphen, with no Latin letters in the table. LANIC's own .ລາວ character policy was not found; ASCII-only labels: unknown",
+  "second_level_open": true,
+  "source": "https://lanic.gov.la/gweb_lnic/backend/web/index.php?r=site/detail&id=410 https://www.iana.org/reports/2020/xn--q7ce6a-report-20200110.html https://www.iana.org/domains/root/db/xn--q7ce6a.html https://www.iana.org/domains/idn-tables/tables/la_lo_2.0.txt",
+  "confidence": "low",
+  "notes": "A LANIC banner (2020) announces '.ລາວ registration now available'. LANIC lists accredited registrars (Dot LA Marketing/www.la, S-Tech, Lao Telecom, Z.com). whois.nic.la returns second-level names such as xn--q7ce6a.xn--q7ce6a (ລາວ.ລາວ). No published LANIC rules for .ລາວ labels, eligibility or bundling were found. LANIC domain decree PDFs are scanned images and were not OCR'd. The la_lo_2.0 table forbids some combining marks as the first character."
+ },
+ {
+  "tld": "გე",
+  "idn": "yes",
+  "chars": null,
+  "chars_ref": "No character table published. ITDC's .გე rules (s.3.1.1) say only 'letters, digits or hyphen' and do not name which letters; presumably Georgian Mkhedruli (the site is 'Georgian-language domains' and ships a Georgian keyboard), but this is not stated",
+  "scripts": "Georgian (Mkhedruli) presumed",
+  "mixing": "unknown (rules allow letters, digits and hyphen; the letter repertoire and whether Latin letters are allowed are not specified)",
+  "second_level_open": true,
+  "source": "http://xn--lodaehvb5cdik4g.xn--node/rules http://xn--lodaehvb5cdik4g.xn--node/ https://www.iana.org/reports/2014/georgia-report-20140926.html https://www.iana.org/domains/root/db/xn--node.html https://nic.ge/_cdn/f/24/38/SLIPhFp7p0acMj1jVbr5Hw/2025.08.07.Domain_Regulation_Amendments_ENG_%20V.5.0_FINAL.pdf",
+  "confidence": "medium",
+  "notes": ".გე is run by the Information Technologies Development Center (ITDC) through რეგისტრაცია.გე (xn--lodaehvb5cdik4g.xn--node), not by Caucasus Online/nic.ge. The site says '.გე domain registration is open'. The rules cover 2-63 characters, a letter or digit at start and end, no '--' at positions 3-4, and a registrar may request trademark evidence. The nic.ge .GE regulation (v5.0, 2025) applies to .ge only; it allows only 0-9, dash and Latin letters and refuses non-ASCII. Eligibility for .გე was not clearly determined."
+ },
+ {
+  "tld": "中国",
+  "idn": "yes",
+  "chars": "U+4E00..U+9FFF",
+  "chars_ref": "CNNIC Chinese domain name character tables lodged at IANA: cn_zh_1.0 and cn_zh-hans_4.1 (RFC 3743 format, effective 2018-12-01; 19,600 entries, of which 19,563 are Han code points, plus a-z, 0-9 and hyphen). The CNNIC FAQ says '中文字符' and does not cite a table for .中国",
+  "scripts": "Han (Simplified; traditional input treated as equivalent)",
+  "mixing": "Han + ASCII letters a-z + digits 0-9 + hyphen, alone or mixed (e.g. 互联网CNNIC.中国). ASCII-only labels allowed since 2012-10-29. Hyphen may not be first or last",
+  "second_level_open": true,
+  "source": "https://www.cnnic.cn/n4/2022/0919/c90-10605.html https://www.cnnic.cn/n4/2022/0817/c93-335.html https://www.iana.org/domains/idn-tables/tables/cn_zh_1.0.txt https://www.iana.org/domains/idn-tables/tables/cn_zh-hans_4.1.txt https://www.iana.org/reports/2010/zhongguo-report-07jun2010.html",
+  "confidence": "medium",
+  "notes": "CNNIC .中国 FAQ: the maximum is 63 punycode characters or 20 Han characters. Simplified and traditional forms are 'fully equivalent': 互联网.中国, 互联网.中國, 互聯網.中国 and 互聯網.中國 all reach the same site. .中国 and .中國 are delegated together to CNNIC, and the ideographic full stop and full-width dot are treated as equivalent separators. Registration goes through CNNIC-accredited registrars, first come first served, with real-name identity verification. Character-table applicability to .中国 is inferred from CNNIC's lodged .cn tables.",
+  "resolution": "Registry states Han characters plus ASCII letters, digits and hyphen; encoded as a Han table (the exact ideograph list is not needed to refuse non-Han lookalikes)."
+ },
+ {
+  "tld": "中國",
+  "idn": "yes",
+  "chars": "U+4E00..U+9FFF",
+  "chars_ref": "Same as 中国: CNNIC tables cn_zh_1.0 / cn_zh-hans_4.1 at IANA (19,563 Han code points with simplified/traditional variant mappings)",
+  "scripts": "Han (Traditional form of the TLD; SLD simplified/traditional equivalent)",
+  "mixing": "Same as 中国: Han + ASCII letters/digits/hyphen; ASCII-only allowed",
+  "second_level_open": true,
+  "source": "https://www.cnnic.cn/n4/2022/0919/c90-10605.html https://www.cnnic.cn/n4/2022/0817/c93-335.html https://www.iana.org/domains/idn-tables/tables/cn_zh_1.0.txt https://www.iana.org/domains/idn-tables/tables/cn_zh-hans_4.1.txt https://www.iana.org/reports/2010/zhongguo-report-07jun2010.html",
+  "confidence": "medium",
+  "notes": "The CNNIC FAQ treats .中國 as equivalent to .中国: a registration serves the simplified and traditional forms of both the TLD and the label (e.g. 互聯網.中國 = 互联网.中国). CNNIC's current rules do not describe a separate registration process for .中國; names are registered as .中国 names. Same rules otherwise.",
+  "resolution": "Registry states Han characters plus ASCII letters, digits and hyphen; encoded as a Han table (the exact ideograph list is not needed to refuse non-Han lookalikes)."
+ },
+ {
+  "tld": "台湾",
+  "idn": "yes",
+  "chars": "U+4E00..U+9FFF",
+  "chars_ref": "Simplified-Chinese mirror of .台灣 names, generated with TWNIC's 中文域名字碼對照表 (IANA tw_zh_1.0 / tw_zh-hant_4.1, 19,563 Han entries with variant mappings)",
+  "scripts": "Han (Simplified)",
+  "mixing": "Mirror of .台灣 labels (Han + ASCII letters/digits/hyphen)",
+  "second_level_open": false,
+  "source": "https://www.twnic.tw/dnservice/policy/contents.php?id=4&lang=zh-tw https://www.twnic.tw/dnservice/policy/contents.php?id=12&lang=zh-tw https://www.twnic.tw/dnservice/policy/contents.php?id=11&lang=zh-tw https://www.twnic.tw/dnservice/policy/contents.php?id=13&lang=zh-tw https://www.twnic.tw/dnservice/policy/contents.php?id=5&lang=zh-tw https://www.iana.org/domains/idn-tables/tables/tw_zh-hant_4.1.txt https://www.iana.org/domains/idn-tables/tables/tw_zh_1.0.txt",
+  "confidence": "medium",
+  "notes": "TWNIC manages .tw, .台灣 and .台湾 (業務規章 s.3), but registration is done under .台灣. Registering '正體中文.台灣' gives the simplified form '簡體中文.台湾' automatic identical resolution. Other variant combinations are reserved and do not resolve. There is no direct registration path under .台湾 in the published rules. Whether English/ASCII .台灣 names also get a .台湾 mirror is unknown.",
+  "resolution": "Registry states Han characters plus ASCII letters, digits and hyphen; encoded as a Han table (the exact ideograph list is not needed to refuse non-Han lookalikes)."
+ },
+ {
+  "tld": "台灣",
+  "idn": "yes",
+  "chars": "U+4E00..U+9FFF",
+  "chars_ref": "TWNIC: Chinese characters within the Big5 range (Python big5 codec gives about 13,060 Han code points). The variant package is generated from TWNIC's 中文域名字碼對照表 (IANA tw_zh-hant_4.1 / tw_zh_1.0, effective 2018-12-01; 19,563 Han entries)",
+  "scripts": "Han (Traditional), with automatic simplified mirror",
+  "mixing": "Han (Big5) + ASCII letters/digits/hyphen may be mixed. ASCII-only English names allowed under .台灣 since 2020-02-13. Mixing traditional and simplified in one label is prohibited",
+  "second_level_open": true,
+  "source": "https://www.twnic.tw/dnservice/policy/contents.php?id=4&lang=zh-tw https://www.twnic.tw/dnservice/policy/contents.php?id=12&lang=zh-tw https://www.twnic.tw/dnservice/policy/contents.php?id=11&lang=zh-tw https://www.twnic.tw/dnservice/policy/contents.php?id=13&lang=zh-tw https://www.twnic.tw/dnservice/policy/contents.php?id=5&lang=zh-tw https://www.iana.org/domains/idn-tables/tables/tw_zh-hant_4.1.txt https://www.iana.org/domains/idn-tables/tables/tw_zh_1.0.txt",
+  "confidence": "high",
+  "notes": "Latest 業務規章須公告事項 (rev. 2023-12-11): Chinese IDNs for .tw/.台灣 must be Big5-range Chinese with at least 1 Chinese character, optionally plus A-Z, 0-9 and hyphen. The 2019 .台灣 adjustment notice instead required at least 2 consecutive Chinese characters, which conflicts with the later rule. Other rules: 63 punycode characters maximum, hyphen not first or last and not doubled (the 2019 notice says not at positions 3-4). Registering 正體.台灣 gives 簡體.台湾 identical resolution, and other variants are reserved. Auto-allocation of the paired .tw Chinese name ended 2020-01-07; since then .台灣 and .tw are separate registrations. Open to any lawfully registered company, entity or natural person, domestic or foreign, first come first served, NT$800/yr.",
+  "resolution": "Registry states Han characters plus ASCII letters, digits and hyphen; encoded as a Han table (the exact ideograph list is not needed to refuse non-Han lookalikes)."
+ },
+ {
+  "tld": "新加坡",
+  "idn": "yes",
+  "chars": "U+4E00..U+9FFF",
+  "chars_ref": "unknown. SGNIC says 'Chinese characters' / 'non-Latin characters of the type that may from time to time be accepted by SGNIC'. No character table found (no sg tables in the IANA IDN repository)",
+  "scripts": "Han",
+  "mixing": "All-Chinese, or Chinese mixed with Latin letters a-z, digits and hyphen; at least 1 Chinese character required (ASCII-only not allowed under .新加坡)",
+  "second_level_open": true,
+  "source": "https://www.sgnic.sg/docs/default-source/policies-and-agreements/rules-of-registration.pdf https://www.sgnic.sg/domain-registration/sg-categories-rules https://www.sgnic.sg/faq/domain-registration https://www.iana.org/reports/2011/singapore-report-07jan2011.html",
+  "confidence": "medium",
+  "notes": "SGNIC Rules of Registration (dated 1 Aug 2026) s.5-6: .新加坡 may replace .SG as the ending, and labels must contain at least 1 Chinese character. The length limit is 1-63 (punycode), and a hyphen may not be first, last, or at positions 3/4. Eligibility is the same as .sg: all persons, with foreign applicants appointing a local agent as administrative contact. Whether simplified, traditional or both are accepted, and any variant bundling policy, was not found. Singapore uses simplified Chinese officially, but no SGNIC statement was found.",
+  "resolution": "Registry states Han characters plus ASCII letters, digits and hyphen; encoded as a Han table (the exact ideograph list is not needed to refuse non-Han lookalikes)."
+ },
+ {
+  "tld": "澳門",
+  "idn": "yes",
+  "chars": "U+4E00..U+9FFF",
+  "chars_ref": "MONIC Chinese Variant Table (monic_variant_tab.pdf, 2019): the union of the Mainland China (CNNIC) and Taiwan (TWNIC) tables, about 19,520 distinct Han code points plus a-z, 0-9 and hyphen",
+  "scripts": "Han (Traditional and Simplified)",
+  "mixing": "Han + ASCII letters/digits/hyphen; at least one Chinese character required. Portuguese accented letters are allowed only in the ASCII .mo categories, not in .澳門",
+  "second_level_open": true,
+  "source": "https://www.monic.mo/monic/faces/regulation https://www.monic.mo/html/downloads/monic_variant_tab.pdf https://www.iana.org/reports/2016/macao-report-20160118.html https://www.iana.org/domains/root/db/xn--mix891f.html",
+  "confidence": "high",
+  "notes": "Macao registration rules art.12: labels under .澳門 and the Chinese third-level categories (.公司/.網絡/.組織/.教育/.政府.澳門) use Chinese characters published by MONIC. Once a name with Chinese characters is approved, the holder may also use the corresponding all-traditional form free of charge. All other variant combinations are fixed by MONIC and cannot be used by anyone. Punycode length is 63 at most, with no hyphen at start or end or at positions 3 and 4. Eligibility (art.1) is restricted to Macao-registered legal persons, commercial entrepreneurs or liberal professionals. MONIC is operated by HNET Asia under DSRT.",
+  "resolution": "Registry states Han characters plus ASCII letters, digits and hyphen; encoded as a Han table (the exact ideograph list is not needed to refuse non-Han lookalikes)."
+ },
+ {
+  "tld": "香港",
+  "idn": "yes",
+  "chars": "U+4E00..U+9FFF",
+  "chars_ref": "HKIRC/HKDNR Chinese Domain Name Variant Table: the combination of the CN and TW tables from the Chinese Domain Name Consortium (cf. IANA cn_zh_1.0 / tw_zh_1.0, about 19,563 Han code points each); not lodged at IANA under hk",
+  "scripts": "Han (Traditional or Simplified)",
+  "mixing": "Chinese (traditional or simplified) + ASCII letters/digits/hyphen. ASCII-only labels allowed under .香港 (e.g. abc.香港). No symbols or punctuation",
+  "second_level_open": true,
+  "source": "https://www.hkdnr.hk/en/faq-2/domain-name-registration/english-chinese-mixture-domain-name/ https://www.hkdnr.hk/wp-content/uploads/HKDNR-Registration_Agreement_eng.pdf https://www.hkdnr.hk/en/faq-2/domain-name-registration/about-domain-name/ https://www.iana.org/reports/2010/hongkong-report-07jun2010.html",
+  "confidence": "high",
+  "notes": "HKDNR Registration Agreement v6.5 (effective 2021-01-28): the limit is 15 Chinese characters, letters or digits, with no hyphen at start or end or at positions 3/4. Traditional Chinese is NOT required. HKDNR 'will usually activate both full traditional and full simplified form' of an applied name (variant package per its table). Other combinations may not be activated. .香港 names can be bundled free with the equivalent .hk English name, and vice versa (.hk ↔ .香港, .com.hk ↔ .公司.香港, etc.). Second-level .hk/.香港 is open to any individual or organisation, local or overseas. Third-level Chinese categories exist (.公司/.組織/.網絡/.教育/.政府/.個人.香港).",
+  "resolution": "Registry states Han characters plus ASCII letters, digits and hyphen; encoded as a Han table (the exact ideograph list is not needed to refuse non-Han lookalikes)."
+ },
+ {
+  "tld": "한국",
+  "idn": "yes",
+  "chars": "U+002D, U+0030..U+0039, U+0061..U+007A, U+AC00..U+D7A3",
+  "chars_ref": "KISA/KRNIC: Unicode Hangul 11,172 syllables + A-Z/a-z + 0-9 + hyphen (consistent with IANA kr_ko-kr_1.0 table)",
+  "scripts": "Hangul",
+  "mixing": "Hangul syllables + ASCII letters/digits/hyphen; at least 1 Hangul character required",
+  "second_level_open": true,
+  "source": "https://www.nic.or.kr/jsp/resources/domainInfo/hkDomainInfo.jsp https://www.iana.org/domains/idn-tables/tables/kr_ko-kr_1.0.html https://www.iana.org/reports/2011/hanguk-report-07jan2011.html",
+  "confidence": "high",
+  "notes": "KRNIC .한국 registration criteria: two-level structure (한글.한국). The limit is 17 characters, with at least 1 Hangul character, no hyphen at start or end, and no '--' at positions 3-4. The repertoire is the 11,172 Unicode Hangul syllables (U+AC00..U+D7A3) only, with no conjoining jamo or Hanja, plus Latin letters, digits and hyphen. There is a reserved-word list. The IANA kr table recommends the 2,350 KS X 1001 syllables for interoperability but lists all 11,172. Eligibility was not stated on the page."
+ }
+]

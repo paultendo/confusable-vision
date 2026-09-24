@@ -1,0 +1,8 @@
+[
+  {
+    "tld": "eu",
+    "keep_tables_with": "U+00E0",
+    "note": "EURid's IANA tables include Cyrillic and Greek, but since 2016 the second-level script must match the TLD: Latin under .eu, Cyrillic under .ею, Greek under .ευ. Only the Latin tables apply to .eu.",
+    "source": "https://eurid.eu/en/knowledge-centre/domain-names-with-special-characters-idns/"
+  }
+]
