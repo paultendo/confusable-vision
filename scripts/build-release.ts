@@ -213,7 +213,10 @@ combinations and at least 10% of them. \`src/thresholds.ts\` implements this.
 
 ## Changes
 
-- ${x.version}: first release. Release 2 scoring: size and baseline, linear shape differences, shares over text fonts,
+- 2026.09.25: \`registrableAt\` covers every TLD with known registry rules (data/input/tld-rules.json), not ten. The
+  105 letters, marks and numbers only other TLDs accept were compared against the 62 ASCII letters and digits, within
+  one font and across fonts; none is alike, so the lookalikes are unchanged.
+- 2026.09.24: first release. Release 2 scoring: size and baseline, linear shape differences, shares over text fonts,
   Roboto, and comparisons across fonts.
 `;
 }
