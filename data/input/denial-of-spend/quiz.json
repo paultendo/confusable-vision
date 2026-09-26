@@ -1,0 +1,14 @@
+[
+  { "id": "q1", "clause": "5.1", "question": "Is the Consultant's aggregate liability capped at the total fees paid?", "answer": "no" },
+  { "id": "q2", "clause": "3.2", "question": "Can the Client end the Agreement without giving a reason?", "answer": "yes" },
+  { "id": "q3", "clause": "2.2", "question": "Can the Consultant get the GBP 25,000 retainer back?", "answer": "no" },
+  { "id": "q4", "clause": "4.1", "question": "After termination, may the Consultant work for a competitor of the Client in another country during the 24 months?", "answer": "no" },
+  { "id": "q5", "clause": "1.3", "question": "Must the Client pay for work that was not approved in writing before it began?", "answer": "no" },
+  { "id": "q6", "clause": "4.3", "question": "May the Consultant subcontract the work without asking the Client?", "answer": "no" },
+  { "id": "q7", "clause": "8.2", "question": "Can either party appeal the arbitrator's decision?", "answer": "no" },
+  { "id": "q8", "clause": "8.3", "question": "May the Consultant join a class action against the Client?", "answer": "no" },
+  { "id": "q9", "clause": "5.3", "question": "Is the Client liable for the Consultant's loss of profit?", "answer": "no" },
+  { "id": "q10", "clause": "6.1", "question": "Does the Consultant keep any rights in the work product?", "answer": "no" },
+  { "id": "q11", "clause": "6.2", "question": "Do the confidentiality obligations continue after the Agreement ends?", "answer": "yes" },
+  { "id": "q12", "clause": "7.1", "question": "Is the Consultant entitled to holiday pay from the Client?", "answer": "no" }
+]
