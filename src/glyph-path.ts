@@ -435,16 +435,25 @@ export function normalizeToGrid(
  * Place a glyph in a fixed em frame for baseline-anchored signatures: one scale for every font (the grid spans
  * EM_FRAME_BELOW below the baseline to EM_FRAME_ABOVE above it, in em), the baseline on the same row, and the glyph
  * centred on its advance width. Pass EM_FRAME as the frame to computeEnrichedSignature().
+ *
+ * centre 'ink' centres the glyph on its outline's horizontal extent instead. The frame exists to fix size and baseline
+ * (the vertical); centring on the advance also moves a glyph sideways by its side bearings, so two fonts' identical
+ * outlines with different advances (g and ɡ in STSong) come apart. Scale and baseline are the same either way.
  */
 export const EM_FRAME_ABOVE = 1.1;
 export const EM_FRAME_BELOW = 0.3;
 export function emFrame(gridSize: number) {
   return { minX: 0, minY: 0, maxX: gridSize, maxY: gridSize };
 }
-export function normalizeToEmFrame(pathData: GlyphPathData, unitsPerEm: number, gridSize: number): PathSegment[] {
+export function normalizeToEmFrame(pathData: GlyphPathData, unitsPerEm: number, gridSize: number,
+  centre: 'advance' | 'ink' = 'advance'): PathSegment[] {
   const scale = gridSize / ((EM_FRAME_ABOVE + EM_FRAME_BELOW) * unitsPerEm);
   const baselineRow = gridSize * (EM_FRAME_ABOVE / (EM_FRAME_ABOVE + EM_FRAME_BELOW));
-  const xShift = (gridSize - pathData.advanceWidth * scale) / 2;
+  let xShift = (gridSize - pathData.advanceWidth * scale) / 2;
+  if (centre === 'ink') {
+    const b = computeBBox(pathData.segments);
+    xShift = gridSize / 2 - ((b.minX + b.maxX) / 2) * scale;
+  }
   const t = (p: PathPoint): PathPoint => ({ x: p.x * scale + xShift, y: baselineRow - p.y * scale });
   return pathData.segments.map((seg) => {
     switch (seg.type) {

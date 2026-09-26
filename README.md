@@ -1,200 +1,147 @@
 # confusable-vision
 
-Empirical glyph similarity scoring using vector-outline raycasting. Renders Unicode confusable character pairs across 245 system fonts, measures structural similarity from font outlines directly (no rasterization), and produces scored JSON artifacts with per-font continuous distance scores.
+**The world's first font-by-font confusables dataset.** Which Unicode characters look like which, measured from the fonts' outlines rather than from pixels. The current release, 2026.09.26, compares every letter and digit that each of 322 fonts draws, at the size and baseline position each glyph has in running text. The lookalikes of ASCII letters and digits are then checked in place: set between other letters in common fonts at the size people read them, and compared with pairs everyone accepts as alike, such as 0 and O.
 
-Key results from 52.6 million single-char and 190 million multi-char comparisons across 22,581 characters and 12 writing systems:
+[addons.mozilla.org](https://addons.mozilla.org/) uses characters from confusable-vision to check add-on names for lookalikes, [credited in Mozilla's source](https://github.com/mozilla/addons-server/blob/master/src/olympia/amo/confusables.py#L4-L6); see [Used by](#used-by).
 
-- **249,976 unique single-char confusable pairs** across 245 fonts, 12 scripts, 66 cross-script pairs. 764,395 total font-level discoveries.
-- **2,524,275 unique multi-char (bigram) confusable pairs** including rn/m across 95 fonts (33 below distance 0.40) and oy/Cyrillic uk across 16 fonts.
-- **Per-font continuous distance scores**, not binary lists. Each pair has a measured ray distance per font, giving font-aware confidence for downstream security tooling.
-- **305% more discoveries than SDF**, 29% faster. The enriched five-layer ray signature is a strict superset of SDF findings; SDF-exclusive pairs did not replicate under manual review.
+![The same rays through the Latin capital O and Ol Chiki letter at (U+1C5B): where each ray enters and leaves ink, and its path through ink, match.](docs/images/rays.png)
 
-The output feeds directly into [namespace-guard](https://github.com/paultendo/namespace-guard) for runtime confusable detection in package names, domain names, and identifiers.
+## Used by
+
+- **Mozilla [addons-server](https://github.com/mozilla/addons-server)**, the code behind [addons.mozilla.org](https://addons.mozilla.org/), adds characters from confusable-vision's output to the table it uses to fold lookalikes to ASCII when checking add-on names: [`src/olympia/amo/confusables.py`](https://github.com/mozilla/addons-server/blob/master/src/olympia/amo/confusables.py), pull requests [#24468](https://github.com/mozilla/addons-server/pull/24468), [#24541](https://github.com/mozilla/addons-server/pull/24541), [#24612](https://github.com/mozilla/addons-server/pull/24612) and [#24665](https://github.com/mozilla/addons-server/pull/24665) (February to March 2026).
+- **[disarm](https://disarm.dev/)** ([raeq/disarm](https://github.com/raeq/disarm)), which canonicalises adversarial Unicode before it reaches classifiers, indexes and identifiers, adds measured pairs from confusable-vision to its confusables tables: [`data/confusables_supplement.tsv`](https://github.com/raeq/disarm/blob/main/data/confusables_supplement.tsv), [`data/confusables_vision.tsv`](https://github.com/raeq/disarm/blob/main/data/confusables_vision.tsv).
+- **[SilverSpeak](https://acmcmc.github.io/silverspeak/)** ([ACMCMC/silverspeak](https://github.com/ACMCMC/silverspeak)), a Python library for performing and neutralising homoglyph attacks on text, builds the visual neighbours in its homoglyph graph from confusable-vision's discovery files ([`docs/hkb.md`](https://github.com/ACMCMC/silverspeak/blob/main/docs/hkb.md)).
+- **[namespace-guard](https://github.com/paultendo/namespace-guard)** ships the measured pairs, and through it they reach [agent-sanitizer](https://github.com/AlexanderMattTurner/agent-sanitizer), which uses namespace-guard as its default engine for folding lookalike characters in an AI agent's tool-call input to ASCII ([deps.dev](https://deps.dev/npm/namespace-guard/0.20.0/dependents)).
+
+These projects took their data from confusable-vision's outputs of February and March 2026.
+
+Discussed on Hacker News: [I rendered 1,418 confusables over 230 fonts](https://news.ycombinator.com/item?id=47150674) and [Confusables.txt and NFKC disagree on 31 characters](https://news.ycombinator.com/item?id=47121716).
+
+Release 2026.09.26 in figures:
+
+- **322 fonts**: every font on macOS, including those it downloads on demand such as PingFang, plus Roboto, Noto Sans, Noto Serif, Noto Sans CJK and DejaVu. **64,751 code points** in 140 scripts.
+- **11,517 pairs** alike in at least one font or font combination, of which **5,975** pass the suggested thresholds.
+- **719 pairs** of a character and a two-letter ASCII sequence, such as ǁ and ll, or Ы and bl.
+- **3,055 candidate lookalikes** of ASCII letters, digits and sequences checked in place: 646 alike at the strict tier, 358 more at the broad tier, 101 more that match another common font's design of the letter. 224 of the strict ones are not in Unicode's confusables.txt.
+
+The data is published as a versioned release in [`data/release/2026.09.26/`](data/release/2026.09.26/DATASET.md) (CC-BY-4.0). [namespace-guard](https://github.com/paultendo/namespace-guard) and [d0ma1n](https://d0ma1n.app) are built on it.
+
+## What changed from release 2
+
+Release 2 (2026.09.24, and 2026.09.25 for the TLD data) compared only the pairs and fonts that earlier runs had compared. An audit of identical glyphs found it caught 637 of the 2,654 cases where a font draws two characters with the same glyph. Release 3 fixes that and adds three things:
+
+- **Coverage.** Every letter and digit each font draws is compared with every other in that font, Han and Hangul included. Release 2 took its characters from a fixed list, so it never reached most of Yi, Canadian Aboriginal, Ethiopic or the Indic scripts, and it missed the script-only fonts and PingFang.
+- **The right faces.** Font collections are loaded in the face a browser uses for body text. Earlier runs took the first face, which for some collections was bold, black or italic.
+- **Overlapping contours**, as in variable fonts such as San Francisco, are measured as the union of their strokes, as a reader sees them.
+- **Two-letter sequences.** Every sequence of two ASCII letters or digits (3,844) is set as each font sets it, with its kerning and ligatures, and compared like a character.
+- **The cross-font bar** is set by the upper quartile of the page fonts, so adding fonts to the survey cannot move it.
+- **The in-place check** (below).
+
+The March 2026 figures (249,976 single-character pairs and 2,524,275 bigram pairs across 245 fonts) came from measurements that ignored size and baseline. They are superseded; the files from those runs stay in `data/output/` for reference.
 
 ## How it works
 
-RaySpace casts parallel rays through font outlines at 36 angles and captures five layers of information per glyph: crossing counts, crossing positions, crossing angles, ping distances (stroke width at each crossing), and ping max (counter width between crossings). This produces a compact signature per character per font. Two signatures are compared with a weighted L1 distance across all five layers.
+### Measuring glyphs
 
-A three-stage filter cascade makes exhaustive comparison tractable:
+RaySpace casts parallel rays through each glyph's outline at 36 angles, 50 rays each, and records five things per ray: how many times it crosses the outline, where, at what angle, how far it travels through ink each time (its ping, the stroke's width along the ray), and the widest gap between strokes. Each glyph is measured twice: in its own box, for shape, and in a fixed frame on the baseline, so size and position count. Two characters are alike in a font when the shape distance is below 0.5 and the baseline-anchored distance below 0.2. The comparison runs in Rust (`native/cv-pairs`), on every core.
 
-1. **Advance width filter** (15% tolerance) eliminates pairs with different character widths. Removes 63% of candidates.
-2. **Ray comparison** (threshold 2.0, tightened to 1.0 for large script pairs). Removes another 33%.
-3. Only 3.3% of candidates survive to become discoveries.
+- **Within one font**: every pair of letters and digits the font draws.
+- **Across fonts**: a character in its own font, as a browser's fallback would draw it, against the 62 ASCII letters and digits of each of 26 page fonts that lack it. It counts when the ASCII letter is the nearest one, and the character is as close to it as that letter is to itself in the upper quartile of the other page fonts.
+- **Sequences**: every character against the 3,844 two-character ASCII sequences, as each font sets them (Core Text; HarfBuzz sets them identically apart from the system font's tracking).
 
-The signature bank (294,646+ entries across 245 fonts; more with `--include-uppercase`) is precomputed once. Discovery then runs as single-threaded arithmetic on the bank, completing 52.6 million pair comparisons in 31 minutes with no worker threads or GPU.
+### Checking in place
 
-## Quick start
+A lookalike measured in isolation can still stand out in a line of text. So every candidate lookalike of an ASCII letter, digit or sequence is set between neighbours (`pa_nel`, `20_5`) in five contexts, the system font at 13 px and Helvetica, Arial, Times New Roman and Georgia at 16 px, each at a device pixel ratio of 1 and 2, with the platform's font fallback. Nothing is rescaled: the lookalike is compared where it lands in the line.
 
-```bash
-npm install
+The bar in each context comes from pairs everyone accepts as alike, 0 and O, 1 and l, and I and l, counted only where that context draws them at the same size and position. A lookalike is:
 
-# 1. Build the ray signature bank (prerequisite, ~24 min)
-npx tsx scripts/build-signature-bank.ts
+- **strict** when it is as alike as the median of those pairs and passes every check below;
+- **broad** when it is as alike as the least alike of them, with one corner allowed to differ and no slant check;
+- **design** when it matches the letter as another common font draws it (a J with a bar at the top, in a line whose J has none).
 
-# 1b. Include uppercase Latin A-Z (optional)
-#     By default the bank only includes IDNA PVALID codepoints (lowercase,
-#     digits, symbols). Use --include-uppercase to add uppercase A-Z, useful
-#     for font identification and trademark visual comparison where uppercase
-#     glyph shapes matter. The builder is resumable, so this only computes
-#     the additional codepoints.
-npx tsx scripts/build-signature-bank.ts --include-uppercase
+The checks, on both glyphs rasterised at four times the device resolution: the same number of pieces and holes once gaps narrower than a device pixel close; counters square or round alike, in the same place and of about the same size; spacing to the neighbours; the ink's top, bottom and width; right-to-left characters reordering the digits around them; stroke weight; the shape of each side (mirroring); how far the ink reaches into each corner; slant; a stem in the middle (Y against V); and a bar across a stem (Ŧ against T). A two-letter sequence is checked letter by letter.
 
-# 1c. Include arbitrary codepoint ranges (optional)
-npx tsx scripts/build-signature-bank.ts --extra-range=0041-005A
-
-# 2. Single-char discovery (22,581 chars, 12 scripts, ~36 min)
-npx tsx scripts/discover-singlechar-sdf.ts --scorer=ray
-
-# 3. Multi-char (bigram) discovery (676 bigrams, ~63 min)
-npx tsx scripts/discover-multichar-sdf.ts --scorer=ray
-
-# 4. Score known TR39 multi-char confusables (~5 min)
-npx tsx scripts/score-multichar-sdf.ts --scorer=ray
-```
-
-<details>
-<summary>Legacy SSIM pipeline</summary>
-
-The original SSIM-based pipeline scored 26.5 million comparisons across 230 fonts. It remains functional but is superseded by RaySpace for all discovery and scoring tasks.
-
-```bash
-# TR39 confusable pair scoring
-npx tsx scripts/build-index.ts          # Render index (~160s, 11,370 PNGs)
-npx tsx scripts/score-all-pairs.ts      # Score all pairs (~65s, 235K comparisons)
-
-# Novel confusable discovery
-npx tsx scripts/build-candidates.ts          # Candidate set (~23K chars)
-npx tsx scripts/build-index.ts --candidates  # Render candidates (~40min, 89K PNGs)
-npx tsx scripts/score-candidates.ts          # Score against Latin targets (~15min, 2.9M comparisons)
-
-# Extract high-scoring discoveries from both pipelines
-npx tsx scripts/extract-discoveries.ts
-```
-
-</details>
+The tiers were tuned against visual judgements of rendered samples and anchored on the accepted pairs. There has been no study with readers yet.
 
 ## What it found
 
-### Top confusable pairs (single-char, mean distance < 0.10)
+Six of the strict lookalikes that are not in Unicode's confusables.txt, each alike in all five contexts. macOS draws each one with a Noto fallback font:
 
-| Source | Target | Scripts | Mean | Fonts | Zeros |
-|---|---|---|---|---|---|
-| w U+0077 | ԝ U+051D | Latin-Cyrillic | 0.000 | 19 | 19 |
-| j U+006A | ϳ U+03F3 | Latin-Greek | 0.013 | 21 | 18 |
-| i U+0069 | і U+0456 | Latin-Cyrillic | 0.018 | 62 | 50 |
-| s U+0073 | ѕ U+0455 | Latin-Cyrillic | 0.018 | 62 | 46 |
-| c U+0063 | с U+0441 | Latin-Cyrillic | 0.019 | 61 | 45 |
-| o U+006F | о U+043E | Latin-Cyrillic | 0.020 | 61 | 44 |
-| j U+006A | ј U+0458 | Latin-Cyrillic | 0.021 | 60 | 48 |
-| x U+0078 | х U+0445 | Latin-Cyrillic | 0.023 | 59 | 50 |
-| p U+0070 | р U+0440 | Latin-Cyrillic | 0.024 | 61 | 46 |
-| e U+0065 | е U+0435 | Latin-Cyrillic | 0.032 | 61 | 44 |
-| a U+0061 | а U+0430 | Latin-Cyrillic | 0.042 | 61 | 45 |
+![Six lookalikes in words, set in Arial at 46 px and at 16 px beside the real words, with the swapped letter marked.](docs/images/in-place.png)
 
-"Zeros" = fonts where the outlines produce bit-identical ray signatures (distance 0.000). Latin w/Cyrillic ԝ is identical in all 19 fonts that contain both glyphs.
-
-### Cross-script breakthroughs (single-char)
-
-| Source | Target | Scripts | Mean | Fonts |
-|---|---|---|---|---|
-| ο U+03BF | ჿ U+10FF | Greek-Georgian | 0.057 | 2 |
-| ヘ U+30D8 | へ U+3078 | Katakana-Hiragana | 0.122 | 11 |
-| 丶 U+4E36 | ヽ U+30FD | Han-Katakana | 0.125 | 9 |
-| 二 U+4E8C | ニ U+30CB | Han-Katakana | 0.249 | 11 |
-| 口 U+53E3 | ロ U+30ED | Han-Katakana | 0.268 | 11 |
-
-Georgian Coda (U+10FF) forms a four-way confusable ring with Latin o, Cyrillic o, and Greek omicron, all below distance 0.08.
-
-### Multi-char headline results
-
-| Bigram | Target | Mean | Fonts | Notes |
-|---|---|---|---|---|
-| ll | ॥ U+0965 (Devanagari double danda) | 0.176 | 8 | Cross-script |
-| oy | ѹ U+0479 (Cyrillic uk) | 0.322 | 16 | Novel cross-script bigram confusable |
-| rn | m U+006D | 0.531 | 95 | 33 fonts below 0.40 |
-| bl | ы U+044B (Cyrillic yeru) | 0.797 | 49 | Cross-script |
-
-The **oy/Cyrillic uk** discovery is the standout novel finding: the Latin bigram "oy" is visually identical to the Cyrillic digraph letter uk (ѹ) at distance 0.000 in Helvetica and 0.0005 in Arial Unicode MS.
-
-### Threshold calibration
-
-| Mean threshold | Single-char unique pairs | Multi-char unique pairs |
+| Character | Name | Passes for |
 |---|---|---|
-| < 0.50 | 138 | 13 |
-| < 1.00 | 4,174 | 1,631 |
-| < 1.50 | 59,700 | (noise) |
-| < 2.00 | 249,976 | 2,524,275 |
+| ᱛ U+1C5B | OL CHIKI LETTER AT | O |
+| ꢝ U+A89D | SAURASHTRA LETTER TTHA | O |
+| 𖩠 U+16A60 | MRO DIGIT ZERO | O |
+| 𑫤 U+11AE4 | PAU CIN HAU LETTER FINAL Y | O |
+| ᦞ U+199E | NEW TAI LUE LETTER LOW VA | o |
+| ᧐ U+19D0 | NEW TAI LUE DIGIT ZERO | o |
 
-Three recommended operating tiers:
+The ASCII swaps behind most lookalike domains hold only in some fonts. I for l is near identical in the system font, Helvetica and Arial. 1 for l holds only in Times New Roman, 0 for o only in Georgia, whose digits are lowercase height, and rn for m only in Arial at 16 px on a standard-density screen. d for cl and w for vv do not hold at 16 px.
 
-- **Strict (< 0.50)**: 138 single-char pairs, near-zero false positives. Suitable for automated blocking (IDN registration, package name validation) where false positives have real cost.
-- **Standard (< 1.00)**: 4,174 single-char pairs, good balance of coverage and precision. Suitable for flagging and manual review in security tooling.
-- **Exploratory (< 2.00)**: Full discovery set. Contains noise at the upper end but useful for research, font auditing, and building training sets.
+Along the way: Georgia as shipped with macOS and iOS draws ⅳ (U+2173, SMALL ROMAN NUMERAL FOUR) exactly like ⅸ, nine. Windows 11's Georgia is correct. It was first reported on [Microsoft Q&A](https://learn.microsoft.com/en-in/answers/questions/5843826/) in March 2026 and has been reported to Apple.
 
-## Font querying
+## The release
 
-Query which confusable pairs exist for a specific font. Useful for font designers shipping a new typeface, browser vendors evaluating a system font change, or anyone choosing a display font for security-sensitive contexts like IDN domains.
+| File | One row per |
+|---|---|
+| `characters.jsonl.gz` | code point measured, with script, category, TR39 identifier type, IDNA2008 status and the TLDs whose registries accept it |
+| `lookalikes.jsonl.gz` | pair alike in at least one font or combination, with the counts behind it and the distances in each font |
+| `sequences.jsonl.gz` | character alike to a two-character ASCII sequence |
+| `in-place.jsonl.gz` | candidate lookalike checked in place, with the verdict and the checks that failed in each context |
+
+[`DATASET.md`](data/release/2026.09.26/DATASET.md) gives every field, what was compared, what an absent pair means and the suggested thresholds. Pin a release by its version. Other committed outputs:
+
+| File | Description |
+|---|---|
+| `data/output/idn-relevant-pairs.json` | The IDN view of the release: 2,923 pairs that pass its thresholds and whose characters can both be registered at a common TLD. `npx tsx scripts/export-idn-pairs.ts` |
+| `data/output/confusable-weights-v4.json`, `font-specific-weights-v4.json` | Weights for namespace-guard: pairs involving an ASCII letter or two scripts, scored by the share of fonts where they are alike (overall, and per font). `scripts/generate-weights-release.ts`, `scripts/generate-font-weights-release.ts` |
+| `data/output/unicode-submission/` | Proposed additions to Unicode's confusables data, with the measurements behind each line. `scripts/build-unicode-submission.ts` |
+| `data/input/tld-rules.json` | Which characters each delegated TLD's registry accepts at the second level, from IANA's IDN tables, the ICANN registry agreement and researched country-code policies. `scripts/build-tld-rules.py`; d0ma1n imports it |
+
+## Reproducing
+
+Needs macOS (Core Text sets the text), Node 22 or later, Rust, and the Xcode command-line tools for the Swift helpers.
 
 ```bash
-npx tsx scripts/query-font.ts --list-fonts                    # 218 fonts in discovery data
-npx tsx scripts/query-font.ts "Arial"                         # All pairs for Arial (SSIM >= 0.7)
-npx tsx scripts/query-font.ts "Arial" --threshold 0.8         # High-confidence only
-npx tsx scripts/query-font.ts "Arial" --compare "Georgia"     # Diff two fonts by SSIM delta
-npx tsx scripts/query-font.ts "Arial" --json                  # JSON for downstream processing
+npm install
+(cd native/cv-pairs && cargo build --release)
+
+# Every pair in every font, across fonts, and the sequences (about two hours on an M-series Mac)
+npx tsx scripts/score-all.ts --scope all --cross --sequences --out all-pairs-v8
+
+# The in-place check (about 15 minutes), and the ASCII pairs Unicode lists
+node --import tsx scripts/in-place.ts --run all-pairs-v8
+node --import tsx scripts/in-place.ts --run all-pairs-v8 --pairs data/input/ascii-known.txt --how "Unicode (ASCII)" \
+  --out data/output/all-pairs-v8.ascii.in-place.jsonl
+
+# The release, its IDN view, and the weights
+npx tsx scripts/build-release.ts 2026.09.26 --run all-pairs-v8
+npx tsx scripts/export-idn-pairs.ts
+npx tsx scripts/generate-weights-release.ts data/release/2026.09.26
+npx tsx scripts/generate-font-weights-release.ts data/release/2026.09.26
+
+# The README's figures
+swiftc -O scripts/render-readme-figures.swift -o /tmp/figs && /tmp/figs docs/images
 ```
 
-Font name matching is case-insensitive substring, so `"arial"` matches Arial, Arial Black, and Arial Unicode MS. Compare mode sorts by the biggest SSIM differences first, surfacing exactly which pairs get better or worse when switching fonts.
+## Limits
 
-Requires the discovery files from the scoring pipeline (gitignored, regenerate locally).
-
-## Output
-
-### Committed (CC-BY-4.0)
-
-| File | Description |
-|------|-------------|
-| `data/output/confusable-discoveries.json` | 110 TR39 pairs with high SSIM (>= 0.7) or pixel-identical |
-| `data/output/candidate-discoveries.json` | 793 novel pairs not in TR39, mean SSIM >= 0.7 |
-| `data/output/confusable-weights.json` | 1,397 weighted edges for namespace-guard integration |
-| `data/output/cross-script-discoveries.json` | 563 cross-script confusable pairs |
-| `data/output/cross-script-summary.json` | Cross-script summary by script pair |
-| `data/output/multichar-discoveries.json` | Multi-char confusable discoveries |
-| `data/release/2026.09.25/` | **The dataset, versioned (release 2 scoring; 2026.09.24 is the first).** `lookalikes.jsonl.gz`: 857 pairs found alike at the size and baseline position each glyph has in running text, 409 within one font and 448 across fonts (a rare-script character in its fallback font against Latin in Roboto or a common text font), each with the counts behind it. `characters.jsonl.gz`: 23,038 code points with script, general category, TR39 type, IDNA2008 status and the TLDs (every one with known registry rules) whose registries accept each one. `DATASET.md` gives the fields, what was compared and suggested thresholds. Pin a release by version; built by `scripts/build-release.ts`. Method and tests: [docs/metric-calibration.md](docs/metric-calibration.md) |
-| `data/output/idn-relevant-pairs.json` | The IDN view of the release: 122 lookalike pairs whose characters can both be registered at a common TLD, with where. Regenerate with `npx tsx scripts/export-idn-pairs.ts` |
-| `data/output/unicode-submission/` | Proposed additions to Unicode confusables data (78 lines in the layout of unicodetools' formatted-source.txt), with the measurements behind each line and pairs that would merge existing classes. Built by `scripts/build-unicode-submission.ts` |
-| `data/input/tld-rules.json` | Which characters each delegated TLD's registry accepts at the second level: the latest IANA IDN table of every registry that has lodged one (a label fits one table), ASCII-only for generic TLDs without tables (ICANN registry agreement), and country-code policies researched from each registry with sources (`data/input/cctld-idn-rules.json`) and corrections (`data/input/tld-overrides.json`). Built by `scripts/build-tld-rules.py` (IANA data fetched 24 Sep 2026); d0ma1n imports it |
-
-### Generated (gitignored, run pipeline to regenerate)
-
-| File | Description |
-|------|-------------|
-| `data/output/render-index/` | Render PNGs + index (SSIM pipeline) |
-| `data/output/singlechar-sdf-scores.jsonl` | Single-char RaySpace scores |
-| `data/output/multichar-rayspace-scores.jsonl` | Multi-char RaySpace scores |
-| `data/output/signature-bank/` | Ray signature bank (294,646 entries, 7.9GB compressed) |
-
-## Progress
-
-- [x] TR39 validation (1,418 pairs, 230 fonts, SSIM pipeline)
-- [x] Novel confusable discovery (793 high-scoring pairs from 23,317 candidates, SSIM)
-- [x] Cross-script confusable scanning (12 ICANN scripts, 23.6M pairs, 563 discoveries, SSIM)
-- [x] Per-font querying and font comparison
-- [x] RaySpace five-layer vector-outline scorer (replaces SDF and SSIM for discovery)
-- [x] Single-char RaySpace discovery (249,976 unique pairs, 245 fonts, 12 scripts)
-- [x] Multi-char RaySpace discovery (2,524,275 unique bigram pairs, 245 fonts)
-- [x] Cross-script discovery with RaySpace (305% more pairs than SDF, strict superset)
-- [x] Produce `confusable-weights-v2.json` with per-pair distributional records: mean, p50, p90, font count, zero-distance count, zero fraction, and recommended tier (strict/standard/exploratory). RaySpace distances replace SSIM. 4,174 pairs at standard threshold.
-- [ ] Binary signature bank format (reduce 273s load time to seconds)
-- [ ] Score arbitrary fonts by path without re-running full pipeline
+- The fonts are macOS's, plus Roboto, Noto and DejaVu. Windows fonts are not included.
+- The in-place check covers five fonts at 13 and 16 px, at device pixel ratios of 1 and 2.
+- Sequences are two characters long.
+- The thresholds are measured and anchored on accepted confusables, not tested with readers.
 
 ## Related
 
-- [namespace-guard](https://github.com/paultendo/namespace-guard) (v0.16.0+) consumes `confusable-weights.json` for measured visual risk scoring via `confusableDistance({ weights })`
-- [REPORT.md](REPORT.md): full technical report from the SSIM pipeline (12 sections, per-font analysis, appendices)
+- [namespace-guard](https://github.com/paultendo/namespace-guard) ships the measured pairs, weights and in-place lookalikes as runtime data.
+- [d0ma1n](https://d0ma1n.app) finds the registered lookalikes of a domain using them.
+- [REPORT.md](REPORT.md): the technical report from the February 2026 SSIM pipeline.
 
 ### Blog posts
 
-Write-ups on [paultendo.github.io](https://paultendo.github.io) covering the findings and methodology behind this project:
+Write-ups on [paultendo.github.io](https://paultendo.github.io). The earlier posts describe earlier runs; the figures above supersede theirs.
 
 **RaySpace methodology and findings:**
 - [RaySpace: measuring glyph similarity with vector-outline raycasting](https://paultendo.github.io/posts/rayspace-methodology/)
@@ -224,6 +171,7 @@ Posts covering the broader problem space that motivated this project:
 
 ## Licence
 
-- **Code** (src/, scripts/): MIT
-- **Generated data** (data/output/): [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/). Free to use, share, and adapt for any purpose including commercial, with attribution.
-- **Attribution**: Paul Wood FRSA (@paultendo), confusable-vision
+- **Code** (src/, scripts/, native/, attack-tests/): MIT ([LICENSE](LICENSE))
+- **Generated data** (data/output/, data/release/): [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) ([LICENSE-DATA](LICENSE-DATA)). Free to use, share, and adapt for any purpose including commercial, with attribution.
+- **Unicode data** (the .txt files in data/input/): [Unicode License v3](https://www.unicode.org/license.txt)
+- **Attribution**: Paul Wood FRSA (@paultendo), confusable-vision, https://github.com/paultendo/confusable-vision, CC-BY-4.0 (see [NOTICE](NOTICE))

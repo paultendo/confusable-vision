@@ -9,4 +9,8 @@ export const DISPLAY_FONTS = new Set([
   "Academy Engraved LET", "Apple Chancery", "Apple Symbols", "Bodoni 72 Smallcaps", "Bradley Hand", "Brush Script MT",
   "Chalkboard", "Chalkboard SE", "Chalkduster", "Copperplate", "Herculanum", "Luminari", "Marker Felt", "Noteworthy",
   "Papyrus", "Party LET", "Phosphate", "Savoye LET", "SignPainter", "Snell Roundhand", "Trattatello", "Zapfino",
+  // Added 26 Sep 2026 with the font catalogue (src/font-catalogue.ts): calligraphic Arabic and cursive Hebrew display
+  // faces, and symbol faces
+  "Corsiva Hebrew", "Diwan Thuluth", "Farisi", "Mishafi", "Mishafi Gold", "Bodoni Ornaments", "Symbol", "Webdings",
+  "Wingdings", "Wingdings 2", "Wingdings 3", "Zapf Dingbats",
 ]);

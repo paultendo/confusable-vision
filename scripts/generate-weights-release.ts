@@ -46,6 +46,7 @@ const xid = rangeSet("DerivedCoreProperties.txt", "XID_Continue");
 const allowed = rangeSet("IdentifierStatus.txt", "Allowed");
 const release = readFileSync(join(releaseDir, "DATASET.md"), "utf8").match(/release (\d{4}\.\d{2}\.\d{2})/)?.[1];
 
+const v4 = !!release && release >= "2026.09.26";
 const edges = [];
 for (const l of jsonl("lookalikes.jsonl.gz")) {
   if (!passes(l)) continue;
@@ -55,6 +56,10 @@ for (const l of jsonl("lookalikes.jsonl.gz")) {
     const ap = p.char.charCodeAt(0) < 0x80 ? 0 : 1, aq = q.char.charCodeAt(0) < 0x80 ? 0 : 1;
     return ap !== aq ? aq - ap : parseInt(q.codepoint.slice(2), 16) - parseInt(p.codepoint.slice(2), 16);
   });
+  // Release 3 compares every pair within a font, so most pairs are two letters of one script (Hangul jamo, Arabic
+  // positional forms, Han variants); the weights keep what their users compare: a lookalike of an ASCII letter or
+  // digit, or of a letter in another script
+  if (v4 && tgt.char.charCodeAt(0) >= 0x80 && src.script === tgt.script) continue;
   const share = l.method === "same font" ? l.textShare : l.share;
   const cp = parseInt(src.codepoint.slice(2), 16);
   edges.push({
@@ -67,12 +72,13 @@ for (const l of jsonl("lookalikes.jsonl.gz")) {
 edges.sort((p, q) => q.danger - p.danger || p.sourceCodepoint.localeCompare(q.sourceCodepoint));
 const out = {
   meta: {
-    generatedAt: new Date().toISOString(), pairCount: edges.length, release, scorer: "rayspace-release-2",
-    fontSetId: "macos-system-plus-roboto", licence: "CC-BY-4.0",
+    generatedAt: new Date().toISOString(), pairCount: edges.length, release, scorer: v4 ? "rayspace-release-3" : "rayspace-release-2",
+    fontSetId: v4 ? "macos-catalogue-plus-noto-dejavu-roboto" : "macos-system-plus-roboto", licence: "CC-BY-4.0",
     attribution: "Paul Wood FRSA (@paultendo), confusable-vision",
     weights: "danger = stableDanger = share of text fonts (or font combinations) where the pair is alike; cost = 1 - share",
+    ...(v4 ? { scope: "pairs passing the release's suggested thresholds where one character is an ASCII letter or digit, or the two are in different scripts" } : {}),
   },
   edges,
 };
-writeFileSync(join(ROOT, "data/output/confusable-weights-v3.json"), JSON.stringify(out, null, 1) + "\n");
+writeFileSync(join(ROOT, `data/output/confusable-weights-${v4 ? "v4" : "v3"}.json`), JSON.stringify(out, null, 1) + "\n");
 console.log(`${edges.length} edges from release ${release}`);

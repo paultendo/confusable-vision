@@ -5,7 +5,10 @@
   "type": "module",
   "license": "MIT",
   "description": "Offline tool that renders Unicode confusable character pairs across multiple fonts, measures visual similarity using SSIM and pHash, and outputs scored JSON artifacts.",
-  "author": "Paul Wood FRSA (@paultendo)",
+  "author": {
+    "name": "Paul Wood FRSA (@paultendo)",
+    "url": "https://paultendo.github.io"
+  },
   "scripts": {
     "render-pairs": "npx tsx scripts/render-pairs.ts",
     "render-pairs:save": "npx tsx scripts/render-pairs.ts --save-renders",

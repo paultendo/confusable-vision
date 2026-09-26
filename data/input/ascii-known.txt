@@ -1,0 +1,8 @@
+# ASCII lookalikes Unicode lists (confusables.txt maps each source to the target), checked in place like any other candidate
+1 l
+I l
+| l
+0 o
+0 O
+O 0
+m rn

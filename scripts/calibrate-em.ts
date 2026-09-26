@@ -10,7 +10,7 @@
  * both if fewer, and at least 5% of them).
  *
  * Usage:
- *   npx tsx scripts/calibrate-em.ts
+ *   npx tsx scripts/calibrate-em.ts [--ink | --both]   (centre on the ink instead of the advance, or take the lower of the two)
  */
 
 import fs from "node:fs";
@@ -76,6 +76,7 @@ async function main() {
   const chars = [...new Set([...ascii, ...latin, ...other])];
   const sigs = new Map<string, Map<string, CompactBankTarget>>(); // char -> font -> baseline-anchored signature
   const boxSigs = new Map<string, Map<string, CompactBankTarget>>(); // char -> font -> signature on the glyph's own box
+  const inkSigs = new Map<string, Map<string, CompactBankTarget>>(); // char -> font -> baseline-anchored, centred on ink
   const jobs: Promise<void>[] = [];
   for (const family of FONTS) {
     const file = paths.get(family);
@@ -84,7 +85,7 @@ async function main() {
     for (const ch of chars) {
       const g = extractGlyphPath(font, ch.codePointAt(0)!);
       if (!g) continue;
-      const segs = normalizeToEmFrame(g, font.unitsPerEm, 128);
+      const segs = normalizeToEmFrame(g, font.unitsPerEm, 128, process.argv.includes("--ink") ? "ink" : "advance");
       const put = (store: Map<string, Map<string, CompactBankTarget>>) => (s: any) => {
         let m = store.get(ch);
         if (!m) store.set(ch, (m = new Map()));
@@ -93,6 +94,8 @@ async function main() {
       };
       jobs.push(pool.compute(segs, emFrame(128)).then(put(sigs)));
       jobs.push(pool.compute(segs).then(put(boxSigs)));
+      // --both: alike under either horizontal centring (the lower of the two distances)
+      if (process.argv.includes("--both")) jobs.push(pool.compute(normalizeToEmFrame(g, font.unitsPerEm, 128, "ink"), emFrame(128)).then(put(inkSigs)));
     }
   }
   await Promise.all(jobs);
@@ -114,7 +117,9 @@ async function main() {
       const ds: number[] = [], ss: number[] = [];
       for (const [f, s] of fa) {
         const t = fb.get(f); if (!t) continue;
-        ds.push((process.env.ACTIVE ? compareActive : compareGeometric)(s, t, 36, 50));
+        const cmp = process.env.ACTIVE ? compareActive : compareGeometric;
+        const ia = inkSigs.get(a)?.get(f), ib = inkSigs.get(b)?.get(f);
+        ds.push(Math.min(cmp(s, t, 36, 50), ia && ib ? cmp(ia, ib, 36, 50) : Infinity));
         ss.push(compareGeometric(boxSigs.get(a)!.get(f)!, boxSigs.get(b)!.get(f)!, 36, 50));
       }
       distances.set(a + b, ds); shapeDistances.set(a + b, ss);

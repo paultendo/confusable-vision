@@ -12,6 +12,7 @@ data/output/*
 !data/output/cross-script-discoveries.json
 !data/output/cross-script-summary.json
 !data/output/idn-relevant-pairs.json
+!data/output/denial-of-spend/
 !data/output/unicode-submission/
 .DS_Store
 *.tsbuildinfo
@@ -24,3 +25,9 @@ scripts/render-*.ts
 references/
 private/
 data/fonts/
+
+# Rust build output for native/ helpers (the source and Cargo.lock are committed)
+native/*/target/
+native/*/target-dev/
+# One-off investigation scripts
+scripts/_*.ts

@@ -1,5 +1,9 @@
 # RaySpace metric calibration (release 2)
 
+> Release 2026.09.26 keeps this scoring and the thresholds below. It changes what is compared (every letter and digit
+> each of 322 fonts draws, not the pairs earlier runs had found), and adds two-letter sequences and the in-place check.
+> See the README and the release's DATASET.md.
+
 September 2026. How the release 2 scoring differs from the March 2026 run, and the tests behind each change.
 
 ## Why it changed

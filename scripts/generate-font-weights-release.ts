@@ -37,7 +37,15 @@ const release = readFileSync(join(releaseDir, "DATASET.md"), "utf8").match(/rele
 // The per-font distances behind the release's same-font rows (the release itself lists only the font names)
 const fonts: Record<string, { edges: any[] }> = {};
 let pairs = 0;
-for (const m of jsonl(readFileSync(join(ROOT, "data/output/rescored-pairs.jsonl"), "utf8"))) {
+// Release 3 carries each pair's distances in the release ([shape, baseline-anchored] per font); release 2 listed only
+// the font names, so its distances come from rescored-pairs.jsonl
+const lookalikeRows = jsonl(gunzipSync(readFileSync(join(releaseDir, "lookalikes.jsonl.gz"))).toString("utf8"));
+const fromRelease = lookalikeRows.some((l: any) => l.distances);
+const sameFontRows = fromRelease
+  ? lookalikeRows.filter((l: any) => l.method === "same font").map((l: any) => ({ ...l,
+      alikeFonts: Object.fromEntries(Object.entries(l.distances as Record<string, [number, number]>).map(([f, d]) => [f, d[0]])) }))
+  : jsonl(readFileSync(join(ROOT, "data/output/rescored-pairs.jsonl"), "utf8"));
+for (const m of sameFontRows) {
   if (!passes({ method: "same font", ...m })) continue;
   const a = characters.get(m.a), b = characters.get(m.b);
   if (!a || !b) continue;
@@ -46,6 +54,8 @@ for (const m of jsonl(readFileSync(join(ROOT, "data/output/rescored-pairs.jsonl"
     const ap = p.char.charCodeAt(0) < 0x80 ? 0 : 1, aq = q.char.charCodeAt(0) < 0x80 ? 0 : 1;
     return ap !== aq ? aq - ap : parseInt(q.codepoint.slice(2), 16) - parseInt(p.codepoint.slice(2), 16);
   });
+  // As in confusable-weights-v4.json: a lookalike of an ASCII letter or digit, or of a letter in another script
+  if (fromRelease && tgt.char.charCodeAt(0) >= 0x80 && src.script === tgt.script) continue;
   pairs++;
   for (const [font, d] of Object.entries(m.alikeFonts as Record<string, number>)) {
     (fonts[font] ??= { edges: [] }).edges.push({
@@ -59,12 +69,13 @@ for (const f of Object.values(fonts)) f.edges.sort((p, q) => q.similarity - p.si
 
 const out = {
   meta: {
-    generatedAt: new Date().toISOString(), release, scorer: "rayspace-release-2", fontSetId: "macos-system-plus-roboto",
+    generatedAt: new Date().toISOString(), release, scorer: fromRelease ? "rayspace-release-3" : "rayspace-release-2",
+    fontSetId: fromRelease ? "macos-catalogue-plus-noto-dejavu-roboto" : "macos-system-plus-roboto",
     fontCount: Object.keys(fonts).length, pairCount: pairs, licence: "CC-BY-4.0",
     attribution: "Paul Wood FRSA (@paultendo), confusable-vision",
     weights: `similarity = 1 - shape distance / ${ALIKE} in that font, for fonts where the pair is alike in shape and at the baseline`,
   },
   fonts: Object.fromEntries(Object.entries(fonts).sort(([p], [q]) => p.localeCompare(q))),
 };
-writeFileSync(join(ROOT, "data/output/font-specific-weights-v3.json"), JSON.stringify(out, null, 1) + "\n");
+writeFileSync(join(ROOT, `data/output/font-specific-weights-${release && release >= "2026.09.26" ? "v4" : "v3"}.json`), JSON.stringify(out, null, 1) + "\n");
 console.log(`${pairs} pairs across ${out.meta.fontCount} fonts from release ${release}`);
