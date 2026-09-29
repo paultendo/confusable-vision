@@ -4,6 +4,8 @@
 
 Paul Wood FRSA (@paultendo) -- 27 February 2026
 
+> **Superseded.** This is the February 2026 report, from rendered glyphs in 230 macOS system fonts, with size and baseline ignored. The current release, [2026.09.26](data/release/2026.09.26/DATASET.md), measures 64,751 characters in 322 fonts at the size and position they have in a line of text, and replaces the figures below. It is kept as a record of the method at the time. The code is MIT and the data CC BY 4.0.
+
 ---
 
 ## 1. Executive summary

@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "license": "MIT",
-  "description": "Offline tool that renders Unicode confusable character pairs across multiple fonts, measures visual similarity using SSIM and pHash, and outputs scored JSON artifacts.",
+  "description": "Measures which Unicode characters look alike, from the outlines of 322 fonts at the size and position people read them. Code MIT, data CC BY 4.0.",
   "author": {
     "name": "Paul Wood FRSA (@paultendo)",
     "url": "https://paultendo.github.io"
